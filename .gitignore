@@ -19,4 +19,10 @@
 # Jenkins build dirs
 jenkins_home/logs/
 jenkins_home/jobs/**/builds/
+jenkins_home/jobs/**/lastStable
+jenkins_home/jobs/**/lastSuccessful
+jenkins_home/jobs/**/nextBuildNumber
+jenkins_home/jobs/**/scm-polling.log
+
+
 
