@@ -1,9 +1,0 @@
-Started by user [8mha:////4ERpuxRf11OYr6t+13kLT+PpbMKA8pY6REBpyaOuUMGgAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgZu/dLi1CL9xJTczDwAcQdo88AAAAA=[0mErnest Mueller
-Building in workspace /var/jenkins_home/workspace/word-cloud-generator
-[WS-CLEANUP] Deleting project workspace...
-[WS-CLEANUP] Done
-[word-cloud-generator] $ /bin/sh -xe /tmp/hudson9053377552487208706.sh
-+ make test
-/tmp/hudson9053377552487208706.sh: 2: /tmp/hudson9053377552487208706.sh: make: not found
-Build step 'Execute shell' marked build as failure
-Finished: FAILURE
