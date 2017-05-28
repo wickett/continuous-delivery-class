@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: chris
+Build-Jdk: 1.8.0_121
+Extension-Name: golang
+Specification-Title: Automatically installs and sets up the Go program
+ ming language (golang) tools for a build.
+Implementation-Title: golang
+Implementation-Version: 1.2
+Group-Id: org.jenkins-ci.plugins
+Short-Name: golang
+Long-Name: Go Plugin
+Url: https://wiki.jenkins-ci.org/display/JENKINS/Go+Plugin
+Plugin-Version: 1.2
+Hudson-Version: 1.642.3
+Jenkins-Version: 1.642.3
+Plugin-Dependencies: structs:1.6
+Plugin-Developers: Christopher Orr:orrc:chris@orr.me.uk
+

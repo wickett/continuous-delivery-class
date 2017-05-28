@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: jglick
+Build-Jdk: 1.8.0_131
+Extension-Name: workflow-durable-task-step
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: workflow-durable-task-step
+Implementation-Version: 2.11
+Group-Id: org.jenkins-ci.plugins.workflow
+Short-Name: workflow-durable-task-step
+Long-Name: Pipeline: Nodes and Processes
+Url: https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Nodes+and+Pr
+ ocesses+Plugin
+Plugin-Version: 2.11
+Hudson-Version: 1.642.3
+Jenkins-Version: 1.642.3
+Plugin-Dependencies: workflow-api:2.8,workflow-step-api:2.7,workflow-s
+ upport:2.13,durable-task:1.13,script-security:1.25
+Plugin-Developers: 
+
