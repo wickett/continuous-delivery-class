@@ -17,5 +17,6 @@
 .idea/
 
 # Jenkins build dirs
-jenkins_home/logs
-jenkins_home/**/builds
+jenkins_home/logs/
+jenkins_home/**/builds/
+
