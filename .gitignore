@@ -17,12 +17,22 @@
 .idea/
 
 # Jenkins build dirs
-jenkins_home/logs/
-jenkins_home/jobs/**/builds/
-jenkins_home/jobs/**/lastStable
-jenkins_home/jobs/**/lastSuccessful
-jenkins_home/jobs/**/nextBuildNumber
-jenkins_home/jobs/**/scm-polling.log
+#global types to ignore
+*.swp
+
+#Only get job configs and ignore other data
+!jenkins_home/jobs/*
+jenkins_home/jobs/*/*
+!jenkins_home/jobs/*/config.xml
+
+#Ignore expanded plugins folders because we only want jpi files
+#plugins/*/*
+
+#Ignore all plugins
+jenkins_home/plugins
+
+#Ignore logs
+jenkins_home/logs
 
 
 
