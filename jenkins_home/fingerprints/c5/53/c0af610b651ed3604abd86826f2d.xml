@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2017-05-25 02:58:19.779 UTC</timestamp>
+  <md5sum>c553c0af610b651ed3604abd86826f2d</md5sum>
+  <fileName>Credential id=82fc9d53-cc32-4a78-b1e1-724c4b151af6 name=ernestm</fileName>
+  <usages>
+    <entry>
+      <string>word-cloud-generator</string>
+      <ranges>1-3</ranges>
+    </entry>
+  </usages>
+  <facets>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.1.13">
+      <timestamp>1495681576080</timestamp>
+      <itemFullName>word-cloud-generator</itemFullName>
+      <timestamp0>1495681566664</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+  </facets>
+</fingerprint>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jenkinsci.plugins.golang.GolangBuildWrapper_-DescriptorImpl plugin="golang@1.2">
+  <installations>
+    <org.jenkinsci.plugins.golang.GolangInstallation>
+      <name>go 1.8.3</name>
+      <home></home>
+      <properties>
+        <hudson.tools.InstallSourceProperty>
+          <installers>
+            <org.jenkinsci.plugins.golang.GolangInstaller>
+              <id>1.8.3</id>
+            </org.jenkinsci.plugins.golang.GolangInstaller>
+          </installers>
+        </hudson.tools.InstallSourceProperty>
+      </properties>
+    </org.jenkinsci.plugins.golang.GolangInstallation>
+    <org.jenkinsci.plugins.golang.GolangInstallation>
+      <name></name>
+      <home></home>
+      <properties>
+        <hudson.tools.InstallSourceProperty>
+          <installers>
+            <org.jenkinsci.plugins.golang.GolangInstaller>
+              <id>1.8.3</id>
+            </org.jenkinsci.plugins.golang.GolangInstaller>
+          </installers>
+        </hudson.tools.InstallSourceProperty>
+      </properties>
+    </org.jenkinsci.plugins.golang.GolangInstallation>
+  </installations>
+</org.jenkinsci.plugins.golang.GolangBuildWrapper_-DescriptorImpl>
