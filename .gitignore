@@ -33,6 +33,8 @@ jenkins_home/plugins
 
 #Ignore logs
 jenkins_home/logs
+*.log
+
 
 
 
