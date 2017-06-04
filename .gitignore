@@ -36,7 +36,7 @@ jenkins_home/logs
 *.log
 
 #Ignore workspaces
-workspace/
+jenkins_home/workspace/
 
 #Ignore other stuff
 .bash_history

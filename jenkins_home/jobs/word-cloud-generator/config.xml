@@ -38,8 +38,11 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>ls -alF
-more makefile
+      <command>more makefile
+export GOPATH=$WORKSPACE
+mkdir -p $GOPATH/src/github.com/wickett/
+ln -f -s $WORKSPACE $GOPATH/src/github.com/wickett/word-cloud-generator
+make
 make test</command>
     </hudson.tasks.Shell>
   </builders>
