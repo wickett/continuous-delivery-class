@@ -17,7 +17,8 @@ This will download the Jenkins docker container (https://hub.docker.com/_/jenkin
 
 Go to http://localhost:8080 in your browser and use username admin password theagileadmin to get access.  A sample go build for word-cloud-generator will be already set up in there.
 
-## Rolling Your Own
+## Rolling Your Own Jenkins
+
 You can make your own empty jenkins_home if you want to start from scratch.
 
 The first time it performs setup - it'll give you a starter password, saying:
@@ -26,7 +27,16 @@ The first time it performs setup - it'll give you a starter password, saying:
 Please use the following password to proceed to installation:"`
 
 Go to http://localhost:8080 in your browser to enter the password and perform default setup, including the recommended plugins.
-Then add the Go plugin (https://wiki.jenkins-ci.org/display/JENKINS/Go+Plugin) from the Plugin Manager (http://localhost:8080/pluginManager/).
-Go to the Global Tool Configuration (http://localhost:8080/configureTools/)
+Then add the Go plugin (https://wiki.jenkins-ci.org/display/JENKINS/Go+Plugin) from the Plugin Manager (http://localhost:8080/pluginManager/).  Also the Nexus Artifact Uploader plugin (https://wiki.jenkins-ci.org/display/JENKINS/Nexus+Artifact+Uploader).
+
+Go to the Global Tool Configuration (http://localhost:8080/configureTools/) and go to the Go section and add a go installation.  Call it something with the version in it like
+"go 1.8.3".
 
 To restart jenkins, hit http://localhost:8080/safeRestart.  Or you can `docker stop myjenkins`.
+
+## Nexus
+
+We'll use nexus as our artifact repository just by using its stock docker image from https://hub.docker.com/r/sonatype/nexus3/
+
+Just `docker run -d -p 8081:8081 --name nexus sonatype/nexus3` and then go to http://localhost:8081 in your browser. Use the default creds of admin/admin123 to log in.
+
