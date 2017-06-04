@@ -35,6 +35,11 @@ jenkins_home/plugins
 jenkins_home/logs
 *.log
 
+#Ignore workspaces
+workspace/
+
+.bash_history
+
 
 
 
