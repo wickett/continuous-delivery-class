@@ -31,15 +31,3 @@ jenkins_home/jobs/*/*
 #Ignore all plugins
 jenkins_home/plugins
 
-#Ignore logs
-jenkins_home/logs
-*.log
-
-#Ignore workspaces
-workspace/
-
-.bash_history
-
-
-
-

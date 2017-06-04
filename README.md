@@ -9,11 +9,18 @@ Build this container with
 
 `docker image build --tag cd_jenkins .`
 
-Then in the directory above jenkins_home (you can make your own if you want to start from scratch):
+Then in the directory above jenkins_home:
 
 `docker run -d -p 8080:8080 -p 50000:50000 -v $PWD/jenkins_home:/var/jenkins_home --name myjenkins cd_jenkins`
 
-This will download the Jenkins docker container (https://hub.docker.com/_/jenkins/) and run it mounting $PWD/jenkins_home as its work directory.  The first time it performs setup - it'll give you a starter password, saying:
+This will download the Jenkins docker container (https://hub.docker.com/_/jenkins/) and run it mounting $PWD/jenkins_home as its work directory.  
+
+Go to http://localhost:8080 in your browser and use username admin password theagileadmin to get access.  A sample go build for word-cloud-generator will be already set up in there.
+
+## Rolling Your Own
+You can make your own empty jenkins_home if you want to start from scratch.
+
+The first time it performs setup - it'll give you a starter password, saying:
 
 `"Jenkins initial setup is required. An admin user has been created and a password generated.
 Please use the following password to proceed to installation:"`
