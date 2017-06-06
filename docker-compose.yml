@@ -1,0 +1,18 @@
+version: "3"
+services:
+  jenkins:
+    build: ./cd_jenkins
+    image: cd_jenkins:latest
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+    links:
+      - nexus
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+  nexus:
+    image: sonatype/nexus3:latest
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./nexus-data:/nexus-data

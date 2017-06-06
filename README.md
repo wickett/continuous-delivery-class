@@ -3,6 +3,12 @@
 ## Prerequisites
 Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
 
+To run the whole deal, run
+
+`docker-compose up --build -d`
+
+and it should build and run the jenkins and nexus containers.
+
 ## To run the jenkins docker container
 
 Build this container with
@@ -39,4 +45,7 @@ To restart jenkins, hit http://localhost:8080/safeRestart.  Or you can `docker s
 We'll use nexus as our artifact repository just by using its stock docker image from https://hub.docker.com/r/sonatype/nexus3/
 
 Just `docker run -d -p 8081:8081 --name nexus sonatype/nexus3` and then go to http://localhost:8081 in your browser. Use the default creds of admin/admin123 to log in.
+
+Go to settings/Repositories, add a raw (hosted) one called word-cloud-generator.  Then a raw (group) containing it called cd_class.
+
 

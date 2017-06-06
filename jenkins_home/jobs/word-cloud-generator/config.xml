@@ -48,14 +48,14 @@ make test</command>
     <sp.sd.nexusartifactuploader.NexusArtifactUploader plugin="nexus-artifact-uploader@2.9">
       <nexusVersion>nexus3</nexusVersion>
       <protocol>http</protocol>
-      <nexusUrl>localhost:8081</nexusUrl>
-      <groupId>com.theagileadmin</groupId>
+      <nexusUrl>nexus:8081</nexusUrl>
+      <groupId>cd_class</groupId>
       <version>3.3</version>
       <repository>word-cloud-generator</repository>
       <artifacts>
         <sp.sd.nexusartifactuploader.Artifact>
           <artifactId>word-cloud-generator</artifactId>
-          <type>.go</type>
+          <type>go</type>
           <classifier></classifier>
           <file>main.go</file>
         </sp.sd.nexusartifactuploader.Artifact>
