@@ -31,14 +31,14 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <hudson.triggers.SCMTrigger>
-      <spec>H * * * *</spec>
+      <spec>H/15 * * * *</spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>more makefile
+      <command>cat makefile
 export GOPATH=$WORKSPACE
 mkdir -p $GOPATH/src/github.com/wickett/
 ln -f -s $WORKSPACE $GOPATH/src/github.com/wickett/word-cloud-generator

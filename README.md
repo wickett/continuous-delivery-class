@@ -3,11 +3,14 @@
 ## Prerequisites
 Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
 
-To run the whole deal, run
+## To run everything
+
+To run the whole set of tools, run
 
 `docker-compose up --build -d`
 
-and it should build and run the jenkins and nexus containers.
+and it should build and run the jenkins and nexus containers and hook them up together.
+Jenkins will be available on localhost:8080 and Nexus on localhost:8081.
 
 ## To run the jenkins docker container
 
