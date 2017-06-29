@@ -50,7 +50,7 @@ make test</command>
       <protocol>http</protocol>
       <nexusUrl>nexus:8081</nexusUrl>
       <groupId>cd_class</groupId>
-      <version>3.3</version>
+      <version>1.$BUILD_NUMBER</version>
       <repository>word-cloud-generator</repository>
       <artifacts>
         <sp.sd.nexusartifactuploader.Artifact>

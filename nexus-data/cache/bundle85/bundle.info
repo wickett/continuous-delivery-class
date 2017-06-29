@@ -2,5 +2,5 @@
 wrap:mvn:io.swagger/swagger-core/1.5.12$overwrite=merge&Import-Package=com.google.common.*,*
 32
 80
-1496719760920
+1497918392855
 0

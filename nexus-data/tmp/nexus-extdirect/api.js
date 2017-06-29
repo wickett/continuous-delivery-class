@@ -194,12 +194,12 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'syncStatus',
+        name: 'stopWaiting',
         len: 0,
         formHandler: false
       },
       {
-        name: 'stopWaiting',
+        name: 'syncStatus',
         len: 0,
         formHandler: false
       },
