@@ -51,4 +51,8 @@ Just `docker run -d -p 8081:8081 --name nexus sonatype/nexus3` and then go to ht
 
 Go to settings/Repositories, add a raw (hosted) one called word-cloud-generator.  Then a raw (group) containing it called cd_class.
 
+## Turning it off
 
+To stop it, 
+
+`docker-compose up --build -d`

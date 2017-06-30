@@ -9,7 +9,7 @@
       <displayName></displayName>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.3.0">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.3.1">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -42,8 +42,12 @@
 export GOPATH=$WORKSPACE
 mkdir -p $GOPATH/src/github.com/wickett/
 ln -f -s $WORKSPACE $GOPATH/src/github.com/wickett/word-cloud-generator
-make
-make test</command>
+cd $GOPATH/src/github.com/wickett/word-cloud-generator
+go get ./...
+make test
+make artifact
+cd artifact
+gzip word-cloud-generator</command>
     </hudson.tasks.Shell>
     <sp.sd.nexusartifactuploader.NexusArtifactUploader plugin="nexus-artifact-uploader@2.9">
       <nexusVersion>nexus3</nexusVersion>
@@ -55,9 +59,9 @@ make test</command>
       <artifacts>
         <sp.sd.nexusartifactuploader.Artifact>
           <artifactId>word-cloud-generator</artifactId>
-          <type>go</type>
+          <type>gz</type>
           <classifier></classifier>
-          <file>main.go</file>
+          <file>artifact/word-cloud-generator.gz</file>
         </sp.sd.nexusartifactuploader.Artifact>
       </artifacts>
       <credentialsId>nexusadmin</credentialsId>
