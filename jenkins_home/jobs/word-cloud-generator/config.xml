@@ -23,7 +23,11 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="list"/>
-    <extensions/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        <relativeTargetDir>src/github.com/wickett/word-cloud-generator</relativeTargetDir>
+      </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+    </extensions>
   </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -40,14 +44,16 @@
     <hudson.tasks.Shell>
       <command>cat makefile
 export GOPATH=$WORKSPACE
-mkdir -p $GOPATH/src/github.com/wickett/
-ln -f -s $WORKSPACE $GOPATH/src/github.com/wickett/word-cloud-generator
-cd $GOPATH/src/github.com/wickett/word-cloud-generator
+#mkdir -p $GOPATH/src/github.com/wickett/
+#ln -f -s $WORKSPACE $GOPATH/src/github.com/wickett/word-cloud-generator
+cd src/github.com/wickett/word-cloud-generator
+export PATH=$PATH:$(go env GOPATH)/bin
 go get ./...
-make test
-make artifact
-cd artifact
-gzip word-cloud-generator</command>
+go get github.com/tools/godep
+make
+cd artifacts/linux
+gzip word-cloud-generator
+ls -l</command>
     </hudson.tasks.Shell>
     <sp.sd.nexusartifactuploader.NexusArtifactUploader plugin="nexus-artifact-uploader@2.9">
       <nexusVersion>nexus3</nexusVersion>
@@ -61,7 +67,7 @@ gzip word-cloud-generator</command>
           <artifactId>word-cloud-generator</artifactId>
           <type>gz</type>
           <classifier></classifier>
-          <file>artifact/word-cloud-generator.gz</file>
+          <file>src/github.com/wickett/word-cloud-generator/artifacts/linux/word-cloud-generator.gz</file>
         </sp.sd.nexusartifactuploader.Artifact>
       </artifacts>
       <credentialsId>nexusadmin</credentialsId>

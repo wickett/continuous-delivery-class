@@ -10,9 +10,9 @@ To run the whole set of tools, run
 `docker-compose up --build -d`
 
 and it should build and run the jenkins and nexus containers and hook them up together.
-Jenkins will be available on localhost:8080 and Nexus on localhost:8081.
+Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/admin123).
 
-## To run the jenkins docker container
+## To run just the jenkins docker container
 
 Build this container with
 
@@ -47,12 +47,14 @@ To restart jenkins, hit http://localhost:8080/safeRestart.  Or you can `docker s
 
 We'll use nexus as our artifact repository just by using its stock docker image from https://hub.docker.com/r/sonatype/nexus3/
 
-Just `docker run -d -p 8081:8081 --name nexus sonatype/nexus3` and then go to http://localhost:8081 in your browser. Use the default creds of admin/admin123 to log in.
+Just `docker run -d -p 8081:8081 -v $PWD/nexus_data:/nexus_data --name nexus sonatype/nexus3` and then go to http://localhost:8081 in your browser. Use the default creds of admin/admin123 to log in.
+
+It makes a nexus_data directory mounted from the container for persistence.
 
 Go to settings/Repositories, add a raw (hosted) one called word-cloud-generator.  Then a raw (group) containing it called cd_class.
 
 ## Turning it off
 
-To stop it, 
+To stop all the containers, 
 
-`docker-compose up --build -d`
+`docker-compose down`
