@@ -55,6 +55,11 @@ Go to settings/Repositories, add a raw (hosted) one called word-cloud-generator.
 
 ## Test Fixture
 
+With the provided test fixture, you can ssh into it as root@localhost, password theagileadmin.
+`cd /chef-repo`
+which is where all the cookbooks are, and then run
+`chef-solo -c solo.rb -j word-cloud-generator.json` to pull the version of the app specified in word-cloud-generator.json from nexus and install and run it.
+
 ```
 curl -L https://www.opscode.com/chef/install.sh | bash
 chef-solo -v
@@ -66,7 +71,9 @@ mkdir .chef
 echo "cookbook_path [ '/chef-repo/cookbooks' ]" > .chef/knife.rb
 wget https://packages.chef.io/files/stable/chefdk/1.5.0/ubuntu/16.04/chefdk_1.5.0-1_amd64.deb
 dpkg -i chefdk_1.5.0-1_amd64.deb
-chef generate cookbook word-cloud-generator
+chef generate cookbook word-cloud-generator (put in cookbooks)
+knife cookbook site download poise (gunzip and put in cookbooks)
+knife cookbook site download poise-service (gunzip and put in cookbooks)
 ```
 
 ## Turning it off

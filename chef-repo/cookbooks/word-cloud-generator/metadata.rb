@@ -7,6 +7,9 @@ long_description 'Installs/Configures word-cloud-generator'
 version '0.1'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
+depends "poise-service"
+depends "poise"
+
 # The `issues_url` points to the location where issues for this cookbook are
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when
 # uploaded to a Supermarket.

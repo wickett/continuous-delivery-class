@@ -4,6 +4,8 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
+version = node[:word-cloud-generator][:version]
+
 directory '/opt/cd_class' do
   owner 'root'
   group 'root'
@@ -12,7 +14,7 @@ directory '/opt/cd_class' do
 end
 
 remote_file '/opt/cd_class/word-cloud-generator.gz' do
-  source 'http://admin:admin123@nexus:8081/repository/word-cloud-generator/cd_class/word-cloud-generator/1.16/word-cloud-generator-1.16.gz'
+  source 'http://admin:admin123@nexus:8081/repository/word-cloud-generator/cd_class/word-cloud-generator/#{version}/word-cloud-generator-#{version}.gz'
   owner 'root'
   group 'root'
   mode '0755'
@@ -27,9 +29,8 @@ execute "gunzip" do
   command "gunzip -f word-cloud-generator.gz"
 end
 
-service "word-cloud-generator-service" do
-  start_command "/opt/cd_class/word-cloud-generator"
-  stop_command "pkill word-cloud-generator"
-  action [ :enable, :start ]
+poise_service 'word-cloud-generator' do
+  provider :dummy
+  command '/opt/cd_class/word-cloud-generator > /var/log/word-cloud-generator.log 2>&1 &'
+  action [ :stop, :start ]
 end
-
