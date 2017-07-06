@@ -53,6 +53,22 @@ It makes a nexus_data directory mounted from the container for persistence.
 
 Go to settings/Repositories, add a raw (hosted) one called word-cloud-generator.  Then a raw (group) containing it called cd_class.
 
+## Test Fixture
+
+```
+curl -L https://www.opscode.com/chef/install.sh | bash
+chef-solo -v
+wget http://github.com/opscode/chef-repo/tarball/master
+tar -zxf master
+mv chef-boneyard-chef* chef-repo
+cd chef-repo
+mkdir .chef
+echo "cookbook_path [ '/chef-repo/cookbooks' ]" > .chef/knife.rb
+wget https://packages.chef.io/files/stable/chefdk/1.5.0/ubuntu/16.04/chefdk_1.5.0-1_amd64.deb
+dpkg -i chefdk_1.5.0-1_amd64.deb
+chef generate cookbook word-cloud-generator
+```
+
 ## Turning it off
 
 To stop all the containers, 
