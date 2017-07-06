@@ -16,3 +16,11 @@ services:
       - "8081:8081"
     volumes:
       - ./nexus-data:/nexus-data
+  test_fixture:
+    build: ./test_fixture
+    image: test_fixture:latest
+    volumes:
+          - ./chef-repo:/chef-repo
+    ports:
+      - "8888:8888"
+      - "22:22"

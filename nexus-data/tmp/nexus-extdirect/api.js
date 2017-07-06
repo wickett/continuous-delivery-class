@@ -373,12 +373,12 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'updateRoleMappings',
+        name: 'updateAccount',
         len: 1,
         formHandler: false
       },
       {
-        name: 'updateAccount',
+        name: 'updateRoleMappings',
         len: 1,
         formHandler: false
       },

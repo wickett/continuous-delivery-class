@@ -9,8 +9,8 @@ To run the whole set of tools, run
 
 `docker-compose up --build -d`
 
-and it should build and run the jenkins and nexus containers and hook them up together.
-Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/admin123).
+and it should build and run the jenkins and nexus and test_fixture containers and hook them up together.
+Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/admin123).  You can ssh into the test_fixture container as root/theagileadmin.
 
 ## To run just the jenkins docker container
 
