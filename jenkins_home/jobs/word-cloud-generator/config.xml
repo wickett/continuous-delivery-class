@@ -44,13 +44,13 @@
     <hudson.tasks.Shell>
       <command>cat makefile
 export GOPATH=$WORKSPACE
-#mkdir -p $GOPATH/src/github.com/wickett/
-#ln -f -s $WORKSPACE $GOPATH/src/github.com/wickett/word-cloud-generator
 cd src/github.com/wickett/word-cloud-generator
+cat main.go
 export PATH=$PATH:$(go env GOPATH)/bin
 go get ./...
 go get github.com/tools/godep
 make
+md5sum artifacts/*/word-cloud-generator
 cd artifacts/linux
 gzip word-cloud-generator
 ls -l</command>

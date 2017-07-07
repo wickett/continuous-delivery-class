@@ -1,7 +1,6 @@
 {
-  "attributes": {
-    "word-cloud-generator": {
-      "version": 1.27
-    },
+  "word-cloud-generator": {
+    "version": "1.35"
+  },
   "run_list": [ "recipe[word-cloud-generator]" ]
 }
