@@ -1,4 +1,5 @@
 FROM ubuntu:16.04
+MAINTAINER Ernest Mueller <ernestmueller@theagileadmin.com>
 
 RUN apt-get update && apt-get install -y openssh-server curl jq vim
 RUN mkdir /var/run/sshd

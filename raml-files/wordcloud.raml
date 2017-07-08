@@ -1,0 +1,38 @@
+#%RAML 0.8
+
+title: Word Cloud Generator API
+baseUri: http://localhost:8888
+
+/api:
+  post:
+    body:
+      multipart/form-data:
+          formParameters:
+            text:
+              description: The text to be word-clouded
+              required: true
+              type: string
+              example: This application returns a wordcount JSON object for use in an application
+    responses:
+      200:
+        body:
+          application/json:
+            schema: |
+              {
+                "$schema": "http://json-schema.org/draft-04/schema"
+              }
+            example: |
+              {
+                  "a": 1,
+                  "an": 1,
+                  "application": 2,
+                  "for": 1,
+                  "in": 1,
+                  "json": 1,
+                  "object": 1,
+                  "returns": 1,
+                  "this": 1,
+                  "use": 1,
+                  "wordcount": 1
+              }
+

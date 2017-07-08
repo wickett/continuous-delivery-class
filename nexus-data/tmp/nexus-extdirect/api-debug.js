@@ -203,12 +203,12 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'syncStatus'/*() => com.sonatype.nexus.migration.ui.AssistantComponent$SyncStatusXO */,
+        name: 'stopWaiting'/*() => boolean */,
         len: 0,
         formHandler: false
       },
       {
-        name: 'stopWaiting'/*() => boolean */,
+        name: 'syncStatus'/*() => com.sonatype.nexus.migration.ui.AssistantComponent$SyncStatusXO */,
         len: 0,
         formHandler: false
       },

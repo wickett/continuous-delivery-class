@@ -1,5 +1,5 @@
 FROM jenkins:latest
-MAINTAINER Ernest Mueller, ernest.mueller@theagileadmin.com
+MAINTAINER Ernest Mueller <ernestmueller@theagileadmin.com>
 
 USER root
 
