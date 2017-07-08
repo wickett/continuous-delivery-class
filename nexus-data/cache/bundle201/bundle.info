@@ -1,6 +1,6 @@
 201
-mvn:org.sonatype.nexus.plugins/nexus-script-plugin/3.3.2-02
+mvn:org.sonatype.nexus.plugins/nexus-repository-httpbridge/3.4.0-02
 32
 80
-1499484002837
+1499539097660
 0

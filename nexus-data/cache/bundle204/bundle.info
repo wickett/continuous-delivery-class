@@ -1,6 +1,6 @@
 204
-mvn:org.sonatype.nexus/nexus-repository/3.3.2-02
+mvn:org.sonatype.nexus.plugins/nexus-script-plugin/3.4.0-02
 32
 80
-1499484002963
+1499539097758
 0

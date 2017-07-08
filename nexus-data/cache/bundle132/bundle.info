@@ -1,6 +1,6 @@
 132
-mvn:org.sonatype.nexus/nexus-cache/3.3.2-02
+mvn:org.sonatype.nexus/nexus-blobstore-file/3.4.0-02
 32
 80
-1499483986745
+1499539071019
 0

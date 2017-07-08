@@ -1,6 +1,6 @@
 159
-mvn:org.sonatype.nexus/nexus-transaction/3.3.2-02
+mvn:org.sonatype.nexus/nexus-thread/3.4.0-02
 32
 80
-1499483988002
+1499539072276
 0

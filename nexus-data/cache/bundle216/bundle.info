@@ -1,6 +1,6 @@
 216
-mvn:com.sonatype.nexus.plugins/nexus-ahc-plugin/3.3.2-02
+mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-smile-provider/2.8.1
 32
 200
-1499484007419
+1499539101990
 0

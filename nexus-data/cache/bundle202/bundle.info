@@ -1,6 +1,6 @@
 202
-mvn:org.sonatype.nexus.plugins/nexus-ssl-plugin/3.3.2-02
+mvn:org.sonatype.nexus.plugins/nexus-repository-maven/3.4.0-02
 32
 80
-1499484002868
+1499539097688
 0

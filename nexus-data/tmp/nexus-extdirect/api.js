@@ -1,7 +1,7 @@
 Ext.namespace( 'NX.direct.api');
 Ext.namespace( 'NX.direct');
 
-NX.direct.api.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/' + (window.location.pathname.split('/').length>2 ? window.location.pathname.split('/')[1]+ '/' : '')  + 'service/extdirect';
+NX.direct.api.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/' + (window.location.pathname.split('/').length>2 ? window.location.pathname.replace(/^\/|\/$/g, '') + '/' : '')  + 'service/extdirect';
 
 NX.direct.api.POLLING_URLS = {
   rapture_State_get : NX.direct.api.PROVIDER_BASE_URL + '/poll/rapture_State_get' , 
@@ -194,12 +194,12 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'stopWaiting',
+        name: 'syncStatus',
         len: 0,
         formHandler: false
       },
       {
-        name: 'syncStatus',
+        name: 'stopWaiting',
         len: 0,
         formHandler: false
       },
@@ -681,6 +681,13 @@ NX.direct.api.REMOTING_API = {
     atlas_SupportZip: [
       {
         name: 'create',
+        len: 1,
+        formHandler: false
+      }
+    ],
+    proui_Database: [
+      {
+        name: 'resetQuorum',
         len: 1,
         formHandler: false
       }

@@ -1,6 +1,6 @@
 219
-mvn:com.sonatype.nexus.plugins/nexus-healthcheck-oss-plugin/3.3.2-02
+mvn:com.sonatype.nexus.plugins/nexus-ahc-plugin/3.4.0-02
 32
 200
-1499484007659
+1499539102078
 0

@@ -76,6 +76,21 @@ knife cookbook site download poise (gunzip and put in cookbooks)
 knife cookbook site download poise-service (gunzip and put in cookbooks)
 ```
 
+## abao
+
+To build the abao test container, cd to ./raml-files and 
+
+```docker build -t abao:latest .```
+
+To run it with just the RAML, run 
+
+```docker run -v ${PWD}:/raml --net="host" --rm abao wordcloud.raml --server http://localhost:8888```
+
+To run it with a hookfile, run 
+
+```docker run -v ${PWD}:/raml --net="host" --rm abao wordcloud.raml --hookfiles wordcloudhook.js```
+
+
 ## Turning it off
 
 To stop all the containers, 

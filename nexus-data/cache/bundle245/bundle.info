@@ -1,6 +1,6 @@
 245
-wrap:mvn:org.sonatype.sisu/sisu-odata4j/0.0.7
+wrap:mvn:com.sonatype.insight.scan/insight-scanner-model-io/2.4.5-01
 32
 200
-1499484009231
+1499539104644
 0

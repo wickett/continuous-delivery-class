@@ -1,6 +1,6 @@
 247
-mvn:com.thoughtworks.xstream/xstream/1.4.8
+wrap:mvn:com.sonatype.licensing/license-bundle/1.4.3
 32
 200
-1499484009296
+1499539104689
 0

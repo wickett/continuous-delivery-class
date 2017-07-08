@@ -1,6 +1,6 @@
 242
-wrap:mvn:com.sonatype.insight.scan/insight-scanner-model-io/2.4.5-01
+mvn:org.sonatype.nexus/nexus-rest-client/3.4.0-02
 32
 200
-1499484009156
+1499539104573
 0

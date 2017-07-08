@@ -1,6 +1,6 @@
 192
-mvn:org.quartz-scheduler/quartz/2.2.2
+mvn:io.netty/netty/3.10.6.Final
 32
 80
-1499484000295
+1499539094149
 0

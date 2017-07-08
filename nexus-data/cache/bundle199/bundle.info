@@ -1,6 +1,6 @@
 199
-mvn:org.sonatype.nexus.plugins/nexus-repository-maven/3.3.2-02
+mvn:org.sonatype.nexus.plugins/nexus-blobstore-restore/3.4.0-02
 32
 80
-1499484002763
+1499539097262
 0

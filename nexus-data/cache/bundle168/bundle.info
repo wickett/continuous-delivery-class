@@ -1,6 +1,6 @@
 168
-wrap:mvn:org.jboss.resteasy/resteasy-jaxrs/3.1.0.Final$Bundle-SymbolicName=resteasy-jaxrs&Fragment-Host=org.sonatype.nexus.siesta
+wrap:mvn:org.jboss.resteasy/resteasy-jaxb-provider/3.1.3.Final$Bundle-SymbolicName=resteasy-jaxb-provider&Fragment-Host=org.sonatype.nexus.siesta
 2
 80
-1499483988224
+1499539072768
 0

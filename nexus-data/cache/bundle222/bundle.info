@@ -1,6 +1,6 @@
 222
-mvn:com.sonatype.nexus.plugins/nexus-migration-plugin/3.3.2-02
+mvn:com.sonatype.nexus.plugins/nexus-healthcheck-oss-plugin/3.4.0-02
 32
 200
-1499484007768
+1499539102750
 0

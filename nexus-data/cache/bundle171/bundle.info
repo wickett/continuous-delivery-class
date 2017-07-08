@@ -1,6 +1,6 @@
 171
-wrap:mvn:com.squareup/tape/1.2.3
-32
+wrap:mvn:org.jboss.resteasy/resteasy-validator-provider-11/3.1.3.Final$Bundle-SymbolicName=resteasy-validator-provider&Fragment-Host=org.sonatype.nexus.siesta
+2
 80
-1499483988362
+1499539073044
 0

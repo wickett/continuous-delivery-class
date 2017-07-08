@@ -1,6 +1,6 @@
 150
-mvn:org.sonatype.nexus/nexus-rest-jackson2/3.3.2-02
+mvn:org.sonatype.nexus/nexus-rest/3.4.0-02
 32
 80
-1499483987793
+1499539072044
 0

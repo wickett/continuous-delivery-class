@@ -1,6 +1,6 @@
 164
-wrap:mvn:org.jboss.resteasy/resteasy-atom-provider/3.1.0.Final$Bundle-SymbolicName=resteasy-atom-provider&Fragment-Host=org.sonatype.nexus.siesta
-2
+mvn:org.yaml/snakeyaml/1.17
+32
 80
-1499483988121
+1499539072524
 0

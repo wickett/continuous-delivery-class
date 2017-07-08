@@ -1,6 +1,6 @@
 131
-mvn:org.sonatype.nexus/nexus-blobstore-file/3.3.2-02
+mvn:org.sonatype.nexus/nexus-blobstore-api/3.4.0-02
 32
 80
-1499483986721
+1499539071001
 0

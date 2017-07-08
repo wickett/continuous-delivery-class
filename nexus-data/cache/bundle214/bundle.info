@@ -1,6 +1,6 @@
 214
-mvn:com.sonatype.clm/com.sonatype.clm.dto.model/1.5.8-01
+wrap:mvn:org.apache.maven/maven-model/3.3.3
 32
-200
-1499484007354
+80
+1499539098359
 0

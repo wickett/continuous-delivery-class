@@ -1,6 +1,6 @@
 205
-mvn:org.sonatype.nexus/nexus-script/3.3.2-02
+mvn:org.sonatype.nexus.plugins/nexus-ssl-plugin/3.4.0-02
 32
 80
-1499484003046
+1499539097783
 0

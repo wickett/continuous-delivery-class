@@ -1,6 +1,6 @@
 193
-mvn:org.sonatype.nexus.bundles/org.sonatype.nexus.bundles.elasticsearch/3.3.2-02
+mvn:org.quartz-scheduler/quartz/2.2.2
 32
 80
-1499484000386
+1499539094406
 0

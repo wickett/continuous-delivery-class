@@ -1,6 +1,6 @@
 230
-mvn:com.sonatype.nexus.plugins/nexus-repository-nuget/3.3.2-02
+mvn:com.sonatype.nexus.plugins/nexus-repository-docker/3.4.0-02
 32
 200
-1499484008258
+1499539103721
 0

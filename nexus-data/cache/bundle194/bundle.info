@@ -1,6 +1,6 @@
 194
-mvn:org.sonatype.nexus/nexus-core/3.3.2-02
+mvn:org.sonatype.nexus.bundles/org.sonatype.nexus.bundles.elasticsearch/3.4.0-02
 32
 80
-1499484002435
+1499539094561
 0

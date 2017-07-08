@@ -1,6 +1,6 @@
 161
-mvn:org.sonatype.nexus/nexus-validation/3.3.2-02
-2
+mvn:org.sonatype.nexus/nexus-upgrade/3.4.0-02
+32
 80
-1499483988043
+1499539072448
 0

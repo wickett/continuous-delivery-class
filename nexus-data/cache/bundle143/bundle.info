@@ -1,6 +1,6 @@
 143
-mvn:org.sonatype.nexus/nexus-jmx/3.3.2-02
+mvn:org.sonatype.nexus/nexus-httpclient/3.4.0-02
 32
 80
-1499483987143
+1499539071401
 0

@@ -1,6 +1,6 @@
 221
-mvn:com.sonatype.nexus.plugins/nexus-licensing-plugin/3.3.2-02
+mvn:com.sonatype.nexus.plugins/nexus-healthcheck-base/3.4.0-02
 32
 200
-1499484007736
+1499539102652
 0

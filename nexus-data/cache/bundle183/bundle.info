@@ -1,6 +1,6 @@
 183
-mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-smile/2.8.1
+mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/2.8.1
 32
 80
-1499483999611
+1499539093594
 0

@@ -1,6 +1,6 @@
 163
-mvn:org.yaml/snakeyaml/1.17
+mvn:org.sonatype.nexus/nexus-webresources-api/3.4.0-02
 32
 80
-1499483988078
+1499539072496
 0
