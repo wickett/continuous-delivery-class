@@ -30,17 +30,21 @@ hooks.afterAll(function (done) {
 //-----------------------------------------------------------------------------
 hooks.before('POST /api -> 200', function (test, done) {
   text = test.request.body;
-  console.log("Body: ", text);
-  console.log("Headers:", test.request.headers);
   console.log("Full Request:", JSON.stringify(test.request));
   done();
 });
 
 hooks.after('POST /api -> 200', function (test, done) {
   wordcloud = test.response.body;
-  console.log("Response Body: ", wordcloud);
   console.log("Full Response: ", JSON.stringify(test.response));
   done();
+});
+
+hooks.after('GET /version -> 200', function (test, done) {
+    version = test.response.body.version;
+    console.log("Version: ", version);
+    console.log("Full Response: ", JSON.stringify(test.response));
+    done();
 });
 
 

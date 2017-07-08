@@ -49,7 +49,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 go get ./...
 go get github.com/tools/godep
 go get github.com/GeertJohan/go.rice/rice
-echo 1.$BUILD_NUMBER &gt; ./static/version
+sed -i &quot;s/1.DEVELOPMENT/1.$BUILD_NUMBER/g&quot; ./static/version
 make rice
 make
 md5sum artifacts/*/word-cloud-generator
