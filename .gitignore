@@ -29,7 +29,7 @@ jenkins_home/jobs/*/*
 #plugins/*/*
 
 #Ignore all plugins
-#jenkins_home/plugins
+jenkins_home/plugins
 
 #Ignore logs
 jenkins_home/logs
