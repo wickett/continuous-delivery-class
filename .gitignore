@@ -45,3 +45,4 @@ jenkins_home/.ssh/known_hosts
 jenkins_home/queue.xml
 jenkins_home/queue.xml.bak
 jenkins_home/copy_reference_file.log
+nexus-data/log
