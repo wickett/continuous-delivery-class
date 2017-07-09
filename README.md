@@ -53,7 +53,14 @@ robot .
 ```
 And your browser will pop up and run the tests!
 
+## Turning it all off
+
+To stop all the containers, 
+
+`docker-compose down`
+
 # Advanced Topics
+
 ## To run just the jenkins docker container
 
 Build this container with
@@ -85,7 +92,7 @@ Go to the Global Tool Configuration (http://localhost:8080/configureTools/) and 
 
 To restart jenkins, hit http://localhost:8080/safeRestart.  Or you can `docker stop myjenkins`.
 
-## Nexus
+## Running just Nexus
 
 We'll use nexus as our artifact repository just by using its stock docker image from https://hub.docker.com/r/sonatype/nexus3/
 
@@ -96,7 +103,6 @@ It makes a nexus_data directory mounted from the container for persistence.
 Go to settings/Repositories, add a raw (hosted) one called word-cloud-generator.  Then a raw (group) containing it called cd_class.
 
 ## Preparing the Test Fixture
-
 
 The steps I used to set up this test fixture, for the curious:
 ```
@@ -114,11 +120,3 @@ chef generate cookbook word-cloud-generator (put in cookbooks)
 knife cookbook site download poise (gunzip and put in cookbooks)
 knife cookbook site download poise-service (gunzip and put in cookbooks)
 ```
-
-
-
-## Turning it all off
-
-To stop all the containers, 
-
-`docker-compose down`
