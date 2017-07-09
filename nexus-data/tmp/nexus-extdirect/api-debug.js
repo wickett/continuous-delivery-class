@@ -382,12 +382,12 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'updateAccount'/*(org.sonatype.nexus.coreui.UserAccountXO) => org.sonatype.nexus.coreui.UserAccountXO */,
+        name: 'updateRoleMappings'/*(org.sonatype.nexus.coreui.UserRoleMappingsXO) => org.sonatype.nexus.coreui.UserXO */,
         len: 1,
         formHandler: false
       },
       {
-        name: 'updateRoleMappings'/*(org.sonatype.nexus.coreui.UserRoleMappingsXO) => org.sonatype.nexus.coreui.UserXO */,
+        name: 'updateAccount'/*(org.sonatype.nexus.coreui.UserAccountXO) => org.sonatype.nexus.coreui.UserAccountXO */,
         len: 1,
         formHandler: false
       },
