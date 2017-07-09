@@ -6,13 +6,11 @@ baseUri: http://localhost:8888
 /api:
   post:
     body:
-      multipart/form-data:
-          formParameters:
-            text:
-              description: The text to be word-clouded
-              required: true
-              type: string
-              example: "This application returns a wordcount JSON object for use in an application"
+      application/json:
+        schema: |
+          text: 'string'
+        example: |
+              { "text": "This application returns a wordcount JSON object for use in an application" }
     responses:
       200:
         body:
