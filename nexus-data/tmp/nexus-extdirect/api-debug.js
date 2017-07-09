@@ -677,13 +677,13 @@ NX.direct.api.REMOTING_API = {
     ],
     ssl_Certificate: [
       {
-        name: 'details'/*(String) => com.sonatype.nexus.ssl.plugin.internal.ui.CertificateXO */,
-        len: 1,
+        name: 'retrieveFromHost'/*(String, Integer, String) => com.sonatype.nexus.ssl.plugin.internal.ui.CertificateXO */,
+        len: 3,
         formHandler: false
       },
       {
-        name: 'retrieveFromHost'/*(String, Integer, String) => com.sonatype.nexus.ssl.plugin.internal.ui.CertificateXO */,
-        len: 3,
+        name: 'details'/*(String) => com.sonatype.nexus.ssl.plugin.internal.ui.CertificateXO */,
+        len: 1,
         formHandler: false
       }
     ],
@@ -720,13 +720,13 @@ NX.direct.api.REMOTING_API = {
     ],
     coreui_Repository: [
       {
-        name: 'readReferencesAddingEntriesForAllFormats'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => java.util.List */,
-        len: 1,
+        name: 'getBrowseableFormats'/*() => java.util.List */,
+        len: 0,
         formHandler: false
       },
       {
-        name: 'getBrowseableFormats'/*() => java.util.List */,
-        len: 0,
+        name: 'readReferencesAddingEntriesForAllFormats'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => java.util.List */,
+        len: 1,
         formHandler: false
       },
       {

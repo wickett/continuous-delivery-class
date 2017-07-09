@@ -9,4 +9,10 @@ RUN \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+COPY docker /usr/bin/docker
+RUN groupadd docker
+RUN gpasswd -a jenkins docker
+
 USER jenkins
+
+ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]

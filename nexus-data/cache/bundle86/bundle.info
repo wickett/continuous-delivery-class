@@ -2,5 +2,5 @@
 wrap:mvn:io.swagger/swagger-jaxrs/1.5.12$overwrite=merge&Import-Package=com.google.common.*,*
 32
 80
-1499576843174
+1499627728768
 0
