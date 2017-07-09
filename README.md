@@ -1,17 +1,59 @@
-# Basic jenkins powered continuous delivery pipeline
+# Basic Continuous Delivery Pipeline
 
 ## Prerequisites
+
 Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
+Install python and chrome for the UI tests
 
-## To run everything
+## To run jenkins, nexus, and the test fixture containers
 
-To run the whole set of tools, run
+Run
 
 `docker-compose up --build -d`
 
-and it should build and run the jenkins and nexus and test_fixture containers and hook them up together.
-Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/admin123).  You can ssh into the test_fixture container as root/theagileadmin.
+and it will build and run the jenkins and nexus and test_fixture containers and hook them up together.
+Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/admin123).  
 
+Run a build of word-cloud-generator in jenkins and watch it build, unit test, package, and show up in nexus in cd_class/word-cloud-generator.
+
+## To deploy 
+
+With the provided test fixture, you can ssh into it as root@localhost, password theagileadmin.
+
+`cd /chef-repo`
+
+which is where all the cookbooks are.  Update word-cloud-generator.json to have whatever version number you want to deploy, and then run
+
+`chef-solo -c solo.rb -j word-cloud-generator.json`
+
+to pull the version of the app specified in word-cloud-generator.json from nexus and install and run it.
+
+## To run integration testing with abao and RAML
+
+To build the abao test container, cd to ./raml-files and 
+
+```docker build -t abao:latest .```
+
+To run it with just the RAML, run 
+
+```docker run -v ${PWD}:/raml --net="host" --rm abao wordcloud.raml --server http://localhost:8888```
+
+To run it with a hookfile, run 
+
+```docker run -v ${PWD}:/raml --net="host" --rm abao wordcloud.raml --hookfiles wordcloudhook.js```
+
+## To run UI testing with Robot Framework and Selenium
+
+You'll need python and chrome installed, then you just
+
+```
+cd robot-tests
+source venv/bin/activate
+robot .
+```
+And your browser will pop up and run the tests!
+
+# Advanced Topics
 ## To run just the jenkins docker container
 
 Build this container with
@@ -55,10 +97,6 @@ Go to settings/Repositories, add a raw (hosted) one called word-cloud-generator.
 
 ## Preparing the Test Fixture
 
-With the provided test fixture, you can ssh into it as root@localhost, password theagileadmin.
-`cd /chef-repo`
-which is where all the cookbooks are, and then run
-`chef-solo -c solo.rb -j word-cloud-generator.json` to pull the version of the app specified in word-cloud-generator.json from nexus and install and run it.
 
 The steps I used to set up this test fixture, for the curious:
 ```
@@ -77,30 +115,7 @@ knife cookbook site download poise (gunzip and put in cookbooks)
 knife cookbook site download poise-service (gunzip and put in cookbooks)
 ```
 
-## Integration testing with abao and RAML
 
-To build the abao test container, cd to ./raml-files and 
-
-```docker build -t abao:latest .```
-
-To run it with just the RAML, run 
-
-```docker run -v ${PWD}:/raml --net="host" --rm abao wordcloud.raml --server http://localhost:8888```
-
-To run it with a hookfile, run 
-
-```docker run -v ${PWD}:/raml --net="host" --rm abao wordcloud.raml --hookfiles wordcloudhook.js```
-
-## UI testing with Robot Framework and Selenium
-
-You'll need python and chrome installed, then you just
-
-```
-cd robot-tests
-source venv/bin/activate
-robot .
-```
-And your browser will pop up and run the tests!
 
 ## Turning it all off
 
