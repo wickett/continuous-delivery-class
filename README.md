@@ -18,15 +18,11 @@ Run a build of word-cloud-generator in jenkins and watch it build, unit test, pa
 
 ## To deploy 
 
-With the provided test fixture, you can ssh into it as root@localhost, password theagileadmin.
+With the provided test fixture, update word-cloud-generator.json to have whatever version number you want to deploy, and then run
 
-`cd /chef-repo`
+`ssh root@localhost "cd /chef-repo; chef-solo -c solo.rb -j word-cloud-generator.json"`
 
-which is where all the cookbooks are.  Update word-cloud-generator.json to have whatever version number you want to deploy, and then run
-
-`chef-solo -c solo.rb -j word-cloud-generator.json`
-
-to pull the version of the app specified in word-cloud-generator.json from nexus and install and run it.
+with the password `theagileadmin` to ssh into the fixture and run the chef recipe to pull the version of the app specified in word-cloud-generator.json from nexus and install and run it. It should respond to a curl now.
 
 ## To run integration testing with abao and RAML
 
