@@ -10,7 +10,7 @@ baseUri: http://localhost:8888
         schema: |
           text: 'string'
         example: |
-              { "text": "This application returns a wordcount JSON object for use in an application" }
+              { "text": "What does the fox say? Ring a ding ding ding ding a ding a ding" }
     responses:
       200:
         body:
@@ -21,17 +21,14 @@ baseUri: http://localhost:8888
               }
             example: |
               {
-                  "a": 1,
-                  "an": 1,
-                  "application": 2,
-                  "for": 1,
-                  "in": 1,
-                  "json": 1,
-                  "object": 1,
-                  "returns": 1,
-                  "this": 1,
-                  "use": 1,
-                  "wordcount": 1
+                  "a": 3,
+                  "ding": 6,
+                  "does": 1,
+                  "fox": 1,
+                  "ring": 1,
+                  "say?": 1,
+                  "the": 1,
+                  "what": 1
               }
 /version:
   get:

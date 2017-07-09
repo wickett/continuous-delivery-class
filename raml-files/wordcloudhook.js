@@ -36,6 +36,7 @@ hooks.before('POST /api -> 200', function (test, done) {
 
 hooks.after('POST /api -> 200', function (test, done) {
   wordcloud = test.response.body;
+  assert (test.response.body.ding == "6", "Bad word count in response")
   console.log("Full Response: ", JSON.stringify(test.response));
   done();
 });
