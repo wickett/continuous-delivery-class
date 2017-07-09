@@ -53,13 +53,14 @@ It makes a nexus_data directory mounted from the container for persistence.
 
 Go to settings/Repositories, add a raw (hosted) one called word-cloud-generator.  Then a raw (group) containing it called cd_class.
 
-## Test Fixture
+## Preparing the Test Fixture
 
 With the provided test fixture, you can ssh into it as root@localhost, password theagileadmin.
 `cd /chef-repo`
 which is where all the cookbooks are, and then run
 `chef-solo -c solo.rb -j word-cloud-generator.json` to pull the version of the app specified in word-cloud-generator.json from nexus and install and run it.
 
+The steps I used to set up this test fixture, for the curious:
 ```
 curl -L https://www.opscode.com/chef/install.sh | bash
 chef-solo -v
@@ -76,7 +77,7 @@ knife cookbook site download poise (gunzip and put in cookbooks)
 knife cookbook site download poise-service (gunzip and put in cookbooks)
 ```
 
-## abao
+## Integration testing with abao and RAML
 
 To build the abao test container, cd to ./raml-files and 
 
@@ -90,8 +91,18 @@ To run it with a hookfile, run
 
 ```docker run -v ${PWD}:/raml --net="host" --rm abao wordcloud.raml --hookfiles wordcloudhook.js```
 
+## UI testing with Robot Framework and Selenium
 
-## Turning it off
+You'll need python and chrome installed, then you just
+
+```
+cd robot-tests
+source venv/bin/activate
+robot .
+```
+And your browser will pop up and run the tests!
+
+## Turning it all off
 
 To stop all the containers, 
 
