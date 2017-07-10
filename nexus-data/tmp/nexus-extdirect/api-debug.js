@@ -382,12 +382,12 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'updateRoleMappings'/*(org.sonatype.nexus.coreui.UserRoleMappingsXO) => org.sonatype.nexus.coreui.UserXO */,
+        name: 'updateAccount'/*(org.sonatype.nexus.coreui.UserAccountXO) => org.sonatype.nexus.coreui.UserAccountXO */,
         len: 1,
         formHandler: false
       },
       {
-        name: 'updateAccount'/*(org.sonatype.nexus.coreui.UserAccountXO) => org.sonatype.nexus.coreui.UserAccountXO */,
+        name: 'updateRoleMappings'/*(org.sonatype.nexus.coreui.UserRoleMappingsXO) => org.sonatype.nexus.coreui.UserXO */,
         len: 1,
         formHandler: false
       },
@@ -677,13 +677,13 @@ NX.direct.api.REMOTING_API = {
     ],
     ssl_Certificate: [
       {
-        name: 'retrieveFromHost'/*(String, Integer, String) => com.sonatype.nexus.ssl.plugin.internal.ui.CertificateXO */,
-        len: 3,
+        name: 'details'/*(String) => com.sonatype.nexus.ssl.plugin.internal.ui.CertificateXO */,
+        len: 1,
         formHandler: false
       },
       {
-        name: 'details'/*(String) => com.sonatype.nexus.ssl.plugin.internal.ui.CertificateXO */,
-        len: 1,
+        name: 'retrieveFromHost'/*(String, Integer, String) => com.sonatype.nexus.ssl.plugin.internal.ui.CertificateXO */,
+        len: 3,
         formHandler: false
       }
     ],
