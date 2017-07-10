@@ -10,8 +10,9 @@ RUN \
     rm -rf /var/lib/apt/lists/*
 
 COPY docker /usr/bin/docker
-RUN groupadd docker
-RUN gpasswd -a jenkins docker
+
+# To allow us to access /var/run/docker.sock on the Mac
+RUN gpasswd -a jenkins staff
 
 USER jenkins
 

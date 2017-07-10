@@ -57,6 +57,18 @@ To stop all the containers,
 
 # Advanced Topics
 
+## Problems with running docker commands from inside jenkins docker container
+
+If some of your stages die with
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.30/containers/json?all=1: dial unix /var/run/docker.sock: connect: permission denied.  
+
+```
+We're using the technique in http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/ to run other docker containers from our Jenkins container.
+Unfortunately this is an area where there's not a consistent solution across platforms.  The container needs to be able to read/write /var/run/docker.sock to run docker commands. 
+On the Mac, that is symlinked to a file that is usually owned by group "staff", so adding the jenkins user to "staff" in the dockerfile does the trick.
+On other systems, you may need to see what the host thinks /var/run/docker.sock's permissions are and modify the container to fit.
+
 ## To run just the jenkins docker container
 
 Build this container with
