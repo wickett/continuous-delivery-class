@@ -1,6 +1,6 @@
 {
   "word-cloud-generator": {
-    "version": "1.57"
+    "version": "1.58"
   },
   "run_list": [ "recipe[word-cloud-generator]" ]
 }
