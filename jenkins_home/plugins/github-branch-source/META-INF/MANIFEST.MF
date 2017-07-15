@@ -7,14 +7,14 @@ Extension-Name: github-branch-source
 Specification-Title: Multibranch projects and organization folders fro
  m GitHub. Maintained by CloudBees, Inc.
 Implementation-Title: github-branch-source
-Implementation-Version: 2.0.7
+Implementation-Version: 2.0.8
 Group-Id: org.jenkins-ci.plugins
 Short-Name: github-branch-source
 Long-Name: GitHub Branch Source Plugin
 Url: https://wiki.jenkins-ci.org/display/JENKINS/GitHub+Branch+Source+
  Plugin
 Compatible-Since-Version: 2.0.0
-Plugin-Version: 2.0.7
+Plugin-Version: 2.0.8
 Hudson-Version: 1.625.3
 Jenkins-Version: 1.625.3
 Plugin-Dependencies: github:1.26.0,credentials:2.1.12,display-url-api:

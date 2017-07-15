@@ -43,7 +43,7 @@ To run it with a hookfile, run
 You'll need python and chrome installed, then you just
 
 ```
-cd robot-tests
+cd /robot-tests
 source venv/bin/activate
 robot .
 ```
@@ -51,9 +51,9 @@ And your browser will pop up and run the tests!
 
 ## Turning it all off
 
-To stop all the containers, 
+To stop all the containers and delete them and the volumes, 
 
-`docker-compose down`
+`docker-compose down -v`
 
 # Advanced Topics
 
@@ -128,3 +128,6 @@ chef generate cookbook word-cloud-generator (put in cookbooks)
 knife cookbook site download poise (gunzip and put in cookbooks)
 knife cookbook site download poise-service (gunzip and put in cookbooks)
 ```
+
+
+docker run --mount type=bind,src=/Users/ernestmueller/home/continuous-delivery-class/raml-files,dst=/raml-files -it ubuntu:16.04 /bin/bash

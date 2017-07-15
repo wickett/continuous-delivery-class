@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hudson.plugins.emailext.ExtendedEmailPublisherDescriptor plugin="email-ext@2.57.2">
+<hudson.plugins.emailext.ExtendedEmailPublisherDescriptor plugin="email-ext@2.58">
   <useSsl>false</useSsl>
   <charset>UTF-8</charset>
   <defaultContentType>text/plain</defaultContentType>
@@ -15,6 +15,7 @@ Check console output at $BUILD_URL to view the results.</defaultBody>
   </defaultTriggerIds>
   <maxAttachmentSize>-1</maxAttachmentSize>
   <recipientList></recipientList>
+  <defaultReplyTo></defaultReplyTo>
   <excludedCommitters></excludedCommitters>
   <overrideGlobalSettings>true</overrideGlobalSettings>
   <precedenceBulk>false</precedenceBulk>

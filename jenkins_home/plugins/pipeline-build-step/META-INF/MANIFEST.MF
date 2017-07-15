@@ -2,20 +2,20 @@ Manifest-Version: 1.0
 Archiver-Version: Plexus Archiver
 Created-By: Apache Maven
 Built-By: jglick
-Build-Jdk: 1.8.0_112
+Build-Jdk: 1.8.0_131
 Extension-Name: pipeline-build-step
 Specification-Title: The Jenkins Plugins Parent POM Project
 Implementation-Title: pipeline-build-step
-Implementation-Version: 2.5
+Implementation-Version: 2.5.1
 Group-Id: org.jenkins-ci.plugins
 Short-Name: pipeline-build-step
 Long-Name: Pipeline: Build Step
 Url: https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Build+Step+P
  lugin
-Plugin-Version: 2.5
+Plugin-Version: 2.5.1
 Hudson-Version: 1.642.3
 Jenkins-Version: 1.642.3
-Plugin-Dependencies: workflow-step-api:2.3,workflow-api:2.3,workflow-s
- upport:2.6
+Plugin-Dependencies: workflow-step-api:2.3,workflow-support:2.6,workfl
+ ow-api:2.3
 Plugin-Developers: 
 

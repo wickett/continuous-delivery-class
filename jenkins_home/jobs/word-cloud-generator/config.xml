@@ -9,7 +9,7 @@
       <displayName></displayName>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.3.1">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.3.2">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -42,9 +42,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>cat makefile
-export GOPATH=$WORKSPACE
+      <command>export GOPATH=$WORKSPACE
 cd src/github.com/wickett/word-cloud-generator
+cat Makefile
 export PATH=$PATH:$(go env GOPATH)/bin
 go get ./...
 go get github.com/tools/godep
@@ -74,6 +74,19 @@ ls -l</command>
       </artifacts>
       <credentialsId>nexusadmin</credentialsId>
     </sp.sd.nexusartifactuploader.NexusArtifactUploader>
+    <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.5">
+      <siteName>root@test_fixture:22</siteName>
+      <command>cd /chef-repo; sed &quot;s/1.DEVELOPMENT/1.$BUILD_NUMBER/g&quot; word-cloud-generator.json.template &gt; word-cloud-generator.json; chef-solo -c solo.rb -j word-cloud-generator.json</command>
+      <execEachLine>false</execEachLine>
+    </org.jvnet.hudson.plugins.SSHBuilder>
+    <hudson.tasks.Shell>
+      <command>docker run -v continuousdeliveryclass_ramlfiles:/raml --net=&quot;host&quot; --rm abao wordcloud.raml --server http://localhost:8888</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>cd /robot-tests
+source venv/bin/activate
+robot .</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers/>
   <buildWrappers>

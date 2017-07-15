@@ -1,0 +1,6 @@
+{
+  "word-cloud-generator": {
+    "version": "1.DEVELOPMENT"
+  },
+  "run_list": [ "recipe[word-cloud-generator]" ]
+}
