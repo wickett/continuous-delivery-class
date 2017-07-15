@@ -128,6 +128,3 @@ chef generate cookbook word-cloud-generator (put in cookbooks)
 knife cookbook site download poise (gunzip and put in cookbooks)
 knife cookbook site download poise-service (gunzip and put in cookbooks)
 ```
-
-
-docker run --mount type=bind,src=/Users/ernestmueller/home/continuous-delivery-class/raml-files,dst=/raml-files -it ubuntu:16.04 /bin/bash

@@ -82,11 +82,6 @@ ls -l</command>
     <hudson.tasks.Shell>
       <command>docker run -v continuousdeliveryclass_ramlfiles:/raml --net=&quot;host&quot; --rm abao wordcloud.raml --server http://localhost:8888</command>
     </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>cd /robot-tests
-source venv/bin/activate
-robot .</command>
-    </hudson.tasks.Shell>
   </builders>
   <publishers/>
   <buildWrappers>
