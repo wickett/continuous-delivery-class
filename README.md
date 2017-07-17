@@ -3,7 +3,7 @@
 ## Prerequisites
 
 Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
-Install python and chrome for the UI tests
+Install python (brew install python) and chrome for the UI tests
 
 ## To run jenkins, nexus, and the test fixture containers
 
@@ -128,3 +128,28 @@ chef generate cookbook word-cloud-generator (put in cookbooks)
 knife cookbook site download poise (gunzip and put in cookbooks)
 knife cookbook site download poise-service (gunzip and put in cookbooks)
 ```
+
+## Bonus: Installing git
+
+Install homebrew from https://brew.sh
+
+From https://github.com/wickett/continuous-delivery-class
+
+`git clone https://github.com/wickett/continuous-delivery-class.git`
+
+From https://github.com/wickett/word-cloud-generator
+
+`git clone https://github.com/wickett/word-cloud-generator.git`
+
+## Bonus: Installing robot-framework
+```
+pip install virtualenv
+virtualenv —no-site-packages venv
+source ./venv/bin/activate
+pip install robotframework
+pip install robotframework-selenium2library
+pip install chromedriver-installer
+```
+
+
+
