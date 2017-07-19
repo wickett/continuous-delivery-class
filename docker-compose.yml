@@ -27,6 +27,9 @@ services:
     ports:
       - "8888:8888"
       - "22:22"
+  abao:
+    build: ./raml-files
+    image: abao:latest
 volumes:
   ramlfiles:
     driver_opts:
