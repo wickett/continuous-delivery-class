@@ -1,7 +1,10 @@
 # Basic Continuous Delivery Pipeline
-This course covers a wide range of topics from version control with git to CI with Jenkins to testing tools like robot, abao and gauntlt. Some of our environment runs in docker and some on the local machine to simulate development. For each video, we have included some setup instructions and dependencies needed.  The instructions below assume a mac, however finding a windows equivalent is often possible.
+This course covers a wide range of topics from version control with git to CI with Jenkins to testing tools like robot, abao and gauntlt. Some of our environment runs in docker and some on the local machine to simulate development. For each video, we have included some setup instructions and dependencies needed.  The instructions below assume a Mac, however finding a Windows equivalent is often possible.
 
-## Version Control in action with git
+## Prerequisites
+Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
+
+## Version Control in Action with git
 * Install homebrew from https://brew.sh
 * Install go via `brew install go`
 * Install go via `brew install vim`
@@ -14,7 +17,28 @@ This course covers a wide range of topics from version control with git to CI wi
 * Install rice: `go get github.com/GeertJohan/go.rice/rice`
 * Optional, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
 
-This video assumes you setup a github account and added appropriate keys.  When you do the git clone of https://github.com/wickett/word-cloud-generator it is important to put that in $GOPATH/src/github.com/wickett/word-cloud-generator
+This video assumes you setup a github account and added appropriate keys.  
+When you do the git clone of https://github.com/wickett/word-cloud-generator it is important to put that in $GOPATH/src/github.com/wickett/word-cloud-generator
+
+## CI in Action with Jenkins And Following
+
+You will want to run this for all the labs that use the actual build pipeline.
+
+### To run jenkins, nexus, and the test fixture containers
+
+Run
+
+`docker-compose up --build -d`
+
+and it will build and run the jenkins and nexus and test_fixture containers and hook them up together.
+Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/admin123).  
+
+Run a build of word-cloud-generator in jenkins and watch it build, unit test, package, and show up in nexus in cd_class/word-cloud-generator.
+
+### Turning it all off
+To stop all the containers and delete them and the volumes, 
+
+`docker-compose down -v`
 
 ## Unit Testing in Action
 * Install homebrew from https://brew.sh
@@ -29,32 +53,8 @@ This video assumes you setup a github account and added appropriate keys.  When 
 * Install rice: `go get github.com/GeertJohan/go.rice/rice`
 * Optional, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
 
-## Security Testing: Gauntlt and Retire.js
-* Install homebrew from https://brew.sh
-* Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
-* Install node and npm with `brew install node`
-* Install wget `brew install wget`
-* Add `127.0.0.1 wordcloud` to `/etc/hosts`
-
-## CI in Action with Jenkins
-
-### Prerequisites
-
-Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
-Install python (brew install python) and chrome for the UI tests
-
-### To run jenkins, nexus, and the test fixture containers
-
-Run
-
-`docker-compose up --build -d`
-
-and it will build and run the jenkins and nexus and test_fixture containers and hook them up together.
-Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/admin123).  
-
-Run a build of word-cloud-generator in jenkins and watch it build, unit test, package, and show up in nexus in cd_class/word-cloud-generator.
-
-## To deploy 
+## Deployment in Action with Chef
+### To deploy 
 
 With the provided test fixture, update word-cloud-generator.json to have whatever version number you want to deploy, and then run
 
@@ -62,7 +62,8 @@ With the provided test fixture, update word-cloud-generator.json to have whateve
 
 with the password `theagileadmin` to ssh into the fixture and run the chef recipe to pull the version of the app specified in word-cloud-generator.json from nexus and install and run it. It should respond to a curl now.
 
-## To run integration testing with abao and RAML
+##Integration Testing in Action with abao
+### To run integration testing with abao and RAML
 
 To build the abao test container, cd to ./raml-files and 
 
@@ -76,22 +77,41 @@ To run it with a hookfile, run
 
 ```docker run -v ${PWD}:/raml --net="host" --rm abao wordcloud.raml --hookfiles wordcloudhook.js```
 
-## To run UI testing with Robot Framework and Selenium
+## UI Testing in Action with Robot
 
-You'll need python and chrome installed, then you just
+### Prerequisites
+
+Install python (brew install python) and Google Chrome.
+The included venv may or may not work - you can create your own by removing the venv directory and then
+```
+pip install virtualenv
+sudo /usr/bin/easy_install virtualenv
+cd robot-tests
+virtualenv venv
+source ./venv/bin/activate
+pip install robotframework
+pip install robotframework-selenium2library
+pip install chromedriver-installer
+deactivate
+```
+
+### To run UI testing with Robot Framework and Selenium
+
+Then you just
 
 ```
 cd /robot-tests
 source venv/bin/activate
 robot .
 ```
-And your browser will pop up and run the tests!
+And your browser will pop up and run the tests!  Just type "deactivate" to exit the virtualenv.
 
-## Turning it all off
-
-To stop all the containers and delete them and the volumes, 
-
-`docker-compose down -v`
+## Security Testing in Action with gauntlt
+* Install homebrew from https://brew.sh
+* Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
+* Install node and npm with `brew install node`
+* Install wget `brew install wget`
+* Add `127.0.0.1 wordcloud` to `/etc/hosts`
 
 # Advanced Topics
 
@@ -167,31 +187,7 @@ knife cookbook site download poise (gunzip and put in cookbooks)
 knife cookbook site download poise-service (gunzip and put in cookbooks)
 ```
 
-## Bonus: Installing dependencies
 
-1. Install homebrew from https://brew.sh
-2. Install go via `brew install go`
-3. Install node via `brew install node`
-4. Add `export GOPATH="${HOME}/go"` to your ~/.bash_profile
-
-
-https://github.com/wickett/continuous-delivery-class
-
-`git clone https://github.com/wickett/continuous-delivery-class.git`
-
-From https://github.com/wickett/word-cloud-generator
-
-`git clone https://github.com/wickett/word-cloud-generator.git`
-
-## Bonus: Installing robot-framework
-```
-pip install virtualenv
-virtualenv —no-site-packages venv
-source ./venv/bin/activate
-pip install robotframework
-pip install robotframework-selenium2library
-pip install chromedriver-installer
-```
 
 
 
