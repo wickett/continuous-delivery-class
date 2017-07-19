@@ -1,11 +1,49 @@
 # Basic Continuous Delivery Pipeline
+This course covers a wide range of topics from version control with git to CI with Jenkins to testing tools like robot, abao and gauntlt. Some of our environment runs in docker and some on the local machine to simulate development. For each video, we have included some setup instructions and dependencies needed.  The instructions below assume a mac, however finding a windows equivalent is often possible.
 
-## Prerequisites
+## Version Control in action with git
+* Install homebrew from https://brew.sh
+* Install go via `brew install go`
+* Install go via `brew install vim`
+* Install go via `brew install git`
+* Set $GOPATH `export GOPATH="${HOME}/go"` in `~/.bash_profile`
+* Set $PATH `export PATH=$PATH:$(go env GOPATH)/bin` in `~/.bash_profile`
+* Install godep: `go get github.com/tools/godep`
+* Install golint: `go get -u github.com/golang/lint/golint`
+* Install goconvey: `go get github.com/smartystreets/goconvey`
+* Install rice: `go get github.com/GeertJohan/go.rice/rice`
+* Optional, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
+
+This video assumes you setup a github account and added appropriate keys.  When you do the git clone of https://github.com/wickett/word-cloud-generator it is important to put that in $GOPATH/src/github.com/wickett/word-cloud-generator
+
+## Unit Testing in Action
+* Install homebrew from https://brew.sh
+* Install go via `brew install go`
+* Install go via `brew install vim`
+* Install go via `brew install git`
+* Set $GOPATH `export GOPATH="${HOME}/go"` in `~/.bash_profile`
+* Set $PATH `export PATH=$PATH:$(go env GOPATH)/bin` in `~/.bash_profile`
+* Install godep: `go get github.com/tools/godep`
+* Install golint: `go get -u github.com/golang/lint/golint`
+* Install goconvey: `go get github.com/smartystreets/goconvey`
+* Install rice: `go get github.com/GeertJohan/go.rice/rice`
+* Optional, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
+
+## Security Testing: Gauntlt and Retire.js
+* Install homebrew from https://brew.sh
+* Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
+* Install node and npm with `brew install node`
+* Install wget `brew install wget`
+* Add `127.0.0.1 wordcloud` to `/etc/hosts`
+
+## CI in Action with Jenkins
+
+### Prerequisites
 
 Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
 Install python (brew install python) and chrome for the UI tests
 
-## To run jenkins, nexus, and the test fixture containers
+### To run jenkins, nexus, and the test fixture containers
 
 Run
 
