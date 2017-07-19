@@ -2,7 +2,7 @@
 This course covers a wide range of topics from version control with git to CI with Jenkins to testing tools like robot, abao and gauntlt. Some of our environment runs in docker and some on the local machine to simulate development. For each video, we have included some setup instructions and dependencies needed.  The instructions below assume a Mac, however finding a Windows equivalent is often possible.
 
 ## Prerequisites
-Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
+Install Docker from https://www.docker.com/
 
 ## Version Control in Action with git
 * Install homebrew from https://brew.sh
@@ -62,7 +62,7 @@ With the provided test fixture, update word-cloud-generator.json to have whateve
 
 with the password `theagileadmin` to ssh into the fixture and run the chef recipe to pull the version of the app specified in word-cloud-generator.json from nexus and install and run it. It should respond to a curl now.
 
-##Integration Testing in Action with abao
+## Integration Testing in Action with abao
 ### To run integration testing with abao and RAML
 
 To build the abao test container, cd to ./raml-files and 
