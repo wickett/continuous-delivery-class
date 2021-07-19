@@ -1,0 +1,16 @@
+osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.goodies.lifecycle)(version>=2.3.0))
+121; version=2.3.1
+osgi.ee; (&(osgi.ee=JavaSE)(version=1.8))
+0; version=[1.0.0, 1.1.0, 1.2.0, 1.3.0, 1.4.0, 1.5.0, 1.6.0, 1.7.0, 1.8.0]
+osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.common.collect)(version>=3.32.0))
+106; version=3.32.0
+osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.transaction)(version>=3.32.0))
+145; version=3.32.0
+osgi.wiring.package; (&(osgi.wiring.package=com.google.common.hash)(version>=30.1.0))
+9; version=30.1.1
+osgi.wiring.package; (&(osgi.wiring.package=com.google.common.base)(version>=30.1.0))
+9; version=30.1.1
+osgi.wiring.package; (&(osgi.wiring.package=org.joda.time)(version>=2.10.0))
+122; version=2.10.6
+osgi.wiring.package; (&(osgi.wiring.package=javax.annotation)(version>=1.2.0))
+0; version=1.2.0

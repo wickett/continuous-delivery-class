@@ -1,0 +1,10 @@
+./appended.go
+./box.go
+./config.go
+./debug.go
+./embedded.go
+./file.go
+./http.go
+./sort.go
+./virtual.go
+./walk.go

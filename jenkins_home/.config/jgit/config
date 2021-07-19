@@ -1,0 +1,3 @@
+[filesystem "AdoptOpenJDK|11.0.11|grpcfuse"]
+	timestampResolution = 4000 nanoseconds
+	minRacyThreshold = 0 nanoseconds

@@ -1,0 +1,17 @@
+./arg.go
+./closest.go
+./command.go
+./completion.go
+./convert.go
+./error.go
+./flags.go
+./group.go
+./help.go
+./ini.go
+./man.go
+./multitag.go
+./option.go
+./optstyle_other.go
+./parser.go
+./termsize.go
+./tiocgwinsz_linux.go

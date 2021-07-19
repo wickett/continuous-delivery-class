@@ -1,0 +1,12 @@
+osgi.wiring.package; (osgi.wiring.package=javax.mail.util)
+164; version=1.6.0
+osgi.wiring.package; (osgi.wiring.package=javax.activation)
+3; version=1.1.0
+osgi.wiring.package; (osgi.wiring.package=javax.naming)
+0; version=0.0.0
+osgi.wiring.package; (osgi.wiring.package=javax.mail.internet)
+164; version=1.6.0
+osgi.wiring.package; (osgi.wiring.package=javax.mail)
+164; version=1.6.0
+osgi.ee; (&(osgi.ee=JavaSE)(version=1.6))
+0; version=[1.0.0, 1.1.0, 1.2.0, 1.3.0, 1.4.0, 1.5.0, 1.6.0, 1.7.0, 1.8.0]

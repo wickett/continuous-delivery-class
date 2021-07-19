@@ -1,0 +1,12 @@
+osgi.wiring.package; (osgi.wiring.package=javax.xml.transform.dom)
+0; version=0.0.0
+osgi.wiring.package; (osgi.wiring.package=javax.xml.parsers)
+0; version=0.0.0
+osgi.wiring.package; (osgi.wiring.package=javax.xml.transform)
+0; version=0.0.0
+osgi.wiring.package; (osgi.wiring.package=javax.xml.transform.stream)
+0; version=0.0.0
+osgi.wiring.package; (osgi.wiring.package=org.xml.sax)
+0; version=0.0.0
+osgi.wiring.package; (osgi.wiring.package=org.w3c.dom)
+0; version=0.0.0
