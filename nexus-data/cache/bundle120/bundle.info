@@ -1,6 +1,6 @@
 120
-mvn:org.hibernate/hibernate-validator/5.1.2.Final
+wrap:file:system/org/sonatype/gossip/gossip-bootstrap/1.8/gossip-bootstrap-1.8.jar
 32
 80
-1501202967326
+1626711401254
 0

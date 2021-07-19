@@ -1,6 +1,6 @@
 53
-mvn:com.codahale.metrics/metrics-jvm/3.0.2
+reference:file:/opt/sonatype/nexus/system/org/apache/karaf/config/org.apache.karaf.config.core/4.3.2/org.apache.karaf.config.core-4.3.2.jar
 32
-80
-1501202962450
+30
+1626711385460
 0

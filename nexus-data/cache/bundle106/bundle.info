@@ -1,6 +1,6 @@
 106
-mvn:org.apache.commons/commons-lang3/3.4
+reference:file:system/org/sonatype/nexus/nexus-common/3.32.0-03/nexus-common-3.32.0-03.jar
 32
 80
-1501202966580
+1626711400914
 0

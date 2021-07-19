@@ -1,6 +1,6 @@
 59
-mvn:com.fasterxml.jackson.core/jackson-databind/2.8.1
+reference:file:/opt/sonatype/nexus/system/org/apache/karaf/log/org.apache.karaf.log.core/4.3.2/org.apache.karaf.log.core-4.3.2.jar
 32
-80
-1501202962596
+30
+1626711385643
 0

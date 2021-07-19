@@ -1,6 +1,6 @@
 42
-reference:file:system/org/apache/karaf/shell/org.apache.karaf.shell.core/4.0.8/org.apache.karaf.shell.core-4.0.8.jar
+reference:file:/opt/sonatype/nexus/system/org/apache/felix/org.apache.felix.configadmin/1.9.22/org.apache.felix.configadmin-1.9.22.jar
 32
-30
-1501202955239
+10
+1626711385107
 0

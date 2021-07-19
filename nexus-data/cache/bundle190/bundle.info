@@ -1,6 +1,6 @@
 190
-mvn:org.eclipse.aether/aether-spi/1.0.2.v20150114
+reference:file:system/org/sonatype/nexus/nexus-upgrade/3.32.0-03/nexus-upgrade-3.32.0-03.jar
 32
 80
-1501202988139
+1626711404010
 0

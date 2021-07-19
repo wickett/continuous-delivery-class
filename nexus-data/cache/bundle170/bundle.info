@@ -1,6 +1,6 @@
 170
-wrap:mvn:org.jboss.resteasy/resteasy-multipart-provider/3.1.3.Final$Bundle-SymbolicName=resteasy-multipart-provider&Fragment-Host=org.sonatype.nexus.siesta
-2
+reference:file:system/org/sonatype/nexus/nexus-supportzip-api/3.32.0-03/nexus-supportzip-api-3.32.0-03.jar
+32
 80
-1501202969216
+1626711403599
 0

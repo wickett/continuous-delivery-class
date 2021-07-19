@@ -1,6 +1,6 @@
 150
-mvn:org.sonatype.nexus/nexus-rest/3.4.0-02
+reference:file:system/org/sonatype/nexus/nexus-plugin-api/3.32.0-03/nexus-plugin-api-3.32.0-03.jar
 32
 80
-1501202968562
+1626711403055
 0

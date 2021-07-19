@@ -88,6 +88,7 @@ function ComboBox(idOrField, callback, config) {
 		alert("You have specified an invalid id for the field you want to turn into a combo box");
 	this.dropdown = document.createElement("div");
 	this.isDropdownShowing = false;
+	this.oldonsubmit = null;
 	
 	// configure the dropdown div
 	this.dropdown.className = "comboBoxList";
@@ -111,11 +112,11 @@ function ComboBox(idOrField, callback, config) {
 			this.setSelectionRange(length, length);
 		}
 	}
-	this.field.form.oldonsubmit = this.field.form.onsubmit;
 	this.field.onfocus = function() {
+		this.comboBox.oldonsubmit = this.form.onsubmit;
 		this.form.onsubmit = function() {
 			if (self.isDropdownShowing) return false;
-			if (this.oldonsubmit) this.oldonsubmit();
+			if (self.oldonsubmit) self.oldonsubmit.call(this);
 			return true;
 		};
 		// repopulate and display the dropdown
@@ -124,7 +125,7 @@ function ComboBox(idOrField, callback, config) {
 	this.field.onblur = function() {
 		var cb = this.comboBox;
 		this.hideTimeout = setTimeout(function() { cb.hideDropdown(); }, 100);
-                this.form.onsubmit = this.form.oldonsubmit;
+		this.form.onsubmit = cb.oldonsubmit;
 	}
 	
 	// privileged methods
@@ -156,6 +157,7 @@ ComboBox.onKeyDown = function(e) {
 		case 27: // escape
 			this.comboBox.hideDropdown();
 			capture();
+			break;
 		case 38: // up arrow
 			this.comboBox.selectPrevious();
 			capture();
@@ -245,7 +247,7 @@ ComboBox.prototype.populateDropdown = function() {
 		for (var i = 0; i < this.availableItems.length; i++) {
 			var item = document.createElement("div");
 			item.className = "comboBoxItem";
-			item.innerHTML = this.availableItems[i];
+			item.innerText = this.availableItems[i];
 			item.id = "item_" + this.availableItems[i];
 			item.comboBox = this;
 			item.comboBoxIndex = i;
@@ -289,7 +291,7 @@ ComboBox.prototype.chooseSelection = function() {
 		if (this.getConfigParam("allowMultipleValues", false)) {
 			var currentValue = "";
 			var delim = this.getConfigParam("valueDelimiter", ",");
-			values = this.field.value.split(delim);
+			var values = this.field.value.split(delim);
 			for (var j = 0; j < values.length - 1; j++) {
 				currentValue = Utilities.listAppend(currentValue, values[j], delim);
 			}

@@ -1,6 +1,6 @@
 98
-mvn:joda-time/joda-time/2.9.5
+wrap:file:system/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar$overwrite=merge&Import-Package=*;resolution:=optional
 32
 80
-1501202966219
+1626711399443
 0

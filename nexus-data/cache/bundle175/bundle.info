@@ -1,6 +1,6 @@
 175
-wrap:mvn:net.jcip/jcip-annotations/1.0
+reference:file:system/org/sonatype/nexus/nexus-base/3.32.0-03/nexus-base-3.32.0-03.jar
 32
 80
-1501202969342
+1626711403704
 0

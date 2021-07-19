@@ -1,6 +1,6 @@
 250
-mvn:com.thoughtworks.xstream/xstream/1.4.10
+wrap:file:system/org/apache/maven/maven-model/3.8.1/maven-model-3.8.1.jar
 32
 200
-1501202998265
+1626711413347
 0

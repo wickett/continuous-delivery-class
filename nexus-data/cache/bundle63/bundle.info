@@ -1,6 +1,6 @@
 63
-mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/2.8.1
+reference:file:/opt/sonatype/nexus/system/org/apache/felix/org.apache.felix.scr/2.1.26/org.apache.felix.scr-2.1.26.jar
 32
-80
-1501202962917
+30
+1626711385794
 0

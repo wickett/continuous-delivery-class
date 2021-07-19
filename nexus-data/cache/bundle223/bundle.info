@@ -1,6 +1,6 @@
 223
-mvn:com.sonatype.nexus.plugins/nexus-ldap-plugin/3.4.0-02
+reference:file:system/org/sonatype/nexus/nexus-orient/3.32.0-03/nexus-orient-3.32.0-03.jar
 32
-200
-1501202995488
+80
+1626711405005
 0

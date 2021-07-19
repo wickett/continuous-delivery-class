@@ -1,6 +1,6 @@
 203
-mvn:org.sonatype.nexus.plugins/nexus-repository-raw/3.4.0-02
+reference:file:system/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.11.4/jackson-module-jaxb-annotations-2.11.4.jar
 32
 80
-1501202991354
+1626711404544
 0

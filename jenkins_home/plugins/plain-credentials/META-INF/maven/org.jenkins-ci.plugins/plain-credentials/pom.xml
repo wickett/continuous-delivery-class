@@ -2,7 +2,7 @@
 <!--
  ~ The MIT License
  ~
- ~ Copyright 2013-2016 Jesse Glick, Stephen Connolly and CloudBees, Inc..
+ ~ Copyright 2013-2016 Jesse Glick, Stephen Connolly and CloudBees, Inc.
  ~
  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
  ~ of this software and associated documentation files (the "Software"), to deal
@@ -28,20 +28,21 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>2.15</version>
+    <version>3.56</version>
+    <relativePath />
   </parent>
 
   <artifactId>plain-credentials</artifactId>
-  <version>1.4</version>
+  <version>1.7</version>
   <packaging>hpi</packaging>
 
   <name>Plain Credentials Plugin</name>
   <description>Allows use of plain strings and files as credentials.</description>
-  <url>http://wiki.jenkins-ci.org/display/JENKINS/Plain+Credentials+Plugin</url>
+  <url>https://github.com/jenkinsci/plain-credentials-plugin</url>
   <licenses>
     <license>
       <name>MIT</name>
-      <url>http://opensource.org/licenses/MIT</url>
+      <url>https://opensource.org/licenses/MIT</url>
     </license>
   </licenses>
 
@@ -49,24 +50,25 @@
     <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    <tag>plain-credentials-1.4</tag>
+    <tag>plain-credentials-1.7</tag>
   </scm>
 
   <properties>
-    <jenkins.version>1.609</jenkins.version>
-    <java.level>6</java.level>
+    <jenkins.version>2.138.4</jenkins.version>
+    <java.level>8</java.level>
+    <configuration-as-code-plugin.version>1.35</configuration-as-code-plugin.version>
   </properties>
 
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
+      <url>https://repo.jenkins-ci.org/public/</url>
     </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
       <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
+      <url>https://repo.jenkins-ci.org/public/</url>
     </pluginRepository>
   </pluginRepositories>
 
@@ -74,7 +76,20 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>credentials</artifactId>
-      <version>2.1.5</version>
+      <version>2.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.jenkins</groupId>
+      <artifactId>configuration-as-code</artifactId>
+      <version>${configuration-as-code-plugin.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.configuration-as-code</groupId>
+      <artifactId>test-harness</artifactId>
+      <version>${configuration-as-code-plugin.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -87,6 +102,7 @@
           <loggers>
             <org.jenkinsci.plugins.plaincredentials>FINE</org.jenkinsci.plugins.plaincredentials>
           </loggers>
+          <minimumJavaVersion>1.8</minimumJavaVersion>
         </configuration>
       </plugin>
     </plugins>

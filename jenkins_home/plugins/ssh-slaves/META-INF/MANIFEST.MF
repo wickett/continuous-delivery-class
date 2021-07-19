@@ -1,22 +1,29 @@
 Manifest-Version: 1.0
 Archiver-Version: Plexus Archiver
 Created-By: Apache Maven
-Built-By: jglick
-Build-Jdk: 1.8.0_131
+Built-By: inifc
+Build-Jdk: 11.0.10
 Extension-Name: ssh-slaves
 Specification-Title: Allows to launch agents over SSH, using a Java im
  plementation of the SSH protocol
 Implementation-Title: ssh-slaves
-Implementation-Version: 1.20
+Implementation-Version: 1.32.0
 Plugin-Class: hudson.plugins.sshslaves.PluginImpl
 Group-Id: org.jenkins-ci.plugins
 Short-Name: ssh-slaves
-Long-Name: Jenkins SSH Slaves plugin
-Url: https://wiki.jenkins-ci.org/display/JENKINS/SSH+Slaves+plugin
-Plugin-Version: 1.20
-Hudson-Version: 1.625
-Jenkins-Version: 1.625
-Plugin-Dependencies: credentials:2.1.2,ssh-credentials:1.6.1
+Long-Name: SSH Build Agents plugin
+Url: https://github.com/jenkinsci/ssh-slaves-plugin
+Compatible-Since-Version: 1.31.0
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.32.0
+Hudson-Version: 2.282
+Jenkins-Version: 2.282
+Plugin-Dependencies: credentials:2.3.18,ssh-credentials:1.18.1,trilead
+ -api:1.0.13
 Plugin-Developers: Stephen Connolly:stephenconnolly:,Kohsuke Kawaguchi
- :kohsuke:,Olivier Lamy:olamy:,Michael Clarke:mc1arke:
+ :kohsuke:,Olivier Lamy:olamy:,Michael Clarke:mc1arke:,Oleg Nenashev:o
+ leg_nenashev:,Ivan Fernandez Calvo:ifernandezcalvo:
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/ssh-slaves-plugin
 

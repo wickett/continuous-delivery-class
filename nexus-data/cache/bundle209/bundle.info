@@ -1,6 +1,6 @@
 209
-mvn:org.sonatype.nexus/nexus-selector/3.4.0-02
+wrap:file:system/com/github/stephenc/jcip/jcip-annotations/1.0-1/jcip-annotations-1.0-1.jar
 32
 80
-1501202991630
+1626711404656
 0

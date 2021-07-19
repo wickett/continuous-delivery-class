@@ -1,4 +1,4 @@
-FROM jenkins:latest
+FROM jenkins/jenkins:lts-jdk11
 MAINTAINER Ernest Mueller <ernestmueller@theagileadmin.com>
 
 USER root

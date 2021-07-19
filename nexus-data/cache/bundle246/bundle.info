@@ -1,6 +1,6 @@
 246
-wrap:mvn:com.sonatype.insight.scan/insight-scanner-model/2.4.5-01
+reference:file:system/org/sonatype/nexus/plugins/nexus-repository-apt/3.32.0-03/nexus-repository-apt-3.32.0-03.jar
 32
 200
-1501202997951
+1626711413232
 0

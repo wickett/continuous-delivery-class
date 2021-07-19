@@ -1,6 +1,6 @@
 179
-wrap:mvn:org.jboss.resteasy/resteasy-jaxrs-services/3.1.3.Final
+reference:file:system/io/dropwizard/metrics/metrics-json/4.1.0/metrics-json-4.1.0.jar
 32
 80
-1501202969474
+1626711403787
 0

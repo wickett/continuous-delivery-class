@@ -1,6 +1,6 @@
 65
-mvn:com.google.guava/guava/21.0
+reference:file:/opt/sonatype/nexus/system/org/apache/karaf/features/org.apache.karaf.features.command/4.3.2/org.apache.karaf.features.command-4.3.2.jar
 32
-80
-1501202962988
+30
+1626711385863
 0

@@ -1,6 +1,6 @@
 182
-wrap:mvn:org.sonatype.gossip/gossip-support/1.8
+reference:file:system/io/dropwizard/metrics/metrics-servlet/4.1.0/metrics-servlet-4.1.0.jar
 32
 80
-1501202969558
+1626711403854
 0

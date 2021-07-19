@@ -1,6 +1,6 @@
 202
-mvn:org.sonatype.nexus.plugins/nexus-repository-maven/3.4.0-02
+reference:file:system/com/fasterxml/jackson/jaxrs/jackson-jaxrs-base/2.11.4/jackson-jaxrs-base-2.11.4.jar
 32
 80
-1501202991317
+1626711404526
 0

@@ -1,6 +1,6 @@
 219
-mvn:com.sonatype.nexus.plugins/nexus-ahc-plugin/3.4.0-02
+reference:file:system/org/sonatype/nexus/nexus-ui-plugin/3.32.0-03/nexus-ui-plugin-3.32.0-03.jar
 32
-200
-1501202995181
+80
+1626711404917
 0

@@ -22,18 +22,6 @@ NX.direct.api.REMOTING_API = {
   type: 'remoting',
   namespace: NX.direct,
   actions: {
-    nuget_NuGetApiKey: [
-      {
-        name: 'readKey'/*(String) => String */,
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'resetKey'/*(String) => String */,
-        len: 1,
-        formHandler: false
-      }
-    ],
     coreui_Webhook: [
       {
         name: 'listWithTypeRepository'/*() => java.util.List */,
@@ -125,17 +113,59 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
+    firewall_RepositoryStatus: [
+      {
+        name: 'read'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      }
+    ],
     rapture_State: [
     ],
     coreui_Blobstore: [
+      {
+        name: 'fillPolicies'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'readGroups'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      },
       {
         name: 'read'/*() => java.util.List */,
         len: 0,
         formHandler: false
       },
       {
+        name: 'readQuotaTypes'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'promoteToGroup'/*(String) => org.sonatype.nexus.coreui.BlobStoreXO */,
+        len: 1,
+        formHandler: false
+      },
+      {
+        name: 'readNames'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      },
+      {
         name: 'defaultWorkDirectory'/*() => org.sonatype.nexus.coreui.PathSeparatorXO */,
         len: 0,
+        formHandler: false
+      },
+      {
+        name: 'readGroupable'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => java.util.List */,
+        len: 1,
+        formHandler: false
+      },
+      {
+        name: 'update'/*(org.sonatype.nexus.coreui.BlobStoreXO) => org.sonatype.nexus.coreui.BlobStoreXO */,
+        len: 1,
         formHandler: false
       },
       {
@@ -154,14 +184,9 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
-    analytics_Settings: [
+    coreui_Browse: [
       {
-        name: 'read'/*() => com.sonatype.nexus.analytics.internal.ui.SettingsXO */,
-        len: 0,
-        formHandler: false
-      },
-      {
-        name: 'update'/*(com.sonatype.nexus.analytics.internal.ui.SettingsXO) => com.sonatype.nexus.analytics.internal.ui.SettingsXO */,
+        name: 'read'/*(org.sonatype.nexus.coreui.TreeStoreLoadParameters) => java.util.List */,
         len: 1,
         formHandler: false
       }
@@ -203,18 +228,18 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'syncStatus'/*() => com.sonatype.nexus.migration.ui.AssistantComponent$SyncStatusXO */,
-        len: 0,
-        formHandler: false
-      },
-      {
         name: 'stopWaiting'/*() => boolean */,
         len: 0,
         formHandler: false
       },
       {
-        name: 'connect'/*(String, String, Boolean) => void */,
-        len: 3,
+        name: 'syncStatus'/*() => com.sonatype.nexus.migration.ui.AssistantComponent$SyncStatusXO */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'connect'/*(String, String, int, Boolean) => void */,
+        len: 4,
         formHandler: false
       },
       {
@@ -223,19 +248,31 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
+    coreui_Vulnerability: [
+      {
+        name: 'read'/*(java.util.List) => java.util.Map */,
+        len: 1,
+        formHandler: false
+      }
+    ],
     coreui_Component: [
+      {
+        name: 'canDeleteAsset'/*(String, String) => boolean */,
+        len: 2,
+        formHandler: false
+      },
       {
         name: 'readAsset'/*(String, String) => org.sonatype.nexus.coreui.AssetXO */,
         len: 2,
         formHandler: false
       },
       {
-        name: 'readAssets'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => org.sonatype.nexus.extdirect.model.PagedResponse */,
-        len: 1,
+        name: 'deleteFolder'/*(String, String) => void */,
+        len: 2,
         formHandler: false
       },
       {
-        name: 'read'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => org.sonatype.nexus.extdirect.model.PagedResponse */,
+        name: 'canDeleteComponent'/*(String) => boolean */,
         len: 1,
         formHandler: false
       },
@@ -245,7 +282,12 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'deleteComponent'/*(String, String) => void */,
+        name: 'deleteComponent'/*(String) => java.util.Set */,
+        len: 1,
+        formHandler: false
+      },
+      {
+        name: 'canDeleteFolder'/*(String, String) => boolean */,
         len: 2,
         formHandler: false
       },
@@ -255,7 +297,7 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'deleteAsset'/*(String, String) => void */,
+        name: 'deleteAsset'/*(String, String) => java.util.Set */,
         len: 2,
         formHandler: false
       },
@@ -309,6 +351,23 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
+    s3_S3: [
+      {
+        name: 'signertypes'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'regions'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'encryptionTypes'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      }
+    ],
     healthcheck_Info: [
       {
         name: 'read'/*(java.util.List) => java.util.List */,
@@ -316,14 +375,26 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
-    coreui_DatabaseFreeze: [
+    coreui_Upload: [
       {
-        name: 'read'/*() => org.sonatype.nexus.coreui.DatabaseFreezeStatusXO */,
+        name: 'getUploadDefinitions'/*() => java.util.Collection */,
+        len: 0,
+        formHandler: false
+      }
+    ],
+    coreui_ProprietaryRepositories: [
+      {
+        name: 'read'/*() => org.sonatype.nexus.coreui.ProprietaryRepositoriesXO */,
         len: 0,
         formHandler: false
       },
       {
-        name: 'update'/*(org.sonatype.nexus.coreui.DatabaseFreezeStatusXO) => org.sonatype.nexus.coreui.DatabaseFreezeStatusXO */,
+        name: 'readPossibleRepos'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'update'/*(org.sonatype.nexus.coreui.ProprietaryRepositoriesXO) => org.sonatype.nexus.coreui.ProprietaryRepositoriesXO */,
         len: 1,
         formHandler: false
       }
@@ -362,8 +433,8 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'readAccount'/*() => org.sonatype.nexus.coreui.UserAccountXO */,
-        len: 0,
+        name: 'get'/*(String, String) => org.sonatype.nexus.coreui.UserXO */,
+        len: 2,
         formHandler: false
       },
       {
@@ -383,11 +454,6 @@ NX.direct.api.REMOTING_API = {
       },
       {
         name: 'updateRoleMappings'/*(org.sonatype.nexus.coreui.UserRoleMappingsXO) => org.sonatype.nexus.coreui.UserXO */,
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'updateAccount'/*(org.sonatype.nexus.coreui.UserAccountXO) => org.sonatype.nexus.coreui.UserAccountXO */,
         len: 1,
         formHandler: false
       },
@@ -445,12 +511,7 @@ NX.direct.api.REMOTING_API = {
     ],
     licensing_Licensing: [
       {
-        name: 'read'/*() => com.sonatype.nexus.licensing.internal.ui.LicenseDetailsXO */,
-        len: 0,
-        formHandler: false
-      },
-      {
-        name: 'readLicenseUsers'/*() => java.util.List */,
+        name: 'read'/*() => com.sonatype.nexus.licensing.internal.rest.ApiLicenseDetailsXO */,
         len: 0,
         formHandler: false
       },
@@ -465,28 +526,6 @@ NX.direct.api.REMOTING_API = {
         formHandler: true
       }
     ],
-    logging_Loggers: [
-      {
-        name: 'read'/*() => java.util.List */,
-        len: 0,
-        formHandler: false
-      },
-      {
-        name: 'update'/*(org.sonatype.nexus.coreui.internal.log.LoggerXO) => org.sonatype.nexus.coreui.internal.log.LoggerXO */,
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'reset'/*() => void */,
-        len: 0,
-        formHandler: false
-      },
-      {
-        name: 'remove'/*(String) => void */,
-        len: 1,
-        formHandler: false
-      }
-    ],
     migration_Repository: [
       {
         name: 'read'/*() => java.util.List */,
@@ -495,28 +534,6 @@ NX.direct.api.REMOTING_API = {
       },
       {
         name: 'defaults'/*() => com.sonatype.nexus.migration.ui.RepositoryComponent$DefaultsXO */,
-        len: 0,
-        formHandler: false
-      }
-    ],
-    analytics_Events: [
-      {
-        name: 'exportAll'/*() => com.sonatype.nexus.analytics.internal.ui.EventsZipXO */,
-        len: 0,
-        formHandler: false
-      },
-      {
-        name: 'read'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => org.sonatype.nexus.extdirect.model.PagedResponse */,
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'submit'/*(String) => void */,
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'clear'/*() => void */,
         len: 0,
         formHandler: false
       }
@@ -533,21 +550,9 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
-    audit_Audit: [
-      {
-        name: 'read'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => org.sonatype.nexus.extdirect.model.PagedResponse */,
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'clear'/*() => void */,
-        len: 0,
-        formHandler: false
-      }
-    ],
     coreui_Search: [
       {
-        name: 'read'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => org.sonatype.nexus.extdirect.model.PagedResponse */,
+        name: 'read'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => org.sonatype.nexus.extdirect.model.LimitedPagedResponse */,
         len: 1,
         formHandler: false
       }
@@ -615,6 +620,45 @@ NX.direct.api.REMOTING_API = {
       {
         name: 'remove'/*(String) => void */,
         len: 1,
+        formHandler: false
+      }
+    ],
+    coreui_Datastore: [
+      {
+        name: 'read'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'readH2'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      }
+    ],
+    clm_CLM: [
+      {
+        name: 'verifyConnection'/*(com.sonatype.nexus.clm.api.IqConnectionXo) => java.util.List */,
+        len: 1,
+        formHandler: false
+      },
+      {
+        name: 'read'/*() => com.sonatype.nexus.clm.api.IqConnectionXo */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'update'/*(com.sonatype.nexus.clm.api.IqConnectionXo) => com.sonatype.nexus.clm.api.IqConnectionXo */,
+        len: 1,
+        formHandler: false
+      },
+      {
+        name: 'authTypes'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'readApplications'/*() => java.util.List */,
+        len: 0,
         formHandler: false
       }
     ],
@@ -687,13 +731,6 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
-    atlas_SupportZip: [
-      {
-        name: 'create'/*(org.sonatype.nexus.supportzip.SupportZipGenerator$Request) => org.sonatype.nexus.coreui.internal.atlas.SupportZipXO */,
-        len: 1,
-        formHandler: false
-      }
-    ],
     proui_Database: [
       {
         name: 'resetQuorum'/*(String) => void */,
@@ -760,6 +797,11 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
+        name: 'readFormats'/*() => java.util.List */,
+        len: 0,
+        formHandler: false
+      },
+      {
         name: 'readReferencesAddingEntryForAll'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => java.util.List */,
         len: 1,
         formHandler: false
@@ -775,9 +817,11 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
-    logging_Log: [
+    ClmStateContributor: [
+    ],
+    cleanup_CleanupPolicy: [
       {
-        name: 'mark'/*(org.sonatype.nexus.coreui.internal.log.MarkerXO) => void */,
+        name: 'readByFormat'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => java.util.List */,
         len: 1,
         formHandler: false
       }
@@ -808,18 +852,8 @@ NX.direct.api.REMOTING_API = {
     ],
     ahc_Component: [
       {
-        name: 'getPredefinedValues'/*(String, String) => com.sonatype.nexus.ahc.internal.AhcParamsXO */,
-        len: 2,
-        formHandler: false
-      },
-      {
-        name: 'analyzeAsset'/*(String, String, String, String, String, String) => void */,
-        len: 6,
-        formHandler: false
-      },
-      {
-        name: 'acceptTermsOfService'/*() => void */,
-        len: 0,
+        name: 'containsApplication'/*(String) => boolean */,
+        len: 1,
         formHandler: false
       }
     ],
@@ -844,6 +878,35 @@ NX.direct.api.REMOTING_API = {
       {
         name: 'readRealmTypes'/*() => java.util.List */,
         len: 0,
+        formHandler: false
+      }
+    ],
+    rut_Auth: [
+      {
+        name: 'authenticate'/*() => boolean */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'authToken'/*() => String */,
+        len: 0,
+        formHandler: false
+      }
+    ],
+    coreui_Freeze: [
+      {
+        name: 'forceRelease'/*() => org.sonatype.nexus.coreui.FreezeStatusXO */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'read'/*() => org.sonatype.nexus.coreui.FreezeStatusXO */,
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'update'/*(org.sonatype.nexus.coreui.FreezeStatusXO) => org.sonatype.nexus.coreui.FreezeStatusXO */,
+        len: 1,
         formHandler: false
       }
     ],

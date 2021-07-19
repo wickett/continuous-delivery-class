@@ -1,6 +1,6 @@
 160
-mvn:org.sonatype.nexus/nexus-transaction/3.4.0-02
+reference:file:system/org/sonatype/nexus/nexus-capability/3.32.0-03/nexus-capability-3.32.0-03.jar
 32
 80
-1501202968893
+1626711403347
 0

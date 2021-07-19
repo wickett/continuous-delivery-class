@@ -1,6 +1,6 @@
 93
-wrap:mvn:javax.validation/validation-api/1.1.0.Final$overwrite=merge&Fragment-Host=org.hibernate.validator
-2
+wrap:file:system/com/google/inject/guice/5.0.1/guice-5.0.1.jar$overwrite=merge&Import-Package=javax.annotation,!com.google.inject.*,*
+32
 80
-1501202966016
+1626711398113
 0

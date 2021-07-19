@@ -1,6 +1,6 @@
 96
-wrap:mvn:com.sun.xml.bind/jaxb-core/2.2.7$Bundle-SymbolicName=jaxb-core
+wrap:file:system/io/swagger/swagger-core/1.6.2/swagger-core-1.6.2.jar$overwrite=merge&Import-Package=com.google.common.*,javax.validation.*,*
 32
 80
-1501202966097
+1626711399152
 0

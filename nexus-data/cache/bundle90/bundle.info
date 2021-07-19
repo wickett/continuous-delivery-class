@@ -1,6 +1,6 @@
 90
-mvn:javax.enterprise/cdi-api/1.2
+wrap:file:system/com/github/fge/jackson-coreutils/1.6/jackson-coreutils-1.6.jar$overwrite=merge&Import-Package=*
 32
 80
-1501202965917
+1626711397841
 0

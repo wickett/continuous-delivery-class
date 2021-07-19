@@ -1,6 +1,6 @@
 199
-mvn:org.sonatype.nexus.plugins/nexus-blobstore-restore/3.4.0-02
+reference:file:system/org/sonatype/nexus/nexus-rest/3.32.0-03/nexus-rest-3.32.0-03.jar
 32
 80
-1501202991123
+1626711404467
 0

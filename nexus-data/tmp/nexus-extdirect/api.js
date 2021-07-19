@@ -13,18 +13,6 @@ NX.direct.api.REMOTING_API = {
   type: 'remoting',
   namespace: NX.direct,
   actions: {
-    nuget_NuGetApiKey: [
-      {
-        name: 'readKey',
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'resetKey',
-        len: 1,
-        formHandler: false
-      }
-    ],
     coreui_Webhook: [
       {
         name: 'listWithTypeRepository',
@@ -116,17 +104,59 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
+    firewall_RepositoryStatus: [
+      {
+        name: 'read',
+        len: 0,
+        formHandler: false
+      }
+    ],
     rapture_State: [
     ],
     coreui_Blobstore: [
+      {
+        name: 'fillPolicies',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'readGroups',
+        len: 0,
+        formHandler: false
+      },
       {
         name: 'read',
         len: 0,
         formHandler: false
       },
       {
+        name: 'readQuotaTypes',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'promoteToGroup',
+        len: 1,
+        formHandler: false
+      },
+      {
+        name: 'readNames',
+        len: 0,
+        formHandler: false
+      },
+      {
         name: 'defaultWorkDirectory',
         len: 0,
+        formHandler: false
+      },
+      {
+        name: 'readGroupable',
+        len: 1,
+        formHandler: false
+      },
+      {
+        name: 'update',
+        len: 1,
         formHandler: false
       },
       {
@@ -145,14 +175,9 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
-    analytics_Settings: [
+    coreui_Browse: [
       {
         name: 'read',
-        len: 0,
-        formHandler: false
-      },
-      {
-        name: 'update',
         len: 1,
         formHandler: false
       }
@@ -194,18 +219,18 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'syncStatus',
-        len: 0,
-        formHandler: false
-      },
-      {
         name: 'stopWaiting',
         len: 0,
         formHandler: false
       },
       {
+        name: 'syncStatus',
+        len: 0,
+        formHandler: false
+      },
+      {
         name: 'connect',
-        len: 3,
+        len: 4,
         formHandler: false
       },
       {
@@ -214,19 +239,31 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
+    coreui_Vulnerability: [
+      {
+        name: 'read',
+        len: 1,
+        formHandler: false
+      }
+    ],
     coreui_Component: [
+      {
+        name: 'canDeleteAsset',
+        len: 2,
+        formHandler: false
+      },
       {
         name: 'readAsset',
         len: 2,
         formHandler: false
       },
       {
-        name: 'readAssets',
-        len: 1,
+        name: 'deleteFolder',
+        len: 2,
         formHandler: false
       },
       {
-        name: 'read',
+        name: 'canDeleteComponent',
         len: 1,
         formHandler: false
       },
@@ -237,6 +274,11 @@ NX.direct.api.REMOTING_API = {
       },
       {
         name: 'deleteComponent',
+        len: 1,
+        formHandler: false
+      },
+      {
+        name: 'canDeleteFolder',
         len: 2,
         formHandler: false
       },
@@ -300,6 +342,23 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
+    s3_S3: [
+      {
+        name: 'signertypes',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'regions',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'encryptionTypes',
+        len: 0,
+        formHandler: false
+      }
+    ],
     healthcheck_Info: [
       {
         name: 'read',
@@ -307,9 +366,21 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
-    coreui_DatabaseFreeze: [
+    coreui_Upload: [
+      {
+        name: 'getUploadDefinitions',
+        len: 0,
+        formHandler: false
+      }
+    ],
+    coreui_ProprietaryRepositories: [
       {
         name: 'read',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'readPossibleRepos',
         len: 0,
         formHandler: false
       },
@@ -353,8 +424,8 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'readAccount',
-        len: 0,
+        name: 'get',
+        len: 2,
         formHandler: false
       },
       {
@@ -374,11 +445,6 @@ NX.direct.api.REMOTING_API = {
       },
       {
         name: 'updateRoleMappings',
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'updateAccount',
         len: 1,
         formHandler: false
       },
@@ -441,11 +507,6 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'readLicenseUsers',
-        len: 0,
-        formHandler: false
-      },
-      {
         name: 'uninstall',
         len: 1,
         formHandler: false
@@ -454,28 +515,6 @@ NX.direct.api.REMOTING_API = {
         name: 'install',
         len: 1,
         formHandler: true
-      }
-    ],
-    logging_Loggers: [
-      {
-        name: 'read',
-        len: 0,
-        formHandler: false
-      },
-      {
-        name: 'update',
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'reset',
-        len: 0,
-        formHandler: false
-      },
-      {
-        name: 'remove',
-        len: 1,
-        formHandler: false
       }
     ],
     migration_Repository: [
@@ -490,28 +529,6 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
-    analytics_Events: [
-      {
-        name: 'exportAll',
-        len: 0,
-        formHandler: false
-      },
-      {
-        name: 'read',
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'submit',
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'clear',
-        len: 0,
-        formHandler: false
-      }
-    ],
     migration_Progress: [
       {
         name: 'read',
@@ -521,18 +538,6 @@ NX.direct.api.REMOTING_API = {
       {
         name: 'detail',
         len: 1,
-        formHandler: false
-      }
-    ],
-    audit_Audit: [
-      {
-        name: 'read',
-        len: 1,
-        formHandler: false
-      },
-      {
-        name: 'clear',
-        len: 0,
         formHandler: false
       }
     ],
@@ -609,6 +614,45 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
+    coreui_Datastore: [
+      {
+        name: 'read',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'readH2',
+        len: 0,
+        formHandler: false
+      }
+    ],
+    clm_CLM: [
+      {
+        name: 'verifyConnection',
+        len: 1,
+        formHandler: false
+      },
+      {
+        name: 'read',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'update',
+        len: 1,
+        formHandler: false
+      },
+      {
+        name: 'authTypes',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'readApplications',
+        len: 0,
+        formHandler: false
+      }
+    ],
     ldap_LdapServer: [
       {
         name: 'verifyLogin',
@@ -678,13 +722,6 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
-    atlas_SupportZip: [
-      {
-        name: 'create',
-        len: 1,
-        formHandler: false
-      }
-    ],
     proui_Database: [
       {
         name: 'resetQuorum',
@@ -751,6 +788,11 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
+        name: 'readFormats',
+        len: 0,
+        formHandler: false
+      },
+      {
         name: 'readReferencesAddingEntryForAll',
         len: 1,
         formHandler: false
@@ -766,9 +808,11 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       }
     ],
-    logging_Log: [
+    ClmStateContributor: [
+    ],
+    cleanup_CleanupPolicy: [
       {
-        name: 'mark',
+        name: 'readByFormat',
         len: 1,
         formHandler: false
       }
@@ -799,18 +843,8 @@ NX.direct.api.REMOTING_API = {
     ],
     ahc_Component: [
       {
-        name: 'getPredefinedValues',
-        len: 2,
-        formHandler: false
-      },
-      {
-        name: 'analyzeAsset',
-        len: 6,
-        formHandler: false
-      },
-      {
-        name: 'acceptTermsOfService',
-        len: 0,
+        name: 'containsApplication',
+        len: 1,
         formHandler: false
       }
     ],
@@ -835,6 +869,35 @@ NX.direct.api.REMOTING_API = {
       {
         name: 'readRealmTypes',
         len: 0,
+        formHandler: false
+      }
+    ],
+    rut_Auth: [
+      {
+        name: 'authenticate',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'authToken',
+        len: 0,
+        formHandler: false
+      }
+    ],
+    coreui_Freeze: [
+      {
+        name: 'forceRelease',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'read',
+        len: 0,
+        formHandler: false
+      },
+      {
+        name: 'update',
+        len: 1,
         formHandler: false
       }
     ],

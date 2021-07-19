@@ -1,52 +1,359 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function (process,__filename){(function (){
+/** vim: et:ts=4:sw=4:sts=4
+ * @license amdefine 1.0.1 Copyright (c) 2011-2016, The Dojo Foundation All Rights Reserved.
+ * Available via the MIT or new BSD license.
+ * see: http://github.com/jrburke/amdefine for details
+ */
+
+/*jslint node: true */
+/*global module, process */
 'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+/**
+ * Creates a define for node.
+ * @param {Object} module the "module" object that is defined by Node for the
+ * current module.
+ * @param {Function} [requireFn]. Node's require function for the current module.
+ * It only needs to be passed in Node versions before 0.5, when module.require
+ * did not exist.
+ * @returns {Function} a define function that is usable for the current node
+ * module.
+ */
+function amdefine(module, requireFn) {
+    'use strict';
+    var defineCache = {},
+        loaderCache = {},
+        alreadyCalled = false,
+        path = require('path'),
+        makeRequire, stringRequire;
+
+    /**
+     * Trims the . and .. from an array of path segments.
+     * It will keep a leading path segment if a .. will become
+     * the first path segment, to help with module name lookups,
+     * which act like paths, but can be remapped. But the end result,
+     * all paths that use this function should look normalized.
+     * NOTE: this method MODIFIES the input array.
+     * @param {Array} ary the array of path segments.
+     */
+    function trimDots(ary) {
+        var i, part;
+        for (i = 0; ary[i]; i+= 1) {
+            part = ary[i];
+            if (part === '.') {
+                ary.splice(i, 1);
+                i -= 1;
+            } else if (part === '..') {
+                if (i === 1 && (ary[2] === '..' || ary[0] === '..')) {
+                    //End of the line. Keep at least one non-dot
+                    //path segment at the front so it can be mapped
+                    //correctly to disk. Otherwise, there is likely
+                    //no path mapping for a path starting with '..'.
+                    //This can still fail, but catches the most reasonable
+                    //uses of ..
+                    break;
+                } else if (i > 0) {
+                    ary.splice(i - 1, 2);
+                    i -= 2;
+                }
+            }
+        }
+    }
+
+    function normalize(name, baseName) {
+        var baseParts;
+
+        //Adjust any relative paths.
+        if (name && name.charAt(0) === '.') {
+            //If have a base name, try to normalize against it,
+            //otherwise, assume it is a top-level require that will
+            //be relative to baseUrl in the end.
+            if (baseName) {
+                baseParts = baseName.split('/');
+                baseParts = baseParts.slice(0, baseParts.length - 1);
+                baseParts = baseParts.concat(name.split('/'));
+                trimDots(baseParts);
+                name = baseParts.join('/');
+            }
+        }
+
+        return name;
+    }
+
+    /**
+     * Create the normalize() function passed to a loader plugin's
+     * normalize method.
+     */
+    function makeNormalize(relName) {
+        return function (name) {
+            return normalize(name, relName);
+        };
+    }
+
+    function makeLoad(id) {
+        function load(value) {
+            loaderCache[id] = value;
+        }
+
+        load.fromText = function (id, text) {
+            //This one is difficult because the text can/probably uses
+            //define, and any relative paths and requires should be relative
+            //to that id was it would be found on disk. But this would require
+            //bootstrapping a module/require fairly deeply from node core.
+            //Not sure how best to go about that yet.
+            throw new Error('amdefine does not implement load.fromText');
+        };
+
+        return load;
+    }
+
+    makeRequire = function (systemRequire, exports, module, relId) {
+        function amdRequire(deps, callback) {
+            if (typeof deps === 'string') {
+                //Synchronous, single module require('')
+                return stringRequire(systemRequire, exports, module, deps, relId);
+            } else {
+                //Array of dependencies with a callback.
+
+                //Convert the dependencies to modules.
+                deps = deps.map(function (depName) {
+                    return stringRequire(systemRequire, exports, module, depName, relId);
+                });
+
+                //Wait for next tick to call back the require call.
+                if (callback) {
+                    process.nextTick(function () {
+                        callback.apply(null, deps);
+                    });
+                }
+            }
+        }
+
+        amdRequire.toUrl = function (filePath) {
+            if (filePath.indexOf('.') === 0) {
+                return normalize(filePath, path.dirname(module.filename));
+            } else {
+                return filePath;
+            }
+        };
+
+        return amdRequire;
+    };
+
+    //Favor explicit value, passed in if the module wants to support Node 0.4.
+    requireFn = requireFn || function req() {
+        return module.require.apply(module, arguments);
+    };
+
+    function runFactory(id, deps, factory) {
+        var r, e, m, result;
+
+        if (id) {
+            e = loaderCache[id] = {};
+            m = {
+                id: id,
+                uri: __filename,
+                exports: e
+            };
+            r = makeRequire(requireFn, e, m, id);
+        } else {
+            //Only support one define call per file
+            if (alreadyCalled) {
+                throw new Error('amdefine with no module ID cannot be called more than once per file.');
+            }
+            alreadyCalled = true;
+
+            //Use the real variables from node
+            //Use module.exports for exports, since
+            //the exports in here is amdefine exports.
+            e = module.exports;
+            m = module;
+            r = makeRequire(requireFn, e, m, module.id);
+        }
+
+        //If there are dependencies, they are strings, so need
+        //to convert them to dependency values.
+        if (deps) {
+            deps = deps.map(function (depName) {
+                return r(depName);
+            });
+        }
+
+        //Call the factory with the right dependencies.
+        if (typeof factory === 'function') {
+            result = factory.apply(m.exports, deps);
+        } else {
+            result = factory;
+        }
+
+        if (result !== undefined) {
+            m.exports = result;
+            if (id) {
+                loaderCache[id] = m.exports;
+            }
+        }
+    }
+
+    stringRequire = function (systemRequire, exports, module, id, relId) {
+        //Split the ID by a ! so that
+        var index = id.indexOf('!'),
+            originalId = id,
+            prefix, plugin;
+
+        if (index === -1) {
+            id = normalize(id, relId);
+
+            //Straight module lookup. If it is one of the special dependencies,
+            //deal with it, otherwise, delegate to node.
+            if (id === 'require') {
+                return makeRequire(systemRequire, exports, module, relId);
+            } else if (id === 'exports') {
+                return exports;
+            } else if (id === 'module') {
+                return module;
+            } else if (loaderCache.hasOwnProperty(id)) {
+                return loaderCache[id];
+            } else if (defineCache[id]) {
+                runFactory.apply(null, defineCache[id]);
+                return loaderCache[id];
+            } else {
+                if(systemRequire) {
+                    return systemRequire(originalId);
+                } else {
+                    throw new Error('No module with ID: ' + id);
+                }
+            }
+        } else {
+            //There is a plugin in play.
+            prefix = id.substring(0, index);
+            id = id.substring(index + 1, id.length);
+
+            plugin = stringRequire(systemRequire, exports, module, prefix, relId);
+
+            if (plugin.normalize) {
+                id = plugin.normalize(id, makeNormalize(relId));
+            } else {
+                //Normalize the ID normally.
+                id = normalize(id, relId);
+            }
+
+            if (loaderCache[id]) {
+                return loaderCache[id];
+            } else {
+                plugin.load(id, makeRequire(systemRequire, exports, module, relId), makeLoad(id), {});
+
+                return loaderCache[id];
+            }
+        }
+    };
+
+    //Create a define function specific to the module asking for amdefine.
+    function define(id, deps, factory) {
+        if (Array.isArray(id)) {
+            factory = deps;
+            deps = id;
+            id = undefined;
+        } else if (typeof id !== 'string') {
+            factory = id;
+            id = deps = undefined;
+        }
+
+        if (deps && !Array.isArray(deps)) {
+            factory = deps;
+            deps = undefined;
+        }
+
+        if (!deps) {
+            deps = ['require', 'exports', 'module'];
+        }
+
+        //Set up properties for this module. If an ID, then use
+        //internal cache. If no ID, then use the external variables
+        //for this node module.
+        if (id) {
+            //Put the module in deep freeze until there is a
+            //require call for it.
+            defineCache[id] = [id, deps, factory];
+        } else {
+            runFactory(id, deps, factory);
+        }
+    }
+
+    //define.require, which has access to all the values in the
+    //cache. Useful for AMD modules that all have IDs in the file,
+    //but need to finally export a value to node based on one of those
+    //IDs.
+    define.require = function (id) {
+        if (loaderCache[id]) {
+            return loaderCache[id];
+        }
+
+        if (defineCache[id]) {
+            runFactory.apply(null, defineCache[id]);
+            return loaderCache[id];
+        }
+    };
+
+    define.amd = {};
+
+    return define;
+}
+
+module.exports = amdefine;
+
+}).call(this)}).call(this,require('_process'),"/node_modules/amdefine/amdefine.js")
+},{"_process":27,"path":26}],2:[function(require,module,exports){
+
+},{}],3:[function(require,module,exports){
+'use strict';
 
 exports.__esModule = true;
 
-var _runtime = require('./handlebars.runtime');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _runtime2 = _interopRequireWildcard(_runtime);
+var _handlebarsRuntime = require('./handlebars.runtime');
+
+var _handlebarsRuntime2 = _interopRequireDefault(_handlebarsRuntime);
 
 // Compiler imports
 
-var _AST = require('./handlebars/compiler/ast');
+var _handlebarsCompilerAst = require('./handlebars/compiler/ast');
 
-var _AST2 = _interopRequireWildcard(_AST);
+var _handlebarsCompilerAst2 = _interopRequireDefault(_handlebarsCompilerAst);
 
-var _Parser$parse = require('./handlebars/compiler/base');
+var _handlebarsCompilerBase = require('./handlebars/compiler/base');
 
-var _Compiler$compile$precompile = require('./handlebars/compiler/compiler');
+var _handlebarsCompilerCompiler = require('./handlebars/compiler/compiler');
 
-var _JavaScriptCompiler = require('./handlebars/compiler/javascript-compiler');
+var _handlebarsCompilerJavascriptCompiler = require('./handlebars/compiler/javascript-compiler');
 
-var _JavaScriptCompiler2 = _interopRequireWildcard(_JavaScriptCompiler);
+var _handlebarsCompilerJavascriptCompiler2 = _interopRequireDefault(_handlebarsCompilerJavascriptCompiler);
 
-var _Visitor = require('./handlebars/compiler/visitor');
+var _handlebarsCompilerVisitor = require('./handlebars/compiler/visitor');
 
-var _Visitor2 = _interopRequireWildcard(_Visitor);
+var _handlebarsCompilerVisitor2 = _interopRequireDefault(_handlebarsCompilerVisitor);
 
-var _noConflict = require('./handlebars/no-conflict');
+var _handlebarsNoConflict = require('./handlebars/no-conflict');
 
-var _noConflict2 = _interopRequireWildcard(_noConflict);
+var _handlebarsNoConflict2 = _interopRequireDefault(_handlebarsNoConflict);
 
-var _create = _runtime2['default'].create;
+var _create = _handlebarsRuntime2['default'].create;
 function create() {
   var hb = _create();
 
   hb.compile = function (input, options) {
-    return _Compiler$compile$precompile.compile(input, options, hb);
+    return _handlebarsCompilerCompiler.compile(input, options, hb);
   };
   hb.precompile = function (input, options) {
-    return _Compiler$compile$precompile.precompile(input, options, hb);
+    return _handlebarsCompilerCompiler.precompile(input, options, hb);
   };
 
-  hb.AST = _AST2['default'];
-  hb.Compiler = _Compiler$compile$precompile.Compiler;
-  hb.JavaScriptCompiler = _JavaScriptCompiler2['default'];
-  hb.Parser = _Parser$parse.parser;
-  hb.parse = _Parser$parse.parse;
+  hb.AST = _handlebarsCompilerAst2['default'];
+  hb.Compiler = _handlebarsCompilerCompiler.Compiler;
+  hb.JavaScriptCompiler = _handlebarsCompilerJavascriptCompiler2['default'];
+  hb.Parser = _handlebarsCompilerBase.parser;
+  hb.parse = _handlebarsCompilerBase.parse;
 
   return hb;
 }
@@ -54,55 +361,58 @@ function create() {
 var inst = create();
 inst.create = create;
 
-_noConflict2['default'](inst);
+_handlebarsNoConflict2['default'](inst);
 
-inst.Visitor = _Visitor2['default'];
+inst.Visitor = _handlebarsCompilerVisitor2['default'];
 
 inst['default'] = inst;
 
 exports['default'] = inst;
 module.exports = exports['default'];
-},{"./handlebars.runtime":2,"./handlebars/compiler/ast":4,"./handlebars/compiler/base":5,"./handlebars/compiler/compiler":7,"./handlebars/compiler/javascript-compiler":9,"./handlebars/compiler/visitor":12,"./handlebars/no-conflict":15}],2:[function(require,module,exports){
-'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+},{"./handlebars.runtime":4,"./handlebars/compiler/ast":6,"./handlebars/compiler/base":7,"./handlebars/compiler/compiler":9,"./handlebars/compiler/javascript-compiler":11,"./handlebars/compiler/visitor":14,"./handlebars/no-conflict":17}],4:[function(require,module,exports){
+'use strict';
 
 exports.__esModule = true;
 
-var _import = require('./handlebars/base');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var base = _interopRequireWildcard(_import);
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+var _handlebarsBase = require('./handlebars/base');
+
+var base = _interopRequireWildcard(_handlebarsBase);
 
 // Each of these augment the Handlebars object. No need to setup here.
 // (This is done to easily share code between commonjs and browse envs)
 
-var _SafeString = require('./handlebars/safe-string');
+var _handlebarsSafeString = require('./handlebars/safe-string');
 
-var _SafeString2 = _interopRequireWildcard(_SafeString);
+var _handlebarsSafeString2 = _interopRequireDefault(_handlebarsSafeString);
 
-var _Exception = require('./handlebars/exception');
+var _handlebarsException = require('./handlebars/exception');
 
-var _Exception2 = _interopRequireWildcard(_Exception);
+var _handlebarsException2 = _interopRequireDefault(_handlebarsException);
 
-var _import2 = require('./handlebars/utils');
+var _handlebarsUtils = require('./handlebars/utils');
 
-var Utils = _interopRequireWildcard(_import2);
+var Utils = _interopRequireWildcard(_handlebarsUtils);
 
-var _import3 = require('./handlebars/runtime');
+var _handlebarsRuntime = require('./handlebars/runtime');
 
-var runtime = _interopRequireWildcard(_import3);
+var runtime = _interopRequireWildcard(_handlebarsRuntime);
 
-var _noConflict = require('./handlebars/no-conflict');
+var _handlebarsNoConflict = require('./handlebars/no-conflict');
 
-var _noConflict2 = _interopRequireWildcard(_noConflict);
+var _handlebarsNoConflict2 = _interopRequireDefault(_handlebarsNoConflict);
 
 // For compatibility and usage outside of module systems, make the Handlebars object a namespace
 function create() {
   var hb = new base.HandlebarsEnvironment();
 
   Utils.extend(hb, base);
-  hb.SafeString = _SafeString2['default'];
-  hb.Exception = _Exception2['default'];
+  hb.SafeString = _handlebarsSafeString2['default'];
+  hb.Exception = _handlebarsException2['default'];
   hb.Utils = Utils;
   hb.escapeExpression = Utils.escapeExpression;
 
@@ -117,28 +427,31 @@ function create() {
 var inst = create();
 inst.create = create;
 
-_noConflict2['default'](inst);
+_handlebarsNoConflict2['default'](inst);
 
 inst['default'] = inst;
 
 exports['default'] = inst;
 module.exports = exports['default'];
-},{"./handlebars/base":3,"./handlebars/exception":14,"./handlebars/no-conflict":15,"./handlebars/runtime":16,"./handlebars/safe-string":17,"./handlebars/utils":18}],3:[function(require,module,exports){
-'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+},{"./handlebars/base":5,"./handlebars/exception":16,"./handlebars/no-conflict":17,"./handlebars/runtime":18,"./handlebars/safe-string":19,"./handlebars/utils":20}],5:[function(require,module,exports){
+'use strict';
 
 exports.__esModule = true;
 exports.HandlebarsEnvironment = HandlebarsEnvironment;
 exports.createFrame = createFrame;
 
-var _import = require('./utils');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var Utils = _interopRequireWildcard(_import);
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-var _Exception = require('./exception');
+var _utils = require('./utils');
 
-var _Exception2 = _interopRequireWildcard(_Exception);
+var Utils = _interopRequireWildcard(_utils);
+
+var _exception = require('./exception');
+
+var _exception2 = _interopRequireDefault(_exception);
 
 var VERSION = '3.0.1';
 exports.VERSION = VERSION;
@@ -176,7 +489,7 @@ HandlebarsEnvironment.prototype = {
   registerHelper: function registerHelper(name, fn) {
     if (toString.call(name) === objectType) {
       if (fn) {
-        throw new _Exception2['default']('Arg not supported with multiple helpers');
+        throw new _exception2['default']('Arg not supported with multiple helpers');
       }
       Utils.extend(this.helpers, name);
     } else {
@@ -192,7 +505,7 @@ HandlebarsEnvironment.prototype = {
       Utils.extend(this.partials, name);
     } else {
       if (typeof partial === 'undefined') {
-        throw new _Exception2['default']('Attempting to register a partial as undefined');
+        throw new _exception2['default']('Attempting to register a partial as undefined');
       }
       this.partials[name] = partial;
     }
@@ -203,13 +516,13 @@ HandlebarsEnvironment.prototype = {
 };
 
 function registerDefaultHelpers(instance) {
-  instance.registerHelper('helperMissing', function () {
+  instance.registerHelper('helperMissing', function () /* [args, ]options */{
     if (arguments.length === 1) {
       // A missing field in a {{foo}} constuct.
       return undefined;
     } else {
       // Someone is actually trying to call something, blow up.
-      throw new _Exception2['default']('Missing helper: "' + arguments[arguments.length - 1].name + '"');
+      throw new _exception2['default']('Missing helper: "' + arguments[arguments.length - 1].name + '"');
     }
   });
 
@@ -244,7 +557,7 @@ function registerDefaultHelpers(instance) {
 
   instance.registerHelper('each', function (context, options) {
     if (!options) {
-      throw new _Exception2['default']('Must pass iterator to #each');
+      throw new _exception2['default']('Must pass iterator to #each');
     }
 
     var fn = options.fn,
@@ -362,7 +675,13 @@ function registerDefaultHelpers(instance) {
   });
 
   instance.registerHelper('lookup', function (obj, field) {
-    return obj && obj[field];
+    if (!obj) {
+      return obj;
+    }
+    if (Utils.dangerousPropertyRegex.test(String(field)) && !Object.prototype.hasOwnProperty.call(obj, field)) {
+      return undefined;
+    }
+    return obj[field];
   });
 }
 
@@ -396,8 +715,7 @@ function createFrame(object) {
   return frame;
 }
 
-/* [args, ]options */
-},{"./exception":14,"./utils":18}],4:[function(require,module,exports){
+},{"./exception":16,"./utils":20}],6:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -535,7 +853,8 @@ var AST = {
     },
 
     scopedId: function scopedId(path) {
-      return /^\.|this\b/.test(path.original);
+      return (/^\.|this\b/.test(path.original)
+      );
     },
 
     // an ID is simple if it only has one part, and that part is not
@@ -550,36 +869,39 @@ var AST = {
 // must modify the object to operate properly.
 exports['default'] = AST;
 module.exports = exports['default'];
-},{}],5:[function(require,module,exports){
-'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+},{}],7:[function(require,module,exports){
+'use strict';
 
 exports.__esModule = true;
 exports.parse = parse;
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 var _parser = require('./parser');
 
-var _parser2 = _interopRequireWildcard(_parser);
+var _parser2 = _interopRequireDefault(_parser);
 
-var _AST = require('./ast');
+var _ast = require('./ast');
 
-var _AST2 = _interopRequireWildcard(_AST);
+var _ast2 = _interopRequireDefault(_ast);
 
-var _WhitespaceControl = require('./whitespace-control');
+var _whitespaceControl = require('./whitespace-control');
 
-var _WhitespaceControl2 = _interopRequireWildcard(_WhitespaceControl);
+var _whitespaceControl2 = _interopRequireDefault(_whitespaceControl);
 
-var _import = require('./helpers');
+var _helpers = require('./helpers');
 
-var Helpers = _interopRequireWildcard(_import);
+var Helpers = _interopRequireWildcard(_helpers);
 
-var _extend = require('../utils');
+var _utils = require('../utils');
 
 exports.parser = _parser2['default'];
 
 var yy = {};
-_extend.extend(yy, Helpers, _AST2['default']);
+_utils.extend(yy, Helpers, _ast2['default']);
 
 function parse(input, options) {
   // Just return if an already-compiled AST was passed in.
@@ -594,16 +916,17 @@ function parse(input, options) {
     return new yy.SourceLocation(options && options.srcName, locInfo);
   };
 
-  var strip = new _WhitespaceControl2['default']();
+  var strip = new _whitespaceControl2['default']();
   return strip.accept(_parser2['default'].parse(input));
 }
-},{"../utils":18,"./ast":4,"./helpers":8,"./parser":10,"./whitespace-control":13}],6:[function(require,module,exports){
+
+},{"../utils":20,"./ast":6,"./helpers":10,"./parser":12,"./whitespace-control":15}],8:[function(require,module,exports){
+/*global define */
 'use strict';
 
 exports.__esModule = true;
-/*global define */
 
-var _isArray = require('../utils');
+var _utils = require('../utils');
 
 var SourceNode = undefined;
 
@@ -616,6 +939,7 @@ try {
     SourceNode = SourceMap.SourceNode;
   }
 } catch (err) {}
+/* NOP */
 
 /* istanbul ignore if: tested but not covered in istanbul due to dist build  */
 if (!SourceNode) {
@@ -628,13 +952,13 @@ if (!SourceNode) {
   /* istanbul ignore next */
   SourceNode.prototype = {
     add: function add(chunks) {
-      if (_isArray.isArray(chunks)) {
+      if (_utils.isArray(chunks)) {
         chunks = chunks.join('');
       }
       this.src += chunks;
     },
     prepend: function prepend(chunks) {
-      if (_isArray.isArray(chunks)) {
+      if (_utils.isArray(chunks)) {
         chunks = chunks.join('');
       }
       this.src = chunks + this.src;
@@ -649,7 +973,7 @@ if (!SourceNode) {
 }
 
 function castChunk(chunk, codeGen, loc) {
-  if (_isArray.isArray(chunk)) {
+  if (_utils.isArray(chunk)) {
     var ret = [];
 
     for (var i = 0, len = chunk.length; i < len; i++) {
@@ -691,12 +1015,12 @@ CodeGen.prototype = {
   },
 
   empty: function empty() {
-    var loc = arguments[0] === undefined ? this.currentLocation || { start: {} } : arguments[0];
+    var loc = arguments.length <= 0 || arguments[0] === undefined ? this.currentLocation || { start: {} } : arguments[0];
 
     return new SourceNode(loc.start.line, loc.start.column, this.srcFile);
   },
   wrap: function wrap(chunk) {
-    var loc = arguments[1] === undefined ? this.currentLocation || { start: {} } : arguments[1];
+    var loc = arguments.length <= 1 || arguments[1] === undefined ? this.currentLocation || { start: {} } : arguments[1];
 
     if (chunk instanceof SourceNode) {
       return chunk;
@@ -761,26 +1085,25 @@ CodeGen.prototype = {
 exports['default'] = CodeGen;
 module.exports = exports['default'];
 
-/* NOP */
-},{"../utils":18,"source-map":20}],7:[function(require,module,exports){
+},{"../utils":20,"source-map":28}],9:[function(require,module,exports){
 'use strict';
-
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
 
 exports.__esModule = true;
 exports.Compiler = Compiler;
 exports.precompile = precompile;
 exports.compile = compile;
 
-var _Exception = require('../exception');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _Exception2 = _interopRequireWildcard(_Exception);
+var _exception = require('../exception');
 
-var _isArray$indexOf = require('../utils');
+var _exception2 = _interopRequireDefault(_exception);
 
-var _AST = require('./ast');
+var _utils = require('../utils');
 
-var _AST2 = _interopRequireWildcard(_AST);
+var _ast = require('./ast');
+
+var _ast2 = _interopRequireDefault(_ast);
 
 var slice = [].slice;
 
@@ -835,14 +1158,14 @@ Compiler.prototype = {
     // These changes will propagate to the other compiler components
     var knownHelpers = options.knownHelpers;
     options.knownHelpers = {
-      helperMissing: true,
-      blockHelperMissing: true,
-      each: true,
+      'helperMissing': true,
+      'blockHelperMissing': true,
+      'each': true,
       'if': true,
-      unless: true,
+      'unless': true,
       'with': true,
-      log: true,
-      lookup: true
+      'log': true,
+      'lookup': true
     };
     if (knownHelpers) {
       for (var _name in knownHelpers) {
@@ -934,7 +1257,7 @@ Compiler.prototype = {
 
     var params = partial.params;
     if (params.length > 1) {
-      throw new _Exception2['default']('Unsupported number of partial arguments: ' + params.length, partial);
+      throw new _exception2['default']('Unsupported number of partial arguments: ' + params.length, partial);
     } else if (!params.length) {
       params.push({ type: 'PathExpression', parts: [], depth: 0 });
     }
@@ -1015,12 +1338,12 @@ Compiler.prototype = {
     if (this.options.knownHelpers[name]) {
       this.opcode('invokeKnownHelper', params.length, name);
     } else if (this.options.knownHelpersOnly) {
-      throw new _Exception2['default']('You specified knownHelpersOnly, but used the unknown helper ' + name, sexpr);
+      throw new _exception2['default']('You specified knownHelpersOnly, but used the unknown helper ' + name, sexpr);
     } else {
       path.falsy = true;
 
       this.accept(path);
-      this.opcode('invokeHelper', params.length, path.original, _AST2['default'].helpers.simpleId(path));
+      this.opcode('invokeHelper', params.length, path.original, _ast2['default'].helpers.simpleId(path));
     }
   },
 
@@ -1029,7 +1352,7 @@ Compiler.prototype = {
     this.opcode('getContext', path.depth);
 
     var name = path.parts[0],
-        scoped = _AST2['default'].helpers.scopedId(path),
+        scoped = _ast2['default'].helpers.scopedId(path),
         blockParamId = !path.depth && !scoped && this.blockParamIndex(name);
 
     if (blockParamId) {
@@ -1095,13 +1418,13 @@ Compiler.prototype = {
   },
 
   classifySexpr: function classifySexpr(sexpr) {
-    var isSimple = _AST2['default'].helpers.simpleId(sexpr.path);
+    var isSimple = _ast2['default'].helpers.simpleId(sexpr.path);
 
     var isBlockParam = isSimple && !!this.blockParamIndex(sexpr.path.parts[0]);
 
     // a mustache is an eligible helper if:
     // * its id is simple (a single part, not `this` or `..`)
-    var isHelper = !isBlockParam && _AST2['default'].helpers.helperExpression(sexpr);
+    var isHelper = !isBlockParam && _ast2['default'].helpers.helperExpression(sexpr);
 
     // if a mustache is an eligible helper but not a definite
     // helper, it is ambiguous, and will be resolved in a later
@@ -1158,7 +1481,7 @@ Compiler.prototype = {
     } else {
       if (this.trackIds) {
         var blockParamIndex = undefined;
-        if (val.parts && !_AST2['default'].helpers.scopedId(val) && !val.depth) {
+        if (val.parts && !_ast2['default'].helpers.scopedId(val) && !val.depth) {
           blockParamIndex = this.blockParamIndex(val.parts[0]);
         }
         if (blockParamIndex) {
@@ -1196,7 +1519,7 @@ Compiler.prototype = {
   blockParamIndex: function blockParamIndex(name) {
     for (var depth = 0, len = this.options.blockParams.length; depth < len; depth++) {
       var blockParams = this.options.blockParams[depth],
-          param = blockParams && _isArray$indexOf.indexOf(blockParams, name);
+          param = blockParams && _utils.indexOf(blockParams, name);
       if (blockParams && param >= 0) {
         return [depth, param];
       }
@@ -1206,7 +1529,7 @@ Compiler.prototype = {
 
 function precompile(input, options, env) {
   if (input == null || typeof input !== 'string' && input.type !== 'Program') {
-    throw new _Exception2['default']('You must pass a string or Handlebars AST to Handlebars.precompile. You passed ' + input);
+    throw new _exception2['default']('You must pass a string or Handlebars AST to Handlebars.precompile. You passed ' + input);
   }
 
   options = options || {};
@@ -1222,11 +1545,11 @@ function precompile(input, options, env) {
   return new env.JavaScriptCompiler().compile(environment, options);
 }
 
-function compile(input, _x, env) {
-  var options = arguments[1] === undefined ? {} : arguments[1];
+function compile(input, options, env) {
+  if (options === undefined) options = {};
 
   if (input == null || typeof input !== 'string' && input.type !== 'Program') {
-    throw new _Exception2['default']('You must pass a string or Handlebars AST to Handlebars.compile. You passed ' + input);
+    throw new _exception2['default']('You must pass a string or Handlebars AST to Handlebars.compile. You passed ' + input);
   }
 
   if (!('data' in options)) {
@@ -1272,7 +1595,7 @@ function argEquals(a, b) {
     return true;
   }
 
-  if (_isArray$indexOf.isArray(a) && _isArray$indexOf.isArray(b) && a.length === b.length) {
+  if (_utils.isArray(a) && _utils.isArray(b) && a.length === b.length) {
     for (var i = 0; i < a.length; i++) {
       if (!argEquals(a[i], b[i])) {
         return false;
@@ -1287,13 +1610,12 @@ function transformLiteralToPath(sexpr) {
     var literal = sexpr.path;
     // Casting to string here to make false and 0 literal values play nicely with the rest
     // of the system.
-    sexpr.path = new _AST2['default'].PathExpression(false, 0, [literal.original + ''], literal.original + '', literal.loc);
+    sexpr.path = new _ast2['default'].PathExpression(false, 0, [literal.original + ''], literal.original + '', literal.loc);
   }
 }
-},{"../exception":14,"../utils":18,"./ast":4}],8:[function(require,module,exports){
-'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+},{"../exception":16,"../utils":20,"./ast":6}],10:[function(require,module,exports){
+'use strict';
 
 exports.__esModule = true;
 exports.SourceLocation = SourceLocation;
@@ -1305,9 +1627,11 @@ exports.prepareMustache = prepareMustache;
 exports.prepareRawBlock = prepareRawBlock;
 exports.prepareBlock = prepareBlock;
 
-var _Exception = require('../exception');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _Exception2 = _interopRequireWildcard(_Exception);
+var _exception = require('../exception');
+
+var _exception2 = _interopRequireDefault(_exception);
 
 function SourceLocation(source, locInfo) {
   this.source = source;
@@ -1358,7 +1682,7 @@ function preparePath(data, parts, locInfo) {
 
     if (!isLiteral && (part === '..' || part === '.' || part === 'this')) {
       if (dig.length > 0) {
-        throw new _Exception2['default']('Invalid path: ' + original, { loc: locInfo });
+        throw new _exception2['default']('Invalid path: ' + original, { loc: locInfo });
       } else if (part === '..') {
         depth++;
         depthString += '../';
@@ -1383,7 +1707,7 @@ function prepareRawBlock(openRawBlock, content, close, locInfo) {
   if (openRawBlock.path.original !== close) {
     var errorNode = { loc: openRawBlock.path.loc };
 
-    throw new _Exception2['default'](openRawBlock.path.original + ' doesn\'t match ' + close, errorNode);
+    throw new _exception2['default'](openRawBlock.path.original + " doesn't match " + close, errorNode);
   }
 
   locInfo = this.locInfo(locInfo);
@@ -1397,7 +1721,7 @@ function prepareBlock(openBlock, program, inverseAndProgram, close, inverted, lo
   if (close && close.path && openBlock.path.original !== close.path.original) {
     var errorNode = { loc: openBlock.path.loc };
 
-    throw new _Exception2['default'](openBlock.path.original + ' doesn\'t match ' + close.path.original, errorNode);
+    throw new _exception2['default'](openBlock.path.original + ' doesn\'t match ' + close.path.original, errorNode);
   }
 
   program.blockParams = openBlock.blockParams;
@@ -1422,24 +1746,25 @@ function prepareBlock(openBlock, program, inverseAndProgram, close, inverted, lo
 
   return new this.BlockStatement(openBlock.path, openBlock.params, openBlock.hash, program, inverse, openBlock.strip, inverseStrip, close && close.strip, this.locInfo(locInfo));
 }
-},{"../exception":14}],9:[function(require,module,exports){
-'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+},{"../exception":16}],11:[function(require,module,exports){
+'use strict';
 
 exports.__esModule = true;
 
-var _COMPILER_REVISION$REVISION_CHANGES = require('../base');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _Exception = require('../exception');
+var _base = require('../base');
 
-var _Exception2 = _interopRequireWildcard(_Exception);
+var _exception = require('../exception');
 
-var _isArray = require('../utils');
+var _exception2 = _interopRequireDefault(_exception);
 
-var _CodeGen = require('./code-gen');
+var _utils = require('../utils');
 
-var _CodeGen2 = _interopRequireWildcard(_CodeGen);
+var _codeGen = require('./code-gen');
+
+var _codeGen2 = _interopRequireDefault(_codeGen);
 
 function Literal(value) {
   this.value = value;
@@ -1451,10 +1776,18 @@ JavaScriptCompiler.prototype = {
   // PUBLIC API: You can override these methods in a subclass to provide
   // alternative compiled forms for name lookup and buffering semantics
   nameLookup: function nameLookup(parent, name /* , type*/) {
-    if (JavaScriptCompiler.isValidJavaScriptVariableName(name)) {
-      return [parent, '.', name];
-    } else {
-      return [parent, '[\'', name, '\']'];
+    if (_utils.dangerousPropertyRegex.test(name)) {
+      var isOwnProperty = [this.aliasable('Object.prototype.hasOwnProperty'), '.call(', parent, ',', JSON.stringify(name), ')'];
+      return ['(', isOwnProperty, '?', _actualLookup(), ' : undefined)'];
+    }
+    return _actualLookup();
+
+    function _actualLookup() {
+      if (JavaScriptCompiler.isValidJavaScriptVariableName(name)) {
+        return [parent, '.', name];
+      } else {
+        return [parent, '[', JSON.stringify(name), ']'];
+      }
     }
   },
   depthedLookup: function depthedLookup(name) {
@@ -1462,14 +1795,14 @@ JavaScriptCompiler.prototype = {
   },
 
   compilerInfo: function compilerInfo() {
-    var revision = _COMPILER_REVISION$REVISION_CHANGES.COMPILER_REVISION,
-        versions = _COMPILER_REVISION$REVISION_CHANGES.REVISION_CHANGES[revision];
+    var revision = _base.COMPILER_REVISION,
+        versions = _base.REVISION_CHANGES[revision];
     return [revision, versions];
   },
 
   appendToBuffer: function appendToBuffer(source, location, explicit) {
     // Force a source as this simplifies the merge logic.
-    if (!_isArray.isArray(source)) {
+    if (!_utils.isArray(source)) {
       source = [source];
     }
     source = this.source.wrap(source, location);
@@ -1542,7 +1875,7 @@ JavaScriptCompiler.prototype = {
 
     /* istanbul ignore next */
     if (this.stackSlot || this.inlineStack.length || this.compileStack.length) {
-      throw new _Exception2['default']('Compile completed with content left on stack');
+      throw new _exception2['default']('Compile completed with content left on stack');
     }
 
     var fn = this.createFunctionContext(asObject);
@@ -1600,7 +1933,7 @@ JavaScriptCompiler.prototype = {
     // track the last context pushed into place to allow skipping the
     // getContext opcode when it would be a noop
     this.lastContext = 0;
-    this.source = new _CodeGen2['default'](this.options.srcName);
+    this.source = new _codeGen2['default'](this.options.srcName);
   },
 
   createFunctionContext: function createFunctionContext(asObject) {
@@ -1782,7 +2115,7 @@ JavaScriptCompiler.prototype = {
       var local = this.popStack();
       this.pushSource(['if (', local, ' != null) { ', this.appendToBuffer(local, undefined, true), ' }']);
       if (this.environment.isSimple) {
-        this.pushSource(['else { ', this.appendToBuffer('\'\'', undefined, true), ' }']);
+        this.pushSource(['else { ', this.appendToBuffer("''", undefined, true), ' }']);
       }
     }
   },
@@ -2242,7 +2575,7 @@ JavaScriptCompiler.prototype = {
 
     /* istanbul ignore next */
     if (!this.isInline()) {
-      throw new _Exception2['default']('replaceStack on non-inline');
+      throw new _exception2['default']('replaceStack on non-inline');
     }
 
     // We want to merge the inline statement into the replacement statement via ','
@@ -2312,7 +2645,7 @@ JavaScriptCompiler.prototype = {
       if (!inline) {
         /* istanbul ignore next */
         if (!this.stackSlot) {
-          throw new _Exception2['default']('Invalid stack pop');
+          throw new _exception2['default']('Invalid stack pop');
         }
         this.stackSlot--;
       }
@@ -2485,16 +2818,17 @@ function strictLookup(requireTerminal, compiler, parts, type) {
 
 exports['default'] = JavaScriptCompiler;
 module.exports = exports['default'];
-},{"../base":3,"../exception":14,"../utils":18,"./code-gen":6}],10:[function(require,module,exports){
+
+},{"../base":5,"../exception":16,"../utils":20,"./code-gen":8}],12:[function(require,module,exports){
+/* istanbul ignore next */
+/* Jison generated parser */
 "use strict";
 
 exports.__esModule = true;
-/* istanbul ignore next */
-/* Jison generated parser */
 var handlebars = (function () {
     var parser = { trace: function trace() {},
         yy: {},
-        symbols_: { error: 2, root: 3, program: 4, EOF: 5, program_repetition0: 6, statement: 7, mustache: 8, block: 9, rawBlock: 10, partial: 11, content: 12, COMMENT: 13, CONTENT: 14, openRawBlock: 15, END_RAW_BLOCK: 16, OPEN_RAW_BLOCK: 17, helperName: 18, openRawBlock_repetition0: 19, openRawBlock_option0: 20, CLOSE_RAW_BLOCK: 21, openBlock: 22, block_option0: 23, closeBlock: 24, openInverse: 25, block_option1: 26, OPEN_BLOCK: 27, openBlock_repetition0: 28, openBlock_option0: 29, openBlock_option1: 30, CLOSE: 31, OPEN_INVERSE: 32, openInverse_repetition0: 33, openInverse_option0: 34, openInverse_option1: 35, openInverseChain: 36, OPEN_INVERSE_CHAIN: 37, openInverseChain_repetition0: 38, openInverseChain_option0: 39, openInverseChain_option1: 40, inverseAndProgram: 41, INVERSE: 42, inverseChain: 43, inverseChain_option0: 44, OPEN_ENDBLOCK: 45, OPEN: 46, mustache_repetition0: 47, mustache_option0: 48, OPEN_UNESCAPED: 49, mustache_repetition1: 50, mustache_option1: 51, CLOSE_UNESCAPED: 52, OPEN_PARTIAL: 53, partialName: 54, partial_repetition0: 55, partial_option0: 56, param: 57, sexpr: 58, OPEN_SEXPR: 59, sexpr_repetition0: 60, sexpr_option0: 61, CLOSE_SEXPR: 62, hash: 63, hash_repetition_plus0: 64, hashSegment: 65, ID: 66, EQUALS: 67, blockParams: 68, OPEN_BLOCK_PARAMS: 69, blockParams_repetition_plus0: 70, CLOSE_BLOCK_PARAMS: 71, path: 72, dataName: 73, STRING: 74, NUMBER: 75, BOOLEAN: 76, UNDEFINED: 77, NULL: 78, DATA: 79, pathSegments: 80, SEP: 81, $accept: 0, $end: 1 },
+        symbols_: { "error": 2, "root": 3, "program": 4, "EOF": 5, "program_repetition0": 6, "statement": 7, "mustache": 8, "block": 9, "rawBlock": 10, "partial": 11, "content": 12, "COMMENT": 13, "CONTENT": 14, "openRawBlock": 15, "END_RAW_BLOCK": 16, "OPEN_RAW_BLOCK": 17, "helperName": 18, "openRawBlock_repetition0": 19, "openRawBlock_option0": 20, "CLOSE_RAW_BLOCK": 21, "openBlock": 22, "block_option0": 23, "closeBlock": 24, "openInverse": 25, "block_option1": 26, "OPEN_BLOCK": 27, "openBlock_repetition0": 28, "openBlock_option0": 29, "openBlock_option1": 30, "CLOSE": 31, "OPEN_INVERSE": 32, "openInverse_repetition0": 33, "openInverse_option0": 34, "openInverse_option1": 35, "openInverseChain": 36, "OPEN_INVERSE_CHAIN": 37, "openInverseChain_repetition0": 38, "openInverseChain_option0": 39, "openInverseChain_option1": 40, "inverseAndProgram": 41, "INVERSE": 42, "inverseChain": 43, "inverseChain_option0": 44, "OPEN_ENDBLOCK": 45, "OPEN": 46, "mustache_repetition0": 47, "mustache_option0": 48, "OPEN_UNESCAPED": 49, "mustache_repetition1": 50, "mustache_option1": 51, "CLOSE_UNESCAPED": 52, "OPEN_PARTIAL": 53, "partialName": 54, "partial_repetition0": 55, "partial_option0": 56, "param": 57, "sexpr": 58, "OPEN_SEXPR": 59, "sexpr_repetition0": 60, "sexpr_option0": 61, "CLOSE_SEXPR": 62, "hash": 63, "hash_repetition_plus0": 64, "hashSegment": 65, "ID": 66, "EQUALS": 67, "blockParams": 68, "OPEN_BLOCK_PARAMS": 69, "blockParams_repetition_plus0": 70, "CLOSE_BLOCK_PARAMS": 71, "path": 72, "dataName": 73, "STRING": 74, "NUMBER": 75, "BOOLEAN": 76, "UNDEFINED": 77, "NULL": 78, "DATA": 79, "pathSegments": 80, "SEP": 81, "$accept": 0, "$end": 1 },
         terminals_: { 2: "error", 5: "EOF", 13: "COMMENT", 14: "CONTENT", 16: "END_RAW_BLOCK", 17: "OPEN_RAW_BLOCK", 21: "CLOSE_RAW_BLOCK", 27: "OPEN_BLOCK", 31: "CLOSE", 32: "OPEN_INVERSE", 37: "OPEN_INVERSE_CHAIN", 42: "INVERSE", 45: "OPEN_ENDBLOCK", 46: "OPEN", 49: "OPEN_UNESCAPED", 52: "CLOSE_UNESCAPED", 53: "OPEN_PARTIAL", 59: "OPEN_SEXPR", 62: "CLOSE_SEXPR", 66: "ID", 67: "EQUALS", 69: "OPEN_BLOCK_PARAMS", 71: "CLOSE_BLOCK_PARAMS", 74: "STRING", 75: "NUMBER", 76: "BOOLEAN", 77: "UNDEFINED", 78: "NULL", 79: "DATA", 81: "SEP" },
         productions_: [0, [3, 2], [4, 1], [7, 1], [7, 1], [7, 1], [7, 1], [7, 1], [7, 1], [12, 1], [10, 3], [15, 5], [9, 4], [9, 4], [22, 6], [25, 6], [36, 6], [41, 2], [43, 3], [43, 1], [24, 3], [8, 5], [8, 5], [11, 5], [57, 1], [57, 1], [58, 5], [63, 1], [65, 3], [68, 3], [18, 1], [18, 1], [18, 1], [18, 1], [18, 1], [18, 1], [18, 1], [54, 1], [54, 1], [73, 2], [72, 1], [80, 3], [80, 1], [6, 0], [6, 2], [19, 0], [19, 2], [20, 0], [20, 1], [23, 0], [23, 1], [26, 0], [26, 1], [28, 0], [28, 2], [29, 0], [29, 1], [30, 0], [30, 1], [33, 0], [33, 2], [34, 0], [34, 1], [35, 0], [35, 1], [38, 0], [38, 2], [39, 0], [39, 1], [40, 0], [40, 1], [44, 0], [44, 1], [47, 0], [47, 2], [48, 0], [48, 1], [50, 0], [50, 2], [51, 0], [51, 1], [55, 0], [55, 2], [56, 0], [56, 1], [60, 0], [60, 2], [61, 0], [61, 1], [64, 1], [64, 2], [70, 1], [70, 2]],
         performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate, $$, _$) {
@@ -2839,8 +3173,8 @@ var handlebars = (function () {
                 this._input = input;
                 this._more = this._less = this.done = false;
                 this.yylineno = this.yyleng = 0;
-                this.yytext = this.matched = this.match = "";
-                this.conditionStack = ["INITIAL"];
+                this.yytext = this.matched = this.match = '';
+                this.conditionStack = ['INITIAL'];
                 this.yylloc = { first_line: 1, first_column: 0, last_line: 1, last_column: 0 };
                 if (this.options.ranges) this.yylloc.range = [0, 0];
                 this.offset = 0;
@@ -2900,14 +3234,14 @@ var handlebars = (function () {
             },
             pastInput: function pastInput() {
                 var past = this.matched.substr(0, this.matched.length - this.match.length);
-                return (past.length > 20 ? "..." : "") + past.substr(-20).replace(/\n/g, "");
+                return (past.length > 20 ? '...' : '') + past.substr(-20).replace(/\n/g, "");
             },
             upcomingInput: function upcomingInput() {
                 var next = this.match;
                 if (next.length < 20) {
                     next += this._input.substr(0, 20 - next.length);
                 }
-                return (next.substr(0, 20) + (next.length > 20 ? "..." : "")).replace(/\n/g, "");
+                return (next.substr(0, 20) + (next.length > 20 ? '...' : '')).replace(/\n/g, "");
             },
             showPosition: function showPosition() {
                 var pre = this.pastInput();
@@ -2922,8 +3256,8 @@ var handlebars = (function () {
 
                 var token, match, tempMatch, index, col, lines;
                 if (!this._more) {
-                    this.yytext = "";
-                    this.match = "";
+                    this.yytext = '';
+                    this.match = '';
                 }
                 var rules = this._currentRules();
                 for (var i = 0; i < rules.length; i++) {
@@ -2953,21 +3287,17 @@ var handlebars = (function () {
                     this.matched += match[0];
                     token = this.performAction.call(this, this.yy, this, rules[index], this.conditionStack[this.conditionStack.length - 1]);
                     if (this.done && this._input) this.done = false;
-                    if (token) {
-                        return token;
-                    } else {
-                        return;
-                    }
+                    if (token) return token;else return;
                 }
                 if (this._input === "") {
                     return this.EOF;
                 } else {
-                    return this.parseError("Lexical error on line " + (this.yylineno + 1) + ". Unrecognized text.\n" + this.showPosition(), { text: "", token: null, line: this.yylineno });
+                    return this.parseError('Lexical error on line ' + (this.yylineno + 1) + '. Unrecognized text.\n' + this.showPosition(), { text: "", token: null, line: this.yylineno });
                 }
             },
             lex: function lex() {
                 var r = this.next();
-                if (typeof r !== "undefined") {
+                if (typeof r !== 'undefined') {
                     return r;
                 } else {
                     return this.lex();
@@ -3007,9 +3337,9 @@ var handlebars = (function () {
                     } else {
                         this.begin("mu");
                     }
-                    if (yy_.yytext) {
-                        return 14;
-                    }break;
+                    if (yy_.yytext) return 14;
+
+                    break;
                 case 1:
                     return 14;
                     break;
@@ -3043,7 +3373,7 @@ var handlebars = (function () {
                     break;
                 case 9:
                     this.popState();
-                    this.begin("raw");
+                    this.begin('raw');
                     return 21;
 
                     break;
@@ -3077,7 +3407,7 @@ var handlebars = (function () {
                 case 19:
                     this.unput(yy_.yytext);
                     this.popState();
-                    this.begin("com");
+                    this.begin('com');
 
                     break;
                 case 20:
@@ -3110,7 +3440,7 @@ var handlebars = (function () {
                     this.popState();return 31;
                     break;
                 case 29:
-                    yy_.yytext = strip(1, 2).replace(/\\"/g, "\"");return 74;
+                    yy_.yytext = strip(1, 2).replace(/\\"/g, '"');return 74;
                     break;
                 case 30:
                     yy_.yytext = strip(1, 2).replace(/\\'/g, "'");return 74;
@@ -3146,7 +3476,7 @@ var handlebars = (function () {
                     return 66;
                     break;
                 case 41:
-                    return "INVALID";
+                    return 'INVALID';
                     break;
                 case 42:
                     return 5;
@@ -3154,7 +3484,7 @@ var handlebars = (function () {
             }
         };
         lexer.rules = [/^(?:[^\x00]*?(?=(\{\{)))/, /^(?:[^\x00]+)/, /^(?:[^\x00]{2,}?(?=(\{\{|\\\{\{|\\\\\{\{|$)))/, /^(?:\{\{\{\{\/[^\s!"#%-,\.\/;->@\[-\^`\{-~]+(?=[=}\s\/.])\}\}\}\})/, /^(?:[^\x00]*?(?=(\{\{\{\{\/)))/, /^(?:[\s\S]*?--(~)?\}\})/, /^(?:\()/, /^(?:\))/, /^(?:\{\{\{\{)/, /^(?:\}\}\}\})/, /^(?:\{\{(~)?>)/, /^(?:\{\{(~)?#)/, /^(?:\{\{(~)?\/)/, /^(?:\{\{(~)?\^\s*(~)?\}\})/, /^(?:\{\{(~)?\s*else\s*(~)?\}\})/, /^(?:\{\{(~)?\^)/, /^(?:\{\{(~)?\s*else\b)/, /^(?:\{\{(~)?\{)/, /^(?:\{\{(~)?&)/, /^(?:\{\{(~)?!--)/, /^(?:\{\{(~)?![\s\S]*?\}\})/, /^(?:\{\{(~)?)/, /^(?:=)/, /^(?:\.\.)/, /^(?:\.(?=([=~}\s\/.)|])))/, /^(?:[\/.])/, /^(?:\s+)/, /^(?:\}(~)?\}\})/, /^(?:(~)?\}\})/, /^(?:"(\\["]|[^"])*")/, /^(?:'(\\[']|[^'])*')/, /^(?:@)/, /^(?:true(?=([~}\s)])))/, /^(?:false(?=([~}\s)])))/, /^(?:undefined(?=([~}\s)])))/, /^(?:null(?=([~}\s)])))/, /^(?:-?[0-9]+(?:\.[0-9]+)?(?=([~}\s)])))/, /^(?:as\s+\|)/, /^(?:\|)/, /^(?:([^\s!"#%-,\.\/;->@\[-\^`\{-~]+(?=([=~}\s\/.)|]))))/, /^(?:\[[^\]]*\])/, /^(?:.)/, /^(?:$)/];
-        lexer.conditions = { mu: { rules: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42], inclusive: false }, emu: { rules: [2], inclusive: false }, com: { rules: [5], inclusive: false }, raw: { rules: [3, 4], inclusive: false }, INITIAL: { rules: [0, 1, 42], inclusive: true } };
+        lexer.conditions = { "mu": { "rules": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42], "inclusive": false }, "emu": { "rules": [2], "inclusive": false }, "com": { "rules": [5], "inclusive": false }, "raw": { "rules": [3, 4], "inclusive": false }, "INITIAL": { "rules": [0, 1, 42], "inclusive": true } };
         return lexer;
     })();
     parser.lexer = lexer;
@@ -3164,19 +3494,20 @@ var handlebars = (function () {
     return new Parser();
 })();exports["default"] = handlebars;
 module.exports = exports["default"];
-},{}],11:[function(require,module,exports){
-'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+},{}],13:[function(require,module,exports){
+/*eslint-disable new-cap */
+'use strict';
 
 exports.__esModule = true;
 exports.print = print;
 exports.PrintVisitor = PrintVisitor;
-/*eslint-disable new-cap */
 
-var _Visitor = require('./visitor');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _Visitor2 = _interopRequireWildcard(_Visitor);
+var _visitor = require('./visitor');
+
+var _visitor2 = _interopRequireDefault(_visitor);
 
 function print(ast) {
   return new PrintVisitor().accept(ast);
@@ -3186,7 +3517,7 @@ function PrintVisitor() {
   this.padding = 0;
 }
 
-PrintVisitor.prototype = new _Visitor2['default']();
+PrintVisitor.prototype = new _visitor2['default']();
 
 PrintVisitor.prototype.pad = function (string) {
   var out = '';
@@ -3268,11 +3599,11 @@ PrintVisitor.prototype.PartialStatement = function (partial) {
 };
 
 PrintVisitor.prototype.ContentStatement = function (content) {
-  return this.pad('CONTENT[ \'' + content.value + '\' ]');
+  return this.pad("CONTENT[ '" + content.value + "' ]");
 };
 
 PrintVisitor.prototype.CommentStatement = function (comment) {
-  return this.pad('{{! \'' + comment.value + '\' }}');
+  return this.pad("{{! '" + comment.value + "' }}");
 };
 
 PrintVisitor.prototype.SubExpression = function (sexpr) {
@@ -3330,20 +3661,21 @@ PrintVisitor.prototype.HashPair = function (pair) {
   return pair.key + '=' + this.accept(pair.value);
 };
 /*eslint-enable new-cap */
-},{"./visitor":12}],12:[function(require,module,exports){
-'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+},{"./visitor":14}],14:[function(require,module,exports){
+'use strict';
 
 exports.__esModule = true;
 
-var _Exception = require('../exception');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _Exception2 = _interopRequireWildcard(_Exception);
+var _exception = require('../exception');
 
-var _AST = require('./ast');
+var _exception2 = _interopRequireDefault(_exception);
 
-var _AST2 = _interopRequireWildcard(_AST);
+var _ast = require('./ast');
+
+var _ast2 = _interopRequireDefault(_ast);
 
 function Visitor() {
   this.parents = [];
@@ -3358,8 +3690,8 @@ Visitor.prototype = {
     var value = this.accept(node[name]);
     if (this.mutating) {
       // Hacky sanity check:
-      if (value && (!value.type || !_AST2['default'][value.type])) {
-        throw new _Exception2['default']('Unexpected node type "' + value.type + '" found when accepting ' + name + ' on ' + node.type);
+      if (value && (!value.type || !_ast2['default'][value.type])) {
+        throw new _exception2['default']('Unexpected node type "' + value.type + '" found when accepting ' + name + ' on ' + node.type);
       }
       node[name] = value;
     }
@@ -3371,7 +3703,7 @@ Visitor.prototype = {
     this.acceptKey(node, name);
 
     if (!node[name]) {
-      throw new _Exception2['default'](node.type + ' requires ' + name);
+      throw new _exception2['default'](node.type + ' requires ' + name);
     }
   },
 
@@ -3435,8 +3767,8 @@ Visitor.prototype = {
     this.acceptKey(partial, 'hash');
   },
 
-  ContentStatement: function ContentStatement() {},
-  CommentStatement: function CommentStatement() {},
+  ContentStatement: function ContentStatement() /* content */{},
+  CommentStatement: function CommentStatement() /* comment */{},
 
   SubExpression: function SubExpression(sexpr) {
     this.acceptRequired(sexpr, 'path');
@@ -3444,13 +3776,13 @@ Visitor.prototype = {
     this.acceptKey(sexpr, 'hash');
   },
 
-  PathExpression: function PathExpression() {},
+  PathExpression: function PathExpression() /* path */{},
 
-  StringLiteral: function StringLiteral() {},
-  NumberLiteral: function NumberLiteral() {},
-  BooleanLiteral: function BooleanLiteral() {},
-  UndefinedLiteral: function UndefinedLiteral() {},
-  NullLiteral: function NullLiteral() {},
+  StringLiteral: function StringLiteral() /* string */{},
+  NumberLiteral: function NumberLiteral() /* number */{},
+  BooleanLiteral: function BooleanLiteral() /* bool */{},
+  UndefinedLiteral: function UndefinedLiteral() /* literal */{},
+  NullLiteral: function NullLiteral() /* literal */{},
 
   Hash: function Hash(hash) {
     this.acceptArray(hash.pairs);
@@ -3462,20 +3794,20 @@ Visitor.prototype = {
 
 exports['default'] = Visitor;
 module.exports = exports['default'];
-/* content */ /* comment */ /* path */ /* string */ /* number */ /* bool */ /* literal */ /* literal */
-},{"../exception":14,"./ast":4}],13:[function(require,module,exports){
-'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+},{"../exception":16,"./ast":6}],15:[function(require,module,exports){
+'use strict';
 
 exports.__esModule = true;
 
-var _Visitor = require('./visitor');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _Visitor2 = _interopRequireWildcard(_Visitor);
+var _visitor = require('./visitor');
+
+var _visitor2 = _interopRequireDefault(_visitor);
 
 function WhitespaceControl() {}
-WhitespaceControl.prototype = new _Visitor2['default']();
+WhitespaceControl.prototype = new _visitor2['default']();
 
 WhitespaceControl.prototype.Program = function (program) {
   var isRoot = !this.isRootSeen;
@@ -3676,7 +4008,8 @@ function omitLeft(body, i, multiple) {
 
 exports['default'] = WhitespaceControl;
 module.exports = exports['default'];
-},{"./visitor":12}],14:[function(require,module,exports){
+
+},{"./visitor":14}],16:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -3701,13 +4034,28 @@ function Exception(message, node) {
     this[errorProps[idx]] = tmp[errorProps[idx]];
   }
 
+  /* istanbul ignore else */
   if (Error.captureStackTrace) {
     Error.captureStackTrace(this, Exception);
   }
 
-  if (loc) {
-    this.lineNumber = line;
-    this.column = column;
+  try {
+    if (loc) {
+      this.lineNumber = line;
+
+      // Work around issue under safari where we can't directly set the column value
+      /* istanbul ignore next */
+      if (Object.defineProperty) {
+        Object.defineProperty(this, 'column', {
+          value: column,
+          enumerable: true
+        });
+      } else {
+        this.column = column;
+      }
+    }
+  } catch (nop) {
+    /* Ignore if the browser is very particular */
   }
 }
 
@@ -3715,12 +4063,13 @@ Exception.prototype = new Error();
 
 exports['default'] = Exception;
 module.exports = exports['default'];
-},{}],15:[function(require,module,exports){
-(function (global){
+
+},{}],17:[function(require,module,exports){
+(function (global){(function (){
+/*global window */
 'use strict';
 
 exports.__esModule = true;
-/*global window */
 
 exports['default'] = function (Handlebars) {
   /* istanbul ignore next */
@@ -3735,45 +4084,45 @@ exports['default'] = function (Handlebars) {
 };
 
 module.exports = exports['default'];
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],16:[function(require,module,exports){
-'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],18:[function(require,module,exports){
+'use strict';
 
 exports.__esModule = true;
 exports.checkRevision = checkRevision;
-
-// TODO: Remove this line and break up compilePartial
-
 exports.template = template;
 exports.wrapProgram = wrapProgram;
 exports.resolvePartial = resolvePartial;
 exports.invokePartial = invokePartial;
 exports.noop = noop;
 
-var _import = require('./utils');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var Utils = _interopRequireWildcard(_import);
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-var _Exception = require('./exception');
+var _utils = require('./utils');
 
-var _Exception2 = _interopRequireWildcard(_Exception);
+var Utils = _interopRequireWildcard(_utils);
 
-var _COMPILER_REVISION$REVISION_CHANGES$createFrame = require('./base');
+var _exception = require('./exception');
+
+var _exception2 = _interopRequireDefault(_exception);
+
+var _base = require('./base');
 
 function checkRevision(compilerInfo) {
   var compilerRevision = compilerInfo && compilerInfo[0] || 1,
-      currentRevision = _COMPILER_REVISION$REVISION_CHANGES$createFrame.COMPILER_REVISION;
+      currentRevision = _base.COMPILER_REVISION;
 
   if (compilerRevision !== currentRevision) {
     if (compilerRevision < currentRevision) {
-      var runtimeVersions = _COMPILER_REVISION$REVISION_CHANGES$createFrame.REVISION_CHANGES[currentRevision],
-          compilerVersions = _COMPILER_REVISION$REVISION_CHANGES$createFrame.REVISION_CHANGES[compilerRevision];
-      throw new _Exception2['default']('Template was precompiled with an older version of Handlebars than the current runtime. ' + 'Please update your precompiler to a newer version (' + runtimeVersions + ') or downgrade your runtime to an older version (' + compilerVersions + ').');
+      var runtimeVersions = _base.REVISION_CHANGES[currentRevision],
+          compilerVersions = _base.REVISION_CHANGES[compilerRevision];
+      throw new _exception2['default']('Template was precompiled with an older version of Handlebars than the current runtime. ' + 'Please update your precompiler to a newer version (' + runtimeVersions + ') or downgrade your runtime to an older version (' + compilerVersions + ').');
     } else {
       // Use the embedded version info since the runtime doesn't know about this revision yet
-      throw new _Exception2['default']('Template was precompiled with a newer version of Handlebars than the current runtime. ' + 'Please update your runtime to a newer version (' + compilerInfo[1] + ').');
+      throw new _exception2['default']('Template was precompiled with a newer version of Handlebars than the current runtime. ' + 'Please update your runtime to a newer version (' + compilerInfo[1] + ').');
     }
   }
 }
@@ -3781,10 +4130,10 @@ function checkRevision(compilerInfo) {
 function template(templateSpec, env) {
   /* istanbul ignore next */
   if (!env) {
-    throw new _Exception2['default']('No environment passed to template');
+    throw new _exception2['default']('No environment passed to template');
   }
   if (!templateSpec || !templateSpec.main) {
-    throw new _Exception2['default']('Unknown template object: ' + typeof templateSpec);
+    throw new _exception2['default']('Unknown template object: ' + typeof templateSpec);
   }
 
   // Note: Using env.VM references rather than local var references throughout this section to allow
@@ -3817,7 +4166,7 @@ function template(templateSpec, env) {
       }
       return result;
     } else {
-      throw new _Exception2['default']('The partial ' + options.name + ' could not be compiled when running in runtime-only mode');
+      throw new _exception2['default']('The partial ' + options.name + ' could not be compiled when running in runtime-only mode');
     }
   }
 
@@ -3825,7 +4174,7 @@ function template(templateSpec, env) {
   var container = {
     strict: function strict(obj, name) {
       if (!(name in obj)) {
-        throw new _Exception2['default']('"' + name + '" not defined in ' + obj);
+        throw new _exception2['default']('"' + name + '" not defined in ' + obj);
       }
       return obj[name];
     },
@@ -3881,7 +4230,7 @@ function template(templateSpec, env) {
   };
 
   function ret(context) {
-    var options = arguments[1] === undefined ? {} : arguments[1];
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     var data = options.data;
 
@@ -3914,10 +4263,10 @@ function template(templateSpec, env) {
 
   ret._child = function (i, data, blockParams, depths) {
     if (templateSpec.useBlockParams && !blockParams) {
-      throw new _Exception2['default']('must pass block params');
+      throw new _exception2['default']('must pass block params');
     }
     if (templateSpec.useDepths && !depths) {
-      throw new _Exception2['default']('must pass parent depths');
+      throw new _exception2['default']('must pass parent depths');
     }
 
     return wrapProgram(container, i, templateSpec[i], data, 0, blockParams, depths);
@@ -3927,7 +4276,7 @@ function template(templateSpec, env) {
 
 function wrapProgram(container, i, fn, data, declaredBlockParams, blockParams, depths) {
   function prog(context) {
-    var options = arguments[1] === undefined ? {} : arguments[1];
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     return fn.call(container, context, container.helpers, container.partials, options.data || data, blockParams && [options.blockParams].concat(blockParams), depths && [context].concat(depths));
   }
@@ -3952,7 +4301,7 @@ function invokePartial(partial, context, options) {
   options.partial = true;
 
   if (partial === undefined) {
-    throw new _Exception2['default']('The partial ' + options.name + ' could not be found');
+    throw new _exception2['default']('The partial ' + options.name + ' could not be found');
   } else if (partial instanceof Function) {
     return partial(context, options);
   }
@@ -3964,16 +4313,17 @@ function noop() {
 
 function initData(context, data) {
   if (!data || !('root' in data)) {
-    data = data ? _COMPILER_REVISION$REVISION_CHANGES$createFrame.createFrame(data) : {};
+    data = data ? _base.createFrame(data) : {};
     data.root = context;
   }
   return data;
 }
-},{"./base":3,"./exception":14,"./utils":18}],17:[function(require,module,exports){
+
+},{"./base":5,"./exception":16,"./utils":20}],19:[function(require,module,exports){
+// Build out our basic SafeString type
 'use strict';
 
 exports.__esModule = true;
-// Build out our basic SafeString type
 function SafeString(string) {
   this.string = string;
 }
@@ -3984,13 +4334,12 @@ SafeString.prototype.toString = SafeString.prototype.toHTML = function () {
 
 exports['default'] = SafeString;
 module.exports = exports['default'];
-},{}],18:[function(require,module,exports){
+
+},{}],20:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.extend = extend;
-
-// Older IE versions do not directly support indexOf so we must implement our own, sadly.
 exports.indexOf = indexOf;
 exports.escapeExpression = escapeExpression;
 exports.isEmpty = isEmpty;
@@ -4001,8 +4350,10 @@ var escape = {
   '<': '&lt;',
   '>': '&gt;',
   '"': '&quot;',
-  '\'': '&#x27;',
+  "'": '&#x27;',
   '`': '&#x60;'
+  // The "equals-sign" is intentionally excluded from this list
+  // due to semantic-versioning issues (see #1489)
 };
 
 var badChars = /[&<>"'`]/g,
@@ -4047,7 +4398,10 @@ exports.isFunction = isFunction;
 /* istanbul ignore next */
 var isArray = Array.isArray || function (value) {
   return value && typeof value === 'object' ? toString.call(value) === '[object Array]' : false;
-};exports.isArray = isArray;
+};
+
+exports.isArray = isArray;
+// Older IE versions do not directly support indexOf so we must implement our own, sadly.
 
 function indexOf(array, value) {
   for (var i = 0, len = array.length; i < len; i++) {
@@ -4099,7 +4453,11 @@ function blockParams(params, ids) {
 function appendContextPath(contextPath, id) {
   return (contextPath ? contextPath + '.' : '') + id;
 }
-},{}],19:[function(require,module,exports){
+
+var dangerousPropertyRegex = /^(constructor|__defineGetter__|__defineSetter__|__lookupGetter__|__proto__)$/;
+exports.dangerousPropertyRegex = dangerousPropertyRegex;
+
+},{}],21:[function(require,module,exports){
 // USAGE:
 // var handlebars = require('handlebars');
 /* eslint-disable no-var */
@@ -4126,7 +4484,1574 @@ if (typeof require !== 'undefined' && require.extensions) {
   require.extensions['.hbs'] = extension;
 }
 
-},{"../dist/cjs/handlebars":1,"../dist/cjs/handlebars/compiler/printer":11,"fs":31}],20:[function(require,module,exports){
+},{"../dist/cjs/handlebars":3,"../dist/cjs/handlebars/compiler/printer":13,"fs":2}],22:[function(require,module,exports){
+var internal = require("./internal");
+var promise = require("./promise");
+var onRegisterTimeout;
+var whoami;
+
+/**
+ * What's the top level module/bundle name.
+ * @param moduleQName The module QName.
+ * @returns The module QName, or undefined if unknown.
+ */
+exports.whoami = function(moduleQName) {
+    if (moduleQName) {
+        whoami = moduleQName;
+        internal.whoami(whoami);
+    }
+    return whoami;
+};
+
+/**
+ * Asynchronously import/require a set of modules.
+ *
+ * <p>
+ * Responsible for triggering the async loading of modules if a given module is not already loaded.
+ *
+ * @param moduleQNames... A list of module "qualified" names, each containing the module name prefixed with the namespace
+ * and separated by a colon i.e. "<namespace>:<moduleName>" e.g. "jquery:jquery2".
+ *
+ * @return A Promise, allowing async load of all modules. The promise is only fulfilled when all modules are loaded.
+ */
+exports.import = function() {
+    if (arguments.length === 1) {
+        return internal.import(arguments[0], onRegisterTimeout);        
+    }
+    
+    var moduleQNames = [];    
+    for (var i = 0; i < arguments.length; i++) {
+        var argument = arguments[i];
+        if (typeof argument === 'string') {
+            moduleQNames.push(argument);
+        }
+    }
+    
+    if (moduleQNames.length == 0) {
+        throw "No module names specified.";
+    }
+    
+    return promise.make(function (resolve, reject) {
+        var fulfillments = [];
+        
+        function onFulfillment() {
+            if (fulfillments.length === moduleQNames.length) {
+                var modules = [];
+                for (var i = 0; i < fulfillments.length; i++) {
+                    if (fulfillments[i].value) {
+                        modules.push(fulfillments[i].value);
+                    } else {
+                        // don't have everything yet so can't fulfill all.
+                        return;
+                    }
+                }
+                // If we make it here, then we have fulfilled all individual promises, which 
+                // means we can now fulfill the top level import promise.
+                resolve(modules);
+            }
+        }        
+        
+        // doRequire for each module
+        for (var i = 0; i < moduleQNames.length; i++) {           
+            function doRequire(moduleQName) {
+                var promise = internal.import(moduleQName, onRegisterTimeout);
+                var fulfillment = {
+                    promise: promise,
+                    value: undefined
+                };
+                fulfillments.push(fulfillment);
+                promise
+                    .onFulfilled(function(value) {
+                        fulfillment.value = value;
+                        onFulfillment();
+                    })
+                    .onRejected(function(error) {
+                        reject(error);
+                    });
+            }
+            doRequire(moduleQNames[i]);
+        }
+    }).applyArgsOnFulfill();    
+};
+
+/**
+ * Synchronously "require" a module that it already loaded/registered.
+ *
+ * <p>
+ * This function will throw an error if the module is not already loaded via an outer call to 'import'
+ * (or 'import').
+ *
+ * @param moduleQName The module "qualified" name containing the module name prefixed with the namespace
+ * separated by a colon i.e. "<namespace>:<moduleName>" e.g. "jquery:jquery2".
+ *
+ * @return The module.
+ */
+exports.require = function(moduleQName) {
+    var parsedModuleName = internal.parseResourceQName(moduleQName);
+    var module = internal.getModule(parsedModuleName);    
+    if (!module) {
+        throw "Unable to perform synchronous 'require' for module '" + moduleQName + "'. This module is not pre-loaded. " +
+            "The module needs to have been asynchronously pre-loaded via an outer call to 'import'.";
+    }
+    return module.exports;
+}
+
+/**
+ * Export a module.
+ * 
+ * @param namespace The namespace in which the module resides, or "undefined" if the modules is in
+ * the "global" module namespace e.g. a Jenkins core bundle.
+ * @param moduleName The name of the module. 
+ * @param module The CommonJS style module, or "undefined" if we just want to notify other modules waiting on
+ * the loading of this module.
+ * @param onError On error callback;
+ */
+exports.export = function(namespace, moduleName, module, onError) {
+    internal.onReady(function() {
+        try {
+            var moduleSpec = {namespace: namespace, moduleName: moduleName};
+            var moduleNamespaceObj = internal.getModuleNamespaceObj(moduleSpec);
+            
+            if (moduleNamespaceObj[moduleName]) {
+                if (namespace) {
+                    throw "Jenkins plugin module '" + namespace + ":" + moduleName + "' already registered.";
+                } else {
+                    throw "Jenkins global module '" + moduleName + "' already registered.";
+                }
+            }
+            
+            if (!module) {
+                module = {
+                    exports: {}
+                };
+            } else if (module.exports === undefined) {
+                module = {
+                    exports: module
+                };
+            }
+            moduleNamespaceObj[moduleName] = module;
+            
+            // Notify all that the module has been registered. See internal.loadModule also.
+            internal.notifyModuleExported(moduleSpec, module.exports);
+        } catch (e) {
+            console.error(e);
+            if (onError) {
+                onError(e);
+            }
+        }
+    });
+};
+
+/**
+ * Add a module's CSS to the browser page.
+ * 
+ * <p>
+ * The assumption is that the CSS can be accessed at e.g.
+ * {@code <rootURL>/plugin/<namespace>/jsmodules/<moduleName>/style.css} i.e.
+ * the pluginId acts as the namespace.
+ * 
+ * @param namespace The namespace in which the module resides.
+ * @param moduleName The name of the module. 
+ * @param onError On error callback;
+ */
+exports.addModuleCSSToPage = function(namespace, moduleName, onError) {
+    internal.onReady(function() {
+        try {
+            internal.addModuleCSSToPage(namespace, moduleName);
+        } catch (e) {
+            console.error(e);
+            if (onError) {
+                onError(e);
+            }
+        }
+    });
+};
+
+/**
+ * Add a plugin CSS file to the browser page.
+ * 
+ * @param pluginName The Jenkins plugin in which the module resides.
+ * @param cssPath The CSS path. 
+ * @param onError On error callback;
+ */
+exports.addPluginCSSToPage = function(pluginName, cssPath, onError) {
+    internal.onReady(function() {
+        try {
+            internal.addPluginCSSToPage(pluginName, cssPath);
+        } catch (e) {
+            console.error(e);
+            if (onError) {
+                onError(e);
+            }
+        }
+    });
+};
+
+/**
+ * Add CSS file to the browser page.
+ * 
+ * @param cssPath The CSS path. 
+ * @param onError On error callback;
+ */
+exports.addCSSToPage = function(cssPath, onError) {
+    internal.onReady(function() {
+        try {           
+            internal.addCSSToPage('global', internal.getRootURL() + '/' + cssPath);
+        } catch (e) {
+            console.error(e);
+            if (onError) {
+                onError(e);
+            }
+        }
+    });
+};
+
+/**
+ * Add a javascript &lt;script&gt; element to the document &lt;head&gt;.
+ * <p/>
+ * Options:
+ * <ul>
+ *     <li><strong>scriptId</strong>: The script Id to use for the element. If not specified, one will be generated from the scriptSrc.</li>
+ *     <li><strong>async</strong>: Asynchronous loading of the script. Default is 'true'.</li>
+ *     <li><strong>success</strong>: An optional onload success function for the script element.</li>
+ *     <li><strong>error</strong>: An optional onload error function for the script element. This is called if the .js file exists but there's an error evaluating the script. It is NOT called if the .js file doesn't exist (ala 404).</li>
+ *     <li><strong>removeElementOnLoad</strong>: Remove the script element after loading the script. Default is 'false'.</li>
+ * </ul>
+ * 
+ * @param scriptSrc The script src.
+ * @param options Optional script load options object. See above.
+ */
+exports.addScript = function(scriptSrc, options) {
+    internal.onReady(function() {
+        internal.addScript(scriptSrc, options);
+    });    
+};
+
+/**
+ * Set the module registration timeout i.e. the length of time to wait for a module to load before failing.
+ *
+ * @param timeout Millisecond duration before onRegister times out. Defaults to 10000 (10s) if not specified.
+ */
+exports.setRegisterTimeout = function(timeout) {
+    onRegisterTimeout = timeout;
+}
+
+/**
+ * Set the Jenkins root/base URL.
+ * 
+ * @param rootUrl The root/base URL.
+ */
+exports.setRootURL = function(rootUrl) {
+    internal.setRootURL(rootUrl);
+};
+
+exports.getRootURL = internal.getRootURL;
+exports.getAdjunctURL = internal.getAdjunctURL;
+
+/**
+ * Manually initialise the Jenkins Global.
+ * <p>
+ * This should only ever be called from a test environment.
+ */
+exports.initJenkinsGlobal = function() {
+    internal.initJenkinsGlobal();
+};
+
+internal.onJenkinsGlobalInit(function(jenkinsCIGlobal) {
+    // For backward compatibility, we need to make some jenkins-js-modules
+    // functions globally available e.g. to allow legacy code wait for
+    // certain modules to be loaded, as with legacy adjuncts.
+    if (!jenkinsCIGlobal._internal) {
+        // Put the functions on an object called '_internal' as a way
+        // of hinting to people to not use it.
+        jenkinsCIGlobal._internal = {
+            import: exports.import,
+            addScript: internal.addScript
+        };
+    }
+});
+},{"./internal":23,"./promise":24}],23:[function(require,module,exports){
+var promise = require("./promise");
+var windowHandle = require("window-handle");
+var jenkinsCIGlobal;
+var globalInitListeners = [];
+var whoami;
+
+exports.whoami = function(moduleQName) {
+    if (moduleQName) {
+        whoami = exports.parseResourceQName(moduleQName);
+        whoami.nsProvider = getBundleNSProviderFromScriptElement(whoami.namespace, whoami.moduleName);
+    }
+    return whoami;
+};
+
+exports.onReady = function(callback) {
+    // This allows test based initialization of jenkins-js-modules when there might 
+    // not yet be a global window object.
+    if (jenkinsCIGlobal) {
+        callback();
+    } else {
+        windowHandle.getWindow(function() {
+            callback();
+        });
+    }    
+};
+
+exports.onJenkinsGlobalInit = function(callback) {
+    globalInitListeners.push(callback);
+};
+
+exports.initJenkinsGlobal = function() {
+    jenkinsCIGlobal = {
+    };
+    if (globalInitListeners) {
+        for (var i = 0; i < globalInitListeners.length; i++) {
+            globalInitListeners[i](jenkinsCIGlobal);
+        }
+    }
+};
+
+exports.clearJenkinsGlobal = function() {    
+    jenkinsCIGlobal = undefined;
+    whoami = undefined;
+};
+
+exports.getJenkins = function() {
+    if (jenkinsCIGlobal) {
+        return jenkinsCIGlobal;
+    }
+    var window = windowHandle.getWindow();
+    if (window.jenkinsCIGlobal) {
+        jenkinsCIGlobal = window.jenkinsCIGlobal;
+    } else {
+        exports.initJenkinsGlobal();
+        jenkinsCIGlobal.rootURL = getRootURL();
+        window.jenkinsCIGlobal = jenkinsCIGlobal;
+    }   
+    return jenkinsCIGlobal;
+};
+
+exports.getModuleNamespaceObj = function(moduleSpec) {
+    if (moduleSpec.namespace) {
+        return exports.getNamespace(moduleSpec.namespace);
+    } else {
+        return exports.getGlobalModules();
+    }
+}
+
+exports.getNamespace = function(namespaceName) {
+    var namespaces = exports.getNamespaces();
+    var namespace = namespaces[namespaceName];
+    if (!namespace) {
+        namespace = {
+            globalNS: false            
+        };
+        namespaces[namespaceName] = namespace;
+    }
+    return namespace;
+};
+
+exports.import = function(moduleQName, onRegisterTimeout) {
+    return promise.make(function (resolve, reject) {
+        // Some functions here needs to access the 'window' global. We want to make sure that
+        // exists before attempting to fulfill the require operation. It may not exists
+        // immediately in a test env.
+        exports.onReady(function() {
+            var moduleSpec = exports.parseResourceQName(moduleQName);
+            var module = exports.getModule(moduleSpec);
+            
+            if (module) {
+                // module already loaded
+                resolve(module.exports);
+            } else {
+                if (onRegisterTimeout === 0) {
+                    if (moduleSpec.namespace) {
+                        throw 'Module ' + moduleSpec.namespace + ':' + moduleSpec.moduleName + ' require failure. Async load mode disabled.';
+                    } else {
+                        throw 'Global module ' + moduleSpec.moduleName + ' require failure. Async load mode disabled.';
+                    }
+                }
+
+                // module not loaded. Load async, fulfilling promise once registered
+                exports.loadModule(moduleSpec, onRegisterTimeout)
+                    .onFulfilled(function (moduleExports) {
+                        resolve(moduleExports);
+                    })
+                    .onRejected(function (error) {
+                        reject(error);
+                    });
+            }
+        });
+    });    
+};
+
+exports.loadModule = function(moduleSpec, onRegisterTimeout) {
+    var moduleNamespaceObj = exports.getModuleNamespaceObj(moduleSpec);
+    var module = moduleNamespaceObj[moduleSpec.moduleName];
+    
+    if (module) {
+        // Module already loaded. This prob shouldn't happen.
+        console.log("Unexpected call to 'loadModule' for a module (" + moduleSpec.moduleName + ") that's already loaded.");
+        return promise.make(function (resolve) {
+            resolve(module.exports);
+        });
+    }
+
+    function waitForRegistration(loadingModule, onRegisterTimeout) {
+        return promise.make(function (resolve, reject) {
+            if (typeof onRegisterTimeout !== "number") {
+                onRegisterTimeout = 10000;
+            }
+            
+            var timeoutObj = setTimeout(function () {
+                // Timed out waiting on the module to load and register itself.
+                if (!loadingModule.loaded) {
+                    var moduleSpec = loadingModule.moduleSpec;
+                    var errorDetail;
+                    
+                    if (moduleSpec.namespace) {
+                        errorDetail = "Timed out waiting on module '" + moduleSpec.namespace + ":" + moduleSpec.moduleName + "' to load.";
+                    } else {
+                        errorDetail = "Timed out waiting on global module '" + moduleSpec.moduleName + "' to load.";
+                    }                    
+                    console.error('Module load failure: ' + errorDetail);
+
+                    // Call the reject function and tell it we timed out
+                    reject({
+                        reason: 'timeout',
+                        detail: errorDetail
+                    });
+                }
+            }, onRegisterTimeout);
+            
+            loadingModule.waitList.push({
+                resolve: resolve,
+                timeoutObj: timeoutObj
+            });                    
+        });
+    }
+    
+    var loadingModule = getLoadingModule(moduleNamespaceObj, moduleSpec.moduleName);
+    if (!loadingModule.waitList) {
+        loadingModule.waitList = [];
+    }
+    loadingModule.moduleSpec = moduleSpec; 
+    loadingModule.loaded = false;
+
+    try {
+        return waitForRegistration(loadingModule, onRegisterTimeout);
+    } finally {
+        // We can auto/dynamic load modules in a non-global namespace. Global namespace modules
+        // need to make sure they load themselves (via an adjunct, or whatever).
+        if (moduleSpec.namespace) {
+            var scriptId = exports.toModuleId(moduleSpec.namespace, moduleSpec.moduleName) + ':js';
+            var scriptSrc = exports.toModuleSrc(moduleSpec, 'js');
+            var scriptEl = exports.addScript(scriptSrc, {
+                scriptId: scriptId,
+                scriptSrcBase: ''
+            });
+
+            if (scriptEl) {
+                // Set the module spec info on the <script> element. This allows us to resolve the
+                // nsProvider for that bundle after 'whoami' is called for it (as it loads). whoami
+                // is not called with the nsProvider info on it because a given bundle can
+                // potentially be loaded from multiple different ns providers, so we only resole the provider
+                // at load-time i.e. just after a bundle is loaded it calls 'whoami' for itself
+                // and then this module magically works out where it was loaded from (it's nsProvider)
+                // by locating the <script> element and using this information. For a module/bundle, knowing
+                // where it was loaded from is important because it dictates where that module/bundle
+                // should load it dependencies from. For example, the Bootstrap module/bundle depends on the
+                // jQuery bundle. So, if the bootstrap bundle is loaded from the 'core-assets' namespace provider,
+                // then that means the jQuery bundle should also be loaded from the 'core-assets'
+                // namespace provider.
+                // See getBundleNSProviderFromScriptElement.
+                scriptEl.setAttribute('data-jenkins-module-nsProvider', moduleSpec.nsProvider);
+                scriptEl.setAttribute('data-jenkins-module-namespace', moduleSpec.namespace);
+                scriptEl.setAttribute('data-jenkins-module-moduleName', moduleSpec.moduleName);
+            }
+        }
+    }
+};
+
+exports.addScript = function(scriptSrc, options) {
+    if (!scriptSrc) {
+        console.warn('Call to addScript with undefined "scriptSrc" arg.');
+        return undefined;
+    }    
+    
+    var normalizedOptions;
+    
+    // If there's no options object, create it.
+    if (typeof options === 'object') {
+        normalizedOptions = options;
+    } else {
+        normalizedOptions = {};
+    }
+    
+    // May want to transform/map some urls.
+    if (normalizedOptions.scriptSrcMap) {
+        if (typeof normalizedOptions.scriptSrcMap === 'function') {
+            scriptSrc = normalizedOptions.scriptSrcMap(scriptSrc);
+        } else if (Array.isArray(normalizedOptions.scriptSrcMap)) {
+            // it's an array of suffix mappings
+            for (var i = 0; i < normalizedOptions.scriptSrcMap.length; i++) {
+                var mapping = normalizedOptions.scriptSrcMap[i];
+                if (mapping.from && mapping.to) {
+                    if (endsWith(scriptSrc, mapping.from)) {
+                        normalizedOptions.originalScriptSrc = scriptSrc;
+                        scriptSrc = scriptSrc.replace(mapping.from, mapping.to);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    normalizedOptions.scriptId = getScriptId(scriptSrc, options);
+    
+    // set some default options
+    if (normalizedOptions.async === undefined) {
+        normalizedOptions.async = true;
+    }
+    if (normalizedOptions.scriptSrcBase === undefined) {
+        normalizedOptions.scriptSrcBase = '@root';
+    }
+    
+    if (normalizedOptions.scriptSrcBase === '@root') {
+        normalizedOptions.scriptSrcBase = getRootURL() + '/';
+    } else if (normalizedOptions.scriptSrcBase === '@adjunct') {
+        normalizedOptions.scriptSrcBase = getAdjunctURL() + '/';
+    }
+
+    var document = windowHandle.getWindow().document;
+    var head = exports.getHeadElement();
+    var script = document.getElementById(normalizedOptions.scriptId);
+
+    if (script) {
+        var replaceable = script.getAttribute('data-replaceable');
+        if (replaceable && replaceable === 'true') {
+            // This <script> element is replaceable. In this case, 
+            // we remove the existing script element and add a new one of the
+            // same id and with the specified src attribute.
+            // Adding happens below.
+            script.parentNode.removeChild(script);
+        } else {
+            return undefined;
+        }
+    }
+
+    script = createElement('script');
+
+    // Parts of the following onload code were inspired by how the ACE editor does it,
+    // as well as from the follow SO post: http://stackoverflow.com/a/4845802/1166986
+    var onload = function (_, isAborted) {
+        script.setAttribute('data-onload-complete', true);
+        try {
+            if (isAborted) {
+                console.warn('Script load aborted: ' + scriptSrc);
+            } else if (!script.readyState || script.readyState === "loaded" || script.readyState === "complete") {
+                // If the options contains an onload function, call it.
+                if (typeof normalizedOptions.success === 'function') {
+                    normalizedOptions.success(script);
+                }
+                return;
+            }
+            if (typeof normalizedOptions.error === 'function') {
+                normalizedOptions.error(script, isAborted);
+            }
+        } finally {
+            if (normalizedOptions.removeElementOnLoad) {
+                head.removeChild(script);
+            }
+            // Handle memory leak in IE
+            script = script.onload = script.onreadystatechange = null;
+        }
+    };
+    script.onload = onload; 
+    script.onreadystatechange = onload;
+
+    script.setAttribute('id', normalizedOptions.scriptId);
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', normalizedOptions.scriptSrcBase + scriptSrc);
+    if (normalizedOptions.originalScriptSrc) {
+        script.setAttribute('data-referrer', normalizedOptions.originalScriptSrc);        
+    }
+    if (normalizedOptions.async) {
+        script.setAttribute('async', normalizedOptions.async);
+    }
+    
+    head.appendChild(script);
+    
+    return script;
+};
+
+exports.notifyModuleExported = function(moduleSpec, moduleExports) {
+    var moduleNamespaceObj = exports.getModuleNamespaceObj(moduleSpec);
+    var loadingModule = getLoadingModule(moduleNamespaceObj, moduleSpec.moduleName);
+    
+    loadingModule.loaded = true;
+    if (loadingModule.waitList) {
+        for (var i = 0; i < loadingModule.waitList.length; i++) {
+            var waiter = loadingModule.waitList[i];
+            clearTimeout(waiter.timeoutObj);
+            waiter.resolve(moduleExports);
+        }
+    }    
+};
+
+exports.addModuleCSSToPage = function(namespace, moduleName) {
+    var moduleSpec = exports.getModuleSpec(namespace + ':' + moduleName);
+    var cssElId = exports.toModuleId(namespace, moduleName) + ':css';
+    var cssPath = exports.toModuleSrc(moduleSpec, 'css');
+    return exports.addCSSToPage(namespace, cssPath, cssElId);
+};
+
+exports.addPluginCSSToPage = function(namespace, cssPath, cssElId) {
+    var cssPath = exports.getPluginPath(namespace) + '/' + cssPath;
+    return exports.addCSSToPage(namespace, cssPath, cssElId);
+};
+
+exports.addCSSToPage = function(namespace, cssPath, cssElId) {
+    var document = windowHandle.getWindow().document;
+    
+    if (cssElId === undefined) {
+        cssElId = 'jenkins-js-module:' + namespace + ':css:' + cssPath;
+    }
+    
+    var cssEl = document.getElementById(cssElId);
+    
+    if (cssEl) {
+        // already added to page
+        return;
+    }
+
+    var docHead = exports.getHeadElement();
+    cssEl = createElement('link');
+    cssEl.setAttribute('id', cssElId);
+    cssEl.setAttribute('type', 'text/css');
+    cssEl.setAttribute('rel', 'stylesheet');
+    cssEl.setAttribute('href', cssPath);
+    docHead.appendChild(cssEl);
+
+    return cssEl;
+};
+
+exports.getGlobalModules = function() {
+    var jenkinsCIGlobal = exports.getJenkins();
+    if (!jenkinsCIGlobal.globals) {
+        jenkinsCIGlobal.globals = {
+            globalNS: true
+        };
+    }
+    return jenkinsCIGlobal.globals;
+};
+
+exports.getNamespaces = function() {
+    var jenkinsCIGlobal = exports.getJenkins();
+
+    // The namespaces are stored in an object named "plugins". This is a legacy from the
+    // time when all modules lived in plugins. By right we'd like to rename this, but
+    // that would cause compatibility issues.
+
+    if (!jenkinsCIGlobal.plugins) {
+        jenkinsCIGlobal.plugins = {
+            __README__: 'This object holds namespaced JS modules/bundles, with the property names representing the module namespace. It\'s name ("plugins") is a legacy thing. Changing it to a better name (e.g. "namespaces") would cause compatibility issues.'
+        };
+    }
+    return jenkinsCIGlobal.plugins;
+};
+
+exports.toModuleId = function(namespace, moduleName) {
+    return 'jenkins-js-module:' + namespace + ':' + moduleName;
+};
+
+exports.toModuleSrc = function(moduleSpec, srcType) {
+    var nsProvider = moduleSpec.nsProvider;
+
+    // If a moduleSpec on a module/bundle import doesn't specify a namespace provider
+    // (i.e. is of the form "a:b" and not "core-assets/a:b"),
+    // then check "this" bundles module spec and see if it was imported from a specific
+    // namespace. If it was (e.g. 'core-assets'), then import from that namespace.
+    if (nsProvider === undefined) {
+        nsProvider = thisBundleNamespaceProvider();
+        if (nsProvider === undefined) {
+            nsProvider = 'plugin';
+        }
+        // Store the nsProvider back onto the moduleSpec.
+        moduleSpec.nsProvider = nsProvider;
+    }
+
+    var srcPath = undefined;
+    if (srcType === 'js') {
+        srcPath = moduleSpec.moduleName + '.js';
+    } else if (srcType === 'css') {
+        srcPath = moduleSpec.moduleName + '/style.css';
+    } else {
+        throw 'Unsupported srcType "'+ srcType + '".';
+    }
+
+    if (nsProvider === 'plugin') {
+        return exports.getPluginJSModulesPath(moduleSpec.namespace) + '/' + srcPath;
+    } if (nsProvider === 'core-assets') {
+        return exports.getCoreAssetsJSModulesPath(moduleSpec.namespace) + '/' + srcPath;
+    } else {
+        throw 'Unsupported namespace provider: ' + nsProvider;
+    }
+};
+
+exports.getPluginJSModulesPath = function(pluginId) {
+    return exports.getPluginPath(pluginId) + '/jsmodules';
+};
+
+exports.getCoreAssetsJSModulesPath = function(namespace) {
+    return getRootURL() + '/assets/' + namespace + '/jsmodules';
+};
+
+exports.getPluginPath = function(pluginId) {
+    return getRootURL() + '/plugin/' + pluginId;
+};
+
+exports.getHeadElement = function() {
+    var window = windowHandle.getWindow();
+    var docHead = window.document.getElementsByTagName("head");
+    if (!docHead || docHead.length == 0) {
+        throw 'No head element found in document.';
+    }
+    return docHead[0];
+};
+
+exports.setRootURL = function(url) {    
+    if (!jenkinsCIGlobal) {
+        exports.initJenkinsGlobal();
+    }
+    jenkinsCIGlobal.rootURL = url;
+};
+
+exports.parseResourceQName = function(resourceQName) {
+    var qNameTokens = resourceQName.split(":");
+    if (qNameTokens.length === 2) {
+        var namespace = qNameTokens[0].trim();
+        var nsTokens = namespace.split("/");
+        var namespaceProvider = undefined;
+        if (nsTokens.length === 2) {
+            namespaceProvider = nsTokens[0].trim();
+            namespace = nsTokens[1].trim();
+            if (namespaceProvider !== 'plugin' && namespaceProvider !== 'core-assets') {
+                console.error('Unsupported module namespace provider "' + namespaceProvider + '". Setting to undefined.');
+                namespaceProvider = undefined;
+            }
+        }
+        return {
+            nsProvider: namespaceProvider,
+            namespace: namespace,
+            moduleName: qNameTokens[1].trim()
+        };
+    } else {
+        // The module/bundle is not in a namespace and doesn't
+        // need to be loaded i.e. it will load itself and export.
+        return {
+            moduleName: qNameTokens[0].trim()
+        };
+    }
+};
+
+exports.getModule = function(moduleSpec) {
+    if (moduleSpec.namespace) {
+        var plugin = exports.getNamespace(moduleSpec.namespace);
+        return plugin[moduleSpec.moduleName];
+    } else {
+        var globals = exports.getGlobalModules();
+        return globals[moduleSpec.moduleName];
+    }
+};
+
+exports.getModuleSpec = function(moduleQName) {
+    var moduleSpec = exports.parseResourceQName(moduleQName);
+    var moduleNamespaceObj = exports.getModuleNamespaceObj(moduleSpec);
+    if (moduleNamespaceObj) {
+        var loading = getLoadingModule(moduleNamespaceObj, moduleSpec.moduleName);
+        if (loading && loading.moduleSpec) {
+            return loading.moduleSpec;
+        }
+    }
+    return moduleSpec;
+};
+
+function getScriptId(scriptSrc, config) {
+    if (typeof config === 'string') {
+        return config;
+    } else if (typeof config === 'object' && config.scriptId) {
+        return config.scriptId;
+    } else {
+        return 'jenkins-script:' + scriptSrc;
+    }    
+}
+
+exports.getRootURL = getRootURL;
+function getRootURL() {
+    if (jenkinsCIGlobal && jenkinsCIGlobal.rootURL) {
+        return jenkinsCIGlobal.rootURL;
+    }
+    
+    var docHead = exports.getHeadElement();
+    var resURL = getAttribute(docHead, "data-resurl");
+
+    if (!resURL) {
+        var resURL = getAttribute(docHead, "resURL");
+    
+        if (!resURL) {
+            throw "Attribute 'data-resurl' not defined on the document <head> element.";
+        }
+    }
+
+    if (jenkinsCIGlobal) {
+        jenkinsCIGlobal.rootURL = resURL;
+    }
+    
+    return resURL;
+}
+
+exports.getAdjunctURL = getAdjunctURL;
+function getAdjunctURL() {
+    if (jenkinsCIGlobal && jenkinsCIGlobal.adjunctURL) {
+        return jenkinsCIGlobal.adjunctURL;
+    }
+    
+    var docHead = exports.getHeadElement();
+    var adjunctURL = getAttribute(docHead, "data-adjuncturl");
+
+    if (!adjunctURL) {
+        throw "Attribute 'data-adjuncturl' not defined on the document <head> element.";
+    }
+
+    if (jenkinsCIGlobal) {
+        jenkinsCIGlobal.adjunctURL = adjunctURL;
+    }
+    
+    return adjunctURL;
+}
+
+function createElement(name) {
+    var document = windowHandle.getWindow().document;
+    return document.createElement(name);
+}
+
+function getAttribute(element, attributeName) {
+    var value = element.getAttribute(attributeName.toLowerCase());
+    
+    if (value) {
+        return value;
+    } else {
+        // try without lowercasing
+        return element.getAttribute(attributeName);
+    }    
+}
+
+function getLoadingModule(moduleNamespaceObj, moduleName) {
+    if (!moduleNamespaceObj.loadingModules) {
+        moduleNamespaceObj.loadingModules = {};
+    }
+    if (!moduleNamespaceObj.loadingModules[moduleName]) {
+        moduleNamespaceObj.loadingModules[moduleName] = {};
+    }
+    return moduleNamespaceObj.loadingModules[moduleName];
+}
+
+function endsWith(string, suffix) {
+    return (string.indexOf(suffix, string.length - suffix.length) !== -1);
+}
+
+function thisBundleNamespaceProvider() {
+    if (whoami !== undefined) {
+        return whoami.nsProvider;
+    }
+    return undefined;
+}
+
+function getBundleNSProviderFromScriptElement(namespace, moduleName) {
+    var docHead = exports.getHeadElement();
+    var scripts = docHead.getElementsByTagName("script");
+
+    for (var i = 0; i < scripts.length; i++) {
+        var script = scripts[i];
+        var elNamespace = script.getAttribute('data-jenkins-module-namespace');
+        var elModuleName = script.getAttribute('data-jenkins-module-moduleName');
+
+        if (elNamespace === namespace && elModuleName === moduleName) {
+            return script.getAttribute('data-jenkins-module-nsProvider');
+        }
+    }
+
+    return undefined;
+}
+
+},{"./promise":24,"window-handle":25}],24:[function(require,module,exports){
+/*
+ * Very simple "Promise" impl.
+ * <p>
+ * Intentionally not using the "promise" module/polyfill because it will add a few Kb and we 
+ * only need something very simple here. We really just want to follow the main pattern
+ * and don't need some of the fancy stuff.
+ * <p>
+ * I think so long as we stick to same interface/interaction pattern as outlined in the link
+ * below, then we can always switch to the "promise" module later without breaking anything.
+ * <p>
+ * See https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
+ */
+
+exports.make = function(executor) {
+    var thePromise = new APromise();
+    executor.call(thePromise, function(result) {
+        thePromise.resolve(result);
+    }, function(reason) {
+        thePromise.reject(reason);
+    });
+    return thePromise;
+};
+
+function APromise() {
+    this.state = 'PENDING';
+    this.whenFulfilled = undefined;
+    this.whenRejected = undefined;
+    this.applyFulfillArgs = false;
+}
+
+APromise.prototype.applyArgsOnFulfill = function() {
+    this.applyFulfillArgs = true;
+    return this;
+}
+
+APromise.prototype.resolve = function (result) {
+    this.state = 'FULFILLED';
+    
+    var thePromise = this;
+    function doFulfill(whenFulfilled, result) {
+        if (thePromise.applyFulfillArgs) {
+            whenFulfilled.apply(whenFulfilled, result);
+        } else {
+            whenFulfilled(result);
+        }
+    }
+    
+    if (this.whenFulfilled) {
+        doFulfill(this.whenFulfilled, result);
+    }
+    // redefine "onFulfilled" to call immediately
+    this.onFulfilled = function (whenFulfilled) {
+        if (whenFulfilled) {
+            doFulfill(whenFulfilled, result);
+        }
+        return this;
+    }
+};
+
+APromise.prototype.reject = function (reason) {
+    this.state = 'REJECTED';
+    if (this.whenRejected) {
+        this.whenRejected(reason);
+    }
+    // redefine "onRejected" to call immediately
+    this.onRejected = function(whenRejected) {
+        if (whenRejected) {
+            whenRejected(reason);
+        }
+        return this;
+    }
+};
+
+APromise.prototype.onFulfilled = function(whenFulfilled) {
+    if (!whenFulfilled) {
+        throw 'Must provide an "whenFulfilled" callback.';
+    }
+    this.whenFulfilled = whenFulfilled;
+    return this;
+};
+
+APromise.prototype.onRejected = function(whenRejected) {        
+    if (whenRejected) {
+        this.whenRejected = whenRejected;
+    }
+    return this;
+};
+
+},{}],25:[function(require,module,exports){
+var theWindow;
+var defaultTimeout = 10000;
+var callbacks = [];
+var windowSetTimeouts = [];
+
+function execCallback(callback, theWindow) {
+    if (callback) {
+        try {
+            callback.call(callback, theWindow);                
+        } catch (e) {
+            console.log("Error invoking window-handle callback.");
+            console.log(e);
+        }
+    }
+}
+
+/**
+ * Get the global "window" object.
+ * @param callback An optional callback that can be used to receive the window asynchronously. Useful when
+ * executing in test environment i.e. where the global window object might not exist immediately. 
+ * @param timeout The timeout if waiting on the global window to be initialised.
+ * @returns {*}
+ */
+exports.getWindow = function(callback, timeout) {
+    
+	if (theWindow) {
+        execCallback(callback, theWindow);
+        return theWindow;
+	} 
+	
+	try {
+		if (window) {
+            execCallback(callback, window);
+			return window;
+		} 
+	} catch (e) {
+		// no window "yet". This should only ever be the case in a test env.
+		// Fall through and use callbacks, if supplied.
+	}
+
+	if (callback) {
+        function waitForWindow(callback) {
+            callbacks.push(callback);
+            var windowSetTimeout = setTimeout(function() {
+                callback.error = "Timed out waiting on the window to be set.";
+                callback.call(callback);
+            }, (timeout?timeout:defaultTimeout));
+            windowSetTimeouts.push(windowSetTimeout);
+        }
+        waitForWindow(callback);
+	} else {
+		throw "No 'window' available. Consider providing a 'callback' and receiving the 'window' async when available. Typically, this should only be the case in a test environment.";
+	}
+}
+
+/**
+ * Set the global window e.g. in a test environment.
+ * <p>
+ * Once called, all callbacks (registered by earlier 'getWindow' calls) will be invoked.
+ * 
+ * @param newWindow The window.
+ */
+exports.setWindow = function(newWindow) {
+	for (var i = 0; i < windowSetTimeouts.length; i++) {
+		clearTimeout(windowSetTimeouts[i]);
+	}
+    windowSetTimeouts = [];
+	theWindow = newWindow;
+	for (var i = 0; i < callbacks.length; i++) {
+		execCallback(callbacks[i], theWindow);
+	}
+    callbacks = [];
+}
+
+/**
+ * Set the default time to wait for the global window to be set.
+ * <p>
+ * Default is 10 seconds (10000 ms).
+ * 
+ * @param millis Milliseconds to wait for the global window to be set.
+ */
+exports.setDefaultTimeout = function(millis) {
+    defaultTimeout = millis;
+}
+},{}],26:[function(require,module,exports){
+(function (process){(function (){
+// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
+// backported and transplited with Babel, with backwards-compat fixes
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  if (path.length === 0) return '.';
+  var code = path.charCodeAt(0);
+  var hasRoot = code === 47 /*/*/;
+  var end = -1;
+  var matchedSlash = true;
+  for (var i = path.length - 1; i >= 1; --i) {
+    code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        if (!matchedSlash) {
+          end = i;
+          break;
+        }
+      } else {
+      // We saw the first non-path separator
+      matchedSlash = false;
+    }
+  }
+
+  if (end === -1) return hasRoot ? '/' : '.';
+  if (hasRoot && end === 1) {
+    // return '//';
+    // Backwards-compat fix:
+    return '/';
+  }
+  return path.slice(0, end);
+};
+
+function basename(path) {
+  if (typeof path !== 'string') path = path + '';
+
+  var start = 0;
+  var end = -1;
+  var matchedSlash = true;
+  var i;
+
+  for (i = path.length - 1; i >= 0; --i) {
+    if (path.charCodeAt(i) === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          start = i + 1;
+          break;
+        }
+      } else if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // path component
+      matchedSlash = false;
+      end = i + 1;
+    }
+  }
+
+  if (end === -1) return '';
+  return path.slice(start, end);
+}
+
+// Uses a mixed approach for backwards-compatibility, as ext behavior changed
+// in new Node.js versions, so only basename() above is backported here
+exports.basename = function (path, ext) {
+  var f = basename(path);
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+exports.extname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  var startDot = -1;
+  var startPart = 0;
+  var end = -1;
+  var matchedSlash = true;
+  // Track the state of characters (if any) we see before our first dot and
+  // after any path separator we find
+  var preDotState = 0;
+  for (var i = path.length - 1; i >= 0; --i) {
+    var code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          startPart = i + 1;
+          break;
+        }
+        continue;
+      }
+    if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // extension
+      matchedSlash = false;
+      end = i + 1;
+    }
+    if (code === 46 /*.*/) {
+        // If this is our first dot, mark it as the start of our extension
+        if (startDot === -1)
+          startDot = i;
+        else if (preDotState !== 1)
+          preDotState = 1;
+    } else if (startDot !== -1) {
+      // We saw a non-dot and non-path separator before our dot, so we should
+      // have a good chance at having a non-empty extension
+      preDotState = -1;
+    }
+  }
+
+  if (startDot === -1 || end === -1 ||
+      // We saw a non-dot character immediately before the dot
+      preDotState === 0 ||
+      // The (right-most) trimmed path component is exactly '..'
+      preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
+    return '';
+  }
+  return path.slice(startDot, end);
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+}).call(this)}).call(this,require('_process'))
+},{"_process":27}],27:[function(require,module,exports){
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+},{}],28:[function(require,module,exports){
 /*
  * Copyright 2009-2011 Mozilla Foundation and contributors
  * Licensed under the New BSD license. See LICENSE.txt or:
@@ -4136,7 +6061,7 @@ exports.SourceMapGenerator = require('./source-map/source-map-generator').Source
 exports.SourceMapConsumer = require('./source-map/source-map-consumer').SourceMapConsumer;
 exports.SourceNode = require('./source-map/source-node').SourceNode;
 
-},{"./source-map/source-map-consumer":26,"./source-map/source-map-generator":27,"./source-map/source-node":28}],21:[function(require,module,exports){
+},{"./source-map/source-map-consumer":34,"./source-map/source-map-generator":35,"./source-map/source-node":36}],29:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -4235,7 +6160,7 @@ define(function (require, exports, module) {
 
 });
 
-},{"./util":29,"amdefine":30}],22:[function(require,module,exports){
+},{"./util":37,"amdefine":1}],30:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -4379,7 +6304,7 @@ define(function (require, exports, module) {
 
 });
 
-},{"./base64":23,"amdefine":30}],23:[function(require,module,exports){
+},{"./base64":31,"amdefine":1}],31:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -4423,7 +6348,7 @@ define(function (require, exports, module) {
 
 });
 
-},{"amdefine":30}],24:[function(require,module,exports){
+},{"amdefine":1}],32:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -4505,7 +6430,7 @@ define(function (require, exports, module) {
 
 });
 
-},{"amdefine":30}],25:[function(require,module,exports){
+},{"amdefine":1}],33:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2014 Mozilla Foundation and contributors
@@ -4593,7 +6518,7 @@ define(function (require, exports, module) {
 
 });
 
-},{"./util":29,"amdefine":30}],26:[function(require,module,exports){
+},{"./util":37,"amdefine":1}],34:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -5170,7 +7095,7 @@ define(function (require, exports, module) {
 
 });
 
-},{"./array-set":21,"./base64-vlq":22,"./binary-search":24,"./util":29,"amdefine":30}],27:[function(require,module,exports){
+},{"./array-set":29,"./base64-vlq":30,"./binary-search":32,"./util":37,"amdefine":1}],35:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -5572,7 +7497,7 @@ define(function (require, exports, module) {
 
 });
 
-},{"./array-set":21,"./base64-vlq":22,"./mapping-list":25,"./util":29,"amdefine":30}],28:[function(require,module,exports){
+},{"./array-set":29,"./base64-vlq":30,"./mapping-list":33,"./util":37,"amdefine":1}],36:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -5988,7 +7913,7 @@ define(function (require, exports, module) {
 
 });
 
-},{"./source-map-generator":27,"./util":29,"amdefine":30}],29:[function(require,module,exports){
+},{"./source-map-generator":35,"./util":37,"amdefine":1}],37:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -6309,1659 +8234,9 @@ define(function (require, exports, module) {
 
 });
 
-},{"amdefine":30}],30:[function(require,module,exports){
-(function (process,__filename){
-/** vim: et:ts=4:sw=4:sts=4
- * @license amdefine 1.0.0 Copyright (c) 2011-2015, The Dojo Foundation All Rights Reserved.
- * Available via the MIT or new BSD license.
- * see: http://github.com/jrburke/amdefine for details
- */
-
-/*jslint node: true */
-/*global module, process */
-'use strict';
-
-/**
- * Creates a define for node.
- * @param {Object} module the "module" object that is defined by Node for the
- * current module.
- * @param {Function} [requireFn]. Node's require function for the current module.
- * It only needs to be passed in Node versions before 0.5, when module.require
- * did not exist.
- * @returns {Function} a define function that is usable for the current node
- * module.
- */
-function amdefine(module, requireFn) {
-    'use strict';
-    var defineCache = {},
-        loaderCache = {},
-        alreadyCalled = false,
-        path = require('path'),
-        makeRequire, stringRequire;
-
-    /**
-     * Trims the . and .. from an array of path segments.
-     * It will keep a leading path segment if a .. will become
-     * the first path segment, to help with module name lookups,
-     * which act like paths, but can be remapped. But the end result,
-     * all paths that use this function should look normalized.
-     * NOTE: this method MODIFIES the input array.
-     * @param {Array} ary the array of path segments.
-     */
-    function trimDots(ary) {
-        var i, part;
-        for (i = 0; ary[i]; i+= 1) {
-            part = ary[i];
-            if (part === '.') {
-                ary.splice(i, 1);
-                i -= 1;
-            } else if (part === '..') {
-                if (i === 1 && (ary[2] === '..' || ary[0] === '..')) {
-                    //End of the line. Keep at least one non-dot
-                    //path segment at the front so it can be mapped
-                    //correctly to disk. Otherwise, there is likely
-                    //no path mapping for a path starting with '..'.
-                    //This can still fail, but catches the most reasonable
-                    //uses of ..
-                    break;
-                } else if (i > 0) {
-                    ary.splice(i - 1, 2);
-                    i -= 2;
-                }
-            }
-        }
-    }
-
-    function normalize(name, baseName) {
-        var baseParts;
-
-        //Adjust any relative paths.
-        if (name && name.charAt(0) === '.') {
-            //If have a base name, try to normalize against it,
-            //otherwise, assume it is a top-level require that will
-            //be relative to baseUrl in the end.
-            if (baseName) {
-                baseParts = baseName.split('/');
-                baseParts = baseParts.slice(0, baseParts.length - 1);
-                baseParts = baseParts.concat(name.split('/'));
-                trimDots(baseParts);
-                name = baseParts.join('/');
-            }
-        }
-
-        return name;
-    }
-
-    /**
-     * Create the normalize() function passed to a loader plugin's
-     * normalize method.
-     */
-    function makeNormalize(relName) {
-        return function (name) {
-            return normalize(name, relName);
-        };
-    }
-
-    function makeLoad(id) {
-        function load(value) {
-            loaderCache[id] = value;
-        }
-
-        load.fromText = function (id, text) {
-            //This one is difficult because the text can/probably uses
-            //define, and any relative paths and requires should be relative
-            //to that id was it would be found on disk. But this would require
-            //bootstrapping a module/require fairly deeply from node core.
-            //Not sure how best to go about that yet.
-            throw new Error('amdefine does not implement load.fromText');
-        };
-
-        return load;
-    }
-
-    makeRequire = function (systemRequire, exports, module, relId) {
-        function amdRequire(deps, callback) {
-            if (typeof deps === 'string') {
-                //Synchronous, single module require('')
-                return stringRequire(systemRequire, exports, module, deps, relId);
-            } else {
-                //Array of dependencies with a callback.
-
-                //Convert the dependencies to modules.
-                deps = deps.map(function (depName) {
-                    return stringRequire(systemRequire, exports, module, depName, relId);
-                });
-
-                //Wait for next tick to call back the require call.
-                if (callback) {
-                    process.nextTick(function () {
-                        callback.apply(null, deps);
-                    });
-                }
-            }
-        }
-
-        amdRequire.toUrl = function (filePath) {
-            if (filePath.indexOf('.') === 0) {
-                return normalize(filePath, path.dirname(module.filename));
-            } else {
-                return filePath;
-            }
-        };
-
-        return amdRequire;
-    };
-
-    //Favor explicit value, passed in if the module wants to support Node 0.4.
-    requireFn = requireFn || function req() {
-        return module.require.apply(module, arguments);
-    };
-
-    function runFactory(id, deps, factory) {
-        var r, e, m, result;
-
-        if (id) {
-            e = loaderCache[id] = {};
-            m = {
-                id: id,
-                uri: __filename,
-                exports: e
-            };
-            r = makeRequire(requireFn, e, m, id);
-        } else {
-            //Only support one define call per file
-            if (alreadyCalled) {
-                throw new Error('amdefine with no module ID cannot be called more than once per file.');
-            }
-            alreadyCalled = true;
-
-            //Use the real variables from node
-            //Use module.exports for exports, since
-            //the exports in here is amdefine exports.
-            e = module.exports;
-            m = module;
-            r = makeRequire(requireFn, e, m, module.id);
-        }
-
-        //If there are dependencies, they are strings, so need
-        //to convert them to dependency values.
-        if (deps) {
-            deps = deps.map(function (depName) {
-                return r(depName);
-            });
-        }
-
-        //Call the factory with the right dependencies.
-        if (typeof factory === 'function') {
-            result = factory.apply(m.exports, deps);
-        } else {
-            result = factory;
-        }
-
-        if (result !== undefined) {
-            m.exports = result;
-            if (id) {
-                loaderCache[id] = m.exports;
-            }
-        }
-    }
-
-    stringRequire = function (systemRequire, exports, module, id, relId) {
-        //Split the ID by a ! so that
-        var index = id.indexOf('!'),
-            originalId = id,
-            prefix, plugin;
-
-        if (index === -1) {
-            id = normalize(id, relId);
-
-            //Straight module lookup. If it is one of the special dependencies,
-            //deal with it, otherwise, delegate to node.
-            if (id === 'require') {
-                return makeRequire(systemRequire, exports, module, relId);
-            } else if (id === 'exports') {
-                return exports;
-            } else if (id === 'module') {
-                return module;
-            } else if (loaderCache.hasOwnProperty(id)) {
-                return loaderCache[id];
-            } else if (defineCache[id]) {
-                runFactory.apply(null, defineCache[id]);
-                return loaderCache[id];
-            } else {
-                if(systemRequire) {
-                    return systemRequire(originalId);
-                } else {
-                    throw new Error('No module with ID: ' + id);
-                }
-            }
-        } else {
-            //There is a plugin in play.
-            prefix = id.substring(0, index);
-            id = id.substring(index + 1, id.length);
-
-            plugin = stringRequire(systemRequire, exports, module, prefix, relId);
-
-            if (plugin.normalize) {
-                id = plugin.normalize(id, makeNormalize(relId));
-            } else {
-                //Normalize the ID normally.
-                id = normalize(id, relId);
-            }
-
-            if (loaderCache[id]) {
-                return loaderCache[id];
-            } else {
-                plugin.load(id, makeRequire(systemRequire, exports, module, relId), makeLoad(id), {});
-
-                return loaderCache[id];
-            }
-        }
-    };
-
-    //Create a define function specific to the module asking for amdefine.
-    function define(id, deps, factory) {
-        if (Array.isArray(id)) {
-            factory = deps;
-            deps = id;
-            id = undefined;
-        } else if (typeof id !== 'string') {
-            factory = id;
-            id = deps = undefined;
-        }
-
-        if (deps && !Array.isArray(deps)) {
-            factory = deps;
-            deps = undefined;
-        }
-
-        if (!deps) {
-            deps = ['require', 'exports', 'module'];
-        }
-
-        //Set up properties for this module. If an ID, then use
-        //internal cache. If no ID, then use the external variables
-        //for this node module.
-        if (id) {
-            //Put the module in deep freeze until there is a
-            //require call for it.
-            defineCache[id] = [id, deps, factory];
-        } else {
-            runFactory(id, deps, factory);
-        }
-    }
-
-    //define.require, which has access to all the values in the
-    //cache. Useful for AMD modules that all have IDs in the file,
-    //but need to finally export a value to node based on one of those
-    //IDs.
-    define.require = function (id) {
-        if (loaderCache[id]) {
-            return loaderCache[id];
-        }
-
-        if (defineCache[id]) {
-            runFactory.apply(null, defineCache[id]);
-            return loaderCache[id];
-        }
-    };
-
-    define.amd = {};
-
-    return define;
-}
-
-module.exports = amdefine;
-
-}).call(this,require('_process'),"/node_modules/handlebars/node_modules/source-map/node_modules/amdefine/amdefine.js")
-},{"_process":33,"path":32}],31:[function(require,module,exports){
-
-},{}],32:[function(require,module,exports){
-(function (process){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// resolves . and .. elements in a path array with directory names there
-// must be no slashes, empty elements, or device names (c:\) in the array
-// (so also no leading and trailing slashes - it does not distinguish
-// relative and absolute paths)
-function normalizeArray(parts, allowAboveRoot) {
-  // if the path tries to go above the root, `up` ends up > 0
-  var up = 0;
-  for (var i = parts.length - 1; i >= 0; i--) {
-    var last = parts[i];
-    if (last === '.') {
-      parts.splice(i, 1);
-    } else if (last === '..') {
-      parts.splice(i, 1);
-      up++;
-    } else if (up) {
-      parts.splice(i, 1);
-      up--;
-    }
-  }
-
-  // if the path is allowed to go above the root, restore leading ..s
-  if (allowAboveRoot) {
-    for (; up--; up) {
-      parts.unshift('..');
-    }
-  }
-
-  return parts;
-}
-
-// Split a filename into [root, dir, basename, ext], unix version
-// 'root' is just a slash, or nothing.
-var splitPathRe =
-    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
-var splitPath = function(filename) {
-  return splitPathRe.exec(filename).slice(1);
-};
-
-// path.resolve([from ...], to)
-// posix version
-exports.resolve = function() {
-  var resolvedPath = '',
-      resolvedAbsolute = false;
-
-  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
-    var path = (i >= 0) ? arguments[i] : process.cwd();
-
-    // Skip empty and invalid entries
-    if (typeof path !== 'string') {
-      throw new TypeError('Arguments to path.resolve must be strings');
-    } else if (!path) {
-      continue;
-    }
-
-    resolvedPath = path + '/' + resolvedPath;
-    resolvedAbsolute = path.charAt(0) === '/';
-  }
-
-  // At this point the path should be resolved to a full absolute path, but
-  // handle relative paths to be safe (might happen when process.cwd() fails)
-
-  // Normalize the path
-  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
-    return !!p;
-  }), !resolvedAbsolute).join('/');
-
-  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
-};
-
-// path.normalize(path)
-// posix version
-exports.normalize = function(path) {
-  var isAbsolute = exports.isAbsolute(path),
-      trailingSlash = substr(path, -1) === '/';
-
-  // Normalize the path
-  path = normalizeArray(filter(path.split('/'), function(p) {
-    return !!p;
-  }), !isAbsolute).join('/');
-
-  if (!path && !isAbsolute) {
-    path = '.';
-  }
-  if (path && trailingSlash) {
-    path += '/';
-  }
-
-  return (isAbsolute ? '/' : '') + path;
-};
-
-// posix version
-exports.isAbsolute = function(path) {
-  return path.charAt(0) === '/';
-};
-
-// posix version
-exports.join = function() {
-  var paths = Array.prototype.slice.call(arguments, 0);
-  return exports.normalize(filter(paths, function(p, index) {
-    if (typeof p !== 'string') {
-      throw new TypeError('Arguments to path.join must be strings');
-    }
-    return p;
-  }).join('/'));
-};
-
-
-// path.relative(from, to)
-// posix version
-exports.relative = function(from, to) {
-  from = exports.resolve(from).substr(1);
-  to = exports.resolve(to).substr(1);
-
-  function trim(arr) {
-    var start = 0;
-    for (; start < arr.length; start++) {
-      if (arr[start] !== '') break;
-    }
-
-    var end = arr.length - 1;
-    for (; end >= 0; end--) {
-      if (arr[end] !== '') break;
-    }
-
-    if (start > end) return [];
-    return arr.slice(start, end - start + 1);
-  }
-
-  var fromParts = trim(from.split('/'));
-  var toParts = trim(to.split('/'));
-
-  var length = Math.min(fromParts.length, toParts.length);
-  var samePartsLength = length;
-  for (var i = 0; i < length; i++) {
-    if (fromParts[i] !== toParts[i]) {
-      samePartsLength = i;
-      break;
-    }
-  }
-
-  var outputParts = [];
-  for (var i = samePartsLength; i < fromParts.length; i++) {
-    outputParts.push('..');
-  }
-
-  outputParts = outputParts.concat(toParts.slice(samePartsLength));
-
-  return outputParts.join('/');
-};
-
-exports.sep = '/';
-exports.delimiter = ':';
-
-exports.dirname = function(path) {
-  var result = splitPath(path),
-      root = result[0],
-      dir = result[1];
-
-  if (!root && !dir) {
-    // No dirname whatsoever
-    return '.';
-  }
-
-  if (dir) {
-    // It has a dirname, strip trailing slash
-    dir = dir.substr(0, dir.length - 1);
-  }
-
-  return root + dir;
-};
-
-
-exports.basename = function(path, ext) {
-  var f = splitPath(path)[2];
-  // TODO: make this comparison case-insensitive on windows?
-  if (ext && f.substr(-1 * ext.length) === ext) {
-    f = f.substr(0, f.length - ext.length);
-  }
-  return f;
-};
-
-
-exports.extname = function(path) {
-  return splitPath(path)[3];
-};
-
-function filter (xs, f) {
-    if (xs.filter) return xs.filter(f);
-    var res = [];
-    for (var i = 0; i < xs.length; i++) {
-        if (f(xs[i], i, xs)) res.push(xs[i]);
-    }
-    return res;
-}
-
-// String.prototype.substr - negative index don't work in IE8
-var substr = 'ab'.substr(-1) === 'b'
-    ? function (str, start, len) { return str.substr(start, len) }
-    : function (str, start, len) {
-        if (start < 0) start = str.length + start;
-        return str.substr(start, len);
-    }
-;
-
-}).call(this,require('_process'))
-},{"_process":33}],33:[function(require,module,exports){
-// shim for using process in browser
-
-var process = module.exports = {};
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = setTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    clearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        setTimeout(drainQueue, 0);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-},{}],34:[function(require,module,exports){
-var internal = require("./internal");
-var promise = require("./promise");
-var onRegisterTimeout;
-var whoami;
-
-/**
- * What's the top level module/bundle name.
- * @param moduleQName The module QName. 
- * @returns The module QName, or undefined if unknown.
- */
-exports.whoami = function(moduleQName) {
-    if (moduleQName) {
-        whoami = moduleQName;
-        internal.whoami(whoami);
-    }
-    return whoami;
-};
-
-/**
- * Asynchronously import/require a set of modules.
- *
- * <p>
- * Responsible for triggering the async loading of modules if a given module is not already loaded.
- *
- * @param moduleQNames... A list of module "qualified" names, each containing the module name prefixed with the namespace
- * and separated by a colon i.e. "<namespace>:<moduleName>" e.g. "jquery:jquery2".
- *
- * @return A Promise, allowing async load of all modules. The promise is only fulfilled when all modules are loaded.
- */
-exports.import = function() {
-    if (arguments.length === 1) {
-        return internal.import(arguments[0], onRegisterTimeout);        
-    }
-    
-    var moduleQNames = [];    
-    for (var i = 0; i < arguments.length; i++) {
-        var argument = arguments[i];
-        if (typeof argument === 'string') {
-            moduleQNames.push(argument);
-        }
-    }
-    
-    if (moduleQNames.length == 0) {
-        throw "No module names specified.";
-    }
-    
-    return promise.make(function (resolve, reject) {
-        var fulfillments = [];
-        
-        function onFulfillment() {
-            if (fulfillments.length === moduleQNames.length) {
-                var modules = [];
-                for (var i = 0; i < fulfillments.length; i++) {
-                    if (fulfillments[i].value) {
-                        modules.push(fulfillments[i].value);
-                    } else {
-                        // don't have everything yet so can't fulfill all.
-                        return;
-                    }
-                }
-                // If we make it here, then we have fulfilled all individual promises, which 
-                // means we can now fulfill the top level import promise.
-                resolve(modules);
-            }
-        }        
-        
-        // doRequire for each module
-        for (var i = 0; i < moduleQNames.length; i++) {           
-            function doRequire(moduleQName) {
-                var promise = internal.import(moduleQName, onRegisterTimeout);
-                var fulfillment = {
-                    promise: promise,
-                    value: undefined
-                };
-                fulfillments.push(fulfillment);
-                promise
-                    .onFulfilled(function(value) {
-                        fulfillment.value = value;
-                        onFulfillment();
-                    })
-                    .onRejected(function(error) {
-                        reject(error);
-                    });
-            }
-            doRequire(moduleQNames[i]);
-        }
-    }).applyArgsOnFulfill();    
-};
-
-/**
- * Synchronously "require" a module that it already loaded/registered.
- *
- * <p>
- * This function will throw an error if the module is not already loaded via an outer call to 'import'
- * (or 'import').
- *
- * @param moduleQName The module "qualified" name containing the module name prefixed with the namespace
- * separated by a colon i.e. "<namespace>:<moduleName>" e.g. "jquery:jquery2".
- *
- * @return The module.
- */
-exports.require = function(moduleQName) {
-    var parsedModuleName = internal.parseResourceQName(moduleQName);
-    var module = internal.getModule(parsedModuleName);    
-    if (!module) {
-        throw "Unable to perform synchronous 'require' for module '" + moduleQName + "'. This module is not pre-loaded. " +
-            "The module needs to have been asynchronously pre-loaded via an outer call to 'import'.";
-    }
-    return module.exports;
-}
-
-/**
- * Export a module.
- * 
- * @param namespace The namespace in which the module resides, or "undefined" if the modules is in
- * the "global" module namespace e.g. a Jenkins core bundle.
- * @param moduleName The name of the module. 
- * @param module The CommonJS style module, or "undefined" if we just want to notify other modules waiting on
- * the loading of this module.
- * @param onError On error callback;
- */
-exports.export = function(namespace, moduleName, module, onError) {
-    internal.onReady(function() {
-        try {
-            var moduleSpec = {namespace: namespace, moduleName: moduleName};
-            var moduleNamespaceObj = internal.getModuleNamespaceObj(moduleSpec);
-            
-            if (moduleNamespaceObj[moduleName]) {
-                if (namespace) {
-                    throw "Jenkins plugin module '" + namespace + ":" + moduleName + "' already registered.";
-                } else {
-                    throw "Jenkins global module '" + moduleName + "' already registered.";
-                }
-            }
-            
-            if (!module) {
-                module = {
-                    exports: {}
-                };
-            } else if (module.exports === undefined) {
-                module = {
-                    exports: module
-                };
-            }
-            moduleNamespaceObj[moduleName] = module;
-            
-            // Notify all that the module has been registered. See internal.loadModule also.
-            internal.notifyModuleExported(moduleSpec, module.exports);
-        } catch (e) {
-            console.error(e);
-            if (onError) {
-                onError(e);
-            }
-        }
-    });
-};
-
-/**
- * Add a module's CSS to the browser page.
- * 
- * <p>
- * The assumption is that the CSS can be accessed at e.g.
- * {@code <rootURL>/plugin/<namespace>/jsmodules/<moduleName>/style.css} i.e.
- * the pluginId acts as the namespace.
- * 
- * @param namespace The namespace in which the module resides.
- * @param moduleName The name of the module. 
- * @param onError On error callback;
- */
-exports.addModuleCSSToPage = function(namespace, moduleName, onError) {
-    internal.onReady(function() {
-        try {
-            internal.addModuleCSSToPage(namespace, moduleName);
-        } catch (e) {
-            console.error(e);
-            if (onError) {
-                onError(e);
-            }
-        }
-    });
-};
-
-/**
- * Add a plugin CSS file to the browser page.
- * 
- * @param pluginName The Jenkins plugin in which the module resides.
- * @param moduleName The name of the module. 
- * @param onError On error callback;
- */
-exports.addPluginCSSToPage = function(pluginName, cssPath, onError) {
-    internal.onReady(function() {
-        try {
-            internal.addPluginCSSToPage(pluginName, cssPath);
-        } catch (e) {
-            console.error(e);
-            if (onError) {
-                onError(e);
-            }
-        }
-    });
-};
-
-/**
- * Add a javascript &lt;script&gt; element to the document &lt;head&gt;.
- * <p/>
- * Options:
- * <ul>
- *     <li><strong>scriptId</strong>: The script Id to use for the element. If not specified, one will be generated from the scriptSrc.</li>
- *     <li><strong>async</strong>: Asynchronous loading of the script. Default is 'true'.</li>
- *     <li><strong>success</strong>: An optional onload success function for the script element.</li>
- *     <li><strong>error</strong>: An optional onload error function for the script element. This is called if the .js file exists but there's an error evaluating the script. It is NOT called if the .js file doesn't exist (ala 404).</li>
- *     <li><strong>removeElementOnLoad</strong>: Remove the script element after loading the script. Default is 'false'.</li>
- * </ul>
- * 
- * @param scriptSrc The script src.
- * @param options Optional script load options object. See above.
- */
-exports.addScript = function(scriptSrc, options) {
-    internal.onReady(function() {
-        internal.addScript(scriptSrc, options);
-    });    
-};
-
-/**
- * Set the module registration timeout i.e. the length of time to wait for a module to load before failing.
- *
- * @param timeout Millisecond duration before onRegister times out. Defaults to 10000 (10s) if not specified.
- */
-exports.setRegisterTimeout = function(timeout) {
-    onRegisterTimeout = timeout;
-}
-
-/**
- * Set the Jenkins root/base URL.
- * 
- * @param rootUrl The root/base URL.
- */
-exports.setRootURL = function(rootUrl) {
-    internal.setRootURL(rootUrl);
-};
-
-/**
- * Manually initialise the Jenkins Global.
- * <p>
- * This should only ever be called from a test environment.
- */
-exports.initJenkinsGlobal = function() {
-    internal.initJenkinsGlobal();
-};
-
-internal.onJenkinsGlobalInit(function(jenkinsCIGlobal) {
-    // For backward compatibility, we need to make some jenkins-js-modules
-    // functions globally available e.g. to allow legacy code wait for
-    // certain modules to be loaded, as with legacy adjuncts.
-    if (!jenkinsCIGlobal._internal) {
-        // Put the functions on an object called '_internal' as a way
-        // of hinting to people to not use it.
-        jenkinsCIGlobal._internal = {
-            import: exports.import,
-            addScript: internal.addScript
-        };
-    }
-});
-},{"./internal":35,"./promise":36}],35:[function(require,module,exports){
-var promise = require("./promise");
-var windowHandle = require("window-handle");
-var jenkinsCIGlobal;
-var globalInitListeners = [];
-var whoami;
-
-exports.whoami = function(moduleQName) {
-    if (moduleQName) {
-        whoami = exports.parseResourceQName(moduleQName);
-        whoami.nsProvider = getBundleNSProviderFromScriptElement(whoami.namespace, whoami.moduleName);
-    }
-    return whoami;
-};
-
-exports.onReady = function(callback) {
-    // This allows test based initialization of jenkins-js-modules when there might 
-    // not yet be a global window object.
-    if (jenkinsCIGlobal) {
-        callback();
-    } else {
-        windowHandle.getWindow(function() {
-            callback();
-        });
-    }    
-};
-
-exports.onJenkinsGlobalInit = function(callback) {
-    globalInitListeners.push(callback);
-};
-
-exports.initJenkinsGlobal = function() {
-    jenkinsCIGlobal = {
-    };
-    if (globalInitListeners) {
-        for (var i = 0; i < globalInitListeners.length; i++) {
-            globalInitListeners[i](jenkinsCIGlobal);
-        }
-    }
-};
-
-exports.clearJenkinsGlobal = function() {    
-    jenkinsCIGlobal = undefined;
-    whoami = undefined;
-};
-
-exports.getJenkins = function() {
-    if (jenkinsCIGlobal) {
-        return jenkinsCIGlobal;
-    }
-    var window = windowHandle.getWindow();
-    if (window.jenkinsCIGlobal) {
-        jenkinsCIGlobal = window.jenkinsCIGlobal;
-    } else {
-        exports.initJenkinsGlobal();
-        jenkinsCIGlobal.rootURL = getRootURL();
-        window.jenkinsCIGlobal = jenkinsCIGlobal;
-    }   
-    return jenkinsCIGlobal;
-};
-
-exports.getModuleNamespaceObj = function(moduleSpec) {
-    if (moduleSpec.namespace) {
-        return exports.getNamespace(moduleSpec.namespace);
-    } else {
-        return exports.getGlobalModules();
-    }
-}
-
-exports.getNamespace = function(namespaceName) {
-    var namespaces = exports.getNamespaces();
-    var namespace = namespaces[namespaceName];
-    if (!namespace) {
-        namespace = {
-            globalNS: false            
-        };
-        namespaces[namespaceName] = namespace;
-    }
-    return namespace;
-};
-
-exports.import = function(moduleQName, onRegisterTimeout) {
-    return promise.make(function (resolve, reject) {
-        // Some functions here needs to access the 'window' global. We want to make sure that
-        // exists before attempting to fulfill the require operation. It may not exists
-        // immediately in a test env.
-        exports.onReady(function() {
-            var moduleSpec = exports.parseResourceQName(moduleQName);
-            var module = exports.getModule(moduleSpec);
-            
-            if (module) {
-                // module already loaded
-                resolve(module.exports);
-            } else {
-                if (onRegisterTimeout === 0) {
-                    if (moduleSpec.namespace) {
-                        throw 'Module ' + moduleSpec.namespace + ':' + moduleSpec.moduleName + ' require failure. Async load mode disabled.';
-                    } else {
-                        throw 'Global module ' + moduleSpec.moduleName + ' require failure. Async load mode disabled.';
-                    }
-                }
-
-                // module not loaded. Load async, fulfilling promise once registered
-                exports.loadModule(moduleSpec, onRegisterTimeout)
-                    .onFulfilled(function (moduleExports) {
-                        resolve(moduleExports);
-                    })
-                    .onRejected(function (error) {
-                        reject(error);
-                    });
-            }
-        });
-    });    
-};
-
-exports.loadModule = function(moduleSpec, onRegisterTimeout) {
-    var moduleNamespaceObj = exports.getModuleNamespaceObj(moduleSpec);
-    var module = moduleNamespaceObj[moduleSpec.moduleName];
-    
-    if (module) {
-        // Module already loaded. This prob shouldn't happen.
-        console.log("Unexpected call to 'loadModule' for a module (" + moduleSpec.moduleName + ") that's already loaded.");
-        return promise.make(function (resolve) {
-            resolve(module.exports);
-        });
-    }
-
-    function waitForRegistration(loadingModule, onRegisterTimeout) {
-        return promise.make(function (resolve, reject) {
-            if (typeof onRegisterTimeout !== "number") {
-                onRegisterTimeout = 10000;
-            }
-            
-            var timeoutObj = setTimeout(function () {
-                // Timed out waiting on the module to load and register itself.
-                if (!loadingModule.loaded) {
-                    var moduleSpec = loadingModule.moduleSpec;
-                    var errorDetail;
-                    
-                    if (moduleSpec.namespace) {
-                        errorDetail = "Timed out waiting on module '" + moduleSpec.namespace + ":" + moduleSpec.moduleName + "' to load.";
-                    } else {
-                        errorDetail = "Timed out waiting on global module '" + moduleSpec.moduleName + "' to load.";
-                    }                    
-                    console.error('Module load failure: ' + errorDetail);
-
-                    // Call the reject function and tell it we timed out
-                    reject({
-                        reason: 'timeout',
-                        detail: errorDetail
-                    });
-                }
-            }, onRegisterTimeout);
-            
-            loadingModule.waitList.push({
-                resolve: resolve,
-                timeoutObj: timeoutObj
-            });                    
-        });
-    }
-    
-    var loadingModule = getLoadingModule(moduleNamespaceObj, moduleSpec.moduleName);
-    if (!loadingModule.waitList) {
-        loadingModule.waitList = [];
-    }
-    loadingModule.moduleSpec = moduleSpec; 
-    loadingModule.loaded = false;
-
-    try {
-        return waitForRegistration(loadingModule, onRegisterTimeout);
-    } finally {
-        // We can auto/dynamic load modules in a non-global namespace. Global namespace modules
-        // need to make sure they load themselves (via an adjunct, or whatever).
-        if (moduleSpec.namespace) {
-            var scriptId = exports.toModuleId(moduleSpec.namespace, moduleSpec.moduleName) + ':js';
-            var scriptSrc = exports.toModuleSrc(moduleSpec, 'js');            
-            var scriptEl = exports.addScript(scriptSrc, {
-                scriptId: scriptId,
-                scriptSrcBase: ''
-            });
-
-            if (scriptEl) {
-                // Set the module spec info on the <script> element. This allows us to resolve the
-                // nsProvider for that bundle after 'whoami' is called for it (as it loads). whoami
-                // is not called with the nsProvider info on it because a given bundle can 
-                // potentially be loaded from multiple different ns providers, so we only resole the provider
-                // at load-time i.e. just after a bundle is loaded it calls 'whoami' for itself
-                // and then this module magically works out where it was loaded from (it's nsProvider)
-                // by locating the <script> element and using this information. For a module/bundle, knowing
-                // where it was loaded from is important because it dictates where that module/bundle
-                // should load it dependencies from. For example, the Bootstrap module/bundle depends on the
-                // jQuery bundle. So, if the bootstrap bundle is loaded from the 'core-assets' namespace provider,
-                // then that means the jQuery bundle should also be loaded from the 'core-assets'
-                // namespace provider.
-                // See getBundleNSProviderFromScriptElement.
-                scriptEl.setAttribute('data-jenkins-module-nsProvider', moduleSpec.nsProvider);
-                scriptEl.setAttribute('data-jenkins-module-namespace', moduleSpec.namespace);
-                scriptEl.setAttribute('data-jenkins-module-moduleName', moduleSpec.moduleName);
-            }
-        }
-    }
-};
-
-exports.addScript = function(scriptSrc, options) {
-    if (!scriptSrc) {
-        console.warn('Call to addScript with undefined "scriptSrc" arg.');
-        return undefined;
-    }    
-    
-    var normalizedOptions;
-    
-    // If there's no options object, create it.
-    if (typeof options === 'object') {
-        normalizedOptions = options;
-    } else {
-        normalizedOptions = {};
-    }
-    
-    // May want to transform/map some urls.
-    if (normalizedOptions.scriptSrcMap) {
-        if (typeof normalizedOptions.scriptSrcMap === 'function') {
-            scriptSrc = normalizedOptions.scriptSrcMap(scriptSrc);
-        } else if (Array.isArray(normalizedOptions.scriptSrcMap)) {
-            // it's an array of suffix mappings
-            for (var i = 0; i < normalizedOptions.scriptSrcMap.length; i++) {
-                var mapping = normalizedOptions.scriptSrcMap[i];
-                if (mapping.from && mapping.to) {
-                    if (endsWith(scriptSrc, mapping.from)) {
-                        normalizedOptions.originalScriptSrc = scriptSrc;
-                        scriptSrc = scriptSrc.replace(mapping.from, mapping.to);
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    
-    normalizedOptions.scriptId = getScriptId(scriptSrc, options);
-    
-    // set some default options
-    if (normalizedOptions.async === undefined) {
-        normalizedOptions.async = true;
-    }
-    if (normalizedOptions.scriptSrcBase === undefined) {
-        normalizedOptions.scriptSrcBase = getRootURL() + '/';
-    }
-
-    var document = windowHandle.getWindow().document;
-    var head = exports.getHeadElement();
-    var script = document.getElementById(normalizedOptions.scriptId);
-
-    if (script) {
-        var replaceable = script.getAttribute('data-replaceable');
-        if (replaceable && replaceable === 'true') {
-            // This <script> element is replaceable. In this case, 
-            // we remove the existing script element and add a new one of the
-            // same id and with the specified src attribute.
-            // Adding happens below.
-            script.parentNode.removeChild(script);
-        } else {
-            return undefined;
-        }
-    }
-
-    script = createElement('script');
-
-    // Parts of the following onload code were inspired by how the ACE editor does it,
-    // as well as from the follow SO post: http://stackoverflow.com/a/4845802/1166986
-    var onload = function (_, isAborted) {
-        script.setAttribute('data-onload-complete', true);
-        try {
-            if (isAborted) {
-                console.warn('Script load aborted: ' + scriptSrc);
-            } else if (!script.readyState || script.readyState === "loaded" || script.readyState === "complete") {
-                // If the options contains an onload function, call it.
-                if (typeof normalizedOptions.success === 'function') {
-                    normalizedOptions.success(script);
-                }
-                return;
-            }
-            if (typeof normalizedOptions.error === 'function') {
-                normalizedOptions.error(script, isAborted);
-            }
-        } finally {
-            if (normalizedOptions.removeElementOnLoad) {
-                head.removeChild(script);
-            }
-            // Handle memory leak in IE
-            script = script.onload = script.onreadystatechange = null;
-        }
-    };
-    script.onload = onload; 
-    script.onreadystatechange = onload;
-
-    script.setAttribute('id', normalizedOptions.scriptId);
-    script.setAttribute('type', 'text/javascript');
-    script.setAttribute('src', normalizedOptions.scriptSrcBase + scriptSrc);
-    if (normalizedOptions.originalScriptSrc) {
-        script.setAttribute('data-referrer', normalizedOptions.originalScriptSrc);        
-    }
-    if (normalizedOptions.async) {
-        script.setAttribute('async', normalizedOptions.async);
-    }
-    
-    head.appendChild(script);
-    
-    return script;
-};
-
-exports.notifyModuleExported = function(moduleSpec, moduleExports) {
-    var moduleNamespaceObj = exports.getModuleNamespaceObj(moduleSpec);
-    var loadingModule = getLoadingModule(moduleNamespaceObj, moduleSpec.moduleName);
-    
-    loadingModule.loaded = true;
-    if (loadingModule.waitList) {
-        for (var i = 0; i < loadingModule.waitList.length; i++) {
-            var waiter = loadingModule.waitList[i];
-            clearTimeout(waiter.timeoutObj);
-            waiter.resolve(moduleExports);
-        }
-    }    
-};
-
-exports.addModuleCSSToPage = function(namespace, moduleName) {
-    var moduleSpec = exports.getModuleSpec(namespace + ':' + moduleName);
-    var cssElId = exports.toModuleId(namespace, moduleName) + ':css';
-    var cssPath = exports.toModuleSrc(moduleSpec, 'css');
-    return exports.addCSSToPage(namespace, cssPath, cssElId);
-};
-
-exports.addPluginCSSToPage = function(namespace, cssPath, cssElId) {
-    var cssPath = exports.getPluginPath(namespace) + '/' + cssPath;
-    return exports.addCSSToPage(namespace, cssPath, cssElId);
-};
-
-exports.addCSSToPage = function(namespace, cssPath, cssElId) {
-    var document = windowHandle.getWindow().document;
-    
-    if (cssElId === undefined) {
-        cssElId = 'jenkins-js-module:' + namespace + ':' + ':css:' + cssPath;
-    }
-    
-    var cssEl = document.getElementById(cssElId);
-    
-    if (cssEl) {
-        // already added to page
-        return;
-    }
-
-    var docHead = exports.getHeadElement();
-    cssEl = createElement('link');
-    cssEl.setAttribute('id', cssElId);
-    cssEl.setAttribute('type', 'text/css');
-    cssEl.setAttribute('rel', 'stylesheet');
-    cssEl.setAttribute('href', cssPath);
-    docHead.appendChild(cssEl);
-    
-    return cssEl;
-};
-
-exports.getGlobalModules = function() {
-    var jenkinsCIGlobal = exports.getJenkins();
-    if (!jenkinsCIGlobal.globals) {
-        jenkinsCIGlobal.globals = {
-            globalNS: true
-        };
-    }
-    return jenkinsCIGlobal.globals;
-};
-
-exports.getNamespaces = function() {
-    var jenkinsCIGlobal = exports.getJenkins();
-    
-    // The namespaces are stored in an object named "plugins". This is a legacy from the
-    // time when all modules lived in plugins. By right we'd like to rename this, but
-    // that would cause compatibility issues.
-    
-    if (!jenkinsCIGlobal.plugins) {
-        jenkinsCIGlobal.plugins = {
-            __README__: 'This object holds namespaced JS modules/bundles, with the property names representing the module namespace. It\'s name ("plugins") is a legacy thing. Changing it to a better name (e.g. "namespaces") would cause compatibility issues.'
-        };
-    }
-    return jenkinsCIGlobal.plugins;
-};
-
-exports.toModuleId = function(namespace, moduleName) {
-    return 'jenkins-js-module:' + namespace + ':' + moduleName;
-};
-
-exports.toModuleSrc = function(moduleSpec, srcType) {
-    var nsProvider = moduleSpec.nsProvider;
-    
-    // If a moduleSpec on a module/bundle import doesn't specify a namespace provider
-    // (i.e. is of the form "a:b" and not "core-assets/a:b"),
-    // then check "this" bundles module spec and see if it was imported from a specific
-    // namespace. If it was (e.g. 'core-assets'), then import from that namespace.
-    if (nsProvider === undefined) {
-        nsProvider = thisBundleNamespaceProvider();
-        if (nsProvider === undefined) {
-            nsProvider = 'plugin';
-        }
-        // Store the nsProvider back onto the moduleSpec.
-        moduleSpec.nsProvider = nsProvider;
-    }
-    
-    var srcPath = undefined;
-    if (srcType === 'js') {
-        srcPath = moduleSpec.moduleName + '.js';
-    } else if (srcType === 'css') {
-        srcPath = moduleSpec.moduleName + '/style.css';
-    } else {
-        throw 'Unsupported srcType "'+ srcType + '".';
-    }
-    
-    if (nsProvider === 'plugin') {
-        return exports.getPluginJSModulesPath(moduleSpec.namespace) + '/' + srcPath;
-    } if (nsProvider === 'core-assets') {
-        return exports.getCoreAssetsJSModulesPath(moduleSpec.namespace) + '/' + srcPath;
-    } else {
-        throw 'Unsupported namespace provider: ' + nsProvider;
-    }
-};
-
-exports.getPluginJSModulesPath = function(pluginId) {
-    return exports.getPluginPath(pluginId) + '/jsmodules';
-};
-
-exports.getCoreAssetsJSModulesPath = function(namespace) {
-    return getRootURL() + '/assets/' + namespace + '/jsmodules';
-};
-
-exports.getPluginPath = function(pluginId) {
-    return getRootURL() + '/plugin/' + pluginId;
-};
-
-exports.getHeadElement = function() {
-    var window = windowHandle.getWindow();
-    var docHead = window.document.getElementsByTagName("head");
-    if (!docHead || docHead.length == 0) {
-        throw 'No head element found in document.';
-    }
-    return docHead[0];
-};
-
-exports.setRootURL = function(url) {    
-    if (!jenkinsCIGlobal) {
-        exports.initJenkinsGlobal();
-    }
-    jenkinsCIGlobal.rootURL = url;
-};
-
-exports.parseResourceQName = function(resourceQName) {
-    var qNameTokens = resourceQName.split(":");    
-    if (qNameTokens.length === 2) {
-        var namespace = qNameTokens[0].trim();
-        var nsTokens = namespace.split("/");
-        var namespaceProvider = undefined;
-        if (nsTokens.length === 2) {
-            namespaceProvider = nsTokens[0].trim();
-            namespace = nsTokens[1].trim();
-            if (namespaceProvider !== 'plugin' && namespaceProvider !== 'core-assets') {
-                console.error('Unsupported module namespace provider "' + namespaceProvider + '". Setting to undefined.');
-                namespaceProvider = undefined;
-            }
-        }
-        return {
-            nsProvider: namespaceProvider,
-            namespace: namespace,
-            moduleName: qNameTokens[1].trim()
-        };
-    } else {
-        // The module/bundle is not in a namespace and doesn't
-        // need to be loaded i.e. it will load itself and export.
-        return {
-            moduleName: qNameTokens[0].trim()
-        };
-    }
-};
-
-exports.getModule = function(moduleSpec) {
-    if (moduleSpec.namespace) {
-        var plugin = exports.getNamespace(moduleSpec.namespace);
-        return plugin[moduleSpec.moduleName];
-    } else {
-        var globals = exports.getGlobalModules();
-        return globals[moduleSpec.moduleName];
-    }
-};
-
-exports.getModuleSpec = function(moduleQName) {
-    var moduleSpec = exports.parseResourceQName(moduleQName);
-    var moduleNamespaceObj = exports.getModuleNamespaceObj(moduleSpec);    
-    if (moduleNamespaceObj) {
-        var loading = getLoadingModule(moduleNamespaceObj, moduleSpec.moduleName);
-        if (loading && loading.moduleSpec) {
-            return loading.moduleSpec;
-        }
-    }
-    return moduleSpec;
-};
-
-function getScriptId(scriptSrc, config) {
-    if (typeof config === 'string') {
-        return config;
-    } else if (typeof config === 'object' && config.scriptId) {
-        return config.scriptId;
-    } else {
-        return 'jenkins-script:' + scriptSrc;
-    }    
-}
-
-function getRootURL() {
-    if (jenkinsCIGlobal && jenkinsCIGlobal.rootURL) {
-        return jenkinsCIGlobal.rootURL;
-    }
-    
-    var docHead = exports.getHeadElement();
-    var resURL = getAttribute(docHead, "resURL");
-
-    if (!resURL) {
-        throw "Attribute 'resURL' not defined on the document <head> element.";
-    }
-
-    if (jenkinsCIGlobal) {
-        jenkinsCIGlobal.rootURL = resURL;
-    }
-    
-    return resURL;
-}
-
-function createElement(name) {
-    var document = windowHandle.getWindow().document;
-    return document.createElement(name);
-}
-
-function getAttribute(element, attributeName) {
-    var value = element.getAttribute(attributeName.toLowerCase());
-    
-    if (value) {
-        return value;
-    } else {
-        // try without lowercasing
-        return element.getAttribute(attributeName);
-    }    
-}
-
-function getLoadingModule(moduleNamespaceObj, moduleName) {
-    if (!moduleNamespaceObj.loadingModules) {
-        moduleNamespaceObj.loadingModules = {};
-    }
-    if (!moduleNamespaceObj.loadingModules[moduleName]) {
-        moduleNamespaceObj.loadingModules[moduleName] = {};
-    }
-    return moduleNamespaceObj.loadingModules[moduleName];
-}
-
-function endsWith(string, suffix) {
-    return (string.indexOf(suffix, string.length - suffix.length) !== -1);
-}
-
-function thisBundleNamespaceProvider() {        
-    if (whoami !== undefined) {
-        return whoami.nsProvider;
-    }
-    return undefined;
-}
-
-function getBundleNSProviderFromScriptElement(namespace, moduleName) {
-    var docHead = exports.getHeadElement();
-    var scripts = docHead.getElementsByTagName("script");
-
-    for (var i = 0; i < scripts.length; i++) {
-        var script = scripts[i];
-        var elNamespace = script.getAttribute('data-jenkins-module-namespace');
-        var elModuleName = script.getAttribute('data-jenkins-module-moduleName');
-        
-        if (elNamespace === namespace && elModuleName === moduleName) {
-            return script.getAttribute('data-jenkins-module-nsProvider');
-        }
-    }
-    
-    return undefined;
-}
-
-},{"./promise":36,"window-handle":37}],36:[function(require,module,exports){
-/*
- * Very simple "Promise" impl.
- * <p>
- * Intentionally not using the "promise" module/polyfill because it will add a few Kb and we 
- * only need something very simple here. We really just want to follow the main pattern
- * and don't need some of the fancy stuff.
- * <p>
- * I think so long as we stick to same interface/interaction pattern as outlined in the link
- * below, then we can always switch to the "promise" module later without breaking anything.
- * <p>
- * See https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
- */
-
-exports.make = function(executor) {
-    var thePromise = new APromise();
-    executor.call(thePromise, function(result) {
-        thePromise.resolve(result);
-    }, function(reason) {
-        thePromise.reject(reason);
-    });
-    return thePromise;
-};
-
-function APromise() {
-    this.state = 'PENDING';
-    this.whenFulfilled = undefined;
-    this.whenRejected = undefined;
-    this.applyFulfillArgs = false;
-}
-
-APromise.prototype.applyArgsOnFulfill = function() {
-    this.applyFulfillArgs = true;
-    return this;
-}
-
-APromise.prototype.resolve = function (result) {
-    this.state = 'FULFILLED';
-    
-    var thePromise = this;
-    function doFulfill(whenFulfilled, result) {
-        if (thePromise.applyFulfillArgs) {
-            whenFulfilled.apply(whenFulfilled, result);
-        } else {
-            whenFulfilled(result);
-        }
-    }
-    
-    if (this.whenFulfilled) {
-        doFulfill(this.whenFulfilled, result);
-    }
-    // redefine "onFulfilled" to call immediately
-    this.onFulfilled = function (whenFulfilled) {
-        if (whenFulfilled) {
-            doFulfill(whenFulfilled, result);
-        }
-        return this;
-    }
-};
-
-APromise.prototype.reject = function (reason) {
-    this.state = 'REJECTED';
-    if (this.whenRejected) {
-        this.whenRejected(reason);
-    }
-    // redefine "onRejected" to call immediately
-    this.onRejected = function(whenRejected) {
-        if (whenRejected) {
-            whenRejected(reason);
-        }
-        return this;
-    }
-};
-
-APromise.prototype.onFulfilled = function(whenFulfilled) {
-    if (!whenFulfilled) {
-        throw 'Must provide an "whenFulfilled" callback.';
-    }
-    this.whenFulfilled = whenFulfilled;
-    return this;
-};
-
-APromise.prototype.onRejected = function(whenRejected) {        
-    if (whenRejected) {
-        this.whenRejected = whenRejected;
-    }
-    return this;
-};
-
-},{}],37:[function(require,module,exports){
-var theWindow;
-var defaultTimeout = 10000;
-var callbacks = [];
-var windowSetTimeouts = [];
-
-function execCallback(callback, theWindow) {
-    if (callback) {
-        try {
-            callback.call(callback, theWindow);                
-        } catch (e) {
-            console.log("Error invoking window-handle callback.");
-            console.log(e);
-        }
-    }
-}
-
-/**
- * Get the global "window" object.
- * @param callback An optional callback that can be used to receive the window asynchronously. Useful when
- * executing in test environment i.e. where the global window object might not exist immediately. 
- * @param timeout The timeout if waiting on the global window to be initialised.
- * @returns {*}
- */
-exports.getWindow = function(callback, timeout) {
-    
-	if (theWindow) {
-        execCallback(callback, theWindow);
-        return theWindow;
-	} 
-	
-	try {
-		if (window) {
-            execCallback(callback, window);
-			return window;
-		} 
-	} catch (e) {
-		// no window "yet". This should only ever be the case in a test env.
-		// Fall through and use callbacks, if supplied.
-	}
-
-	if (callback) {
-        function waitForWindow(callback) {
-            callbacks.push(callback);
-            var windowSetTimeout = setTimeout(function() {
-                callback.error = "Timed out waiting on the window to be set.";
-                callback.call(callback);
-            }, (timeout?timeout:defaultTimeout));
-            windowSetTimeouts.push(windowSetTimeout);
-        }
-        waitForWindow(callback);
-	} else {
-		throw "No 'window' available. Consider providing a 'callback' and receiving the 'window' async when available. Typically, this should only be the case in a test environment.";
-	}
-}
-
-/**
- * Set the global window e.g. in a test environment.
- * <p>
- * Once called, all callbacks (registered by earlier 'getWindow' calls) will be invoked.
- * 
- * @param newWindow The window.
- */
-exports.setWindow = function(newWindow) {
-	for (var i = 0; i < windowSetTimeouts.length; i++) {
-		clearTimeout(windowSetTimeouts[i]);
-	}
-    windowSetTimeouts = [];
-	theWindow = newWindow;
-	for (var i = 0; i < callbacks.length; i++) {
-		execCallback(callbacks[i], theWindow);
-	}
-    callbacks = [];
-}
-
-/**
- * Set the default time to wait for the global window to be set.
- * <p>
- * Default is 10 seconds (10000 ms).
- * 
- * @param millis Milliseconds to wait for the global window to be set.
- */
-exports.setDefaultTimeout = function(millis) {
-    defaultTimeout = millis;
-}
-},{}],38:[function(require,module,exports){
+},{"amdefine":1}],38:[function(require,module,exports){
 require('jenkins-js-modules').whoami('handlebars:handlebars3');
 
 module.exports = require('handlebars');
 		require('jenkins-js-modules').export('handlebars', 'handlebars3', module);
-},{"handlebars":19,"jenkins-js-modules":34}]},{},[38]);
+},{"handlebars":21,"jenkins-js-modules":22}]},{},[38]);

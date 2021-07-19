@@ -1,6 +1,6 @@
 71
-mvn:com.orientechnologies/orientdb-client/2.2.22
+reference:file:/opt/sonatype/nexus/system/org/apache/karaf/shell/org.apache.karaf.shell.core/4.3.2/org.apache.karaf.shell.core-4.3.2.jar
 32
-80
-1501202963442
+30
+1626711386030
 0

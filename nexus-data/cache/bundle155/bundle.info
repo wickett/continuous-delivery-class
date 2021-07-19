@@ -1,6 +1,6 @@
 155
-mvn:org.sonatype.nexus/nexus-siesta/3.4.0-02
+reference:file:system/org/sonatype/nexus/nexus-blobstore-api/3.32.0-03/nexus-blobstore-api-3.32.0-03.jar
 32
 80
-1501202968780
+1626711403198
 0

@@ -1,6 +1,6 @@
 134
-mvn:org.sonatype.nexus/nexus-capability/3.4.0-02
+reference:file:system/org/sonatype/nexus/nexus-audit/3.32.0-03/nexus-audit-3.32.0-03.jar
 32
 80
-1501202967790
+1626711401612
 0

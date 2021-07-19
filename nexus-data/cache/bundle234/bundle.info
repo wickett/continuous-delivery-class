@@ -1,6 +1,6 @@
 234
-mvn:com.sonatype.nexus.plugins/nexus-repository-pypi/3.4.0-02
+reference:file:system/org/sonatype/nexus/plugins/nexus-coreui-plugin/3.32.0-03/nexus-coreui-plugin-3.32.0-03.jar
 32
 200
-1501202997117
+1626711412909
 0

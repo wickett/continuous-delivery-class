@@ -1,6 +1,6 @@
 79
-wrap:mvn:com.thoughtworks.paranamer/paranamer/2.8$overwrite=merge&Fragment-Host=org.hibernate.validator
+wrap:file:system/jakarta/validation/jakarta.validation-api/2.0.2/jakarta.validation-api-2.0.2.jar$overwrite=merge&Fragment-Host=org.hibernate.validator
 2
 80
-1501202964286
+1626711394003
 0

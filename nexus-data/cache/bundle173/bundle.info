@@ -1,6 +1,6 @@
 173
-wrap:mvn:eu.bitwalker/UserAgentUtils/1.19
+reference:file:system/org/sonatype/nexus/nexus-thread/3.32.0-03/nexus-thread-3.32.0-03.jar
 32
 80
-1501202969289
+1626711403665
 0

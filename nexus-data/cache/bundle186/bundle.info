@@ -1,6 +1,6 @@
 186
-mvn:com.sun.mail/javax.mail/1.5.2
+reference:file:system/org/apache/velocity/velocity-engine-core/2.3/velocity-engine-core-2.3.jar
 32
 80
-1501202987798
+1626711403936
 0

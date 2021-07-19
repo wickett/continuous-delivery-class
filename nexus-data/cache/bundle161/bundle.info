@@ -1,6 +1,6 @@
 161
-mvn:org.sonatype.nexus/nexus-upgrade/3.4.0-02
+reference:file:system/org/sonatype/nexus/nexus-commands/3.32.0-03/nexus-commands-3.32.0-03.jar
 32
 80
-1501202968911
+1626711403368
 0

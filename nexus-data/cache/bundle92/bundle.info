@@ -1,6 +1,6 @@
 92
-mvn:javax.mail/mail/1.4.7
+wrap:file:system/org/apache/shiro/shiro-guice/1.7.1/shiro-guice-1.7.1.jar$overwrite=merge&Import-Package=*
 32
 80
-1501202965955
+1626711398009
 0

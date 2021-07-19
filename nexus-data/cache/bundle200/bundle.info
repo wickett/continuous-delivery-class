@@ -1,6 +1,6 @@
 200
-mvn:org.sonatype.nexus.plugins/nexus-coreui-plugin/3.4.0-02
+reference:file:system/org/sonatype/nexus/nexus-rest-jackson2/3.32.0-03/nexus-rest-jackson2-3.32.0-03.jar
 32
 80
-1501202991149
+1626711404487
 0

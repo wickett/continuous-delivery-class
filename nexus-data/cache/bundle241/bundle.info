@@ -1,6 +1,6 @@
 241
-mvn:org.jsoup/jsoup/1.9.1
+reference:file:system/org/sonatype/nexus/plugins/nexus-blobstore-tasks/3.32.0-03/nexus-blobstore-tasks-3.32.0-03.jar
 32
 200
-1501202997699
+1626711413116
 0

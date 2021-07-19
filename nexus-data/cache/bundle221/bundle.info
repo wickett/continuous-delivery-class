@@ -1,6 +1,6 @@
 221
-mvn:com.sonatype.nexus.plugins/nexus-healthcheck-base/3.4.0-02
+reference:file:system/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar
 32
-200
-1501202995416
+80
+1626711404961
 0

@@ -1,6 +1,6 @@
 143
-mvn:org.sonatype.nexus/nexus-httpclient/3.4.0-02
+reference:file:system/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar
 32
 80
-1501202968087
+1626711401871
 0

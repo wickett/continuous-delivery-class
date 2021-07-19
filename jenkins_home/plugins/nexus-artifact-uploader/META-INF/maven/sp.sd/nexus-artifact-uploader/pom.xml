@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>2.6</version>
+        <version>2.15</version>
         <relativePath />
     </parent>
     <groupId>sp.sd</groupId>
     <artifactId>nexus-artifact-uploader</artifactId>
-    <version>2.9</version>
+    <version>2.13</version>
     <packaging>hpi</packaging>
 
     <properties>
@@ -40,18 +40,18 @@
         <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
         <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
-        <tag>nexus-artifact-uploader-2.9</tag>
+        <tag>nexus-artifact-uploader-2.13</tag>
     </scm>
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
             <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </pluginRepository>
     </pluginRepositories>
     <dependencies>
@@ -138,9 +138,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
                 <configuration>
-                    <skipTests>true</skipTests>
+                    <excludes>
+                        <exclude>InjectedTest.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>

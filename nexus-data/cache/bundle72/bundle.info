@@ -1,6 +1,6 @@
 72
-mvn:com.orientechnologies/orientdb-core/2.2.22
+reference:file:/opt/sonatype/nexus/system/org/apache/karaf/bundle/org.apache.karaf.bundle.core/4.3.2/org.apache.karaf.bundle.core-4.3.2.jar
 32
-80
-1501202963478
+30
+1626711386074
 0

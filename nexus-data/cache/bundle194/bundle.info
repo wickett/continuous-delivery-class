@@ -1,6 +1,6 @@
 194
-mvn:org.sonatype.nexus.bundles/org.sonatype.nexus.bundles.elasticsearch/3.4.0-02
+reference:file:system/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar
 32
 80
-1501202988469
+1626711404380
 0

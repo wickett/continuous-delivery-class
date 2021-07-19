@@ -1,6 +1,6 @@
 248
-wrap:mvn:org.sonatype.sisu/sisu-odata4j/0.0.7
+reference:file:system/org/sonatype/nexus/plugins/nexus-repository-raw/3.32.0-03/nexus-repository-raw-3.32.0-03.jar
 32
 200
-1501202998093
+1626711413294
 0

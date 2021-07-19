@@ -1,11 +1,11 @@
-version: "3"
+version: "3.9"
 services:
   jenkins:
     build: ./cd_jenkins
     image: cd_jenkins:latest
     ports:
       - "8080:8080"
-      - "5000:5000"
+      - "50000:50000"
     links:
       - nexus
     volumes:

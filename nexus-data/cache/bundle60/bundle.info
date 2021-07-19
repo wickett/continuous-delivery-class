@@ -1,6 +1,6 @@
 60
-mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/2.8.1
+reference:file:/opt/sonatype/nexus/system/org/apache/karaf/jaas/org.apache.karaf.jaas.modules/4.3.2/org.apache.karaf.jaas.modules-4.3.2.jar
 32
-80
-1501202962841
+30
+1626711385672
 0

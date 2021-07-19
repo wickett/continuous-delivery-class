@@ -1,6 +1,6 @@
 47
-mvn:org.sonatype.nexus/nexus-bootstrap/3.4.0-02
+reference:file:/opt/sonatype/nexus/system/org/apache/felix/org.apache.felix.cm.json/1.0.6/org.apache.felix.cm.json-1.0.6.jar
 32
-80
-1501202960087
+11
+1626711385278
 0

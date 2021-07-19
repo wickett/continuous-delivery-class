@@ -1,6 +1,6 @@
 132
-mvn:org.sonatype.nexus/nexus-blobstore-file/3.4.0-02
+reference:file:system/org/apache/tika/tika-core/1.26/tika-core-1.26.jar
 32
 80
-1501202967663
+1626711401564
 0

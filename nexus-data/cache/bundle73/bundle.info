@@ -1,6 +1,6 @@
 73
-mvn:com.orientechnologies/orientdb-server/2.2.22
+reference:file:/opt/sonatype/nexus/system/org/apache/karaf/scr/org.apache.karaf.scr.state/4.3.2/org.apache.karaf.scr.state-4.3.2.jar
 32
-80
-1501202964004
+30
+1626711386115
 0

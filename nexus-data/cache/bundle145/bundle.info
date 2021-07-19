@@ -1,6 +1,6 @@
 145
-mvn:org.sonatype.nexus/nexus-mime/3.4.0-02
-2
+reference:file:system/org/sonatype/nexus/nexus-transaction/3.32.0-03/nexus-transaction-3.32.0-03.jar
+32
 80
-1501202968136
+1626711401908
 0

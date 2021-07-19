@@ -1,6 +1,6 @@
 177
-wrap:mvn:org.codehaus.mojo/animal-sniffer-annotations/1.14
+reference:file:system/io/dropwizard/metrics/metrics-httpclient/4.1.0/metrics-httpclient-4.1.0.jar
 32
 80
-1501202969407
+1626711403754
 0

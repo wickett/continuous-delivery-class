@@ -1,6 +1,6 @@
 142
-mvn:org.sonatype.nexus/nexus-guice-servlet/3.4.0-02
-2
+wrap:file:system/org/owasp/encoder/encoder/1.2.2/encoder-1.2.2.jar
+32
 80
-1501202968070
+1626711401789
 0

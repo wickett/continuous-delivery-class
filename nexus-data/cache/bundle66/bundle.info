@@ -1,6 +1,6 @@
 66
-mvn:com.google.inject/guice/4.1.0
+reference:file:/opt/sonatype/nexus/system/org/apache/karaf/jaas/org.apache.karaf.jaas.config/4.3.2/org.apache.karaf.jaas.config-4.3.2.jar
 32
-80
-1501202963267
+30
+1626711385890
 0

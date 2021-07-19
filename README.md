@@ -2,7 +2,7 @@
 This course covers a wide range of topics from version control with git to CI with Jenkins to testing tools like robot, abao and gauntlt. Some of our environment runs in docker and some on the local machine to simulate development. For each video, we have included some setup instructions and dependencies needed.  The instructions below assume a Mac, however finding a Windows equivalent is often possible.
 
 ## Prerequisites
-Install Docker from https://www.docker.com/
+Install Docker Desktop from https://www.docker.com/
 
 ## Version Control in Action with git
 * Install homebrew from https://brew.sh
@@ -15,7 +15,7 @@ Install Docker from https://www.docker.com/
 * Install golint: `go get -u github.com/golang/lint/golint`
 * Install goconvey: `go get github.com/smartystreets/goconvey`
 * Install rice: `go get github.com/GeertJohan/go.rice/rice`
-* Optional, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
+* Optionally, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
 
 This video assumes you setup a github account and added appropriate keys.  
 When you do the git clone of https://github.com/wickett/word-cloud-generator it is important to put that in $GOPATH/src/github.com/wickett/word-cloud-generator

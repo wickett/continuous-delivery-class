@@ -1,6 +1,6 @@
 201
-mvn:org.sonatype.nexus.plugins/nexus-repository-httpbridge/3.4.0-02
+reference:file:system/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/2.11.4/jackson-jaxrs-json-provider-2.11.4.jar
 32
 80
-1501202991295
+1626711404506
 0

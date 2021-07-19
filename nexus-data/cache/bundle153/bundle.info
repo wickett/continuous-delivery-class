@@ -1,6 +1,6 @@
 153
-mvn:org.sonatype.nexus/nexus-security/3.4.0-02
+reference:file:system/com/fasterxml/jackson/core/jackson-annotations/2.11.4/jackson-annotations-2.11.4.jar
 32
 80
-1501202968638
+1626711403140
 0

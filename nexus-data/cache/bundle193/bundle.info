@@ -1,6 +1,6 @@
 193
-mvn:org.quartz-scheduler/quartz/2.2.2
+reference:file:system/org/sonatype/nexus/nexus-extdirect/3.32.0-03/nexus-extdirect-3.32.0-03.jar
 32
 80
-1501202988358
+1626711404360
 0
