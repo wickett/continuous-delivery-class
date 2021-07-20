@@ -2,7 +2,7 @@
 <org.jenkinsci.plugins.golang.GolangBuildWrapper_-DescriptorImpl plugin="golang@1.4">
   <installations>
     <org.jenkinsci.plugins.golang.GolangInstallation>
-      <name>go 1.16.6</name>
+      <name>Go 1.16.6</name>
       <home></home>
       <properties>
         <hudson.tools.InstallSourceProperty>

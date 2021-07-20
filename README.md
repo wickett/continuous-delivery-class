@@ -1,20 +1,22 @@
 # Basic Continuous Delivery Pipeline
-This course covers a wide range of topics from version control with git to CI with Jenkins to testing tools like robot, abao and gauntlt. Some of our environment runs in docker and some on the local machine to simulate development. For each video, we have included some setup instructions and dependencies needed.  The instructions below assume a Mac, however finding a Windows equivalent is often possible.
+
+This course covers a wide range of topics from version control with git to CI with Jenkins to testing tools. Some of our environment runs in docker and some on the local machine to simulate development. For each video, we have included some setup instructions and dependencies needed.  The instructions below assume a Mac, however finding a Windows equivalent is often possible. The goal of the course is not to teach you everything about how to set up these tools, the lab is intended to illustrate the core continuous delivery principles with tangible working code.
 
 ## Prerequisites
+
 Install Docker Desktop from https://www.docker.com/
+You will need to allocate at least 4 GB of RAM to Docker to run all these containers (Preferences... Resources).
 
 ## Version Control in Action with git
 * Install homebrew from https://brew.sh
 * Install go via `brew install go`
-* Install go via `brew install vim`
-* Install go via `brew install git`
+* Install vim via `brew install vim`
+* Install git via `brew install git`
 * Set $GOPATH `export GOPATH="${HOME}/go"` in `~/.bash_profile`
 * Set $PATH `export PATH=$PATH:$(go env GOPATH)/bin` in `~/.bash_profile`
 * Install godep: `go get github.com/tools/godep`
 * Install golint: `go get -u github.com/golang/lint/golint`
 * Install goconvey: `go get github.com/smartystreets/goconvey`
-* Install rice: `go get github.com/GeertJohan/go.rice/rice`
 * Optionally, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
 
 This video assumes you setup a github account and added appropriate keys.  
@@ -24,19 +26,23 @@ When you do the git clone of https://github.com/wickett/word-cloud-generator it 
 
 You will want to run this for all the labs that use the actual build pipeline.
 
-### To run jenkins, nexus, and the test fixture containers
+### To run it all - jenkins, nexus, and the test fixture containers together
 
-Run
+Run the following docker-compose command in the course directory (in the same directory as the docker-compose.yml file, which it uses):
 
 `docker-compose up --build -d`
 
 and it will build and run the jenkins and nexus and test_fixture containers and hook them up together.
-Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/admin123).  
+Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/theagileadmin).  
+You can view details with 
 
-Run a build of word-cloud-generator in jenkins and watch it build, unit test, package, and show up in nexus in cd_class/word-cloud-generator.
+`docker-compose ps`
+
+Now you can log into Jenkins, run a build of word-cloud-generator in jenkins and watch it build, unit test, package, and show up in nexus at cd_class/word-cloud-generator.
 
 ### Turning it all off
-To stop all the containers and delete them and the volumes, 
+
+To stop all the containers and delete them and the volumes, again in the top of the course directory run:
 
 `docker-compose down -v`
 
@@ -162,7 +168,7 @@ To restart jenkins, hit http://localhost:8080/safeRestart.  Or you can `docker s
 
 We'll use nexus as our artifact repository just by using its stock docker image from https://hub.docker.com/r/sonatype/nexus3/
 
-Just `docker run -d -p 8081:8081 -v $PWD/nexus_data:/nexus_data --name nexus sonatype/nexus3` and then go to http://localhost:8081 in your browser. Use the default creds of admin/admin123 to log in.
+Just `docker run -d -p 8081:8081 -v $PWD/nexus-data:/nexus-data --name nexus sonatype/nexus3` and then go to http://localhost:8081 in your browser. Use the default creds of admin/admin123 to log in.
 
 It makes a nexus_data directory mounted from the container for persistence.
 

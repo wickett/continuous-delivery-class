@@ -13,12 +13,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ramlfiles:/raml-files
       - robottests:/robot-tests
+    stop_grace_period: 120s
   nexus:
     image: sonatype/nexus3:latest
     ports:
       - "8081:8081"
     volumes:
       - ./nexus-data:/nexus-data
+    stop_grace_period: 120s
   test_fixture:
     build: ./test_fixture
     image: test_fixture:latest

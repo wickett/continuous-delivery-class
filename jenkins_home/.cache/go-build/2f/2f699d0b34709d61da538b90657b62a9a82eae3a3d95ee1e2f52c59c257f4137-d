@@ -1,0 +1,12 @@
+./console.go
+./doc.go
+./dot.go
+./gotest.go
+./init.go
+./json.go
+./printer.go
+./problems.go
+./reporter.go
+./reports.go
+./statistics.go
+./story.go

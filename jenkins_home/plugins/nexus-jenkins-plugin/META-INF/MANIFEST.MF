@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: jenkins
+Build-Jdk: 1.8.0_202
+Extension-Name: nexus-jenkins-plugin
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: nexus-jenkins-plugin
+Implementation-Version: 3.11.20210716-143001.0533f8f
+Group-Id: org.sonatype.nexus.ci
+Short-Name: nexus-jenkins-plugin
+Long-Name: Nexus Platform Plugin
+Url: https://github.com/jenkinsci/nexus-platform-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 3.11.20210716-143001.0533f8f
+Hudson-Version: 2.7
+Jenkins-Version: 2.7
+Mask-Classes: com.fasterxml.jackson.              org.cyclonedx.
+Plugin-Dependencies: workflow-step-api:2.8,credentials:2.1.8,plain-cre
+ dentials:1.1,structs:1.14,token-macro:1.11
+Plugin-Developers: Sonatype, Inc.:whyjustin:
+

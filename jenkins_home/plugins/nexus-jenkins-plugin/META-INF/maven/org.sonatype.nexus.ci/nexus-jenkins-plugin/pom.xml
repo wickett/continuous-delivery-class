@@ -1,0 +1,631 @@
+<!--
+
+    Copyright (c) 2016-present Sonatype, Inc. All rights reserved.
+
+    This program is licensed to you under the Apache License Version 2.0,
+    and you may not use this file except in compliance with the Apache License Version 2.0.
+    You may obtain a copy of the Apache License Version 2.0 at http://www.apache.org/licenses/LICENSE-2.0.
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the Apache License Version 2.0 is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>3.35</version>
+    <relativePath />
+  </parent>
+
+  <groupId>org.sonatype.nexus.ci</groupId>
+  <artifactId>nexus-jenkins-plugin</artifactId>
+  <version>3.11.20210716-143001.0533f8f</version>
+  <packaging>hpi</packaging>
+
+  <name>Nexus Platform Plugin</name>
+  <url>https://github.com/jenkinsci/nexus-platform-plugin</url>
+
+  <licenses>
+    <license>
+      <name>ASL2</name>
+      <url>http://opensource.org/licenses/Apache-2.0</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:ssh://github.com/jenkinsci/nexus-platform-plugin.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/nexus-platform-plugin.git</developerConnection>
+    <url>https://github.com/jenkinsci/nexus-platform-plugin</url>
+    <tag>nexus-jenkins-plugin-3.11.20210716-143001.0533f8f</tag>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>whyjustin</id>
+      <name>Sonatype, Inc.</name>
+      <organization>Sonatype, Inc.</organization>
+    </developer>
+  </developers>
+
+  <properties>
+    <!-- This is the minimum advertised compatible version -->
+    <jenkins.version>2.7</jenkins.version>
+    <enforcer.skip>true</enforcer.skip> <!-- TODO numerous requireUpperBoundDeps, some probably indicative of real problems -->
+    <jvnet-localizer-plugin.version>1.23</jvnet-localizer-plugin.version>
+    <forkCount>1</forkCount>
+    <java.level>8</java.level>
+    <slf4j.version>1.7.7</slf4j.version>
+
+    <buildsupport.version>10</buildsupport.version>
+    <buildsupport.license-maven-plugin.version>2.11</buildsupport.license-maven-plugin.version>
+
+    <public.serverId>sonatype-public</public.serverId>
+    <public.nexusUrl>https://repository.sonatype.org</public.nexusUrl>
+    <public-release.serverId>${public.serverId}</public-release.serverId>
+    <public-release.url>
+      https://repository.sonatype.org/service/local/staging/deploy/maven2
+    </public-release.url>
+    <public-snapshot.serverId>${public.serverId}</public-snapshot.serverId>
+    <public-snapshot.url>
+      https://repository.sonatype.org/content/repositories/snapshots
+    </public-snapshot.url>
+
+    <staging.serverId>${public.serverId}</staging.serverId>
+    <staging.nexusUrl>${public.nexusUrl}</staging.nexusUrl>
+    <staging.progressTimeout>15</staging.progressTimeout>
+
+    <findbugs.threshold>High</findbugs.threshold>
+    <findbugs.effort>Max</findbugs.effort>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- bcprov-jdk15on versions before 1.60 have a lot of security vulnerabilities. -->
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk15on</artifactId>
+        <version>1.60</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.4</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>credentials</artifactId>
+        <version>2.1.8</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>plain-credentials</artifactId>
+        <version>1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>token-macro</artifactId>
+        <version>1.11</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>structs</artifactId>
+        <version>1.14</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>matrix-auth</artifactId>
+        <version>1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>pipeline-utility-steps</artifactId>
+        <version>2.3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci.plugins.workflow</groupId>
+        <artifactId>workflow-step-api</artifactId>
+        <version>2.8</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-utils</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-all</artifactId>
+        <version>2.4.21</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.spockframework</groupId>
+        <artifactId>spock-core</artifactId>
+        <version>1.3-groovy-2.4</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy</artifactId>
+        <version>1.10.18</version>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <artifactId>junit-dep</artifactId>
+            <groupId>*</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.tomakehurst</groupId>
+        <artifactId>wiremock-standalone</artifactId>
+        <version>2.14.0</version>
+      </dependency>
+
+      <!-- Override from parent to exclude jsr305 -->
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <exclusions>
+          <exclusion>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <!-- Override from parent to exclude jsr305 -->
+      <dependency>
+        <groupId>org.kohsuke.stapler</groupId>
+        <artifactId>stapler-jrebel</artifactId>
+        <exclusions>
+          <exclusion>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.7.0</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.sonatype.nexus</groupId>
+      <artifactId>nexus-platform-api</artifactId>
+      <version>3.41.1-01</version>
+    </dependency>
+
+    <!-- Begin Jenkins plugins we depend on -->
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>credentials</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>plain-credentials</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>token-macro</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>structs</artifactId>
+    </dependency>
+    <!-- End Jenkins plugins we depend on -->
+
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-step-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.objenesis</groupId>
+      <artifactId>objenesis</artifactId>
+      <version>2.4</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codenarc</groupId>
+      <artifactId>CodeNarc</artifactId>
+      <version>0.26.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.gmetrics</groupId>
+      <artifactId>GMetrics</artifactId>
+      <version>0.7</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.tomakehurst</groupId>
+      <artifactId>wiremock-standalone</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Begin Jenkins plugins installed at runtime for testing -->
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>matrix-auth</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>pipeline-utility-steps</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-job</artifactId>
+      <version>2.9</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-cps</artifactId>
+      <version>2.24</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-basic-steps</artifactId>
+      <version>2.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-durable-task-step</artifactId>
+      <version>2.8</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkinsci.plugins</groupId>
+      <artifactId>pipeline-model-definition</artifactId>
+      <version>1.2.7</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.code.findbugs</groupId>
+          <artifactId>jsr305</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- End Jenkins plugins -->
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.kohsuke</groupId>
+          <artifactId>access-modifier-checker</artifactId>
+          <version>1.7</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <configuration>
+            <rules>
+              <enforceBytecodeVersion>
+                <maxJdkVersion>1.${java.level}</maxJdkVersion>
+                <ignoreClasses>
+                  <ignoreClass>hidden.com.thoughtworks.xstream.mapper.LambdaMapper</ignoreClass>
+                  <ignoreClass>hidden.com.thoughtworks.xstream.converters.reflection.LambdaConverter</ignoreClass>
+                  <ignoreClass>hidden.com.thoughtworks.xstream.converters.time.*Converter</ignoreClass>
+                  <ignoreClass>hidden.com.thoughtworks.xstream.core.util.ISO8601JavaTimeConverter</ignoreClass>
+                </ignoreClasses>
+                <ignoredScopes>
+                  <ignoredScope>system</ignoredScope>
+                  <ignoredScope>provided</ignoredScope>
+                  <ignoredScope>test</ignoredScope>
+                </ignoredScopes>
+              </enforceBytecodeVersion>
+              <bannedDependencies>
+                <excludes>
+                  <exclude>com.google.code.findbugs:jsr305</exclude>
+                </excludes>
+              </bannedDependencies>
+            </rules>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.jvnet.localizer</groupId>
+          <artifactId>maven-localizer-plugin</artifactId>
+          <version>${jvnet-localizer-plugin.version}</version>
+          <configuration>
+            <fileMask>Messages.properties</fileMask>
+            <outputDirectory>target/generated-sources/localizer</outputDirectory>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.jenkins-ci.tools</groupId>
+          <artifactId>maven-hpi-plugin</artifactId>
+          <extensions>true</extensions>
+          <configuration>
+            <maskClasses>
+              com.fasterxml.jackson.
+              org.cyclonedx.
+            </maskClasses>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.6</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <!-- 2.8.0-01 and later require maven-compiler-plugin 3.1 or higher -->
+        <configuration>
+          <compilerId>groovy-eclipse-compiler</compilerId>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-eclipse-compiler</artifactId>
+            <version>2.9.2-01</version>
+          </dependency>
+          <!-- for 2.8.0-01 and later you must have an explicit dependency on groovy-eclipse-batch -->
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-eclipse-batch</artifactId>
+            <version>2.4.16-03</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>${buildsupport.license-maven-plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.sonatype.buildsupport</groupId>
+            <artifactId>licenses</artifactId>
+            <version>${buildsupport.version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <strictCheck>true</strictCheck>
+          <useDefaultExcludes>false</useDefaultExcludes>
+          <header>${project.basedir}/header.txt</header>
+          <aggregate>true</aggregate>
+          <includes>
+            <include>**/pom.xml</include>
+            <include>**/*.xml</include>
+            <include>**/*.properties</include>
+            <include>**/*.ini</include>
+            <include>**/*.java</include>
+            <include>**/*.groovy</include>
+            <include>**/*.js</include>
+            <include>**/*.css</include>
+            <include>**/*.html</include>
+            <include>**/*.md</include>
+          </includes>
+          <excludes>
+            <exclude>**/target/**</exclude>
+            <exclude>**/work/**</exclude>
+            <exclude>**/.*/**</exclude>
+            <exclude>**/release.properties</exclude>
+            <exclude>**/META-INF/services/**</exclude>
+            <exclude>**/webapp/lib/**</exclude>
+          </excludes>
+          <mapping>
+            <groovy>SLASHSTAR_STYLE</groovy>
+            <ini>SCRIPT_STYLE</ini>
+            <java>SLASHSTAR_STYLE</java>
+            <md>XML_STYLE</md>
+          </mapping>
+          <headerDefinitions>
+            <headerDefinition>buildsupportHeaders.xml</headerDefinition>
+          </headerDefinitions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>jenkins-2.102</id>
+      <properties>
+        <jenkins.version>2.102</jenkins.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>jenkins-2.138</id>
+      <properties>
+        <jenkins.version>2.138.4</jenkins.version>
+      </properties>
+      <dependencyManagement>
+        <dependencies>
+          <!-- override with set of versions compatible with this jenkins version -->
+          <dependency>
+            <groupId>io.jenkins.tools.bom</groupId>
+            <artifactId>bom-2.138.x</artifactId>
+            <version>3</version>
+            <scope>import</scope>
+            <type>pom</type>
+          </dependency>
+          <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>credentials</artifactId>
+            <version>2.3.0</version>
+          </dependency>
+          <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>plain-credentials</artifactId>
+            <version>1.3</version>
+          </dependency>
+          <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>structs</artifactId>
+            <version>1.20</version>
+          </dependency>
+          <dependency>
+            <groupId>org.jenkins-ci.plugins.workflow</groupId>
+            <artifactId>workflow-step-api</artifactId>
+            <version>2.20</version>
+          </dependency>
+        </dependencies>
+      </dependencyManagement>
+      <dependencies>
+        <dependency>
+          <groupId>org.jenkins-ci.plugins.workflow</groupId>
+          <artifactId>workflow-job</artifactId>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jenkins-ci.plugins.workflow</groupId>
+          <artifactId>workflow-cps</artifactId>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jenkins-ci.plugins.workflow</groupId>
+          <artifactId>workflow-basic-steps</artifactId>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jenkins-ci.plugins.workflow</groupId>
+          <artifactId>workflow-durable-task-step</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>license-check</id>
+      <build>
+        <defaultGoal>com.mycila:license-maven-plugin:check</defaultGoal>
+      </build>
+    </profile>
+
+    <profile>
+      <id>license-format</id>
+      <build>
+        <defaultGoal>com.mycila:license-maven-plugin:format</defaultGoal>
+      </build>
+    </profile>
+
+    <profile>
+      <id>sonatype</id>
+      <distributionManagement>
+        <repository>
+          <id>${public-release.serverId}</id>
+          <url>${public-release.url}</url>
+        </repository>
+        <snapshotRepository>
+          <id>${public-snapshot.serverId}</id>
+          <url>${public-snapshot.url}</url>
+        </snapshotRepository>
+      </distributionManagement>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.6</version>
+            <extensions>true</extensions>
+            <configuration>
+              <nexusUrl>${staging.nexusUrl}</nexusUrl>
+              <serverId>${staging.serverId}</serverId>
+              <altStagingDirectory>${staging.directory}</altStagingDirectory>
+              <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+              <stagingProgressTimeoutMinutes>${staging.progressTimeout}</stagingProgressTimeoutMinutes>
+              <tags>
+                <localUsername>${user.name}</localUsername>
+                <javaVersion>${java.version}</javaVersion>
+              </tags>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <configuration>
+              <!--suppress MavenModelInspection -->
+              <passphrase>${gpg.passphrase}</passphrase>
+              <useAgent>true</useAgent>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

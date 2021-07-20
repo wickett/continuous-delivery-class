@@ -1,0 +1,13 @@
+./atob.go
+./atoc.go
+./atof.go
+./atoi.go
+./ctoa.go
+./decimal.go
+./doc.go
+./eisel_lemire.go
+./extfloat.go
+./ftoa.go
+./isprint.go
+./itoa.go
+./quote.go

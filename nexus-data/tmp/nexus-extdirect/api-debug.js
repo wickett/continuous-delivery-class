@@ -144,23 +144,23 @@ NX.direct.api.REMOTING_API = {
         formHandler: false
       },
       {
-        name: 'promoteToGroup'/*(String) => org.sonatype.nexus.coreui.BlobStoreXO */,
-        len: 1,
-        formHandler: false
-      },
-      {
         name: 'readNames'/*() => java.util.List */,
         len: 0,
         formHandler: false
       },
       {
-        name: 'defaultWorkDirectory'/*() => org.sonatype.nexus.coreui.PathSeparatorXO */,
-        len: 0,
+        name: 'promoteToGroup'/*(String) => org.sonatype.nexus.coreui.BlobStoreXO */,
+        len: 1,
         formHandler: false
       },
       {
         name: 'readGroupable'/*(org.sonatype.nexus.extdirect.model.StoreLoadParameters) => java.util.List */,
         len: 1,
+        formHandler: false
+      },
+      {
+        name: 'defaultWorkDirectory'/*() => org.sonatype.nexus.coreui.PathSeparatorXO */,
+        len: 0,
         formHandler: false
       },
       {

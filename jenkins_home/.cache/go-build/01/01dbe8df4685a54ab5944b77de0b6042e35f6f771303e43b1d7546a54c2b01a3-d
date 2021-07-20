@@ -1,0 +1,4 @@
+./atomic_amd64.go
+./stubs.go
+./unaligned.go
+./asm_amd64.s

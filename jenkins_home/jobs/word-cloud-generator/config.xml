@@ -4,6 +4,14 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>3</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.33.1">
       <projectUrl>https://github.com/wickett/word-cloud-generator/</projectUrl>
       <displayName></displayName>
@@ -13,7 +21,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/wickett/word-cloud-generator.git</url>
+        <url>https://github.com/wickett/word-cloud-generator</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -42,16 +50,14 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>export GOPATH=$WORKSPACE
+      <command>export GOPATH=${WORKSPACE}
 cd src/github.com/wickett/word-cloud-generator
 cat Makefile
 export PATH=$PATH:$(go env GOPATH)/bin
-go get ./...
-go get github.com/tools/godep
-go get github.com/GeertJohan/go.rice
-go get github.com/GeertJohan/go.rice/rice
+go install github.com/smartystreets/goconvey@latest
+go install golang.org/x/lint/golint@latest
 sed -i &quot;s/1.DEVELOPMENT/1.$BUILD_NUMBER/g&quot; ./static/version
-make rice
+make lint
 make
 md5sum artifacts/*/word-cloud-generator
 cd artifacts/linux
@@ -74,18 +80,8 @@ ls -l</command>
           <file>src/github.com/wickett/word-cloud-generator/artifacts/linux/word-cloud-generator.gz</file>
         </sp.sd.nexusartifactuploader.Artifact>
       </artifacts>
-      <credentialsId>nexusadmin</credentialsId>
+      <credentialsId>708708f9-0960-415a-985e-b33cf9c792c3</credentialsId>
     </sp.sd.nexusartifactuploader.NexusArtifactUploader>
-    <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.6.1">
-      <siteName>root@test_fixture:22</siteName>
-      <command>cd /chef-repo; sed &quot;s/1.DEVELOPMENT/1.$BUILD_NUMBER/g&quot; word-cloud-generator.json.template &gt; word-cloud-generator.json; chef-solo -c solo.rb -j word-cloud-generator.json</command>
-      <execEachLine>false</execEachLine>
-      <hideCommand>false</hideCommand>
-    </org.jvnet.hudson.plugins.SSHBuilder>
-    <hudson.tasks.Shell>
-      <command>docker run -v continuousdeliveryclass_ramlfiles:/raml --net=&quot;host&quot; --rm abao wordcloud.raml --server http://localhost:8888</command>
-      <configuredLocalRules/>
-    </hudson.tasks.Shell>
   </builders>
   <publishers/>
   <buildWrappers>
@@ -97,7 +93,7 @@ ls -l</command>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.13"/>
     <org.jenkinsci.plugins.golang.GolangBuildWrapper plugin="golang@1.4">
-      <goVersion>go 1.16.6</goVersion>
+      <goVersion>Go 1.16.6</goVersion>
     </org.jenkinsci.plugins.golang.GolangBuildWrapper>
   </buildWrappers>
 </project>

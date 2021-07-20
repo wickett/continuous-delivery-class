@@ -1,0 +1,7 @@
+./allocs.go
+./benchmark.go
+./cover.go
+./example.go
+./match.go
+./run_example.go
+./testing.go

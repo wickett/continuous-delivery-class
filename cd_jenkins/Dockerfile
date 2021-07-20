@@ -16,4 +16,4 @@ RUN gpasswd -a jenkins staff
 
 USER jenkins
 
-ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]

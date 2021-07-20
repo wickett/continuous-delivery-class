@@ -1,0 +1,12 @@
+./collections.go
+./doc.go
+./equal_method.go
+./equality.go
+./filter.go
+./messages.go
+./panic.go
+./quantity.go
+./serializer.go
+./strings.go
+./time.go
+./type.go
