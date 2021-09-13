@@ -5,4 +5,4 @@ osgi.ee; (&(osgi.ee=JavaSE)(version=1.5))
 osgi.wiring.package; (osgi.wiring.package=org.sonatype.gossip.render)
 120; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=org.slf4j)
-15; version=1.7.30
+18; version=1.7.30

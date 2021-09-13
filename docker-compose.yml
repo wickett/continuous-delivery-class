@@ -10,9 +10,6 @@ services:
       - nexus
     volumes:
       - ./jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ramlfiles:/raml-files
-      - robottests:/robot-tests
     stop_grace_period: 120s
   nexus:
     image: sonatype/nexus3:latest
@@ -29,17 +26,3 @@ services:
     ports:
       - "8888:8888"
       - "22:22"
-  abao:
-    build: ./raml-files
-    image: abao:latest
-volumes:
-  ramlfiles:
-    driver_opts:
-      type: none
-      device: $PWD/raml-files
-      o: bind
-  robottests:
-    driver_opts:
-          type: none
-          device: $PWD/robot-tests
-          o: bind

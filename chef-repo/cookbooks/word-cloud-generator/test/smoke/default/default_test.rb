@@ -5,14 +5,14 @@
 # The Inspec reference, with examples and extensive documentation, can be
 # found at http://inspec.io/docs/reference/resources/
 
-unless os.windows?
-  # This is an example test, replace with your own test.
-  describe user('root'), :skip do
-    it { should exist }
-  end
+describe http('http://localhost:8888/') do
+  its('status') { should eq 200 }
+  its('headers.Content-Type') { should include 'text/html' }
+  its('body') { should include 'Enter text here...' }
 end
 
-# This is an example test, replace it with your own test.
-describe port(80), :skip do
-  it { should_not be_listening }
+describe http('http://localhost:8888/api', params: {format: 'html'}, method: 'POST', headers:{'Content-Type' => 'application/json'}, data:'{"text":"ths is a really really really important thing this is"}') do
+  its('status') { should eq 200 }
+  its('headers.Content-Type') { should include 'application/json' }
+  its('body') { should include '"really": 3,' }
 end

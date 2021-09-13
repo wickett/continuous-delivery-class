@@ -1,6 +1,6 @@
 282
-reference:file:system/com/sonatype/nexus/plugins/nexus-ldap-plugin/3.32.0-03/nexus-ldap-plugin-3.32.0-03.jar
-32
+wrap:file:system/com/sonatype/insight/brain/insight-rm-common/1.107.0-01/insight-rm-common-1.107.0-01.jar$Bundle-SymbolicName=insight-rm-common&Fragment-Host=com.sonatype.clm.dto.model
+2
 200
-1626798526132
+1631501023596
 0

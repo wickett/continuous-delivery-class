@@ -11,13 +11,13 @@ osgi.wiring.package; (&(osgi.wiring.package=org.apache.karaf.shell.api.console)(
 osgi.wiring.package; (osgi.wiring.package=javax.xml.transform)
 0; version=0.0.0
 osgi.wiring.package; (&(osgi.wiring.package=org.ops4j.pax.logging.spi)(version>=2.0.0)(!(version>=3.0.0)))
-15; version=2.0.6
+18; version=2.0.6
 osgi.wiring.package; (osgi.wiring.package=org.w3c.dom)
 0; version=0.0.0
 osgi.wiring.package; (&(osgi.wiring.package=org.apache.karaf.shell.api.action)(version>=4.3.0)(!(version>=5.0.0)))
 71; version=4.3.2
 osgi.wiring.package; (&(osgi.wiring.package=org.slf4j)(version>=1.7.0)(!(version>=2.0.0)))
-15; version=1.7.30
+18; version=1.7.30
 osgi.wiring.package; (osgi.wiring.package=javax.management)
 0; version=0.0.0
 osgi.ee; (&(osgi.ee=JavaSE)(version=1.8))
@@ -35,4 +35,4 @@ osgi.wiring.package; (&(osgi.wiring.package=org.osgi.framework)(version>=1.0.0)(
 osgi.wiring.package; (&(osgi.wiring.package=org.apache.karaf.shell.support.table)(version>=4.3.0)(!(version>=5.0.0)))
 71; version=4.3.2
 osgi.wiring.package; (&(osgi.wiring.package=org.osgi.service.log)(version>=1.4.0)(!(version>=2.0.0)))
-15; version=1.4.0
+18; version=1.4.0

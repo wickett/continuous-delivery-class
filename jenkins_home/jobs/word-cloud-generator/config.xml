@@ -50,19 +50,21 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>export GOPATH=${WORKSPACE}
-cd src/github.com/wickett/word-cloud-generator
+      <command>cd src/github.com/wickett/word-cloud-generator
 cat Makefile
+export GOPATH=${WORKSPACE}
 export PATH=$PATH:$(go env GOPATH)/bin
 go install github.com/smartystreets/goconvey@latest
 go install golang.org/x/lint/golint@latest
 sed -i &quot;s/1.DEVELOPMENT/1.$BUILD_NUMBER/g&quot; ./static/version
+
 make lint
 make
+
 md5sum artifacts/*/word-cloud-generator
 cd artifacts/linux
 gzip word-cloud-generator
-ls -l</command>
+md5sum word-cloud-generator.gz</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
     <sp.sd.nexusartifactuploader.NexusArtifactUploader plugin="nexus-artifact-uploader@2.13">

@@ -1,3 +1,0 @@
-./at_darwin.go
-./at_sysnum_darwin.go
-./nonblocking_libc.go

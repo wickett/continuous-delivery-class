@@ -1,6 +1,6 @@
 9
-reference:file:/opt/sonatype/nexus/system/com/google/guava/guava/30.1.1-jre/guava-30.1.1-jre.jar
+reference:file:/opt/sonatype/nexus/system/org/apache/servicemix/bundles/org.apache.servicemix.bundles.javax-inject/1_2/org.apache.servicemix.bundles.javax-inject-1_2.jar
 32
 8
-1626798447834
+1631500926208
 0

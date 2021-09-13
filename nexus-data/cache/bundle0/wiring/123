@@ -57,7 +57,7 @@ osgi.wiring.package; (osgi.wiring.package=javax.script)
 osgi.wiring.package; (osgi.wiring.package=org.xml.sax.helpers)
 0; version=0.0.0
 osgi.wiring.package; (&(osgi.wiring.package=org.fusesource.jansi)(version>=1.11.0)(!(version>=2.0.0)))
-35; version=1.18.0
+33; version=1.18.0
 osgi.wiring.package; (osgi.wiring.package=javax.swing.plaf.metal)
 0; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=javax.xml.transform.stream)

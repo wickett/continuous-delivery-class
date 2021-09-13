@@ -11,9 +11,6 @@ RUN \
 
 COPY docker /usr/bin/docker
 
-# To allow us to access /var/run/docker.sock on the Mac
-RUN gpasswd -a jenkins staff
-
 USER jenkins
 
 ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]

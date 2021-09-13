@@ -1,6 +1,6 @@
 291
-wrap:file:system/com/sonatype/insight/scan/insight-scanner-model/2.28.4-01/insight-scanner-model-2.28.4-01.jar
+reference:file:system/org/sonatype/nexus/nexus-rest-client/3.34.0-01/nexus-rest-client-3.34.0-01.jar
 32
 200
-1626798556958
+1631501057186
 0

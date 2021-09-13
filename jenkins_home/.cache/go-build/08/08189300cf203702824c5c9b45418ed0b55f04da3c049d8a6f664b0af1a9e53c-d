@@ -1,5 +1,0 @@
-./context_native.go
-./doc.go
-./mux.go
-./regexp.go
-./route.go

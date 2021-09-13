@@ -1,4 +1,0 @@
-./fastwalk.go
-./fastwalk_dirent_ino.go
-./fastwalk_dirent_namlen_linux.go
-./fastwalk_unix.go

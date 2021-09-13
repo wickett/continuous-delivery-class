@@ -13,4 +13,4 @@ osgi.wiring.package; (&(osgi.wiring.package=com.fasterxml.jackson.databind.ser.s
 osgi.wiring.package; (&(osgi.wiring.package=com.codahale.metrics.health)(version>=4.1.0)(!(version>=5.0.0)))
 101; version=4.1.0
 osgi.wiring.package; (&(osgi.wiring.package=com.codahale.metrics)(version>=4.1.0)(!(version>=5.0.0)))
-12; version=4.1.0
+16; version=4.1.0

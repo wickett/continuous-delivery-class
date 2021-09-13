@@ -5,7 +5,7 @@ osgi.wiring.package; (osgi.wiring.package=org.apache.http.conn.routing)
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.protocol)
 81; version=0.0.0
 osgi.wiring.package; (&(osgi.wiring.package=com.codahale.metrics)(version>=4.1.0)(!(version>=5.0.0)))
-12; version=4.1.0
+16; version=4.1.0
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.conn.ssl)
 82; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.conn)

@@ -14,7 +14,7 @@ directory '/opt/cd_class' do
 end
 
 remote_file '/opt/cd_class/word-cloud-generator.gz' do
-  source "http://admin:admin123@nexus:8081/repository/word-cloud-generator/cd_class/word-cloud-generator/#{version}/word-cloud-generator-#{version}.gz"
+  source "http://admin:theagileadmin@nexus:8081/repository/word-cloud-generator/cd_class/word-cloud-generator/#{version}/word-cloud-generator-#{version}.gz"
   owner 'root'
   group 'root'
   mode '0755'
