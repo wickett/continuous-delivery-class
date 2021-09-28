@@ -1,0 +1,13 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2021-09-28 02:41:06.669 UTC</timestamp>
+  <md5sum>e59c6bdbe8f956608e5df164609f7e98</md5sum>
+  <fileName>Credential id=eeb91946-d7c5-42de-b90a-06684abec2a2 name=root/****** (test fixture ssh)</fileName>
+  <usages>
+    <entry>
+      <string>word-cloud-generator-deployer</string>
+      <ranges>1-4</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

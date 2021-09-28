@@ -1,0 +1,46 @@
+---
+- name: Create app directory
+  file:
+    path: /opt/cd_class
+    state: directory
+
+- name: Download word cloud generator
+  get_url:
+    url: http://{{ lookup('env','nexus_pwd') }}@nexus:8081/repository/word-cloud-generator/cd_class/word-cloud-generator/{{ lookup('env','deploy_version') }}/word-cloud-generator-{{ lookup('env','deploy_version') }}.gz
+    dest: /opt/cd_class/
+    mode: '0644'
+    force_basic_auth: yes
+
+- name: Unzip the file
+  ansible.builtin.command: gunzip -f word-cloud-generator-{{ lookup('env','deploy_version') }}.gz
+  args:
+    chdir: /opt/cd_class/
+
+- name: Make the file executable
+  file:
+    path: "/opt/cd_class/word-cloud-generator-{{ lookup('env','deploy_version') }}"
+    mode: '0755'
+
+- name: Create symbolic link
+  file:
+    src: "/opt/cd_class/word-cloud-generator-{{ lookup('env','deploy_version') }}"
+    dest: "/opt/cd_class/word-cloud-generator"
+    state: link
+    force: yes
+
+- name: Install daemonize package
+  package:
+    name: daemonize
+    state: latest
+
+- name: Install killall package
+  package:
+    name: psmisc
+    state: latest
+
+- name: Kill running word-cloud-generator
+  ansible.builtin.command: killall word-cloud-generator --wait
+
+- name: Start word-cloud-generator 
+  ansible.builtin.command:
+    cmd: daemonize /opt/cd_class/word-cloud-generator

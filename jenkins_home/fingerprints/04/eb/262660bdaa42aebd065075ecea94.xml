@@ -1,0 +1,17 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2021-09-28 02:41:06.603 UTC</timestamp>
+  <md5sum>04eb262660bdaa42aebd065075ecea94</md5sum>
+  <fileName>Credential id=708708f9-0960-415a-985e-b33cf9c792c3 name=admin/****** (Nexus Upload Creds)</fileName>
+  <usages>
+    <entry>
+      <string>word-cloud-generator-deployer</string>
+      <ranges>1-25</ranges>
+    </entry>
+    <entry>
+      <string>word-cloud-deployer</string>
+      <ranges>1</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>
