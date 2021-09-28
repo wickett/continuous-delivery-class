@@ -31,7 +31,7 @@ osgi.wiring.package; (osgi.wiring.package=javax.xml.datatype)
 osgi.wiring.package; (osgi.wiring.package=org.osgi.framework)
 0; version=1.9.0
 osgi.wiring.package; (&(osgi.wiring.package=org.slf4j.event)(version>=1.7.0)(!(version>=2.0.0)))
-18; version=1.7.30
+16; version=1.7.30
 osgi.wiring.package; (&(osgi.wiring.package=javax.xml.bind)(version>=2.2.0)(!(version>=3.0.0)))
 0; version=2.3.3
 osgi.wiring.package; (osgi.wiring.package=org.w3c.dom)
@@ -39,7 +39,7 @@ osgi.wiring.package; (osgi.wiring.package=org.w3c.dom)
 osgi.wiring.package; (&(osgi.wiring.package=javax.cache.integration)(version>=1.1.0)(!(version>=2.0.0)))
 137; version=1.1.1
 osgi.wiring.package; (&(osgi.wiring.package=org.slf4j)(version>=1.7.0)(!(version>=2.0.0)))
-18; version=1.7.30
+16; version=1.7.30
 osgi.wiring.package; (&(osgi.wiring.package=javax.cache.spi)(version>=1.1.0)(!(version>=2.0.0)))
 137; version=1.1.1
 osgi.wiring.package; (osgi.wiring.package=javax.management)

@@ -13,7 +13,7 @@ osgi.wiring.package; (&(osgi.wiring.package=org.apache.karaf.shell.api.action)(v
 osgi.wiring.package; (&(osgi.wiring.package=org.apache.karaf.features)(version>=4.3.0)(!(version>=5.0.0)))
 49; version=4.3.2
 osgi.wiring.package; (&(osgi.wiring.package=org.slf4j)(version>=1.7.0)(!(version>=2.0.0)))
-18; version=1.7.30
+16; version=1.7.30
 osgi.wiring.package; (&(osgi.wiring.package=org.jline.utils)(version>=3.19.0)(!(version>=4.0.0)))
 70; version=3.19.0
 osgi.wiring.package; (&(osgi.wiring.package=org.apache.karaf.shell.support)(version>=4.3.0)(!(version>=5.0.0)))

@@ -1,5 +1,5 @@
 osgi.wiring.package; (osgi.wiring.package=com.google.common.collect)
-14; version=30.1.1
+12; version=30.1.1
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind.introspect)
 152; version=2.11.4
 osgi.wiring.package; (osgi.wiring.package=javax.validation.constraints)
@@ -49,4 +49,4 @@ osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind)
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind.module)
 152; version=2.11.4
 osgi.wiring.package; (osgi.wiring.package=org.slf4j)
-18; version=1.7.30
+16; version=1.7.30

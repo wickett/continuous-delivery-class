@@ -5,4 +5,4 @@ osgi.wiring.package; (&(osgi.wiring.package=javax.inject)(version>=1.0.0))
 osgi.wiring.package; (osgi.wiring.package=org.eclipse.sisu)
 105; version=0.0.0
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.rapture)(version>=3.34.0))
-218; version=3.34.0
+218; version=3.34.1

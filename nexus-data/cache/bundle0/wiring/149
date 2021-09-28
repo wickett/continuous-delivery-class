@@ -1,7 +1,7 @@
 osgi.wiring.package; (osgi.wiring.package=org.apache.commons.beanutils)
 143; version=1.9.4
 osgi.wiring.package; (osgi.wiring.package=org.apache.commons.logging)
-18; version=1.2.0
+16; version=1.2.0
 osgi.wiring.package; (osgi.wiring.package=javax.xml.validation)
 0; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=javax.xml.parsers)
@@ -13,4 +13,4 @@ osgi.wiring.package; (osgi.wiring.package=org.xml.sax)
 osgi.wiring.package; (osgi.wiring.package=org.w3c.dom)
 0; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=org.apache.commons.logging.impl)
-18; version=1.2.0
+16; version=1.2.0

@@ -5,4 +5,4 @@ osgi.ee; (&(osgi.ee=JavaSE)(version=1.8))
 osgi.wiring.package; (osgi.wiring.package=javax.inject)
 9; version=1.0.0
 osgi.wiring.package; (osgi.wiring.package=org.slf4j)
-18; version=1.7.30
+16; version=1.7.30

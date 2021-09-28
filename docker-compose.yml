@@ -8,6 +8,7 @@ services:
       - "50000:50000"
     links:
       - nexus
+      - test_fixture
     volumes:
       - ./jenkins_home:/var/jenkins_home
     stop_grace_period: 120s
@@ -26,3 +27,9 @@ services:
     ports:
       - "8888:8888"
       - "22:22"
+volumes:
+  robottests:
+    driver_opts:
+          type: none
+          device: $PWD/robot-tests
+          o: bind

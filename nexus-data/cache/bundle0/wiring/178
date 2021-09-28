@@ -19,4 +19,4 @@ osgi.wiring.package; (&(osgi.wiring.package=com.codahale.metrics.json)(version>=
 osgi.wiring.package; (&(osgi.wiring.package=com.codahale.metrics.health)(version>=4.1.0)(!(version>=5.0.0)))
 101; version=4.1.0
 osgi.wiring.package; (&(osgi.wiring.package=com.codahale.metrics)(version>=4.1.0)(!(version>=5.0.0)))
-16; version=4.1.0
+14; version=4.1.0

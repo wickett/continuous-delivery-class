@@ -21,7 +21,7 @@ osgi.wiring.package; (osgi.wiring.package=org.apache.http.conn)
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.auth)
 82; version=0.0.0
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.rest)(version>=3.34.0))
-199; version=3.34.0
+199; version=3.34.1
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.impl.conn)
 82; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.classmate)
@@ -29,7 +29,7 @@ osgi.wiring.package; (osgi.wiring.package=com.fasterxml.classmate)
 osgi.ee; (&(osgi.ee=JavaSE)(version=1.8))
 0; version=[1.0.0, 1.1.0, 1.2.0, 1.3.0, 1.4.0, 1.5.0, 1.6.0, 1.7.0, 1.8.0]
 osgi.wiring.package; (osgi.wiring.package=org.apache.commons.io)
-19; version=2.8.0
+17; version=2.8.0
 osgi.wiring.package; (osgi.wiring.package=javax.imageio.metadata)
 0; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=javax.ws.rs.container)
@@ -73,7 +73,7 @@ osgi.wiring.package; (osgi.wiring.package=javax.enterprise.context)
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.conn.util)
 82; version=0.0.0
 osgi.wiring.package; (&(osgi.wiring.package=com.google.inject.servlet)(version>=1.4.0))
-103; version=3.34.0
+103; version=3.34.1
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind.jsontype.impl)
 152; version=2.11.4
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind.exc)
@@ -81,11 +81,11 @@ osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind.exc)
 osgi.wiring.package; (osgi.wiring.package=org.eclipse.sisu)
 105; version=0.0.0
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.common.property)(version>=3.34.0))
-106; version=3.34.0
+106; version=3.34.1
 osgi.wiring.package; (osgi.wiring.package=javax.xml.namespace)
 0; version=0.0.0
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.common.app)(version>=3.34.0))
-106; version=3.34.0
+106; version=3.34.1
 osgi.wiring.package; (osgi.wiring.package=javax.servlet)
 36; version=3.1.0
 osgi.wiring.package; (&(osgi.wiring.package=javax.ws.rs.ext)(version>=2.0.0))
@@ -93,7 +93,7 @@ osgi.wiring.package; (&(osgi.wiring.package=javax.ws.rs.ext)(version>=2.0.0))
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind.type)
 152; version=2.11.4
 osgi.wiring.package; (osgi.wiring.package=org.apache.log4j)
-18; version=1.2.17
+16; version=1.2.17
 osgi.wiring.package; (osgi.wiring.package=javax.xml.bind.annotation.adapters)
 0; version=2.3.3
 osgi.wiring.package; (osgi.wiring.package=javax.annotation)
@@ -101,7 +101,7 @@ osgi.wiring.package; (osgi.wiring.package=javax.annotation)
 osgi.wiring.package; (&(osgi.wiring.package=com.orientechnologies.orient.server.distributed)(version>=2.2.0))
 228; version=2.2.36
 osgi.wiring.package; (&(osgi.wiring.package=org.slf4j)(version>=1.7.0))
-18; version=1.7.30
+16; version=1.7.30
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.jaxrs.cfg)
 202; version=2.11.4
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.conn.scheme)
@@ -123,9 +123,9 @@ osgi.wiring.package; (osgi.wiring.package=org.apache.http.message)
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.client.params)
 82; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=org.jboss.logging)
-18; version=3.4.1.Final
+16; version=3.4.1.Final
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.security)(version>=3.34.0))
-133; version=3.34.0
+133; version=3.34.1
 osgi.wiring.package; (osgi.wiring.package=javax.ws.rs.client)
 206; version=2.0.1
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.classmate.members)
@@ -145,7 +145,7 @@ osgi.wiring.package; (&(osgi.wiring.package=javax.ws.rs)(version>=2.0.0))
 osgi.wiring.package; (&(osgi.wiring.package=javax.servlet)(version>=3.1.0))
 36; version=3.1.0
 osgi.wiring.package; (&(osgi.wiring.package=com.google.common.base)(version>=30.1.0))
-14; version=30.1.1
+12; version=30.1.1
 osgi.wiring.package; (osgi.wiring.package=javax.net.ssl)
 0; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=javax.imageio.plugins.jpeg)
@@ -163,9 +163,9 @@ osgi.wiring.package; (osgi.wiring.package=javax.xml.bind.attachment)
 osgi.wiring.package; (osgi.wiring.package=org.apache.james.mime4j.codec)
 212; version=0.6.0
 osgi.wiring.package; (&(osgi.wiring.package=com.google.common.collect)(version>=30.1.0))
-14; version=30.1.1
+12; version=30.1.1
 osgi.wiring.package; (osgi.wiring.package=org.apache.commons.io.output)
-19; version=2.8.0
+17; version=2.8.0
 osgi.wiring.package; (&(osgi.wiring.package=com.orientechnologies.common.concur.lock)(version>=2.2.0))
 224; version=2.2.36
 osgi.wiring.package; (osgi.wiring.package=javax.imageio.stream)
@@ -183,7 +183,7 @@ osgi.wiring.package; (&(osgi.wiring.package=com.google.inject)(version>=1.4.0))
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind)
 152; version=2.11.4
 osgi.wiring.package; (osgi.wiring.package=org.slf4j)
-18; version=1.7.30
+16; version=1.7.30
 osgi.wiring.package; (osgi.wiring.package=org.apache.james.mime4j.parser)
 212; version=0.6.0
 osgi.wiring.package; (osgi.wiring.package=javax.xml.transform.dom)
@@ -193,7 +193,7 @@ osgi.wiring.package; (osgi.wiring.package=javax.ws.rs.ext)
 osgi.wiring.package; (&(osgi.wiring.package=javax.ws.rs.container)(version>=2.0.0))
 206; version=2.0.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.common.log)(version>=3.34.0))
-106; version=3.34.0
+106; version=3.34.1
 osgi.wiring.package; (osgi.wiring.package=org.eclipse.sisu.inject)
 105; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.client)

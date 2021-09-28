@@ -1,7 +1,7 @@
 osgi.wiring.package; (osgi.wiring.package=org.apache.commons.collections.comparators)
 144; version=3.2.2
 osgi.wiring.package; (osgi.wiring.package=org.apache.commons.logging)
-18; version=1.2.0
+16; version=1.2.0
 osgi.wiring.package; (osgi.wiring.package=org.apache.commons.collections.keyvalue)
 144; version=3.2.2
 osgi.ee; (&(osgi.ee=JavaSE)(version=1.6))

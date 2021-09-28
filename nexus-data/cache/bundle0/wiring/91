@@ -1,5 +1,5 @@
 osgi.wiring.package; (osgi.wiring.package=com.google.common.collect)
-14; version=30.1.1
+12; version=30.1.1
 osgi.wiring.package; (osgi.wiring.package=com.github.fge.jackson)
 90; version=1.6.0
 osgi.wiring.package; (osgi.wiring.package=com.github.fge.jackson.jsonpointer)
@@ -27,4 +27,4 @@ osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.core)
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind)
 152; version=2.11.4
 osgi.wiring.package; (osgi.wiring.package=com.google.common.base)
-14; version=30.1.1
+12; version=30.1.1

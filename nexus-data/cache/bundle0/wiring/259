@@ -1,7 +1,7 @@
 osgi.wiring.package; (osgi.wiring.package=com.google.common.collect)
-14; version=30.1.1
+12; version=30.1.1
 osgi.wiring.package; (osgi.wiring.package=com.google.common.net)
-14; version=30.1.1
+12; version=30.1.1
 osgi.wiring.package; (osgi.wiring.package=javax.ws.rs.ext)
 206; version=2.0.1
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind.jsontype)
@@ -25,4 +25,4 @@ osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind.module)
 osgi.wiring.package; (osgi.wiring.package=com.fasterxml.jackson.databind.deser.std)
 152; version=2.11.4
 osgi.wiring.package; (osgi.wiring.package=com.google.common.base)
-14; version=30.1.1
+12; version=30.1.1

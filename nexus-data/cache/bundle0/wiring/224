@@ -9,7 +9,7 @@ osgi.wiring.package; (osgi.wiring.package=javax.annotation.meta)
 osgi.wiring.package; (osgi.wiring.package=javax.security.auth)
 0; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=com.sun.jna)
-29; version=5.4.0
+28; version=5.4.0
 osgi.wiring.package; (osgi.wiring.package=com.orientechnologies.orient.client.remote)
 229; version=2.2.36
 osgi.ee; (&(osgi.ee=JavaSE)(version=1.6.0))
