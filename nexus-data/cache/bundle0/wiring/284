@@ -101,7 +101,7 @@ osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.security.privileg
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.goodies.common)(version>=2.3.0))
 118; version=2.3.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.storage)(version>=3.34.0))
-256; version=3.34.1
+258; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.firewall.event)(version>=3.34.0))
 258; version=3.34.1
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.protocol)

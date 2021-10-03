@@ -7,6 +7,4 @@
   # become_method: sudo
 
   roles:
-    - common
     - word-cloud-generator
-

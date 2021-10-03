@@ -113,11 +113,11 @@ osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.goodies.common)(version
 osgi.wiring.package; (&(osgi.wiring.package=org.eclipse.aether.version)(version>=1.1.0))
 108; version=1.1.0
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.storage)(version>=3.34.0))
-256; version=3.34.1
+258; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.httpclient)(version>=3.34.0))
 260; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.cache)(version>=3.34.0))
-258; version=3.34.1
+256; version=3.34.1
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.protocol)
 81; version=0.0.0
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.message)

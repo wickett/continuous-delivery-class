@@ -1,2 +1,0 @@
-Selenium2Library
-ez_setup

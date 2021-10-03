@@ -35,9 +35,9 @@ osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.blobstore.restore
 osgi.wiring.package; (&(osgi.wiring.package=javax.inject)(version>=1.0.0))
 9; version=1.0.0
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.storage)(version>=3.34.0))
-256; version=3.34.1
-osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.cache)(version>=3.34.0))
 258; version=3.34.1
+osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.cache)(version>=3.34.0))
+256; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=javax.annotation)(version>=1.2.0))
 0; version=1.2.0
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.blobstore.restore)(version>=3.34.0))

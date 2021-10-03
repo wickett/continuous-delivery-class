@@ -40,6 +40,7 @@
 
 - name: Kill running word-cloud-generator
   ansible.builtin.command: killall word-cloud-generator --wait
+  ignore_errors: yes
 
 - name: Start word-cloud-generator 
   ansible.builtin.command:

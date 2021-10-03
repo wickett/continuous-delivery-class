@@ -81,7 +81,7 @@ osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.goodies.common)(version
 osgi.wiring.package; (&(osgi.wiring.package=javax.inject)(version>=1.0.0))
 9; version=1.0.0
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.storage)(version>=3.34.0))
-256; version=3.34.1
+258; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=com.fasterxml.jackson.core)(version>=2.11.0))
 125; version=2.11.4
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.content.search)(version>=3.34.0))

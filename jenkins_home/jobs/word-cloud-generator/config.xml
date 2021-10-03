@@ -51,15 +51,15 @@
   <builders>
     <hudson.tasks.Shell>
       <command>cd src/github.com/wickett/word-cloud-generator
-cat Makefile
+
 export GOPATH=${WORKSPACE}
-export PATH=$PATH:$(go env GOPATH)/bin
-go install github.com/smartystreets/goconvey@latest
-go install golang.org/x/lint/golint@latest
+
 sed -i &quot;s/1.DEVELOPMENT/1.$BUILD_NUMBER/g&quot; ./static/version
 
+make clean 
 make lint
-make
+make test
+make build
 
 md5sum artifacts/*/word-cloud-generator
 cd artifacts/linux

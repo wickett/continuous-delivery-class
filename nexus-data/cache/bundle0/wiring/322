@@ -113,13 +113,13 @@ osgi.wiring.package; (&(osgi.wiring.package=com.orientechnologies.orient.core.ex
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.filter.export)(version>=3.34.0))
 256; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.storage)(version>=3.34.0))
-256; version=3.34.1
+258; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.httpclient)(version>=3.34.0))
 260; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.firewall.event)(version>=3.34.0))
 258; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.cache)(version>=3.34.0))
-258; version=3.34.1
+256; version=3.34.1
 osgi.wiring.package; (osgi.wiring.package=org.apache.http.protocol)
 81; version=0.0.0
 osgi.wiring.package; (&(osgi.wiring.package=org.apache.shiro.mgt)(version>=1.7.0))
@@ -141,7 +141,7 @@ osgi.wiring.package; (osgi.wiring.package=org.apache.http)
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.view.matchers.logic)(version>=3.34.0))
 260; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.importtask)(version>=3.34.0))
-258; version=3.34.1
+256; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.validation)(version>=3.34.0))
 146; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.apache.commons.lang)(version>=2.6.0))

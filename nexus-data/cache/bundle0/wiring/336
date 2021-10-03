@@ -73,13 +73,13 @@ osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.goodies.common)(version
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.filter.export)(version>=3.34.0))
 256; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.storage)(version>=3.34.0))
-256; version=3.34.1
+258; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.yaml.snakeyaml.nodes)(version>=1.28.0))
 215; version=1.28.0
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.httpclient)(version>=3.34.0))
 260; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.repository.cache)(version>=3.34.0))
-258; version=3.34.1
+256; version=3.34.1
 osgi.wiring.package; (&(osgi.wiring.package=com.fasterxml.jackson.dataformat.yaml)(version>=2.11.0))
 214; version=2.11.4
 osgi.wiring.package; (&(osgi.wiring.package=org.sonatype.nexus.transaction)(version>=3.34.0))
