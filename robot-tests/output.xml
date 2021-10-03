@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.1 (Python 3.9.7 on darwin)" generated="20210928 21:35:50.668" rpa="false" schemaversion="2">
+<suite id="s1" name="Robot-Tests" source="/Users/ernestmueller/code/continuous-delivery-class/robot-tests">
+<suite id="s1-s1" name="Version" source="/Users/ernestmueller/code/continuous-delivery-class/robot-tests/version.robot">
+<test id="s1-s1-t1" name="Check Version">
+<kw name="Open Browser To Version Endpoint" library="resources">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${VERSION URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210928 21:35:51.112" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:8888/version'.</msg>
+<status status="PASS" starttime="20210928 21:35:51.112" endtime="20210928 21:35:55.405"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210928 21:35:55.405" endtime="20210928 21:35:55.549"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20210928 21:35:55.549" endtime="20210928 21:35:55.550"/>
+</kw>
+<status status="PASS" starttime="20210928 21:35:51.111" endtime="20210928 21:35:55.550"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>version</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20210928 21:35:57.577" level="INFO">Current page contains text 'version'.</msg>
+<status status="PASS" starttime="20210928 21:35:55.551" endtime="20210928 21:35:57.577"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20210928 21:35:57.578" endtime="20210928 21:35:58.659"/>
+</kw>
+<status status="PASS" starttime="20210928 21:35:51.110" endtime="20210928 21:35:58.659"/>
+</test>
+<doc>Checks the version endpoint</doc>
+<status status="PASS" starttime="20210928 21:35:50.729" endtime="20210928 21:35:58.661"/>
+</suite>
+<suite id="s1-s2" name="Wordcloud" source="/Users/ernestmueller/code/continuous-delivery-class/robot-tests/wordcloud.robot">
+<test id="s1-s2-t1" name="Generate Word Cloud">
+<kw name="Open Browser To Home Page" library="resources">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${HOMEPAGE URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210928 21:35:58.669" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:8888/'.</msg>
+<status status="PASS" starttime="20210928 21:35:58.668" endtime="20210928 21:36:02.913"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210928 21:36:02.914" endtime="20210928 21:36:04.047"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20210928 21:36:04.047" endtime="20210928 21:36:04.048"/>
+</kw>
+<kw name="Home Page Should Be Open" library="resources">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>WordCloud</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20210928 21:36:05.061" level="INFO">Page title is 'WordCloud'.</msg>
+<status status="PASS" starttime="20210928 21:36:04.049" endtime="20210928 21:36:05.062"/>
+</kw>
+<status status="PASS" starttime="20210928 21:36:04.048" endtime="20210928 21:36:05.062"/>
+</kw>
+<status status="PASS" starttime="20210928 21:35:58.668" endtime="20210928 21:36:05.062"/>
+</kw>
+<kw name="Input Word Cloud Text" library="resources">
+<arg>What does the fox say? Ring a ding ding ding ding a ding a ding</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>text</arg>
+<arg>${text}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210928 21:36:05.064" level="INFO">Typing text 'What does the fox say? Ring a ding ding ding ding a ding a ding' into text field 'text'.</msg>
+<status status="PASS" starttime="20210928 21:36:05.063" endtime="20210928 21:36:08.309"/>
+</kw>
+<status status="PASS" starttime="20210928 21:36:05.062" endtime="20210928 21:36:08.309"/>
+</kw>
+<kw name="Submit Word Cloud Text" library="resources">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Submit</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20210928 21:36:08.311" level="INFO">Clicking button 'Submit'.</msg>
+<status status="PASS" starttime="20210928 21:36:08.310" endtime="20210928 21:36:11.385"/>
+</kw>
+<status status="PASS" starttime="20210928 21:36:08.310" endtime="20210928 21:36:11.386"/>
+</kw>
+<kw name="Home Page Should Be Open" library="resources">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>WordCloud</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20210928 21:36:12.396" level="INFO">Page title is 'WordCloud'.</msg>
+<status status="PASS" starttime="20210928 21:36:11.387" endtime="20210928 21:36:12.397"/>
+</kw>
+<status status="PASS" starttime="20210928 21:36:11.386" endtime="20210928 21:36:12.397"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ding</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20210928 21:36:14.420" level="INFO">Current page contains text 'ding'.</msg>
+<status status="PASS" starttime="20210928 21:36:12.397" endtime="20210928 21:36:14.420"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20210928 21:36:14.421" endtime="20210928 21:36:15.491"/>
+</kw>
+<status status="PASS" starttime="20210928 21:35:58.667" endtime="20210928 21:36:15.491"/>
+</test>
+<doc>Generates a word cloud</doc>
+<status status="PASS" starttime="20210928 21:35:58.664" endtime="20210928 21:36:15.492"/>
+</suite>
+<status status="PASS" starttime="20210928 21:35:50.673" endtime="20210928 21:36:15.494"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Robot-Tests">Robot-Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Version">Robot-Tests.Version</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s2" name="Wordcloud">Robot-Tests.Wordcloud</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
