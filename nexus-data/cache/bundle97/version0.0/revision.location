@@ -1,1 +1,0 @@
-wrap:file:system/io/swagger/swagger-jaxrs/1.6.2/swagger-jaxrs-1.6.2.jar$overwrite=merge&Import-Package=com.google.common.*,org.reflections.*;resolution:=optional,*

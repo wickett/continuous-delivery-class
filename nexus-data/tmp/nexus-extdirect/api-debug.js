@@ -257,12 +257,12 @@ NX.direct.api.REMOTING_API = {
     ],
     coreui_Component: [
       {
-        name: 'readAsset'/*(String, String) => org.sonatype.nexus.coreui.AssetXO */,
+        name: 'canDeleteAsset'/*(String, String) => boolean */,
         len: 2,
         formHandler: false
       },
       {
-        name: 'canDeleteAsset'/*(String, String) => boolean */,
+        name: 'readAsset'/*(String, String) => org.sonatype.nexus.coreui.AssetXO */,
         len: 2,
         formHandler: false
       },

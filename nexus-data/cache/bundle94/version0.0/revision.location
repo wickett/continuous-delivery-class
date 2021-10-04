@@ -1,1 +1,0 @@
-wrap:file:system/com/palominolabs/metrics/metrics-guice/3.2.2/metrics-guice-3.2.2.jar$overwrite=merge&Import-Package=com.codahale.metrics*,*

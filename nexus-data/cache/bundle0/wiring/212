@@ -1,6 +1,0 @@
-osgi.wiring.package; (osgi.wiring.package=org.apache.commons.logging)
-16; version=1.2.0
-osgi.wiring.package; (osgi.wiring.package=javax.crypto.spec)
-0; version=0.0.0
-osgi.wiring.package; (osgi.wiring.package=javax.crypto)
-0; version=0.0.0

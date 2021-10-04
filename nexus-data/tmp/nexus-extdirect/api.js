@@ -248,12 +248,12 @@ NX.direct.api.REMOTING_API = {
     ],
     coreui_Component: [
       {
-        name: 'readAsset',
+        name: 'canDeleteAsset',
         len: 2,
         formHandler: false
       },
       {
-        name: 'canDeleteAsset',
+        name: 'readAsset',
         len: 2,
         formHandler: false
       },
