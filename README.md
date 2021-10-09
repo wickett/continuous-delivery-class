@@ -167,3 +167,25 @@ It makes a nexus-data directory mounted from the container for persistence.
 
 Go to settings/Repositories, add a raw (hosted) one called word-cloud-generator.  Then a raw (group) containing it called cd_class.
 
+## References
+* Docker Desktop - https://www.docker.com/products/docker-desktop
+* Docker Docs - https://docs.docker.com/reference/
+* Docker Compose Overview - https://docs.docker.com/compose/
+* Jenkins Docs - https://www.jenkins.io/doc/
+* Jenkins on Dockerhub - https://hub.docker.com/r/jenkins/jenkins
+* Jenkins Plugins - https://plugins.jenkins.io/
+* Advanced Jenkins Tuning - https://docs.cloudbees.com/docs/admin-resources/latest/jvm-troubleshooting/#recommended-options
+* Diagnosing Jenkins Errors - https://www.jenkins.io/doc/book/system-administration/diagnosing-errors/
+* Using Jenkins Credentials - https://www.jenkins.io/doc/book/using/using-credentials/
+* Jenkins SSH Credential Plugin - https://plugins.jenkins.io/ssh-credentials/
+* Jenkins Pipelines - https://www.jenkins.io/doc/book/pipeline/
+* Nexus Artifact Uploader Jenkins Plugin - https://plugins.jenkins.io/nexus-artifact-uploader/
+* Ansible Jenkins Plugin - https://plugins.jenkins.io/ansible/
+* Ansible Examples - https://github.com/ansible/ansible-examples
+* A Developer's Guide To Getting Started in Ansible - https://www.redhat.com/en/blog/developers-shortcut-getting-started-ansible
+* Integrating Ansible with a CI/CD Process - https://www.redhat.com/en/blog/integrating-ansible-jenkins-cicd-process
+* Nexus 3 Docs - https://help.sonatype.com/repomanager3
+* Nexus 3 on Dockerhub - https://hub.docker.com/r/sonatype/nexus3
+* Check your YAML - https://yamlchecker.com/
+* Creating Python venvs - https://docs.python.org/3/library/venv.html
+* Daemonize - https://software.clapper.org/daemonize/daemonize.html
