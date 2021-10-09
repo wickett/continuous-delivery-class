@@ -1,6 +1,0 @@
----
-- name: Start service
-  systemd:
-    name: wordcloud
-    state: started
-    enabled: yes

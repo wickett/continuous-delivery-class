@@ -5,7 +5,7 @@ This course covers a wide range of topics from version control with git to CI wi
 ## Prerequisites
 
 Install Docker Desktop from https://www.docker.com/
-You will need to allocate at least 4 GB of RAM to Docker to run all these containers (Preferences... Resources).
+You will need to allocate at least 4 GB of RAM to Docker to run all these containers (Preferences... Resources). More is better.
 
 ## Version Control in Action with git
 * Install homebrew from https://brew.sh
@@ -22,29 +22,44 @@ You will need to allocate at least 4 GB of RAM to Docker to run all these contai
 This video assumes you setup a github account and added appropriate keys.  
 When you do the git clone of https://github.com/wickett/word-cloud-generator it is important to put that in $GOPATH/src/github.com/wickett/word-cloud-generator
 
-## CI in Action with Jenkins And Following
+## Continuous Integration in Action And Artifacts In Action
 
-You will want to run this for all the labs that use the actual build pipeline.
+These commands will help you with all the labs that use the actual build pipeline.
 
 ### To run it all - jenkins, nexus, and the test fixture containers together
 
-Run the following docker-compose command in the course directory (in the same directory as the docker-compose.yml file, which it uses):
+First, make sure you have Docker running.
+
+Then, run the following docker-compose command in the course directory (in the same directory as the docker-compose.yml file, which it uses):
 
 `docker-compose up --build -d`
 
 and it will build and run the jenkins and nexus and test_fixture containers and hook them up together.
+
 Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/theagileadmin).  
-You can view details with 
+You can view details with:
 
 `docker-compose ps`
 
 Now you can log into Jenkins, run a build of word-cloud-generator in jenkins and watch it build, unit test, package, and show up in nexus at cd_class/word-cloud-generator.
+
+If you need to enter one of the containers to poke around on the command line to debug, get the container name from docker-compose ps and then:
+
+`docker exec -it <mycontainer> bash`
 
 ### Turning it all off
 
 To stop all the containers and delete them and the volumes, again in the top of the course directory run:
 
 `docker-compose down -v`
+
+When you are done with the course, or if you just want to clean everything off including docker images you've built and volumes and other things Docker makes behind the scenes, instead run
+
+`docker-compose down -v --rmi all --remove-orphans`
+and then
+`docker system prune --all --volumes`
+
+Warning, doing the docker system prune will get rid of all stopped containers, unused networks, dangling images, build cache, and unassigned volumes on your box. Be more surgical if you have other docker work you don't want to interfere with. 
 
 ## Unit Testing in Action
 * Install homebrew from https://brew.sh
@@ -59,58 +74,62 @@ To stop all the containers and delete them and the volumes, again in the top of 
 * Install rice: `go get github.com/GeertJohan/go.rice/rice`
 * Optional, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
 
-## Deployment in Action with Chef
-### To deploy 
+## Deployment in Action
+### To look inside the test fixture
 
-With the provided test fixture, update word-cloud-generator.json to have whatever version number you want to deploy, and then run
+Unusually for a docker container, we've put ssh on the test fixture container so it better simulates a running deployment target.  When the docker compose stack is running, you can log into it with:
 
-`ssh root@localhost "cd /chef-repo; chef-solo -c solo.rb -j word-cloud-generator.json"`
+`ssh root@localhost`
 
-with the password `theagileadmin` to ssh into the fixture and run the chef recipe to pull the version of the app specified in word-cloud-generator.json from nexus and install and run it. It should respond to a curl now.
-
-## Integration Testing in Action with abao
-### To run integration testing with abao and RAML
-
-To build the abao test container, cd to ./raml-files and 
-
-```docker build -t abao:latest .```
-
-To run it with just the RAML, run 
-
-```docker run -v ${PWD}:/raml --net="host" --rm abao wordcloud.raml --server http://localhost:8888```
-
-To run it with a hookfile, run 
-
-```docker run -v ${PWD}:/raml --net="host" --rm abao wordcloud.raml --hookfiles wordcloudhook.js```
+with the password `theagileadmin`.
 
 ## UI Testing in Action with Robot
 
 ### Prerequisites
 
-Install python (brew install python) and Google Chrome.
-The included venv may or may not work - you can create your own by removing the venv directory and then
-```
-pip install virtualenv
-sudo /usr/bin/easy_install virtualenv
-cd robot-tests
-virtualenv venv
-source ./venv/bin/activate
-pip install robotframework
-pip install robotframework-selenium2library
-pip install chromedriver-installer
-deactivate
-```
+Install python3 (`brew install python3` on the Mac) and Google Chrome.
 
-### To run UI testing with Robot Framework and Selenium
 
-Then you just
-
+To activate the included virtual environment, from the course files directory:
 ```
-cd /robot-tests
+cd robot_tests
 source venv/bin/activate
+```
+
+Run `robot --version` to ensure it's working.
+
+Then you have to install the right chrome driver for your system, which you can do with the inncluded webdrivermanager:
+
+```
+cd venv/bin
+webdrivermanager chrome -d chrome -l . 
+```
+
+Run `chromedriver --version` to ensure it's working.
+
+### To run UI tests with Robot Framework and Selenium in Chrome
+
+Then you can run the robot tests back from the top of the robot-tests directory with
+```
+cd ../..
 robot .
 ```
-And your browser will pop up and run the tests!  Just type "deactivate" to exit the virtualenv.
+
+and your Chrome browser should pop up and run the tests!  Just run `deactivate` to exit the python virtual environment when you're done. Logs and errors will appear in the robot-tests directory.
+
+The included venv should work, but if it doesn't you can create one yourself by doing:
+```
+rm -rf venv
+brew upgrade python3
+python3 -m venv venv
+source venv/bin/activate
+cd venv/bin
+pip install robotframework
+pip install --upgrade robotframework-seleniumlibrary
+pip install webdrivermanager
+webdrivermanager chrome -d chrome -l .
+deactivate
+```
 
 ## Security Testing in Action with gauntlt
 * Install homebrew from https://brew.sh
@@ -120,32 +139,6 @@ And your browser will pop up and run the tests!  Just type "deactivate" to exit 
 * Add `127.0.0.1 wordcloud` to `/etc/hosts`
 
 # Advanced Topics
-
-## Problems with running docker commands from inside jenkins docker container
-
-If some of your stages die with
-```
-Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.30/containers/json?all=1: dial unix /var/run/docker.sock: connect: permission denied.  
-
-```
-We're using the technique in http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/ to run other docker containers from our Jenkins container.
-Unfortunately this is an area where there's not a consistent solution across platforms.  The container needs to be able to read/write /var/run/docker.sock to run docker commands. 
-On the Mac, that is symlinked to a file that is usually owned by group "staff", so adding the jenkins user to "staff" in the dockerfile does the trick.
-On other systems, you may need to see what the host thinks /var/run/docker.sock's permissions are and modify the container to fit.
-
-## To run just the jenkins docker container
-
-Build this container with
-
-`docker image build --tag cd_jenkins .`
-
-Then in the directory above jenkins_home:
-
-`docker run -d -p 8080:8080 -p 50000:50000 -v $PWD/jenkins_home:/var/jenkins_home --name myjenkins cd_jenkins`
-
-This will download the Jenkins docker container (https://hub.docker.com/_/jenkins/) and run it mounting $PWD/jenkins_home as its work directory.  
-
-Go to http://localhost:8080 in your browser and use username admin password theagileadmin to get access.  A sample go build for word-cloud-generator will be already set up in there.
 
 ## Rolling Your Own Jenkins
 
@@ -157,12 +150,12 @@ The first time it performs setup - it'll give you a starter password, saying:
 Please use the following password to proceed to installation:"`
 
 Go to http://localhost:8080 in your browser to enter the password and perform default setup, including the recommended plugins.
-Then add the Go plugin (https://wiki.jenkins-ci.org/display/JENKINS/Go+Plugin) from the Plugin Manager (http://localhost:8080/pluginManager/).  Also the Nexus Artifact Uploader plugin (https://wiki.jenkins-ci.org/display/JENKINS/Nexus+Artifact+Uploader).
+Then add the Go plugin (https://wiki.jenkins-ci.org/display/JENKINS/Go+Plugin) from the Plugin Manager (http://localhost:8080/pluginManager/).  Also the Nexus Artifact Uploader plugin (https://wiki.jenkins-ci.org/display/JENKINS/Nexus+Artifact+Uploader) and the Ansible plugin.  You will need to configure credentials, ssh for the test fixture and user/pass for Nexus, if you're using them.
 
 Go to the Global Tool Configuration (http://localhost:8080/configureTools/) and go to the Go section and add a go installation.  Call it something with the version in it like
-"go 1.8.3".
+"go <version>".
 
-To restart jenkins, hit http://localhost:8080/safeRestart.  Or you can `docker stop myjenkins`.
+To restart jenkins, hit http://localhost:8080/safeRestart. 
 
 ## Running just Nexus
 
@@ -170,30 +163,7 @@ We'll use nexus as our artifact repository just by using its stock docker image 
 
 Just `docker run -d -p 8081:8081 -v $PWD/nexus-data:/nexus-data --name nexus sonatype/nexus3` and then go to http://localhost:8081 in your browser. Use the default creds of admin/admin123 to log in.
 
-It makes a nexus_data directory mounted from the container for persistence.
+It makes a nexus-data directory mounted from the container for persistence.
 
 Go to settings/Repositories, add a raw (hosted) one called word-cloud-generator.  Then a raw (group) containing it called cd_class.
-
-## Preparing the Test Fixture
-
-The steps I used to set up this test fixture, for the curious:
-```
-curl -L https://www.opscode.com/chef/install.sh | bash
-chef-solo -v
-wget http://github.com/opscode/chef-repo/tarball/master
-tar -zxf master
-mv chef-boneyard-chef* chef-repo
-cd chef-repo
-mkdir .chef
-echo "cookbook_path [ '/chef-repo/cookbooks' ]" > .chef/knife.rb
-wget https://packages.chef.io/files/stable/chefdk/1.5.0/ubuntu/16.04/chefdk_1.5.0-1_amd64.deb
-dpkg -i chefdk_1.5.0-1_amd64.deb
-chef generate cookbook word-cloud-generator (put in cookbooks)
-knife cookbook site download poise (gunzip and put in cookbooks)
-knife cookbook site download poise-service (gunzip and put in cookbooks)
-```
-
-
-
-
 
