@@ -22,14 +22,6 @@ services:
   test_fixture:
     build: ./test_fixture
     image: test_fixture:latest
-    volumes:
-          - ./chef-repo:/chef-repo
     ports:
       - "8888:8888"
       - "22:22"
-volumes:
-  robottests:
-    driver_opts:
-          type: none
-          device: $PWD/robot-tests
-          o: bind
