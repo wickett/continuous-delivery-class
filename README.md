@@ -14,12 +14,10 @@ You will need to allocate at least 4 GB of RAM to Docker to run all these contai
 * Install git via `brew install git`
 * Set $GOPATH `export GOPATH="${HOME}/go"` in `~/.bash_profile`
 * Set $PATH `export PATH=$PATH:$(go env GOPATH)/bin` in `~/.bash_profile`
-* Install godep: `go get github.com/tools/godep`
-* Install golint: `go get -u github.com/golang/lint/golint`
 * Install goconvey: `go get github.com/smartystreets/goconvey`
 * Optionally, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
 
-This video assumes you setup a github account and added appropriate keys.  
+This video assumes you setup a github account and added appropriate keys.
 When you do the git clone of https://github.com/wickett/word-cloud-generator it is important to put that in $GOPATH/src/github.com/wickett/word-cloud-generator
 
 ## Continuous Integration in Action And Artifacts In Action
@@ -36,7 +34,7 @@ Then, run the following docker-compose command in the course directory (in the s
 
 and it will build and run the jenkins and nexus and test_fixture containers and hook them up together.
 
-Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/theagileadmin).  
+Jenkins will be available on localhost:8080 (user/pass admin/theagileadmin) and Nexus on localhost:8081 (user/pass admin/theagileadmin).
 You can view details with:
 
 `docker-compose ps`
@@ -68,10 +66,7 @@ Warning, doing the docker system prune will get rid of all stopped containers, u
 * Install go via `brew install git`
 * Set $GOPATH `export GOPATH="${HOME}/go"` in `~/.bash_profile`
 * Set $PATH `export PATH=$PATH:$(go env GOPATH)/bin` in `~/.bash_profile`
-* Install godep: `go get github.com/tools/godep`
-* Install golint: `go get -u github.com/golang/lint/golint`
 * Install goconvey: `go get github.com/smartystreets/goconvey`
-* Install rice: `go get github.com/GeertJohan/go.rice/rice`
 * Optional, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
 
 ## Deployment in Action
@@ -136,7 +131,6 @@ deactivate
 * Install Docker for Mac from https://docs.docker.com/docker-for-mac/install/
 * Install node and npm with `brew install node`
 * Install wget `brew install wget`
-* Add `127.0.0.1 wordcloud` to `/etc/hosts`
 
 # Advanced Topics
 
