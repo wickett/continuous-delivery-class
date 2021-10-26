@@ -2,6 +2,8 @@
 
 This course covers a wide range of topics from version control with git to CI with Jenkins to testing tools. Some of our environment runs in docker and some on the local machine to simulate development. For each video, we have included some setup instructions and dependencies needed.  The instructions below assume a Mac, however finding a Windows equivalent is often possible. The goal of the course is not to teach you everything about how to set up these tools, the lab is intended to illustrate the core continuous delivery principles with tangible working code.
 
+These course materials are also available at https://github.com/wickett/continuous-delivery-class, feel free and contribute fixes there.
+
 ## Prerequisites
 
 Install Docker Desktop from https://www.docker.com/
