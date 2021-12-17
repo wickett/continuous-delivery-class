@@ -4,6 +4,8 @@ This course covers a wide range of topics from version control with git to CI wi
 
 These course materials are also available at https://github.com/wickett/continuous-delivery-class, feel free and contribute fixes there.
 
+The sample app used throughout the course is NOT included in these files or repo. The application is available at https://github.com/wickett/word-cloud-generator
+
 ## Getting Started
 
 For each of the videos in the class that have hands-on working with the code, we have included instructions on how to get it working on your machine. Of course, over time, these instructions might become outdated (we do accept pull requests!), but the goal of the class is to give you examples of how it could work for your organization in a descriptive way, not a prescriptive way.  
@@ -14,6 +16,9 @@ As you go through each video segment, you can follow along on your own if you fo
 
 Install Docker Desktop from https://www.docker.com/
 You will need to allocate at least 4 GB of RAM to Docker to run all these containers (Preferences... Resources). More is better.
+
+## Using Windows?
+If you are using Windows, please install the Windows Subsystem for Linux (https://docs.microsoft.com/en-us/windows/wsl/install) and you should be able to follow along with the class.
 
 ## Version Control in Action with git
 * Install homebrew from https://brew.sh
