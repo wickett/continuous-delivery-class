@@ -1,163 +1,85 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.jenkins-ci.plugins</groupId>
-    <artifactId>plugin</artifactId>
-    <version>2.19</version>
-  </parent>
-
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>ansible</artifactId>
-  <version>1.1</version>
+  <version>403.v8d0ca_dcb_b_502</version>
   <packaging>hpi</packaging>
   <name>Jenkins Ansible plugin</name>
   <description>Ansible support in Jenkins</description>
-  <url>https://wiki.jenkins-ci.org/display/JENKINS/Ansible+Plugin</url>
-
+  <inceptionYear>2016</inceptionYear>
   <licenses>
     <license>
-      <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
+      <name>MIT License</name>
+      <url>https://opensource.org/license/mit/</url>
     </license>
   </licenses>
-
-  <developers>
-    <developer>
-      <id>jcsirot</id>
-      <name>Jean-Christophe Sirot</name>
-      <email>sirot@chelonix.com</email>
-    </developer>
-  </developers>
-
   <scm>
-    <connection>scm:git:ssh://github.com/jenkinsci/ansible-plugin.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/ansible-plugin.git</developerConnection>
-    <url>https://github.com/jcsirot/ansible-plugin</url>
-    <tag>ansible-1.1</tag>
+    <connection>scm:git:https://github.com/jenkinsci/ansible-plugin.git</connection>
+    <developerConnection>scm:git:https@github.com:jenkinsci/ansible-plugin.git</developerConnection>
+    <tag>8d0cadcbb5022b8dfaf2b158b5a9720ad5df62a5</tag>
+    <url>https://github.com/jenkinsci/ansible-plugin</url>
   </scm>
-
-  <repositories>
+  <distributionManagement>
     <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/releases/</url>
     </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
   <dependencies>
+    <dependency>
+      <groupId>org.jenkins-ci</groupId>
+      <artifactId>symbol-annotation</artifactId>
+      <version>1.24</version>
+      <scope>compile</scope>
+      <optional>true</optional>
+    </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>credentials</artifactId>
-      <version>${credentials.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>ssh-credentials</artifactId>
-      <version>${ssh-credentials.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>plain-credentials</artifactId>
-      <version>${plain-credentials.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-step-api</artifactId>
-      <version>${workflow-step-api.version}</version>
-      <optional>true</optional>
+      <version>1337.v60b_d7b_c7b_c9f</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>job-dsl</artifactId>
-      <version>${job-dsl.version}</version>
+      <version>1.87</version>
+      <scope>compile</scope>
       <optional>true</optional>
     </dependency>
-    <!-- Test -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>plain-credentials</artifactId>
+      <version>182.v468b_97b_9dcb_8</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>${assertj.version}</version>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>ssh-credentials</artifactId>
+      <version>337.v395d2403ccd4</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>${mockito.version}</version>
-      <scope>test</scope>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-step-api</artifactId>
+      <version>657.v03b_e8115821b_</version>
+      <scope>compile</scope>
+      <optional>true</optional>
     </dependency>
   </dependencies>
-
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>${maven-compiler-plugin.version}</version>
-          <configuration>
-	          <encoding>${project.build.sourceEncoding}</encoding>
-            <source>1.6</source>
-            <target>1.6</target>
-          </configuration>
-        </plugin>
-	      <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>${maven-resources-plugin.version}</version>
-          <configuration>
-            <encoding>${project.build.sourceEncoding}</encoding>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>${maven-release-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.commons</groupId>
-          <artifactId>commons-lang3</artifactId>
-          <version>${commons-lang.version.version}</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
+        <version>3.55</version>
         <extensions>true</extensions>
-        <configuration>
-          <compatibleSinceVersion>1.0</compatibleSinceVersion>
-        </configuration>
       </plugin>
     </plugins>
   </build>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jenkins.version>1.609.1</jenkins.version>
-    <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
-    <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
-    <maven-release-plugin.version>2.5.2</maven-release-plugin.version>
-    <ssh-credentials.version>1.10</ssh-credentials.version>
-    <plain-credentials.version>1.4</plain-credentials.version>
-    <credentials.version>2.1.0</credentials.version>
-    <workflow-step-api.version>1.10</workflow-step-api.version>
-    <junit.version>4.12</junit.version>
-    <mockito.version>1.10.19</mockito.version>
-    <assertj.version>1.7.1</assertj.version>
-    <commons-lang.version>3.4</commons-lang.version>
-    <job-dsl.version>1.36</job-dsl.version>
-  </properties>
-
 </project>

@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Mina SSHD API :: Common
+Specification-Version: 2.14
+Implementation-Title: Mina SSHD API :: Common
+Implementation-Version: 2.14.0-133.vcc091215a_358
+Plugin-Class: io.jenkins.plugins.mina_sshd_api.core.bouncycastle_regista
+ r.FIPSRegistarInitPlugin
+Group-Id: io.jenkins.plugins.mina-sshd-api
+Artifact-Id: mina-sshd-api-common
+Short-Name: mina-sshd-api-common
+Long-Name: Mina SSHD API :: Common
+Url: https://github.com/jenkinsci/mina-sshd-api-plugin
+Plugin-Version: 2.14.0-133.vcc091215a_358
+Hudson-Version: 2.426.3
+Jenkins-Version: 2.426.3
+Plugin-Dependencies: eddsa-api:0.3.0-4.v84c6f0f4969e;resolution:=optiona
+ l,bouncycastle-api:2.30.1.78.1-248.ve27176eb_46cb_;resolution:=optional
+Plugin-Developers: Allan Burdajewicz:allan_burdajewicz:allan.burdajewicz
+ @gmail.com
+Support-Dynamic-Loading: true
+Plugin-License-Name: The MIT license
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/mina-sshd-api
+ -plugin.git
+Plugin-ScmTag: cc091215a3584d5f8fb3988b1d856e722e91059d
+Plugin-ScmUrl: https://github.com/jenkinsci/mina-sshd-api-plugin
+Plugin-GitHash: cc091215a3584d5f8fb3988b1d856e722e91059d
+Implementation-Build: cc091215a3584d5f8fb3988b1d856e722e91059d
+

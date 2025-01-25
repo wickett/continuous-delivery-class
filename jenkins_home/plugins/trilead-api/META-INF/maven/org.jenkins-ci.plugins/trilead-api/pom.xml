@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>trilead-api</artifactId>
-  <version>1.0.13</version>
+  <version>2.147.vb_73cc728a_32e</version>
   <packaging>hpi</packaging>
   <name>Trilead API Plugin</name>
   <description>This plugin provides access to Trilead without having to bundle Trilead in Jenkins core</description>
@@ -30,9 +30,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/trilead-api-plugin.git</connection>
+    <connection>scm:git:https://github.com/jenkinsci/trilead-api-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/trilead-api-plugin.git</developerConnection>
-    <tag>trilead-api-1.0.13</tag>
+    <tag>b73cc728a32ed12df404feda4397a618b5dc951b</tag>
     <url>https://github.com/jenkinsci/trilead-api-plugin</url>
   </scm>
   <distributionManagement>
@@ -49,8 +49,18 @@
     <dependency>
       <groupId>org.jenkins-ci</groupId>
       <artifactId>trilead-ssh2</artifactId>
-      <version>build-217-jenkins-27</version>
+      <version>build-217-jenkins-274.276.v58da_75159cb_7</version>
       <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>net.i2p.crypto</groupId>
+          <artifactId>eddsa</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.kohsuke</groupId>
@@ -59,81 +69,30 @@
       <scope>compile</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.jenkins-ci</groupId>
           <artifactId>trilead-ssh2</artifactId>
-          <groupId>org.jenkins-ci</groupId>
         </exclusion>
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <version>2.204</version>
-      <scope>provided</scope>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>gson-api</artifactId>
+      <version>2.10.1-15.v0d99f670e0a_7</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>3.1.11</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <version>1.18</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <version>1.14</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>annotation-indexer</artifactId>
-          <groupId>org.jenkins-ci</groupId>
-        </exclusion>
-      </exclusions>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>eddsa-api</artifactId>
+      <version>0.3.0-4.v84c6f0f4969e</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.15</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke.stapler</groupId>
-        <artifactId>maven-stapler-plugin</artifactId>
-        <version>1.17</version>
+        <version>3.55</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

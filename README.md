@@ -18,7 +18,8 @@ Install Docker Desktop from https://www.docker.com/
 You will need to allocate at least 4 GB of RAM to Docker to run all these containers (Preferences... Resources). More is better.
 
 ## Using Windows?
-If you are using Windows, please install the Windows Subsystem for Linux (https://docs.microsoft.com/en-us/windows/wsl/install) and you should be able to follow along with the class.
+If you are using Windows, please install the Windows Subsystem for Linux (https://learn.microsoft.com/en-us/windows/wsl/install) and you should be able to follow along with the class. The lab was tested under WSL 2 using Ubuntu 24 on Windows 11. This HOWTO on setting up a WSL development environment may be helpful (https://learn.microsoft.com/en-us/windows/wsl/setup/environment).
+See https://docs.docker.com/desktop/setup/install/windows-install/ and https://docs.docker.com/desktop/features/wsl/ on setting up docker under WSL2.
 
 ## Version Control in Action with git
 * Install homebrew from https://brew.sh
@@ -31,9 +32,13 @@ If you are using Windows, please install the Windows Subsystem for Linux (https:
 * Optionally, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
 
 This video assumes you setup a github account and added appropriate keys.
+Follow https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh on how to do that.
+
 When you do the git clone of https://github.com/wickett/word-cloud-generator it is important to put that in $GOPATH/src/github.com/wickett/word-cloud-generator
 
 ## Continuous Integration in Action And Artifacts In Action
+
+This lab pulls the latest version of Jenkins and ansible but it was last tested using jenkins/jenkins:2.494-jdk21 and sonatype/nexus3:3.76.1.  If you are having problems, try downgrading to those versions by explicitly specifying then in the Dockerfiles.
 
 These commands will help you with all the labs that use the actual build pipeline.
 

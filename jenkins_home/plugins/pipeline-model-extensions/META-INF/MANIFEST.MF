@@ -1,29 +1,31 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: bitwiseman
-Build-Jdk: 1.8.0_292
-Extension-Name: pipeline-model-extensions
-Specification-Title: APIs for extension points used in Declarative Pip
- elines
-Implementation-Title: pipeline-model-extensions
-Implementation-Version: 1.8.5
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Pipeline: Declarative Extension Points API
+Specification-Version: 0.0
+Implementation-Title: Pipeline: Declarative Extension Points API
+Implementation-Version: 2.2218.v56d0cda_37c72
 Group-Id: org.jenkinsci.plugins
+Artifact-Id: pipeline-model-extensions
 Short-Name: pipeline-model-extensions
 Long-Name: Pipeline: Declarative Extension Points API
 Url: https://github.com/jenkinsci/pipeline-model-definition-plugin
 Compatible-Since-Version: 1.2-beta-4
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.8.5
-Hudson-Version: 2.190.3
-Jenkins-Version: 2.190.3
-Plugin-Dependencies: workflow-cps:2.83,workflow-job:2.40,credentials-b
- inding:1.24,credentials:2.3.11,pipeline-stage-step:2.3,pipeline-model
- -api:1.8.5
+Plugin-Version: 2.2218.v56d0cda_37c72
+Hudson-Version: 2.426.3
+Jenkins-Version: 2.426.3
+Plugin-Dependencies: workflow-cps:3961.ve48ee2c44a_b_3,workflow-job:1385
+ .vb_58b_86ea_fff1,credentials-binding:677.vdc9d38cb_254d,credentials:13
+ 37.v60b_d7b_c7b_c9f,pipeline-stage-step:312.v8cd10304c27a_,pipeline-mod
+ el-api:2.2218.v56d0cda_37c72
 Plugin-Developers: Andrew Bayer:abayer:
-Support-Dynamic-Loading: true
 Plugin-License-Name: MIT
-Plugin-License-Url: http://opensource.org/licenses/MIT
-Plugin-ScmUrl: https://github.com/jenkinsci/pipeline-model-definition-
- plugin
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/pipeline-mode
+ l-definition-plugin.git
+Plugin-ScmTag: 56d0cda37c726c9405c7f24f0fece00672439068
+Plugin-ScmUrl: https://github.com/jenkinsci/pipeline-model-definition-pl
+ ugin
+Plugin-GitHash: 56d0cda37c726c9405c7f24f0fece00672439068
+Implementation-Build: 56d0cda37c726c9405c7f24f0fece00672439068
 

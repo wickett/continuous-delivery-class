@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Joda Time API Plugin
+Specification-Version: 2.13
+Implementation-Title: Joda Time API Plugin
+Implementation-Version: 2.13.0-93.v9934da_29b_a_e9
+Group-Id: io.jenkins.plugins
+Artifact-Id: joda-time-api
+Short-Name: joda-time-api
+Long-Name: Joda Time API Plugin
+Url: https://github.com/jenkinsci/joda-time-api-plugin
+Plugin-Version: 2.13.0-93.v9934da_29b_a_e9
+Hudson-Version: 2.452.4
+Jenkins-Version: 2.452.4
+Plugin-Developers: 
+Support-Dynamic-Loading: true
+Plugin-License-Name: Apache License 2.0
+Plugin-License-Url: https://www.apache.org/licenses/LICENSE-2.0
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/joda-time-api
+ -plugin
+Plugin-ScmTag: 9934da29bae968e6cff3dc02c37b5e8c310e7c7b
+Plugin-ScmUrl: https://github.com/jenkinsci/joda-time-api-plugin
+Plugin-GitHash: 9934da29bae968e6cff3dc02c37b5e8c310e7c7b
+Implementation-Build: 9934da29bae968e6cff3dc02c37b5e8c310e7c7b
+

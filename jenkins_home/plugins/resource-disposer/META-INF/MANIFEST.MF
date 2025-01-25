@@ -1,24 +1,25 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: basil
-Build-Jdk: 1.8.0_292
-Extension-Name: resource-disposer
-Specification-Title: Dispose resources asynchronously. Utility plugin 
- for resources that require more retries or take a long time to delete.
-Implementation-Title: resource-disposer
-Implementation-Version: 0.16
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Resource Disposer Plugin
+Specification-Version: 0.25
+Implementation-Title: Resource Disposer Plugin
+Implementation-Version: 0.25
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: resource-disposer
 Short-Name: resource-disposer
 Long-Name: Resource Disposer Plugin
 Url: https://github.com/jenkinsci/resource-disposer-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 0.16
-Hudson-Version: 2.222.1
-Jenkins-Version: 2.222.1
-Plugin-Developers: Basil Crow:basil:me@basilcrow.com,Oliver Gondža:ol
- ivergondza:ogondza@gmail.com
+Plugin-Version: 0.25
+Hudson-Version: 2.479.1
+Jenkins-Version: 2.479.1
+Plugin-Developers: Basil Crow:basil:me@basilcrow.com,Oliver Gondža:oliv
+ ergondza:ogondza@gmail.com
 Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/resource-disp
+ oser-plugin.git
+Plugin-ScmTag: resource-disposer-0.25
 Plugin-ScmUrl: https://github.com/jenkinsci/resource-disposer-plugin
+Implementation-Build: 859cfc389b59e1f3f0c8d54d882ddee63736ed80
 

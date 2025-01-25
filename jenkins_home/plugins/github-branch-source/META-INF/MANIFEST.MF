@@ -1,26 +1,30 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: bitwiseman
-Build-Jdk: 1.8.0_292
-Extension-Name: github-branch-source
-Specification-Title: Multibranch projects and organization folders fro
- m GitHub. Maintained by CloudBees, Inc.
-Implementation-Title: github-branch-source
-Implementation-Version: 2.11.1
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: GitHub Branch Source Plugin
+Specification-Version: 0.0
+Implementation-Title: GitHub Branch Source Plugin
+Implementation-Version: 1807.v50351eb_7dd13
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: github-branch-source
 Short-Name: github-branch-source
 Long-Name: GitHub Branch Source Plugin
 Url: https://github.com/jenkinsci/github-branch-source-plugin
 Compatible-Since-Version: 2.2.0
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.11.1
-Hudson-Version: 2.283
-Jenkins-Version: 2.283
-Plugin-Dependencies: github:1.33.1,jjwt-api:0.11.2-5.143e44951c52,work
- flow-support:3.8,github-api:1.122
+Plugin-Version: 1807.v50351eb_7dd13
+Hudson-Version: 2.440.3
+Jenkins-Version: 2.440.3
+Plugin-Dependencies: github:1.39.0,caffeine-api:3.1.8-133.v17b_1ff2e0599
+ ,ionicons-api:74.v93d5eb_813d5f,jjwt-api:0.11.5-112.ve82dfb_224b_a_d,ok
+ http-api:4.11.0-172.vda_da_1feeb_c6e,workflow-support:920.v59f71ce16f04
+ ,credentials:1371.vfee6b_095f0a_3,github-api:1.321-468.v6a_9f5f2d5a_7e
 Plugin-Developers: 
 Plugin-License-Name: MIT
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/github-branch
+ -source-plugin.git
+Plugin-ScmTag: 50351eb7dd13333d4a9661cc055314015d697314
 Plugin-ScmUrl: https://github.com/jenkinsci/github-branch-source-plugin
+Plugin-GitHash: 50351eb7dd13333d4a9661cc055314015d697314
+Implementation-Build: 50351eb7dd13333d4a9661cc055314015d697314
 

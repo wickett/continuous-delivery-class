@@ -22,67 +22,61 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-
-  <parent>
-    <groupId>org.jenkins-ci.plugins</groupId>
-    <artifactId>plugin</artifactId>
-    <version>2.19</version>
-    <relativePath />
-  </parent>
-
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>pipeline-github-lib</artifactId>
-  <version>1.0</version>
+  <version>61.v629f2cc41d83</version>
   <packaging>hpi</packaging>
-
   <name>Pipeline: GitHub Groovy Libraries</name>
-  <description>Allows Pipeline Groovy libraries to be loaded on the fly from GitHub.</description>
-  <url>https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+GitHub+Library+Plugin</url>
+  <description>The Jenkins Plugins Parent POM Project</description>
+  <url>https://github.com/jenkinsci/pipeline-github-lib-plugin</url>
+  <inceptionYear>2016</inceptionYear>
   <licenses>
     <license>
       <name>MIT License</name>
       <url>https://opensource.org/licenses/MIT</url>
     </license>
   </licenses>
-
-  <scm>
-    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-    <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    <tag>pipeline-github-lib-1.0</tag>
+  <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false">
+    <connection>scm:git:https://github.com/jenkinsci/pipeline-github-lib-plugin</connection>
+    <developerConnection>scm:git:https://github.com/jenkinsci/pipeline-github-lib-plugin</developerConnection>
+    <tag>629f2cc41d8391498c16070cc8835710cc314ff6</tag>
+    <url>https://github.com/jenkinsci/pipeline-github-lib-plugin</url>
   </scm>
-
-  <properties>
-    <jenkins.version>1.642.3</jenkins.version>
-  </properties>
-
-  <repositories>
+  <distributionManagement>
     <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/releases/</url>
     </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
   <dependencies>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>git</artifactId>
-      <version>3.0.2</version>
+      <version>5.0.2</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-cps-global-lib</artifactId>
-      <version>2.5</version>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>pipeline-groovy-lib</artifactId>
+      <version>656.va_a_ceeb_6ffb_f7</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
-
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jenkins-ci.tools</groupId>
+        <artifactId>maven-hpi-plugin</artifactId>
+        <version>3.55</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

@@ -1,25 +1,29 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: danielbeck
-Build-Jdk: 1.8.0_222
-Extension-Name: matrix-auth
-Specification-Title: The Jenkins Plugins Parent POM Project
-Implementation-Title: matrix-auth
-Implementation-Version: 2.6.7
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Matrix Authorization Strategy Plugin
+Specification-Version: 3.2
+Implementation-Title: Matrix Authorization Strategy Plugin
+Implementation-Version: 3.2.3
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: matrix-auth
 Short-Name: matrix-auth
 Long-Name: Matrix Authorization Strategy Plugin
 Url: https://github.com/jenkinsci/matrix-auth-plugin
-Compatible-Since-Version: 2.0
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.6.7
-Hudson-Version: 2.222.1
-Jenkins-Version: 2.222.1
-Plugin-Dependencies: configuration-as-code:1.35;resolution:=optional,c
- loudbees-folder:6.1.0;resolution:=optional
+Compatible-Since-Version: 3.2
+Plugin-Version: 3.2.3
+Hudson-Version: 2.426.3
+Jenkins-Version: 2.426.3
+Plugin-Dependencies: ionicons-api:74.v93d5eb_813d5f,configuration-as-cod
+ e:1836.vccda_4a_122a_a_e;resolution:=optional,cloudbees-folder:6.858.v8
+ 98218f3609d;resolution:=optional
 Plugin-Developers: 
 Plugin-License-Name: MIT
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/matrix-auth-p
+ lugin.git
+Plugin-ScmTag: matrix-auth-3.2.3
 Plugin-ScmUrl: https://github.com/jenkinsci/matrix-auth-plugin
+Plugin-GitHash: 3a30579f6af83c4701bb3f867ba5fc44166658f5
+Implementation-Build: 3a30579f6af83c4701bb3f867ba5fc44166658f5
 

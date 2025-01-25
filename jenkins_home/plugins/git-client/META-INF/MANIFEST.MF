@@ -1,29 +1,32 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: mwaite
-Build-Jdk: 1.8.0_292
-Extension-Name: git-client
-Specification-Title: Utility plugin for Git support in Jenkins
-Implementation-Title: git-client
-Implementation-Version: 3.8.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Jenkins Git client plugin
+Specification-Version: 6.1
+Implementation-Title: Jenkins Git client plugin
+Implementation-Version: 6.1.0
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: git-client
 Short-Name: git-client
 Long-Name: Jenkins Git client plugin
-Url: https://github.com/jenkinsci/git-client-plugin/blob/master/README
- .adoc
-Minimum-Java-Version: 1.8
-Plugin-Version: 3.8.0
-Hudson-Version: 2.263.1
-Jenkins-Version: 2.263.1
-Plugin-Dependencies: configuration-as-code:1.51;resolution:=optional,a
- pache-httpcomponents-client-4-api:4.5.13-1.0,credentials:2.5,jsch:0.1
- .55.2,script-security:1.77,ssh-credentials:1.18.1,structs:1.23,trilea
- d-api:1.0.13
-Plugin-Developers: Mark Waite:markewaite:mark.earl.waite@gmail.com,Rob
- ert Sandell:rsandell:rsandell@cloudbees.com,M Ramon Leon:mramonleon:r
- leon@cloudbees.com,Olivier Lamy:olamy:olamy@apache.org
-Plugin-License-Name: The MIT License (MIT)
+Url: https://github.com/jenkinsci/git-client-plugin
+Plugin-Version: 6.1.0
+Hudson-Version: 2.479
+Jenkins-Version: 2.479
+Plugin-Dependencies: mina-sshd-api-common:2.14.0-131.v04e9b_6b_e0362,min
+ a-sshd-api-core:2.14.0-131.v04e9b_6b_e0362,gson-api:2.11.0-41.v019fcf61
+ 25dc,configuration-as-code:1850.va_a_8c31d3158b_;resolution:=optional,a
+ pache-httpcomponents-client-4-api:4.5.14-208.v438351942757,credentials:
+ 1381.v2c3a_12074da_b_,script-security:1362.v67dc1f0e1b_b_3,ssh-credenti
+ als:343.v884f71d78167,structs:338.v848422169819
+Plugin-Developers: Mark Waite:markewaite:mark.earl.waite@gmail.com,Rober
+ t Sandell:rsandell:rsandell@cloudbees.com,Olivier Lamy:olamy:olamy@apac
+ he.org
+Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/git-client-pl
+ ugin
+Plugin-ScmTag: git-client-6.1.0
 Plugin-ScmUrl: https://github.com/jenkinsci/git-client-plugin
+Implementation-Build: 673e5a8c4df7dcae1efc92b504b0d92ae87d2a48
 

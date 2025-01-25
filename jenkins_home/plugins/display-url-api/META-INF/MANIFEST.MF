@@ -1,23 +1,24 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: olamy
-Build-Jdk: 11.0.11
-Extension-Name: display-url-api
-Specification-Title: Provides the DisplayURLProvider extension point t
- o provide alternate URLs for use in notifications
-Implementation-Title: display-url-api
-Implementation-Version: 2.3.5
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Display URL API
+Specification-Version: 0.0
+Implementation-Title: Display URL API
+Implementation-Version: 2.209.v582ed814ff2f
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: display-url-api
 Short-Name: display-url-api
 Long-Name: Display URL API
 Url: https://github.com/jenkinsci/display-url-api-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.3.5
-Hudson-Version: 2.176.4
-Jenkins-Version: 2.176.4
+Plugin-Version: 2.209.v582ed814ff2f
+Hudson-Version: 2.479
+Jenkins-Version: 2.479
 Plugin-Developers: James Dumay:jdumay:jdumay@cloudbees.com
 Plugin-License-Name: MIT License
-Plugin-License-Url: http://opensource.org/licenses/MIT
-Plugin-ScmUrl: http://github.com/jenkinsci/display-url-api-plugin
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/display-url-a
+ pi-plugin.git
+Plugin-ScmTag: 582ed814ff2f26225176b90c05c940c25a060062
+Plugin-ScmUrl: https://github.com/jenkinsci/display-url-api-plugin
+Implementation-Build: 582ed814ff2f26225176b90c05c940c25a060062
 

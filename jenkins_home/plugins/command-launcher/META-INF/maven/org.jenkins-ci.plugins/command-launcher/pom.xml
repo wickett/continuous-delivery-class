@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>command-launcher</artifactId>
-  <version>1.6</version>
+  <version>116.vd85919c54a_d6</version>
   <packaging>hpi</packaging>
   <name>Command Agent Launcher Plugin</name>
   <description>Allows agents to be launched using a specified command.</description>
@@ -17,9 +17,9 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/command-launcher-plugin.git</connection>
+    <connection>scm:git:https://github.com/jenkinsci/command-launcher-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/command-launcher-plugin.git</developerConnection>
-    <tag>command-launcher-1.6</tag>
+    <tag>d85919c54ad6163e84ea3e8a44281aa5d35579ad</tag>
     <url>https://github.com/jenkinsci/command-launcher-plugin</url>
   </scm>
   <distributionManagement>
@@ -36,79 +36,16 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>script-security</artifactId>
-      <version>1.75</version>
+      <version>1367.vdf2fc45f229c</version>
       <scope>compile</scope>
     </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <version>2.190.3</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>3.1.12</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <version>1.20</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <version>1.14</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>annotation-indexer</artifactId>
-          <groupId>org.jenkins-ci</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.17</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke.stapler</groupId>
-        <artifactId>maven-stapler-plugin</artifactId>
-        <version>1.17</version>
+        <version>3.57</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

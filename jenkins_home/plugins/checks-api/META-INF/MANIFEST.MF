@@ -1,25 +1,29 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: kezhi
-Build-Jdk: 1.8.0_292
-Extension-Name: checks-api
-Specification-Title: Defines an API for Jenkins to publish checks to S
- CM platforms.
-Implementation-Title: checks-api
-Implementation-Version: 1.7.2
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Checks API plugin
+Specification-Version: 2.2
+Implementation-Title: Checks API plugin
+Implementation-Version: 2.2.1
 Group-Id: io.jenkins.plugins
+Artifact-Id: checks-api
 Short-Name: checks-api
 Long-Name: Checks API plugin
 Url: https://github.com/jenkinsci/checks-api-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.7.2
-Hudson-Version: 2.263.1
-Jenkins-Version: 2.263.1
-Plugin-Dependencies: plugin-util-api:2.4.0,workflow-step-api:2.23,work
- flow-support:3.8,display-url-api:2.3.5
+Plugin-Version: 2.2.1
+Hudson-Version: 2.426.3
+Jenkins-Version: 2.426.3
+Plugin-Dependencies: commons-lang3-api:3.14.0-76.vda_5591261cfe,commons-
+ text-api:1.12.0-119.v73ef73f2345d,plugin-util-api:4.1.0,workflow-step-a
+ pi:657.v03b_e8115821b_,workflow-support:907.v6713a_ed8a_573,display-url
+ -api:2.204.vf6fddd8a_8b_e9
 Plugin-Developers: Kezhi Xiong:xiongkezhi:august.xkz@gmail.com
 Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/checks-api-pl
+ ugin.git
+Plugin-ScmTag: v2.2.1
 Plugin-ScmUrl: https://github.com/jenkinsci/checks-api-plugin
+Plugin-GitHash: 636a99d73f8fd36e6f32c2e5ea7522daa64fafae
+Implementation-Build: 636a99d73f8fd36e6f32c2e5ea7522daa64fafae
 

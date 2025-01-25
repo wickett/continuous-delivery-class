@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Hudson-Version: 2.319.1
+Implementation-Title: Commons HttpClient 3.x API
+Long-Name: Commons HttpClient 3.x API
+Implementation-Version: 3.1-3
+Group-Id: io.jenkins.plugins
+Support-Dynamic-Loading: true
+Plugin-License-Name: Apache-2.0
+Specification-Title: Commons HttpClient 3.x API
+Plugin-ScmUrl: https://github.com/jenkinsci/commons-httpclient3-api-pl
+ ugin
+Plugin-Version: 3.1-3
+Jenkins-Version: 2.319.1
+Url: https://github.com/jenkinsci/commons-httpclient3-api-plugin
+Short-Name: commons-httpclient3-api
+Plugin-License-Url: https://opensource.org/licenses/Apache-2.0
+Plugin-Developers: 
+Build-Jdk-Spec: 1.8
+Created-By: Maven Archiver 3.6.0
+Specification-Version: 3.1
+

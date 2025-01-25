@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Ionicons API
+Specification-Version: 0.0
+Implementation-Title: Ionicons API
+Implementation-Version: 74.v93d5eb_813d5f
+Group-Id: io.jenkins.plugins
+Artifact-Id: ionicons-api
+Short-Name: ionicons-api
+Long-Name: Ionicons API
+Url: https://github.com/jenkinsci/ionicons-api-plugin
+Plugin-Version: 74.v93d5eb_813d5f
+Hudson-Version: 2.361.4
+Jenkins-Version: 2.361.4
+Plugin-Developers: Alexander Brandes:NotMyFault:
+Support-Dynamic-Loading: true
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/ionicons-api-
+ plugin
+Plugin-ScmTag: 93d5eb813d5f788438a61867606209a38178a9d2
+Plugin-ScmUrl: https://github.com/jenkinsci/ionicons-api-plugin
+Plugin-GitHash: 93d5eb813d5f788438a61867606209a38178a9d2
+Implementation-Build: 93d5eb813d5f788438a61867606209a38178a9d2
+

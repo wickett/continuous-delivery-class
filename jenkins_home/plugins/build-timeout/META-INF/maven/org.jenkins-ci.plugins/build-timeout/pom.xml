@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-
-  <parent>
-    <groupId>org.jenkins-ci.plugins</groupId>
-    <artifactId>plugin</artifactId>
-    <version>4.1</version>
-  </parent>
-
+  <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>build-timeout</artifactId>
-  <version>1.20</version>
+  <version>1.33</version>
   <packaging>hpi</packaging>
-
   <name>Build Timeout</name>
-  <description>Aborts a build if it's taking too long</description>
+  <description>To terminate a build if it is taking too long</description>
   <url>https://github.com/jenkinsci/build-timeout-plugin</url>
+  <inceptionYear>2016</inceptionYear>
   <licenses>
     <license>
       <name>The MIT License (MIT)</name>
@@ -22,70 +17,51 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/build-timeout-plugin.git</connection>
+    <connection>scm:git:https://github.com/jenkinsci/build-timeout-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/build-timeout-plugin.git</developerConnection>
+    <tag>build-timeout-1.33</tag>
     <url>https://github.com/jenkinsci/build-timeout-plugin</url>
-    <tag>build-timeout-1.20</tag>
   </scm>
-
-  <properties>
-    <jenkins.version>2.222.1</jenkins.version>
-    <java.level>8</java.level>
-    <!-- To be removed once Jenkins.MANAGE permission gets out of beta -->
-    <useBeta>true</useBeta>
-  </properties>
-
+  <distributionManagement>
+    <repository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
   <dependencies>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>json-path-api</artifactId>
+      <version>2.8.0-5.v07cb_a_1ca_738c</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>token-macro</artifactId>
-      <version>1.5.1</version>
+      <version>400.v35420b_922dcb_</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>naginator</artifactId>
-      <version>1.16</version>
+      <version>1.18.2</version>
+      <scope>compile</scope>
       <optional>true</optional>
     </dependency>
-    <dependency>
-      <!-- naginator -->
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>matrix-project</artifactId>
-      <version>1.4</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>junit</artifactId>
-      <version>1.10</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>1.8.5</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.hamcrest</groupId>
-          <artifactId>hamcrest-core</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
   </dependencies>
-
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jenkins-ci.tools</groupId>
+        <artifactId>maven-hpi-plugin</artifactId>
+        <version>3.50</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

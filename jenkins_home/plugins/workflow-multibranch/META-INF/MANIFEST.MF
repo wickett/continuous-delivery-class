@@ -1,27 +1,31 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: carroll
-Build-Jdk: 1.8.0_282
-Extension-Name: workflow-multibranch
-Specification-Title: Enhances Pipeline plugin to handle branches bette
- r by automatically grouping builds from different branches
-Implementation-Title: workflow-multibranch
-Implementation-Version: 2.26
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Pipeline: Multibranch
+Specification-Version: 0.0
+Implementation-Title: Pipeline: Multibranch
+Implementation-Version: 795.ve0cb_1f45ca_9a_
 Group-Id: org.jenkins-ci.plugins.workflow
+Artifact-Id: workflow-multibranch
 Short-Name: workflow-multibranch
 Long-Name: Pipeline: Multibranch
 Url: https://github.com/jenkinsci/workflow-multibranch-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.26
-Hudson-Version: 2.277.4
-Jenkins-Version: 2.277.4
-Plugin-Dependencies: workflow-api:2.45,workflow-cps:2.92,workflow-job:
- 2.41,workflow-scm-step:2.12,workflow-step-api:2.23,workflow-support:3
- .8,branch-api:2.6.4,cloudbees-folder:6.15,scm-api:2.6.4,script-securi
- ty:1.77
+Plugin-Version: 795.ve0cb_1f45ca_9a_
+Hudson-Version: 2.462
+Jenkins-Version: 2.462
+Plugin-Dependencies: ionicons-api:74.v93d5eb_813d5f,workflow-api:1322.v8
+ 57eeeea_9902,workflow-cps:3908.vd6b_b_5a_a_54010,workflow-job:1436.vfa_
+ 244484591f,workflow-scm-step:427.v4ca_6512e7df1,workflow-step-api:678.v
+ 3ee58b_469476,workflow-support:920.v59f71ce16f04,branch-api:2.1178.v969
+ d9eb_c728e,cloudbees-folder:6.942.vb_43318a_156b_2,scm-api:690.vfc8b_54
+ 395023,script-security:1341.va_2819b_414686
 Plugin-Developers: 
 Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/workflow-mult
+ ibranch-plugin.git
+Plugin-ScmTag: e0cb1f45ca9a5a6eea7db490ad8585cd2894be96
 Plugin-ScmUrl: https://github.com/jenkinsci/workflow-multibranch-plugin
+Plugin-GitHash: e0cb1f45ca9a5a6eea7db490ad8585cd2894be96
+Implementation-Build: e0cb1f45ca9a5a6eea7db490ad8585cd2894be96
 

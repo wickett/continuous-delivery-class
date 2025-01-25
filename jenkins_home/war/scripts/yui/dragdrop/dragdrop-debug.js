@@ -245,7 +245,7 @@ YAHOO.util.DragDropMgr = function() {
         locked: false,
 
         /**
-         * Provides additional information about the the current set of
+         * Provides additional information about the current set of
          * interactions.  Can be accessed from the event handlers. It
          * contains the following properties:
          *
@@ -1914,7 +1914,7 @@ YAHOO.util.DragDrop.prototype = {
     primaryButtonOnly: true,
 
     /**
-     * The availabe property is false until the linked dom element is accessible.
+     * The available property is false until the linked dom element is accessible.
      * @property available
      * @type boolean
      */

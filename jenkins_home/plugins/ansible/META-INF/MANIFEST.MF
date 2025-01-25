@@ -1,22 +1,28 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: danielbeck
-Build-Jdk: 1.8.0_222
-Extension-Name: ansible
-Specification-Title: Ansible support in Jenkins
-Implementation-Title: ansible
-Implementation-Version: 1.1
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Jenkins Ansible plugin
+Specification-Version: 0.0
+Implementation-Title: Jenkins Ansible plugin
+Implementation-Version: 403.v8d0ca_dcb_b_502
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: ansible
 Short-Name: ansible
 Long-Name: Jenkins Ansible plugin
-Url: https://wiki.jenkins-ci.org/display/JENKINS/Ansible+Plugin
-Compatible-Since-Version: 1.0
-Plugin-Version: 1.1
-Hudson-Version: 1.609.1
-Jenkins-Version: 1.609.1
-Plugin-Dependencies: workflow-step-api:1.10;resolution:=optional,crede
- ntials:2.1.0,job-dsl:1.36;resolution:=optional,plain-credentials:1.4,
- ssh-credentials:1.10
-Plugin-Developers: Jean-Christophe Sirot:jcsirot:sirot@chelonix.com
+Plugin-Version: 403.v8d0ca_dcb_b_502
+Hudson-Version: 2.440.3
+Jenkins-Version: 2.440.3
+Plugin-Dependencies: workflow-step-api:657.v03b_e8115821b_;resolution:=o
+ ptional,credentials:1337.v60b_d7b_c7b_c9f,job-dsl:1.87;resolution:=opti
+ onal,plain-credentials:182.v468b_97b_9dcb_8,ssh-credentials:337.v395d24
+ 03ccd4
+Plugin-Developers: 
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/license/mit/
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/ansible-plugi
+ n.git
+Plugin-ScmTag: 8d0cadcbb5022b8dfaf2b158b5a9720ad5df62a5
+Plugin-ScmUrl: https://github.com/jenkinsci/ansible-plugin
+Plugin-GitHash: 8d0cadcbb5022b8dfaf2b158b5a9720ad5df62a5
+Implementation-Build: 8d0cadcbb5022b8dfaf2b158b5a9720ad5df62a5
 

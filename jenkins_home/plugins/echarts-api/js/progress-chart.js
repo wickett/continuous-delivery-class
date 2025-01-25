@@ -5,13 +5,14 @@ jQuery3(document).ready(function () {
      */
     function renderProgressChart() {
         /**
-         * Renders a trend chart in the a div using ECharts.
+         * Renders a trend chart in a div using ECharts.
          *
          * @param {String} chartDivId - the ID of the div where the chart should be shown in
          */
         function renderProgressChart(chartDivId) {
-            const chartPlaceHolder = jQuery3("#" + chartDivId);
-            const model = JSON.parse(chartPlaceHolder.attr('data-chart-model'));
+            const chartPlaceHolder = jQuery3("#" + echartsJenkinsApi.escapeMetaCharacters(chartDivId));
+            const themedModel = echartsJenkinsApi.resolveJenkinsColors(chartPlaceHolder.attr('data-chart-model'));
+            const model = JSON.parse(themedModel);
             const title = chartPlaceHolder.attr('data-title');
             const tooltip = chartPlaceHolder.attr('data-tooltip');
             const chartDiv = chartPlaceHolder[0];

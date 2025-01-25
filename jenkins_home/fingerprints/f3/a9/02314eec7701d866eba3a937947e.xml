@@ -1,0 +1,13 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2024-12-11 05:04:10.814 UTC</timestamp>
+  <md5sum>f3a902314eec7701d866eba3a937947e</md5sum>
+  <fileName>Credential id=708708f9-0960-415a-985e-b33cf9c792c3 name=admin/****** (Nexus Upload Creds)</fileName>
+  <usages>
+    <entry>
+      <string>word-cloud-generator-deploy</string>
+      <ranges>2-6</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

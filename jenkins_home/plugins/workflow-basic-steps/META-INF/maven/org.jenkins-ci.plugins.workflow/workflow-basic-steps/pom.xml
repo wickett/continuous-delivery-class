@@ -27,7 +27,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jenkins-ci.plugins.workflow</groupId>
   <artifactId>workflow-basic-steps</artifactId>
-  <version>2.23</version>
+  <version>1058.vcb_fc1e3a_21a_9</version>
   <packaging>hpi</packaging>
   <name>Pipeline: Basic Steps</name>
   <description>The Jenkins Plugins Parent POM Project</description>
@@ -40,9 +40,9 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/workflow-basic-steps-plugin.git</connection>
+    <connection>scm:git:https://github.com/jenkinsci/workflow-basic-steps-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/workflow-basic-steps-plugin.git</developerConnection>
-    <tag>workflow-basic-steps-2.23</tag>
+    <tag>cbfc1e3a21a989db5a1c6537638c6a052dd04d82</tag>
     <url>https://github.com/jenkinsci/workflow-basic-steps-plugin</url>
   </scm>
   <distributionManagement>
@@ -57,111 +57,54 @@
   </distributionManagement>
   <dependencies>
     <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>jakarta-mail-api</artifactId>
+      <version>2.1.3-1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-step-api</artifactId>
-      <version>2.22</version>
+      <version>639.v6eca_cd8c04a_a_</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>mailer</artifactId>
-      <version>1.32</version>
+      <version>448.v5b_97805e3767</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-api</artifactId>
-      <version>2.40</version>
+      <version>1213.v646def1087f9</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>structs</artifactId>
-      <version>1.20</version>
+      <version>324.va_f5d6774f3a_d</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>apache-httpcomponents-client-4-api</artifactId>
-      <version>4.5.10-2.0</version>
+      <version>4.5.14-150.v7a_b_9d17134a_5</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-durable-task-step</artifactId>
-      <version>2.35</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <version>2.263</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>4.1.3</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <version>1.19</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <version>1.16</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>annotation-indexer</artifactId>
-          <groupId>org.jenkins-ci</groupId>
-        </exclusion>
-      </exclusions>
+      <version>1246.v5524618ea_097</version>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.17</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke.stapler</groupId>
-        <artifactId>maven-stapler-plugin</artifactId>
-        <version>1.17</version>
+        <version>3.53</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

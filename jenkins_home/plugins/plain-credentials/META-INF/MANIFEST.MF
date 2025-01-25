@@ -1,24 +1,26 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: jeffret
-Build-Jdk: 1.8.0_161
-Extension-Name: plain-credentials
-Specification-Title: Allows use of plain strings and files as credenti
- als.
-Implementation-Title: plain-credentials
-Implementation-Version: 1.7
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 11
+Specification-Title: Plain Credentials Plugin
+Specification-Version: 0.0
+Implementation-Title: Plain Credentials Plugin
+Implementation-Version: 183.va_de8f1dd5a_2b_
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: plain-credentials
 Short-Name: plain-credentials
 Long-Name: Plain Credentials Plugin
 Url: https://github.com/jenkinsci/plain-credentials-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.7
-Hudson-Version: 2.138.4
-Jenkins-Version: 2.138.4
-Plugin-Dependencies: credentials:2.2.0
+Plugin-Version: 183.va_de8f1dd5a_2b_
+Hudson-Version: 2.426.3
+Jenkins-Version: 2.426.3
+Plugin-Dependencies: credentials:1344.v5a_3f65a_1e173
 Plugin-Developers: 
 Plugin-License-Name: MIT
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/plain-credent
+ ials-plugin.git
+Plugin-ScmTag: ade8f1dd5a2bc69357995fd50baac56d73f80813
 Plugin-ScmUrl: https://github.com/jenkinsci/plain-credentials-plugin
+Plugin-GitHash: ade8f1dd5a2bc69357995fd50baac56d73f80813
+Implementation-Build: ade8f1dd5a2bc69357995fd50baac56d73f80813
 

@@ -4,10 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>credentials-binding</artifactId>
-  <version>1.27</version>
+  <version>687.v619cb_15e923f</version>
   <packaging>hpi</packaging>
   <name>Credentials Binding Plugin</name>
-  <description>Allows credentials to be bound to environment variables for use from miscellaneous build steps.</description>
+  <description>The Jenkins Plugins Parent POM Project</description>
   <url>https://github.com/jenkinsci/credentials-binding-plugin</url>
   <inceptionYear>2016</inceptionYear>
   <licenses>
@@ -16,10 +16,10 @@
       <url>https://opensource.org/licenses/MIT</url>
     </license>
   </licenses>
-  <scm>
-    <connection>scm:git:git://github.com/jenkinsci/credentials-binding-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/credentials-binding-plugin.git</developerConnection>
-    <tag>credentials-binding-1.27</tag>
+  <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false">
+    <connection>scm:git:https://github.com/jenkinsci/credentials-binding-plugin</connection>
+    <developerConnection>scm:git:https://github.com/jenkinsci/credentials-binding-plugin</developerConnection>
+    <tag>619cb15e923f30fce17888f0533091ac9e30e922</tag>
     <url>https://github.com/jenkinsci/credentials-binding-plugin</url>
   </scm>
   <distributionManagement>
@@ -36,103 +36,40 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>credentials</artifactId>
-      <version>2.5</version>
+      <version>1381.v2c3a_12074da_b_</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>plain-credentials</artifactId>
-      <version>1.7</version>
+      <version>183.va_de8f1dd5a_2b_</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-step-api</artifactId>
-      <version>2.23</version>
+      <version>678.v3ee58b_469476</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>structs</artifactId>
-      <version>1.23</version>
+      <version>338.v848422169819</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>ssh-credentials</artifactId>
-      <version>1.18.1</version>
+      <version>343.v884f71d78167</version>
       <scope>compile</scope>
     </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <version>2.235.5</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>3.1.11</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <version>1.20</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <version>1.16</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>annotation-indexer</artifactId>
-          <groupId>org.jenkins-ci</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.17</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke.stapler</groupId>
-        <artifactId>maven-stapler-plugin</artifactId>
-        <version>1.17</version>
+        <version>3.58</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

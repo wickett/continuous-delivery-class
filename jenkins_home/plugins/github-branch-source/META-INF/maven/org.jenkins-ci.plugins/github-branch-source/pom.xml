@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>github-branch-source</artifactId>
-  <version>2.11.1</version>
+  <version>1807.v50351eb_7dd13</version>
   <packaging>hpi</packaging>
   <name>GitHub Branch Source Plugin</name>
   <description>Multibranch projects and organization folders from GitHub. Maintained by CloudBees, Inc.</description>
@@ -17,9 +17,9 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/github-branch-source-plugin.git</connection>
+    <connection>scm:git:https://github.com/jenkinsci/github-branch-source-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/github-branch-source-plugin.git</developerConnection>
-    <tag>github-branch-source-2.11.1</tag>
+    <tag>50351eb7dd13333d4a9661cc055314015d697314</tag>
     <url>https://github.com/jenkinsci/github-branch-source-plugin</url>
   </scm>
   <distributionManagement>
@@ -34,99 +34,60 @@
   </distributionManagement>
   <dependencies>
     <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>github-api</artifactId>
-      <version>1.122</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>com.coravy.hudson.plugins.github</groupId>
       <artifactId>github</artifactId>
-      <version>1.33.1</version>
+      <version>1.39.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-support</artifactId>
-      <version>3.8</version>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>caffeine-api</artifactId>
+      <version>3.1.8-133.v17b_1ff2e0599</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>ionicons-api</artifactId>
+      <version>74.v93d5eb_813d5f</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>jjwt-api</artifactId>
-      <version>0.11.2-5.143e44951c52</version>
+      <version>0.11.5-112.ve82dfb_224b_a_d</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <version>2.283</version>
-      <scope>provided</scope>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>okhttp-api</artifactId>
+      <version>4.11.0-172.vda_da_1feeb_c6e</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>credentials</artifactId>
+      <version>1371.vfee6b_095f0a_3</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>4.2.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>github-api</artifactId>
+      <version>1.321-468.v6a_9f5f2d5a_7e</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <version>1.20</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <version>1.21</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>annotation-indexer</artifactId>
-          <groupId>org.jenkins-ci</groupId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-support</artifactId>
+      <version>920.v59f71ce16f04</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.17</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke.stapler</groupId>
-        <artifactId>maven-stapler-plugin</artifactId>
-        <version>1.17</version>
+        <version>3.57</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

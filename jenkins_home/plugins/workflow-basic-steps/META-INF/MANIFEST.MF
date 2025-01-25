@@ -1,25 +1,29 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: dnusbaum
-Build-Jdk: 1.8.0_161
-Extension-Name: workflow-basic-steps
-Specification-Title: The Jenkins Plugins Parent POM Project
-Implementation-Title: workflow-basic-steps
-Implementation-Version: 2.23
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 11
+Specification-Title: Pipeline: Basic Steps
+Specification-Version: 0.0
+Implementation-Title: Pipeline: Basic Steps
+Implementation-Version: 1058.vcb_fc1e3a_21a_9
 Group-Id: org.jenkins-ci.plugins.workflow
+Artifact-Id: workflow-basic-steps
 Short-Name: workflow-basic-steps
 Long-Name: Pipeline: Basic Steps
 Url: https://github.com/jenkinsci/workflow-basic-steps-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.23
-Hudson-Version: 2.263
-Jenkins-Version: 2.263
-Plugin-Dependencies: workflow-api:2.40,workflow-durable-task-step:2.35
- ,workflow-step-api:2.22,apache-httpcomponents-client-4-api:4.5.10-2.0
- ,mailer:1.32,structs:1.20
+Plugin-Version: 1058.vcb_fc1e3a_21a_9
+Hudson-Version: 2.361.4
+Jenkins-Version: 2.361.4
+Plugin-Dependencies: jakarta-mail-api:2.1.3-1,workflow-api:1213.v646def1
+ 087f9,workflow-durable-task-step:1246.v5524618ea_097,workflow-step-api:
+ 639.v6eca_cd8c04a_a_,apache-httpcomponents-client-4-api:4.5.14-150.v7a_
+ b_9d17134a_5,mailer:448.v5b_97805e3767,structs:324.va_f5d6774f3a_d
 Plugin-Developers: 
 Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/workflow-basi
+ c-steps-plugin.git
+Plugin-ScmTag: cbfc1e3a21a989db5a1c6537638c6a052dd04d82
 Plugin-ScmUrl: https://github.com/jenkinsci/workflow-basic-steps-plugin
+Plugin-GitHash: cbfc1e3a21a989db5a1c6537638c6a052dd04d82
+Implementation-Build: cbfc1e3a21a989db5a1c6537638c6a052dd04d82
 

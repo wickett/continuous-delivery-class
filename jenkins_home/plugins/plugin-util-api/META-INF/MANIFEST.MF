@@ -1,23 +1,27 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: hafner
-Build-Jdk: 11.0.11
-Extension-Name: plugin-util-api
-Specification-Title: Provides several utility classes that can be used
-  to accelerate plugin development.
-Implementation-Title: plugin-util-api
-Implementation-Version: 2.4.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 21
+Specification-Title: Plugin Utilities API Plugin
+Specification-Version: 5.1
+Implementation-Title: Plugin Utilities API Plugin
+Implementation-Version: 5.1.0
 Group-Id: io.jenkins.plugins
+Artifact-Id: plugin-util-api
 Short-Name: plugin-util-api
 Long-Name: Plugin Utilities API Plugin
 Url: https://github.com/jenkinsci/plugin-util-api-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.4.0
-Hudson-Version: 2.263.1
-Jenkins-Version: 2.263.1
+Plugin-Version: 5.1.0
+Hudson-Version: 2.462.1
+Jenkins-Version: 2.462.1
+Plugin-Dependencies: commons-lang3-api:3.17.0-84.vb_b_938040b_078,common
+ s-text-api:1.12.0-129.v99a_50df237f7,workflow-api:1336.vee415d95c521,wo
+ rkflow-step-api:678.v3ee58b_469476,workflow-support:920.v59f71ce16f04
 Plugin-Developers: Ullrich Hafner:uhafner:ullrich.hafner@gmail.com
-Support-Dynamic-Loading: true
 Plugin-License-Name: MIT license
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/plugin-util-a
+ pi-plugin.git
+Plugin-ScmTag: v5.1.0
 Plugin-ScmUrl: https://github.com/jenkinsci/plugin-util-api-plugin
+Plugin-GitHash: b96b3b59d5982b391eaebd124c7d900075551694
+Implementation-Build: b96b3b59d5982b391eaebd124c7d900075551694
 

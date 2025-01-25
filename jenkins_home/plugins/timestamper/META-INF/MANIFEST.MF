@@ -1,24 +1,28 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: basil
-Build-Jdk: 1.8.0_292
-Extension-Name: timestamper
-Specification-Title: Adds timestamps to the Console Output
-Implementation-Title: timestamper
-Implementation-Version: 1.13
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Timestamper
+Specification-Version: 1.28
+Implementation-Title: Timestamper
+Implementation-Version: 1.28
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: timestamper
 Short-Name: timestamper
 Long-Name: Timestamper
 Url: https://github.com/jenkinsci/timestamper-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.13
-Hudson-Version: 2.222.4
-Jenkins-Version: 2.222.4
-Plugin-Dependencies: workflow-api:2.42,workflow-step-api:2.23
-Plugin-Developers: Basil Crow:basil:,Steven Brown:stevengbrown:StevenG
- Brown@gmail.com,Jesse Glick:jglick:
+Plugin-Version: 1.28
+Hudson-Version: 2.479.1
+Jenkins-Version: 2.479.1
+Plugin-Dependencies: commons-lang3-api:3.17.0-84.vb_b_938040b_078,workfl
+ ow-api:1336.vee415d95c521,workflow-step-api:678.v3ee58b_469476,antisamy
+ -markup-formatter:162.v0e6ec0fcfcf6
+Plugin-Developers: Basil Crow:basil:,Steven Brown:stevengbrown:StevenGBr
+ own@gmail.com,Jesse Glick:jglick:
 Plugin-License-Name: The MIT License (MIT)
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/timestamper-p
+ lugin.git
+Plugin-ScmTag: timestamper-1.28
 Plugin-ScmUrl: https://github.com/jenkinsci/timestamper-plugin
+Implementation-Build: fb93d0d282ed706b4b3c9a619c8a7e1a51952aa8
 

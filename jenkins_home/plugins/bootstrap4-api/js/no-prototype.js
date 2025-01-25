@@ -1,5 +1,5 @@
 /* global Prototype, jQuery3 */
-if (Prototype.BrowserFeatures.ElementExtensions) {
+if (typeof Prototype === 'object' && Prototype.BrowserFeatures.ElementExtensions) {
     const disablePrototypeJS = function (method, pluginsToDisable) {
         const handler = function (event) {
             event.target[method] = undefined;

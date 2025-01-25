@@ -1,26 +1,28 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: dnusbaum
-Build-Jdk: 1.8.0_161
-Extension-Name: scm-api
-Specification-Title: This plugin provides a new enhanced API for inter
- acting with SCM systems.
-Implementation-Title: scm-api
-Implementation-Version: 2.6.4
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: SCM API Plugin
+Specification-Version: 0.0
+Implementation-Title: SCM API Plugin
+Implementation-Version: 698.v8e3b_c788f0a_6
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: scm-api
 Short-Name: scm-api
 Long-Name: SCM API Plugin
-Url: https://github.com/jenkinsci/scm-api-plugin/blob/master/docs/cons
- umer.adoc
+Url: https://github.com/jenkinsci/scm-api-plugin/blob/master/docs/consum
+ er.adoc
 Compatible-Since-Version: 2.0.0
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.6.4
-Hudson-Version: 2.176.4
-Jenkins-Version: 2.176.4
-Plugin-Dependencies: structs:1.20
-Plugin-Developers: Stephen Connolly:stephenconnolly:
+Plugin-Version: 698.v8e3b_c788f0a_6
+Hudson-Version: 2.479
+Jenkins-Version: 2.479
+Plugin-Dependencies: asm-api:9.7-33.v4d23ef79fcc8,structs:338.v848422169
+ 819
+Plugin-Developers: 
 Plugin-License-Name: The MIT license
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/scm-api-plugi
+ n.git
+Plugin-ScmTag: 8e3bc788f0a6f1f0a1d966de9635a2aabaa99ad8
 Plugin-ScmUrl: https://github.com/jenkinsci/scm-api-plugin
+Implementation-Build: 8e3bc788f0a6f1f0a1d966de9635a2aabaa99ad8
 

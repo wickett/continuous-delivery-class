@@ -1,23 +1,26 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: jglick
-Build-Jdk: 1.8.0_292
-Extension-Name: matrix-project
-Specification-Title: Multi-configuration (matrix) project type.
-Implementation-Title: matrix-project
-Implementation-Version: 1.19
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Matrix Project Plugin
+Specification-Version: 0.0
+Implementation-Title: Matrix Project Plugin
+Implementation-Version: 840.v812f627cb_578
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: matrix-project
 Short-Name: matrix-project
 Long-Name: Matrix Project Plugin
 Url: https://github.com/jenkinsci/matrix-project-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.19
-Hudson-Version: 2.282
-Jenkins-Version: 2.282
-Plugin-Dependencies: junit:1.47,script-security:1.75
+Plugin-Version: 840.v812f627cb_578
+Hudson-Version: 2.479
+Jenkins-Version: 2.479
+Plugin-Dependencies: ionicons-api:74.v93d5eb_813d5f,junit:1303.v05e25056
+ 56b_7,script-security:1362.v67dc1f0e1b_b_3
 Plugin-Developers: 
 Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/matrix-projec
+ t-plugin.git
+Plugin-ScmTag: 812f627cb5785048ab913e579b0661122b40a201
 Plugin-ScmUrl: https://github.com/jenkinsci/matrix-project-plugin
+Implementation-Build: 812f627cb5785048ab913e579b0661122b40a201
 

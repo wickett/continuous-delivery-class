@@ -1,24 +1,26 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: jglick
-Build-Jdk: 1.8.0_292
-Extension-Name: command-launcher
-Specification-Title: Allows agents to be launched using a specified co
- mmand.
-Implementation-Title: command-launcher
-Implementation-Version: 1.6
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Command Agent Launcher Plugin
+Specification-Version: 0.0
+Implementation-Title: Command Agent Launcher Plugin
+Implementation-Version: 116.vd85919c54a_d6
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: command-launcher
 Short-Name: command-launcher
 Long-Name: Command Agent Launcher Plugin
 Url: https://github.com/jenkinsci/command-launcher-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.6
-Hudson-Version: 2.190.3
-Jenkins-Version: 2.190.3
-Plugin-Dependencies: script-security:1.75
+Plugin-Version: 116.vd85919c54a_d6
+Hudson-Version: 2.452.4
+Jenkins-Version: 2.452.4
+Plugin-Dependencies: script-security:1367.vdf2fc45f229c
 Plugin-Developers: 
 Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/command-launc
+ her-plugin.git
+Plugin-ScmTag: d85919c54ad6163e84ea3e8a44281aa5d35579ad
 Plugin-ScmUrl: https://github.com/jenkinsci/command-launcher-plugin
+Plugin-GitHash: d85919c54ad6163e84ea3e8a44281aa5d35579ad
+Implementation-Build: d85919c54ad6163e84ea3e8a44281aa5d35579ad
 

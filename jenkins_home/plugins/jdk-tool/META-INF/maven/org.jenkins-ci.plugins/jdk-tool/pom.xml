@@ -1,67 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jenkins-ci.plugins</groupId>
-        <artifactId>plugin</artifactId>
-        <version>4.3</version>
-        <relativePath />
-    </parent>
-    <artifactId>jdk-tool</artifactId>
-    <version>1.5</version>
-    <packaging>hpi</packaging>
-    <properties>
-        <jenkins.version>2.176.1</jenkins.version>
-        <java.level>8</java.level>
-    </properties>
-    <name>Oracle Java SE Development Kit Installer Plugin</name>
-    <description>Allows the Oracle Java SE Development Kit (JDK) to be installed via download from Oracle's website.</description>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jenkins-ci.plugins</groupId>
+  <artifactId>jdk-tool</artifactId>
+  <version>80.v8a_dee33ed6f0</version>
+  <packaging>hpi</packaging>
+  <name>Oracle Java SE Development Kit Installer Plugin</name>
+  <description>The Jenkins Plugins Parent POM Project</description>
+  <url>https://github.com/jenkinsci/jdk-tool-plugin</url>
+  <inceptionYear>2016</inceptionYear>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:git:https://github.com/jenkinsci/jdk-tool-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/jdk-tool-plugin.git</developerConnection>
+    <tag>8adee33ed6f0b6c77e6759f16d9828b02c17d33b</tag>
     <url>https://github.com/jenkinsci/jdk-tool-plugin</url>
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>https://opensource.org/licenses/MIT</url>
-        </license>
-    </licenses>
-    <scm>
-        <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-        <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-      <tag>jdk-tool-1.5</tag>
   </scm>
-    <repositories>
-        <repository>
-            <id>repo.jenkins-ci.org</id>
-            <url>https://repo.jenkins-ci.org/public/</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>repo.jenkins-ci.org</id>
-            <url>https://repo.jenkins-ci.org/public/</url>
-        </pluginRepository>
-    </pluginRepositories>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.176.x</artifactId>
-                <version>11</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>io.jenkins</groupId>
-            <artifactId>configuration-as-code</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.jenkins.configuration-as-code</groupId>
-            <artifactId>test-harness</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+  <distributionManagement>
+    <repository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>apache-httpcomponents-client-4-api</artifactId>
+      <version>4.5.14-208.v438351942757</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jenkins-ci.tools</groupId>
+        <artifactId>maven-hpi-plugin</artifactId>
+        <version>3.56</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

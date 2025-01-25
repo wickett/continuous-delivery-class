@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts-jdk11
+FROM jenkins/jenkins:lts-jdk21
 MAINTAINER Ernest Mueller <ernestmueller@theagileadmin.com>
 
 USER root
@@ -13,4 +13,4 @@ RUN \
 
 USER jenkins
 
-ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/usr/local/bin/jenkins.sh"]

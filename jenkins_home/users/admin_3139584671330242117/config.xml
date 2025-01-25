@@ -4,10 +4,10 @@
   <id>admin</id>
   <fullName>Admin User</fullName>
   <properties>
-    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.5">
+    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@1393.v6017143c1763">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.83">
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@1861.vdb_d991590994">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
     <hudson.model.MyViewsProperty>
@@ -21,7 +21,7 @@
         </hudson.model.AllView>
       </views>
     </hudson.model.MyViewsProperty>
-    <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.3.5">
+    <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.209.v582ed814ff2f">
       <providerId>default</providerId>
     </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
     <hudson.model.PaneStatusProperties>
@@ -37,7 +37,7 @@
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>#jbcrypt:$2a$10$QrQuO8KwDp3xB9hC2vHxBO.N9vgr5cBSWCs.851LfWQF5JsbtsnJm</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.34">
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@489.vd4b_25144138f">
       <emailAddress>fake@example.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <jenkins.security.ApiTokenProperty>
@@ -51,5 +51,9 @@
       </roles>
       <timestamp>1626795891644</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
+    <jenkins.console.ConsoleUrlProviderUserProperty/>
+    <jenkins.model.experimentalflags.UserExperimentalFlagsProperty>
+      <flags/>
+    </jenkins.model.experimentalflags.UserExperimentalFlagsProperty>
   </properties>
 </user>

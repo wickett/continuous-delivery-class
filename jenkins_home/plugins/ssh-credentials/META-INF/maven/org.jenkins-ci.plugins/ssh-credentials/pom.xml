@@ -27,11 +27,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>ssh-credentials</artifactId>
-  <version>1.19</version>
+  <version>349.vb_8b_6b_9709f5b_</version>
   <packaging>hpi</packaging>
   <name>SSH Credentials Plugin</name>
   <description>Allows storage of SSH credentials in Jenkins</description>
-  <url>https://github.com/jenkinsci/ssh-credentials-plugin/blob/master/doc/README.md</url>
+  <url>https://github.com/jenkinsci/ssh-credentials-plugin</url>
   <inceptionYear>2016</inceptionYear>
   <licenses>
     <license>
@@ -54,10 +54,10 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/ssh-credentials-plugin.git</connection>
+    <connection>scm:git:https://github.com/jenkinsci/ssh-credentials-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/ssh-credentials-plugin.git</developerConnection>
-    <tag>ssh-credentials-1.19</tag>
-    <url>http://github.com/jenkinsci/ssh-credentials-plugin</url>
+    <tag>b8b6b9709f5bd4a65d1f7c128df2c4b3347d56aa</tag>
+    <url>https://github.com/jenkinsci/ssh-credentials-plugin</url>
   </scm>
   <distributionManagement>
     <repository>
@@ -71,94 +71,37 @@
   </distributionManagement>
   <dependencies>
     <dependency>
-      <groupId>com.jcraft</groupId>
-      <artifactId>jsch</artifactId>
-      <version>0.1.55</version>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>trilead-api</artifactId>
+      <version>2.147.vb_73cc728a_32e</version>
       <scope>compile</scope>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>trilead-api</artifactId>
-      <version>1.0.13</version>
+      <artifactId>variant</artifactId>
+      <version>60.v7290fc0eb_b_cd</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>credentials</artifactId>
-      <version>2.5</version>
+      <version>1371.vfee6b_095f0a_3</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <version>2.282</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>4.2.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <version>1.20</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <version>1.21</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>annotation-indexer</artifactId>
-          <groupId>org.jenkins-ci</groupId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>bouncycastle-api</artifactId>
+      <version>2.30.1.78.1-248.ve27176eb_46cb_</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.17</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke.stapler</groupId>
-        <artifactId>maven-stapler-plugin</artifactId>
-        <version>1.17</version>
+        <version>3.57</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

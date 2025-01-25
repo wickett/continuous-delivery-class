@@ -1,0 +1,354 @@
+/**
+ * Copyright (c) 2011-2012 Sonatype, Inc. All rights reserved.
+ * Includes the third-party code listed at http://links.sonatype.com/products/rhc/oss/attributions.
+ * "Sonatype" is a trademark of Sonatype, Inc.
+ */
+(function() {
+  var global = this;
+  if (typeof HealthCheck === 'undefined') {
+    global.HealthCheck = {};
+  }
+
+  function orDefault(value, defaultValue) {
+    return value == null ? defaultValue : value;
+  };
+
+  HealthCheck.toolTips = {
+    securitySumHeader: 'Sonatype utilizes the base score from the Common Vulnerability Scoring System, version 2.',
+    licenseSumHeader: 'License Analysis Summary: License data is calculated based the information provided by the publishing project, and the results of multiple public and proprietary source and binary scans.',
+    licenseSumCopyleft: 'Copyleft is a category of license that contains copyright obligations requiring the user to provide the source code and other information necessary to reproduce or modify the original work.',
+    licenseSumWeakCopyleft: 'Weak Copyleft is a category of license that contains copyright obligations requiring the user to provide the source code and other information necessary to reproduce or modify the original work under certain circumstances.',
+    licenseSumLiberal: 'Liberal is a category of license that generally contains commercial friendly terms of use.',
+    licenseSumNonStandard: 'The license in a &quot;non-standard&quot; component does not match any SPDX standard license and therefore the obligations are unclear.',
+    licenseSumNotProvided: 'No license was provided by the publisher of this component, nor was it detected by examination of the source code.'
+  };
+
+  HealthCheck.getAge = function(reportDate) {
+    var val,
+        unit,
+        diff = new Date().getTime() - reportDate.getTime();
+    if (diff > 12 * 30 * 24 * 60 * 60 * 1000) {
+      val = diff / (12 * 30 * 24 * 60 * 60 * 1000);
+      unit = 'year';
+    }
+    else if (diff > 30 * 24 * 60 * 60 * 1000) {
+      val = diff / (30 * 24 * 60 * 60 * 1000);
+      unit = 'month';
+    }
+    else if (diff > 24 * 60 * 60 * 1000) {
+      val = diff / (24 * 60 * 60 * 1000);
+      unit = 'day';
+    }
+    else if (diff > 60 * 60 * 1000) {
+      val = diff / (60 * 60 * 1000);
+      unit = 'hour';
+    }
+    else if (diff > 60 * 1000) {
+      val = diff / (60 * 1000);
+      unit = 'minute';
+    }
+    else {
+      return 'moments ago';
+    }
+    val = Math.floor(val);
+    if (val > 1) {
+      unit += 's';
+    }
+    return val + ' ' + unit;
+  };
+
+  HealthCheck.artifactsChart = function(known, height, width) {
+    height = orDefault(height, 50);
+    width = orDefault(width, 50);
+    var config = {
+      h: height,
+      w: width,
+      lineWidth: 1.5,
+      innerRadius: 9,
+      outerRadius: 21,
+      outerRadiusStep: 0,
+      visTop: height / 2,
+      visLeft: width / 2,
+      fillColors: ['#FDDD03', '#8DC63E'],
+      strokeColors: ['#3A983F'],
+      textColors: ['white']
+    };
+    this.donutChart([known, 1 - known], config);
+  };
+
+  HealthCheck.licenseChart = function(data, height, width, outerRadius, innerRadius, outerRadiusStep, fontSize) {
+    height = orDefault(height, 200);
+    width = orDefault(width, 230);
+    var config = {
+      h: height,
+      w: width,
+      lineWidth: 1,
+      innerRadius: orDefault(innerRadius, 30),
+      outerRadius: orDefault(outerRadius, 60),
+      outerRadiusStep: orDefault(outerRadiusStep, 7),
+      fontSize: orDefault(fontSize, 16),
+      visTop: height / 2,
+      visLeft: width / 2,
+      fillColors: data.length == 3 ? ['#bc012f', '#f5c648', '#006bbf'] : ['#bc012f', '#f4861d', '#f5c648', '#006bbf'],
+      strokeColors: data.length == 3 ? ['#bc012f', '#f5c648', '#006bbf'] : ['#bc012f', '#f4861d', '#f5c648', '#006bbf'],
+      textColors: data.length == 3 ? ['#9d0c11', '#83740d', 'white'] : ['#9d0c11', '#c67a22', '#83740d', 'white']
+    };
+    this.donutChart(data, config);
+  };
+
+  HealthCheck.donutChart = function(data, config) {
+    var total = 0,
+        dd = new Array(),
+        fillColors = new Array(),
+        strokeColors = new Array(),
+        textColors = new Array(),
+        maxIndex;
+
+    for (var i = 0; i < data.length; i++) {
+      if (data[i] > 0) {
+        total += data[i];
+        dd.push(data[i]);
+        fillColors.push(config.fillColors[i % config.fillColors.length]);
+        strokeColors.push(config.strokeColors[i % config.strokeColors.length]);
+        textColors.push(config.textColors[i % config.textColors.length]);
+      }
+    }
+    maxIndex = dd.length - 1;
+
+    var vis = new pv.Panel()
+        .width(config.w)
+        .height(config.h);
+    var wedge = vis.add(pv.Wedge)
+        .data(dd)
+        .left(config.visLeft)
+        .top(config.visTop)
+        .outerRadius(function() {
+          return config.outerRadius + (maxIndex - this.index) * config.outerRadiusStep
+        })
+        .innerRadius(config.innerRadius)
+        .angle(function(d) {
+          return d / total * 2 * Math.PI
+        })
+        .fillStyle(pv.colors(fillColors).by(function() {
+          return this.index
+        }))
+        .lineWidth(function(d) {
+          return d > 0 ? config.lineWidth : 0
+        })
+        .strokeStyle(pv.colors(strokeColors).by(function() {
+          return this.index
+        }));
+
+    wedge.add(pv.Label)
+        .left(function() {
+          return config.visLeft + this.outerRadius() * Math.cos(wedge.midAngle());
+        })
+        .top(function() {
+          return config.visTop + this.outerRadius() * Math.sin(wedge.midAngle());
+        })
+        .font('bold ' + config.fontSize + 'px arial')
+        .text(function(d) {
+          return d == 0 ? '' : Math.round(d / total * 100) + '%'
+        })
+        .textStyle(pv.colors(textColors).by(function() {
+          return this.index
+        }))
+        .textAlign(function() {
+          var angle = wedge.midAngle() < 0 ? Math.PI * 2 + wedge.midAngle() : wedge.midAngle();
+          return (angle > (Math.PI / 2) && angle < (1.5 * Math.PI)) ? "right" : "left"
+        })
+        .textBaseline(function() {
+          var angle = wedge.midAngle() < 0 ? Math.PI * 2 + wedge.midAngle() : wedge.midAngle();
+          return angle > Math.PI ? "bottom" : "top"
+        });
+    vis.render();
+  };
+
+  HealthCheck.barChart = function(data, height, width, fontSize) {
+
+    var maxValue = data[0],
+        stepSize = 0,
+        noSV;
+
+    for (var i = 1; i < data.length; i++) {
+      maxValue = Math.max(maxValue, data[i]);
+    }
+    noSV = maxValue === 0;
+
+    stepSize = (function() {
+      var validSteps = new Array(1, 2, 5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000, 2500, 5000);
+      var maxSteps = new Array(9, 9, 9, 9, 8, 8, 8, 8, 6, 6, 6, 5, 5, 4, 4);
+      for (var i = 0; i < validSteps.length; i++) {
+        if (maxValue / validSteps[i] <= maxSteps[i]) {
+          return validSteps[i];
+        }
+      }
+      return validSteps[validSteps.length - 1];
+    }).apply();
+    maxValue = (maxValue % stepSize) == 0 ? maxValue + stepSize : Math.ceil(maxValue / stepSize) * stepSize;
+
+    fontSize = orDefault(fontSize, 9);
+
+    /* Sizing and scales. */
+    var w = orDefault(width, 267),
+        h = orDefault(height, 181),
+        topPadding = 2 * fontSize,
+        leftPadding = fontSize * 5,
+        rightPadding = 10,
+        x = pv.Scale.linear(0, maxValue).range(0, w - leftPadding - rightPadding),
+        y = pv.Scale.ordinal(pv.range(data.length)).splitBanded(0, h - topPadding, 3 / 5);
+
+    /* The root panel. */
+    var vis = new pv.Panel()
+        .width(w)
+        .height(h)
+        .fillStyle('#f7fbfe')
+        .strokeStyle('#F2F5F8');
+
+    vis.add(pv.Label)
+        .text('Threat')
+        .top(fontSize - 1)
+        .left(fontSize / 2)
+        .font('normal ' + fontSize + 'px arial')
+        .events('all')
+        .event('mouseover',
+            pv.Behavior.tipsy({fade: true, gravity: 'w', html: true, opacity: 1.0, offset: 35, title: function() {
+              return HealthCheck.toolTips.securitySumHeader;
+            }}))
+        .textAlign('left')
+        .textBaseline('middle');
+
+    vis.add(pv.Label)
+        .text('Level')
+        .top(2 * fontSize - 1)
+        .left(fontSize / 2 + 3)
+        .font('normal ' + fontSize + 'px arial')
+        .textAlign('left')
+        .textBaseline('middle');
+
+    /* The bars. */
+    var bar = vis.add(pv.Bar)
+        .data(data)
+        .top(function() {
+          return topPadding + y(this.index)
+        })
+        .text(function(d) {
+          return d;
+        })
+        .event('mouseover', pv.Behavior.tipsy({fade: true, gravity: 'w', html: true, opacity: 1.0}))
+        .height(y.range().band)
+        .left(leftPadding)
+        .width(x)
+        .fillStyle(function(d) {
+          var threatLevel = 10 - this.index;
+          if (threatLevel > 6) {
+            return 'rgb(188,1,47)';
+          }
+          else if (threatLevel > 3) {
+            return 'rgb(244,134,29)';
+          }
+          else {
+            return 'rgb(254,198,72)';
+          }
+        });
+
+    /* The variable label. */
+    bar.anchor("left").add(pv.Label)
+        .textAlign("center")
+        .left(leftPadding / 2)
+        .width(leftPadding)
+        .font('normal ' + fontSize + 'px arial')
+        .strokeStyle("#000")
+        .text(function() {
+          return 10 - this.index;
+        });
+
+    /* X-axis ticks. */
+    var ticks = pv.range(0, maxValue + stepSize, stepSize);
+    vis.add(pv.Rule)
+        .data(ticks)
+        .left(function(d) {
+          return leftPadding + x(d)
+        })
+        .strokeStyle('#f1f4f9')
+        .add(pv.Rule)
+        .top(topPadding)
+        .height(5)
+        .strokeStyle("#000")
+        .anchor("top").add(pv.Label)
+        .text(x.tickFormat)
+        .font('normal ' + fontSize + 'px arial');
+
+    if (noSV) {
+      var labelHeight = fontSize * 2,
+          barWidth = (24 * fontSize * 0.6),
+          barTop = h / 2,
+          barStart = leftPadding + ((w - leftPadding - rightPadding) - barWidth) / 2;
+
+      vis.add(pv.Bar)
+          .top(barTop)
+          .left(barStart)
+          .lineWidth(0)
+          .height(labelHeight)
+          .width(barWidth)
+          .strokeStyle('#cee8fb')
+          .fillStyle('#cee8fb');
+
+      vis.add(pv.Dot)
+          .top(barTop + labelHeight / 2)
+          .left(barStart)
+          .radius(labelHeight / 2)
+          .lineWidth(0)
+          .strokeStyle('#cee8fb')
+          .fillStyle('#cee8fb');
+      vis.add(pv.Dot)
+          .top(barTop + labelHeight / 2)
+          .left(barStart + barWidth)
+          .radius(labelHeight / 2)
+          .lineWidth(0)
+          .strokeStyle('#cee8fb')
+          .fillStyle('#cee8fb');
+
+      vis.add(pv.Label)
+          .top(barTop + labelHeight / 2)
+          .left(barStart + barWidth / 2)
+          .width(barWidth)
+          .font('normal ' + (fontSize + 1) + 'px arial')
+          .textAlign('center')
+          .textBaseline('middle')
+          .text('No Vulnerabilities Found');
+    }
+    vis.render();
+  };
+})();
+
+$(document).ready(function() {
+  $('#security-sum-header')
+      .tipsy({fade: true, gravity: 's', html: true, opacity: 1.0, delayOut: 0, title: function() {
+        return HealthCheck.toolTips.securitySumHeader;
+      }});
+  $('#license-sum-header')
+      .tipsy({fade: true, gravity: 's', html: true, opacity: 1.0, delayOut: 0, title: function() {
+        return HealthCheck.toolTips.licenseSumHeader;
+      }});
+  $('#license-sum-copyleft')
+      .tipsy({fade: true, gravity: 's', html: true, opacity: 1.0, delayOut: 0, title: function() {
+        return HealthCheck.toolTips.licenseSumCopyleft;
+      }});
+  $('#license-sum-weak-copyleft')
+      .tipsy({fade: true, gravity: 's', html: true, opacity: 1.0, delayOut: 0, title: function() {
+        return HealthCheck.toolTips.licenseSumWeakCopyleft;
+      }});
+  $('#license-sum-liberal')
+      .tipsy({fade: true, gravity: 's', html: true, opacity: 1.0, delayOut: 0, title: function() {
+        return HealthCheck.toolTips.licenseSumLiberal;
+      }});
+  $('#license-sum-non-standard')
+      .tipsy({fade: true, gravity: 's', html: true, opacity: 1.0, delayOut: 0, title: function() {
+        return HealthCheck.toolTips.licenseSumNonStandard;
+      }});
+  $('#license-sum-not-provided')
+      .tipsy({fade: true, gravity: 's', html: true, opacity: 1.0, delayOut: 0, title: function() {
+        return HealthCheck.toolTips.licenseSumNotProvided;
+      }});
+});

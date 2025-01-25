@@ -1,26 +1,28 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: carroll
-Build-Jdk: 1.8.0_282
-Extension-Name: workflow-cps-global-lib
-Specification-Title: The Jenkins Plugins Parent POM Project
-Implementation-Title: workflow-cps-global-lib
-Implementation-Version: 2.21
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 11
+Specification-Title: Pipeline: Deprecated Groovy Libraries
+Specification-Version: 0.0
+Implementation-Title: Pipeline: Deprecated Groovy Libraries
+Implementation-Version: 612.v55f2f80781ef
 Group-Id: org.jenkins-ci.plugins.workflow
+Artifact-Id: workflow-cps-global-lib
 Short-Name: workflow-cps-global-lib
-Long-Name: Pipeline: Shared Groovy Libraries
+Long-Name: Pipeline: Deprecated Groovy Libraries
 Url: https://github.com/jenkinsci/workflow-cps-global-lib-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.21
-Hudson-Version: 2.277.1
-Jenkins-Version: 2.277.1
-Plugin-Dependencies: workflow-api:2.45,workflow-cps:2.92,workflow-step
- -api:2.23,workflow-support:3.8,cloudbees-folder:6.15,credentials:2.5,
- git-server:1.9,scm-api:2.6.4,script-security:1.77
+Plugin-Version: 612.v55f2f80781ef
+Hudson-Version: 2.414.3
+Jenkins-Version: 2.414.3
+Plugin-Dependencies: pipeline-groovy-lib:689.veec561a_dee13,workflow-cps
+ :3837.v305192405b_c0,git-server:99.va_0826a_b_cdfa_d
 Plugin-Developers: 
 Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
-Plugin-ScmUrl: https://github.com/jenkinsci/workflow-cps-global-lib-pl
- ugin
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/workflow-cps-
+ global-lib-plugin.git
+Plugin-ScmTag: 55f2f80781eff45f4d0cbd161701002d6746e8e6
+Plugin-ScmUrl: https://github.com/jenkinsci/workflow-cps-global-lib-plug
+ in
+Plugin-GitHash: 55f2f80781eff45f4d0cbd161701002d6746e8e6
+Implementation-Build: 55f2f80781eff45f4d0cbd161701002d6746e8e6
 

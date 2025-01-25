@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.6wind.jenkins</groupId>
   <artifactId>lockable-resources</artifactId>
-  <version>2.11</version>
+  <version>1327.ved786b_a_197e0</version>
   <packaging>hpi</packaging>
   <name>Lockable Resources plugin</name>
   <description>This plugin allows to define lockable resources (such as printers, phones,
@@ -20,11 +20,6 @@
   </licenses>
   <developers>
     <developer>
-      <id>basil</id>
-      <name>Basil Crow</name>
-      <email>me@basilcrow.com</email>
-    </developer>
-    <developer>
       <id>TobiX</id>
       <name>Tobias Gruetzmacher</name>
       <email>tobias-git@23.gs</email>
@@ -34,11 +29,16 @@
       <name>Antonio Muñiz</name>
       <email>amuniz@cloudbees.com</email>
     </developer>
+    <developer>
+      <id>mPokornyETM</id>
+      <name>Martin Pokorny</name>
+      <email>martin.pokorny@etm.at</email>
+    </developer>
   </developers>
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/lockable-resources-plugin.git</connection>
+    <connection>scm:git:https://github.com/jenkinsci/lockable-resources-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/lockable-resources-plugin.git</developerConnection>
-    <tag>lockable-resources-2.11</tag>
+    <tag>ed786ba197e0a5b484d989a907acfee3dc135851</tag>
     <url>https://github.com/jenkinsci/lockable-resources-plugin</url>
   </scm>
   <distributionManagement>
@@ -55,121 +55,62 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>caffeine-api</artifactId>
-      <version>2.9.1-23.v51c4e2c879c8</version>
+      <version>3.1.8-133.v17b_1ff2e0599</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>structs</artifactId>
-      <version>1.23</version>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>data-tables-api</artifactId>
+      <version>2.1.6-1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>mailer</artifactId>
-      <version>1.32.1</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-support</artifactId>
-      <version>3.8</version>
+      <version>488.v0c9639c1a_eb_3</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>matrix-project</artifactId>
-      <version>1.18</version>
+      <version>838.v4d7b_7b_f9b_d4b_</version>
       <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.annotation</groupId>
+          <artifactId>javax.annotation-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>script-security</artifactId>
-      <version>1.77</version>
+      <version>1362.v67dc1f0e1b_b_3</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.infradna.tool</groupId>
-      <artifactId>bridge-method-annotation</artifactId>
-      <version>1.21</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>annotation-indexer</artifactId>
-          <groupId>org.jenkins-ci</groupId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>structs</artifactId>
+      <version>338.v848422169819</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <version>2.222.4</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>3.1.11</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <version>1.20</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <version>1.16</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>annotation-indexer</artifactId>
-          <groupId>org.jenkins-ci</groupId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-support</artifactId>
+      <version>926.v9f4f9b_b_98c19</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.17</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke.stapler</groupId>
-        <artifactId>maven-stapler-plugin</artifactId>
-        <version>1.17</version>
+        <version>3.57</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

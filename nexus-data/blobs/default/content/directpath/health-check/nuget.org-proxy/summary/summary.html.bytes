@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<!--
+
+    Copyright (c) 2011-present Sonatype, Inc. All rights reserved.
+    Includes the third-party code listed at http://links.sonatype.com/products/rhc/oss/attributions.
+    "Sonatype" is a trademark of Sonatype, Inc.
+
+-->
+<html>
+<!-- Repository Manager License Type: repositoryManagerLicenseType=oss -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Repository Health Check Summary</title>
+    <link href="summary.css" type="text/css" rel="stylesheet"/>
+    <link href="tipsy.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1693297-28']);
+    </script>
+
+    <script type='text/javascript' src='jquery.js'></script>
+    <script type='text/javascript' src='jquery.tipsy.js'></script>
+    <script type='text/javascript' src='protovis.min.js'></script>
+    <!--[if IE]><script src="protovis-msie.min.js"></script><![endif]-->
+    <script type='text/javascript' src='protovis-tipsy.js'></script>
+    <script type='text/javascript' src='healthcheck.js'></script>
+
+    <style>
+
+      /* CSS Reset for Browser Compatibility */
+      html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, font, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+      }
+      body {line-height: 1;}
+      ol, ul {list-style: none;}
+      blockquote, q {quotes: none;}
+      blockquote:before, blockquote:after,
+      q:before, q:after {content: '';content: none;}
+      :focus {outline: 0;}		 /* remember to define focus styles! */
+      ins {text-decoration: none;} /* remember to highlight inserts somehow! */
+      del {text-decoration: line-through;}
+      table {border-collapse: collapse; border-spacing: 0;} /* tables still need 'cellspacing="0"' in the markup */
+
+
+      /* Start Summary Styles */
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .left {float: left;}
+      .right {float: right;}
+      .clear {clear:both;}
+
+      #panel-container {
+        padding: 8px;
+        background: #F7F7F7;
+      }
+
+      #sum-panel {
+        width: 652px;
+        border: 1px solid #E4E4E4;
+        background: #FFF;
+      }
+
+      #sum-panel h2.icon {
+        height: 16px;
+        line-height: 19px;
+        padding-left:19px;
+      }
+
+      #sum-panel h3 {
+        color: #656565;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight:bold;
+        margin-bottom: 8px;
+      }
+
+      #issue-summary {
+        float: left;
+      }
+
+      #issue-summary-header {
+        line-height: 24px;
+        margin-bottom: 10px;
+      }
+
+      #firewall {
+        border-left: 2px solid #656565;
+        float: left;
+        height: 205px;
+        padding-left: 12px;
+        width: 210px;
+      }
+
+      #firewall h2.icon {
+        height: 23px;
+        line-height: 24px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      #firewall-components li {
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+
+      #firewall-components li.icon {
+        line-height: 19px;
+        padding-left: 25px;
+      }
+
+      #firewall-footer {
+        text-align: center;
+      }
+
+      #firewall-footer a {
+        font-size: 12px;
+        line-height: 16px;
+        text-decoration:none;
+        display:inline-block;
+        background-color: #2c2d2e;
+        color: #ffffff;
+        padding: 5px 8px 5px 8px;
+        border-radius: 14px;
+      }
+
+      #firewall-footer a:hover {
+        opacity: 0.8;
+      }
+
+      .i-firewall {background: url(firewall-icon_20x23.png)  no-repeat;}
+      .i-audit {background: url(audit-icon_16x16.png) no-repeat;}
+      .i-quarantine {background: url(quarantine-icon_16x16.png) no-repeat;}
+
+      #sum-panel-header {
+        padding: 8px 12px 0px 12px;
+        height: 48px;
+      }
+      #scan-metadata {width: 300px;}
+      #sum-panel-header th,
+      #sum-panel-header td {padding: 3px; text-align: left;}
+      #sum-panel-header th {font-size: 9px; color: #9E9E9E;}
+      #sum-panel-header td {font-size: 11px; color: #5D5D5D;}
+      #sum-panel-header .detail {font-size: 10px; color: #5D5D5D;}
+
+      #scan-coverage {width: 300px;}
+      #coverage_donut {margin-right: 12px;}
+      #scan-coverage-details {}
+      .value_lrg {font-family: 'Arial Black', Gadget, sans-serif; font-size: 17px; color: #656565;}
+      .label_med {font-size: 11px; color: #666; font-weight: bold;}
+      .value_sml {font-size: 11px; color: #9E9E9E; font-weight: bold;}
+      .label_sml {font-size: 9px; color: #9E9E9E; line-height:16px;}
+
+      #sum-panel-body  {
+        background: url(summary_header_bg.png) repeat-x;
+        clear: both;
+        padding: 12px;
+        padding-top: 18px;
+      }
+
+      #sum-security {float: left; width: 200px;}
+
+      #sum-license {float: left; width: 200px;}
+
+      #unknownrepository {
+        font-size: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #656565;
+      }
+      #unknownrepository ul, #unknownrepository li {
+        list-style-position: inside;
+        list-style-type: circle;
+        padding: 2px 5px;
+      }
+      #unknownrepository p {
+        padding: 5px 0 5px 0;
+      }
+
+      .sums {
+        margin-right: 12px;
+      }
+
+      span.cat {
+        padding-left: 2px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight:bold;
+        font-size: 12px;
+        display: inline-block;
+        width: 100px;
+      }
+      span.cnt  {
+        display: inline-block;
+        margin-bottom: 6px;
+        width: 83px;
+        height: 26px;
+        font-size: 16px;
+        line-height: 25px;
+      }
+      .sval span.cnt  {
+        background: url(value_mask_sml.png) no-repeat;
+        font-family: 'Arial Black', Gadget, sans-serif;
+        text-align: center;
+      }
+
+      .sv-red span.cat {color:#9D0A0E;}
+      .sv-red span.cnt {
+        color: white;
+        background-color: #bc012f;
+      }
+      .sv-orange span.cat {color:#A0420D;}
+      .sv-orange span.cnt {
+        color: white;
+        background-color: #f4861d;
+      }
+      .sv-yellow span.cat {color:#81710A;}
+      .sv-yellow span.cnt {
+        color: white;
+        background-color: #f5c648;
+      }
+      .sv-blue span.cat {color:#1964A3;}
+      .sv-blue span.cnt {
+        color: white;
+        background-color: #006bbf;
+      }
+      #sum-panel-footer {
+        background-color:#ECF4FC;
+        clear: both;
+      }
+      #sum-panel-footer p {
+        float:left;
+        display: block;
+        width: 270px;
+        font-size: 12px;
+        color: #5D5D5D;
+        line-height: 20px;
+      }
+
+      #sum-panel-footer span.summary {
+        font-size: 12px;
+        color: #5D5D5D;
+        line-height: 20px;
+      }
+
+      #sum-panel-footer a.btn {
+        float:right;
+        display: block;
+        width: 326px;
+      }
+
+      #sum-panel-footer .bullet {
+        background: url(bullet.png) 0 0 no-repeat;
+        width:15px;
+        height:10px;
+        display:inline-block;
+      }
+
+      #sum-panel-footer div a {
+        font-size: 12px;
+        line-height: 16px;
+        text-decoration:none;
+        height:16px;
+        display:inline-block;
+        color:#1868c7;
+      }
+
+      #sum-panel-footer div a:hover {
+        text-decoration: underline;
+      }
+
+      .btn,
+      .btn span {
+        display: block;
+        height: 39px;
+        line-height: 39px;
+        cursor: pointer;
+        text-decoration:none;
+        background: url(btn_adaptivet.png) right -39px no-repeat;
+        border: 0px none transparent;
+        background-color: transparent;
+      }
+      .btn {background-position: 0px 0px;}
+
+      .btn:focus,
+      .btn:hover,
+      .btn:active {
+        background-position: 0px -78px;
+        text-decoration: none !important;
+      }
+
+      .btn span,
+      .btn:active span {
+        font-weight: bold;
+        font-size: 16px;
+        color: #FFF;
+        text-align: center;
+        text-shadow: #000 0px 1px 0px;
+        -webkit-font-smoothing: antialiased;
+        line-height: 39px;
+        margin-left: 3px;
+      }
+
+      .btn:focus span,
+      .btn:hover span,
+      .btn:active span  {
+        background-position: right -117px;
+        text-decoration: none !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="panel-container">
+      <div id="sum-panel">
+        <div id="sum-panel-header">
+          <table id="scan-metadata" class="left" cellpadding="0" cellspacing="0">
+            <tr>
+              <th scope="row">FOR</th>
+              <td>nuget.org-proxy</td>
+            </tr>
+            <tr>
+              <th scope="row">ON</th>
+              <td><script type='text/javascript'>
+                  var d = new Date(1737771013150);
+                  document.write(d.toDateString() + " at " + d.toLocaleTimeString())</script></td>
+            </tr>
+            <tr>
+              <th scope="row">AGE</th>
+              <td><script type='text/javascript'>document.write(HealthCheck.getAge(new Date(1737771013150)))</script></td>
+            </tr>
+          </table>
+
+          <div id="scan-coverage"  class="left">
+            <div id="coverage_donut" class="left" alt="0% of Components Identified" >
+              
+              <script type="text/javascript+protovis">HealthCheck.artifactsChart(0);</script>
+            </div>
+            <div id="scan-coverage-details">
+              <p><span class="value_lrg">0</span>
+                <br />
+                <span class="label_med">COMPONENTS IDENTIFIED</span><br />
+                <span class="label_sml"><span class="value_sml">0%</span> of <span class="value_sml">0</span> TOTAL</span></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="sum-panel-body">
+
+            <div id="issue-summary">
+              <h2 id="issue-summary-header">Issue Summary</h2>
+              <div id="sum-security">
+                <h3 id="security-sum-header">Security Vulnerabilities</h3>
+                <div class="sums">
+                  <div class="sval sv-red">
+                    <p><span class="cat">Critical (7-10)</span><span class="cnt">0</span></p>
+                  </div>
+                  <div class="sval sv-orange">
+                    <p><span class="cat">Severe (4-6)</span><span class="cnt">0</span></p>
+                  </div>
+                  <div class="sval sv-yellow">
+                    <p><span class="cat">Moderate (1-3)</span><span class="cnt">0</span></p>
+                  </div>
+                </div>
+                <div id="security-chart">
+                  <!-- Security Chart Here -->
+                  <script type="text/javascript+protovis">HealthCheck.barChart([0,0,0,0,0,0,0,0,0,0], 132, 192, 8);</script>
+                </div>
+              </div>
+
+              <div id="sum-license">
+                <h3 id="license-sum-header">License Warnings</h3>
+                <div class="sums">
+                  <div id="license-sum-copyleft" class="sval sv-red">
+                    <p><span class="cat">Copyleft</span><span class="cnt">0</span></p>
+                  </div>
+                  <div id="license-sum-non-standard" class="sval sv-orange">
+                    <p><span class="cat">Non Standard</span><span class="cnt">0</span></p>
+                  </div>
+                  <div id="license-sum-not-provided" class="sval sv-orange">
+                    <p><span class="cat">Not Provided</span><span class="cnt">0</span></p>
+                  </div>
+                  <div id="license-sum-weak-copyleft" class="sval sv-yellow">
+                    <p><span class="cat">Weak Copyleft</span><span class="cnt">0</span></p>
+                  </div>
+                  <div id="license-sum-liberal" class="sval sv-blue">
+                    <p><span class="cat">Liberal</span><span class="cnt">0</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="firewall">
+              <h2 id="firewall-header" class="icon i-firewall">Get Nexus Firewall</h2>
+              <h3 id="firewall-components-header">Benefits</h3>
+              <ul id="firewall-components">
+                <li class="icon i-audit">Stop bad components at the front door</li>
+                <li class="icon i-quarantine">Automatically shield your software from open source risks</li>
+              </ul>
+              <div id="firewall-footer">
+                <p>
+                  <a target='_blank' href="http://links.sonatype.com/nexus-repository-firewall"
+                     onclick='externalLinkClicked(this,"Nexus Firewall Link Clicked");'>Learn More</a>
+                </p>
+              </div>
+            </div>
+        </div>
+        <div id="sum-panel-footer">
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      _gaq.push(['_setCustomVar',1,'Treatment','PE',1]);
+      _gaq.push(['_setCustomVar',2,'LicenseType','oss',2]);
+      _gaq.push(['_setCustomVar',3,'OrganizationId','',1]);
+      _gaq.push(['_setCustomVar',4,'Section','Summary',3]);
+      _gaq.push(['_setCustomVar',5,'Repository','nuget.org-proxy',3]);
+      _gaq.push(['_trackPageview']);
+
+      var externalLinkClicked = function(link, message) {
+        _gaq.push(['_trackEvent', 'Summary Panel', message, link.href]);
+      };
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

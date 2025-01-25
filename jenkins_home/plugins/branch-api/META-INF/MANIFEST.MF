@@ -1,25 +1,29 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: carroll
-Build-Jdk: 1.8.0_282
-Extension-Name: branch-api
-Specification-Title: This plugin provides an API for multiple branch b
- ased projects.
-Implementation-Title: branch-api
-Implementation-Version: 2.6.5
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Branch API Plugin
+Specification-Version: 0.0
+Implementation-Title: Branch API Plugin
+Implementation-Version: 2.1200.v4b_a_3da_2eb_db_4
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: branch-api
 Short-Name: branch-api
 Long-Name: Branch API Plugin
 Url: https://github.com/jenkinsci/branch-api-plugin
 Compatible-Since-Version: 2.0.0
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.6.5
-Hudson-Version: 2.277.1
-Jenkins-Version: 2.277.1
-Plugin-Dependencies: cloudbees-folder:6.15,scm-api:2.6.4
+Plugin-Version: 2.1200.v4b_a_3da_2eb_db_4
+Hudson-Version: 2.440.3
+Jenkins-Version: 2.440.3
+Plugin-Dependencies: caffeine-api:3.1.8-133.v17b_1ff2e0599,ionicons-api:
+ 74.v93d5eb_813d5f,cloudbees-folder:6.901.vb_4c7a_da_75da_3,scm-api:696.
+ v778d637b_a_762
 Plugin-Developers: Stephen Connolly:stephenconnolly:
 Plugin-License-Name: The MIT license
 Plugin-License-Url: https://opensource.org/licenses/MIT
-Plugin-ScmUrl: http://github.com/jenkinsci/branch-api-plugin
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/branch-api-pl
+ ugin.git
+Plugin-ScmTag: 4ba3da2ebdb43563461f2c00b0695b674701c4d1
+Plugin-ScmUrl: https://github.com/jenkinsci/branch-api-plugin
+Plugin-GitHash: 4ba3da2ebdb43563461f2c00b0695b674701c4d1
+Implementation-Build: 4ba3da2ebdb43563461f2c00b0695b674701c4d1
 

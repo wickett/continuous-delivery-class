@@ -1,24 +1,27 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: carroll
-Build-Jdk: 1.8.0_282
-Extension-Name: workflow-step-api
-Specification-Title: The Jenkins Plugins Parent POM Project
-Implementation-Title: workflow-step-api
-Implementation-Version: 2.24
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Pipeline: Step API
+Specification-Version: 0.0
+Implementation-Title: Pipeline: Step API
+Implementation-Version: 678.v3ee58b_469476
 Group-Id: org.jenkins-ci.plugins.workflow
+Artifact-Id: workflow-step-api
 Short-Name: workflow-step-api
 Long-Name: Pipeline: Step API
 Url: https://github.com/jenkinsci/workflow-step-api-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.24
-Hudson-Version: 2.176.4
-Jenkins-Version: 2.176.4
-Plugin-Dependencies: structs:1.20
+Plugin-Version: 678.v3ee58b_469476
+Hudson-Version: 2.414.3
+Jenkins-Version: 2.414.3
+Plugin-Dependencies: structs:337.v1b_04ea_4df7c8
 Plugin-Developers: 
 Support-Dynamic-Loading: true
 Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/workflow-step
+ -api-plugin.git
+Plugin-ScmTag: 3ee58b469476390e55f4f6e42d60bbf6dc73e547
 Plugin-ScmUrl: https://github.com/jenkinsci/workflow-step-api-plugin
+Plugin-GitHash: 3ee58b469476390e55f4f6e42d60bbf6dc73e547
+Implementation-Build: 3ee58b469476390e55f4f6e42d60bbf6dc73e547
 

@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: EDDSA API Plugin
+Specification-Version: 0.3
+Implementation-Title: EDDSA API Plugin
+Implementation-Version: 0.3.0-4.v84c6f0f4969e
+Group-Id: io.jenkins.plugins
+Artifact-Id: eddsa-api
+Short-Name: eddsa-api
+Long-Name: EDDSA API Plugin
+Url: https://github.com/jenkinsci/eddsa-api-plugin
+Plugin-Version: 0.3.0-4.v84c6f0f4969e
+Hudson-Version: 2.426.3
+Jenkins-Version: 2.426.3
+Plugin-Developers: 
+Support-Dynamic-Loading: true
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/license/mit/
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/eddsa-api-plu
+ gin
+Plugin-ScmTag: 84c6f0f4969ebd5245ba589832b625b114de7bd0
+Plugin-ScmUrl: https://github.com/jenkinsci/eddsa-api-plugin
+Plugin-GitHash: 84c6f0f4969ebd5245ba589832b625b114de7bd0
+Implementation-Build: 84c6f0f4969ebd5245ba589832b625b114de7bd0
+

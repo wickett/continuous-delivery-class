@@ -1,28 +1,28 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: jeffret
-Build-Jdk: 1.8.0_161
-Extension-Name: jsch
-Specification-Title: Jenkins plugin that brings the JSch library as a 
- plugin dependency, and provides
-         an SSHAuthenticatorFactory for using JSch with the ssh-creden
- tials plugin.
-Implementation-Title: jsch
-Implementation-Version: 0.1.55.2
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 11
+Specification-Title: Jenkins JSch dependency plugin
+Specification-Version: 0.2
+Implementation-Title: Jenkins JSch dependency plugin
+Implementation-Version: 0.2.16-86.v42e010d9484b_
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: jsch
 Short-Name: jsch
 Long-Name: Jenkins JSch dependency plugin
 Url: https://github.com/jenkinsci/jsch-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 0.1.55.2
-Hudson-Version: 2.190.1
-Jenkins-Version: 2.190.1
-Plugin-Dependencies: ssh-credentials:1.14,trilead-api:1.0.5
-Plugin-Developers: Lukasz Jader:ljader:,Zoran Regvart:zregvart:,Brando
- n Pedersen:bpedman:,Oleg Nenashev:oleg_nenashev:,Devin Nusbaum:dnusba
- um:
+Plugin-Version: 0.2.16-86.v42e010d9484b_
+Hudson-Version: 2.361.4
+Jenkins-Version: 2.361.4
+Plugin-Dependencies: ssh-credentials:305.v8f4381501156,trilead-api:2.84.
+ v72119de229b_7
+Plugin-Developers: Lukasz Jader:ljader:,Zoran Regvart:zregvart:,Brandon 
+ Pedersen:bpedman:,Oleg Nenashev:oleg_nenashev:
 Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/jsch-plugin.g
+ it
+Plugin-ScmTag: 42e010d9484be93bfba8a7261c4ff04217c4ba24
 Plugin-ScmUrl: https://github.com/jenkinsci/jsch-plugin
+Plugin-GitHash: 42e010d9484be93bfba8a7261c4ff04217c4ba24
+Implementation-Build: 42e010d9484be93bfba8a7261c4ff04217c4ba24
 

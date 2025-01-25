@@ -129,7 +129,7 @@ YAHOO.namespace = function() {
  * @param  {HTML}  cat  The log category for the message.  Default
  *                        categories are "info", "warn", "error", time".
  *                        Custom categories can be used as well. (opt)
- * @param  {HTML}  src  The source of the the message (opt)
+ * @param  {HTML}  src  The source of the message (opt)
  * @return {Boolean}      True if the log operation was successful.
  */
 YAHOO.log = function(msg, cat, src) {
@@ -324,7 +324,7 @@ YAHOO.env.parseUA = function(agent) {
          * Webkit nightly 1/2008:525+    <-- Supports DOMContentLoaded event.
          *                                   yahoo.com user agent hack removed.
          * </pre>
-         * http://en.wikipedia.org/wiki/Safari_version_history
+         * https://en.wikipedia.org/wiki/Safari_version_history
          * @property webkit
          * @type float
          * @static
@@ -728,7 +728,7 @@ return (o && (typeof o === 'object' || L.isFunction(o))) || false;
      *
      * <p>
      * This implementation is based on the
-     * <a href="http://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet">OWASP
+     * <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html">OWASP
      * HTML escaping recommendations</a>. In addition to the characters
      * in the OWASP recommendation, we also escape the <code>&#x60;</code>
      * character, since IE interprets it as an attribute delimiter when used in

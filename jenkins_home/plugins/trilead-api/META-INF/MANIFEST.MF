@@ -1,25 +1,30 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: inifc
-Build-Jdk: 14.0.1
-Extension-Name: trilead-api
-Specification-Title: This plugin provides access to Trilead without ha
- ving to bundle Trilead in Jenkins core
-Implementation-Title: trilead-api
-Implementation-Version: 1.0.13
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Trilead API Plugin
+Specification-Version: 0.0
+Implementation-Title: Trilead API Plugin
+Implementation-Version: 2.147.vb_73cc728a_32e
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: trilead-api
 Short-Name: trilead-api
 Long-Name: Trilead API Plugin
 Url: https://github.com/jenkinsci/trilead-api-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.0.13
-Hudson-Version: 2.204
-Jenkins-Version: 2.204
-Plugin-Developers: Michael Clarke:mc1arke:michael.m.clarke@gmail.com,I
- van Fernandez:kuisathaverat:kuisathaverat@gmail.com
+Compatible-Since-Version: 2.0.0
+Plugin-Version: 2.147.vb_73cc728a_32e
+Hudson-Version: 2.426.3
+Jenkins-Version: 2.426.3
+Plugin-Dependencies: eddsa-api:0.3.0-4.v84c6f0f4969e,gson-api:2.10.1-15.
+ v0d99f670e0a_7
+Plugin-Developers: Michael Clarke:mc1arke:michael.m.clarke@gmail.com,Iva
+ n Fernandez:kuisathaverat:kuisathaverat@gmail.com
 Support-Dynamic-Loading: true
 Plugin-License-Name: The MIT license
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/trilead-api-p
+ lugin.git
+Plugin-ScmTag: b73cc728a32ed12df404feda4397a618b5dc951b
 Plugin-ScmUrl: https://github.com/jenkinsci/trilead-api-plugin
+Plugin-GitHash: b73cc728a32ed12df404feda4397a618b5dc951b
+Implementation-Build: b73cc728a32ed12df404feda4397a618b5dc951b
 

@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Gson API Plugin
+Specification-Version: 2.11
+Implementation-Title: Gson API Plugin
+Implementation-Version: 2.11.0-85.v1f4e87273c33
+Group-Id: io.jenkins.plugins
+Artifact-Id: gson-api
+Short-Name: gson-api
+Long-Name: Gson API Plugin
+Url: https://github.com/jenkinsci/gson-api-plugin
+Plugin-Version: 2.11.0-85.v1f4e87273c33
+Hudson-Version: 2.452.4
+Jenkins-Version: 2.452.4
+Plugin-Developers: 
+Support-Dynamic-Loading: true
+Plugin-License-Name: Apache License 2.0
+Plugin-License-Url: https://www.apache.org/licenses/LICENSE-2.0
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/gson-api-plug
+ in
+Plugin-ScmTag: 1f4e87273c339ddc1db5d75b1d0bbe2bdd5afe3b
+Plugin-ScmUrl: https://github.com/jenkinsci/gson-api-plugin
+Plugin-GitHash: 1f4e87273c339ddc1db5d75b1d0bbe2bdd5afe3b
+Implementation-Build: 1f4e87273c339ddc1db5d75b1d0bbe2bdd5afe3b
+

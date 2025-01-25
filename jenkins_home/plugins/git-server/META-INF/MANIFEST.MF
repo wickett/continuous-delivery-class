@@ -1,24 +1,27 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: jglick
-Build-Jdk: 1.8.0_292
-Extension-Name: git-server
-Specification-Title: This library plugin provides embedded Git server 
- capability inside Jenkins
-Implementation-Title: git-server
-Implementation-Version: 1.10
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Jenkins Git server Plugin
+Specification-Version: 0.0
+Implementation-Title: Jenkins Git server Plugin
+Implementation-Version: 126.v0d945d8d2b_39
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: git-server
 Short-Name: git-server
-Long-Name: Jenkins GIT server Plugin
+Long-Name: Jenkins Git server Plugin
 Url: https://github.com/jenkinsci/git-server-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.10
-Hudson-Version: 2.289.1
-Jenkins-Version: 2.289.1
-Plugin-Dependencies: sshd:3.0.4,git-client:2.7.6
+Plugin-Version: 126.v0d945d8d2b_39
+Hudson-Version: 2.361.4
+Jenkins-Version: 2.361.4
+Plugin-Dependencies: instance-identity:142.v04572ca_5b_265,sshd:3.303.ve
+ fc7119b_ec23,git-client:4.2.0
 Plugin-Developers: 
 Plugin-License-Name: The MIT license
-Plugin-License-Url: https://www.opensource.org/licenses/mit-license.php
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/git-server-pl
+ ugin.git
+Plugin-ScmTag: 0d945d8d2b39f130e7303e955103f1c2b86c3929
 Plugin-ScmUrl: https://github.com/jenkinsci/git-server-plugin
+Plugin-GitHash: 0d945d8d2b39f130e7303e955103f1c2b86c3929
+Implementation-Build: 0d945d8d2b39f130e7303e955103f1c2b86c3929
 

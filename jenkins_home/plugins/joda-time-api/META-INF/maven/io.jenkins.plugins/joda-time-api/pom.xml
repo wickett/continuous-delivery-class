@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.jenkins.plugins</groupId>
+  <artifactId>joda-time-api</artifactId>
+  <version>2.13.0-93.v9934da_29b_a_e9</version>
+  <packaging>hpi</packaging>
+  <name>Joda Time API Plugin</name>
+  <description>The Jenkins Plugins Parent POM Project</description>
+  <url>https://github.com/jenkinsci/joda-time-api-plugin</url>
+  <inceptionYear>2016</inceptionYear>
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+  <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false">
+    <connection>scm:git:https://github.com/jenkinsci/joda-time-api-plugin</connection>
+    <developerConnection>scm:git:https://github.com/jenkinsci/joda-time-api-plugin</developerConnection>
+    <tag>9934da29bae968e6cff3dc02c37b5e8c310e7c7b</tag>
+    <url>https://github.com/jenkinsci/joda-time-api-plugin</url>
+  </scm>
+  <distributionManagement>
+    <repository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+  <dependencies>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.13.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jenkins-ci.tools</groupId>
+        <artifactId>maven-hpi-plugin</artifactId>
+        <version>3.57</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

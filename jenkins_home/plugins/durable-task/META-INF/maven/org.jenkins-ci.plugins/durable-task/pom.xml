@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>durable-task</artifactId>
-  <version>1.38</version>
+  <version>581.v299a_5609d767</version>
   <packaging>hpi</packaging>
   <name>Durable Task Plugin</name>
   <description>Library offering an extension point for processes which can run outside of Jenkins yet be monitored.</description>
@@ -17,9 +17,9 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/durable-task-plugin.git</connection>
+    <connection>scm:git:https://github.com/jenkinsci/durable-task-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/durable-task-plugin.git</developerConnection>
-    <tag>durable-task-1.38</tag>
+    <tag>299a5609d7673b006ec050a9fd6cfa6c8fb17905</tag>
     <url>https://github.com/jenkinsci/durable-task-plugin</url>
   </scm>
   <distributionManagement>
@@ -36,79 +36,16 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>lib-durable-task</artifactId>
-      <version>25.v6c906af81ee2</version>
+      <version>48.v72b_86b_9ca_8e1</version>
       <scope>compile</scope>
     </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <version>2.277.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>4.2.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <version>1.20</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <version>1.16</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>annotation-indexer</artifactId>
-          <groupId>org.jenkins-ci</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.17</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke.stapler</groupId>
-        <artifactId>maven-stapler-plugin</artifactId>
-        <version>1.17</version>
+        <version>3.57</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

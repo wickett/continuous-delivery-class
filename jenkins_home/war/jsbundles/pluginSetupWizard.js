@@ -1,7 +1,3833 @@
-!function(t){function e(e){for(var i,o,l=e[0],r=e[1],c=e[2],d=0,p=[];d<l.length;d++)o=l[d],Object.prototype.hasOwnProperty.call(a,o)&&a[o]&&p.push(a[o][0]),a[o]=0;for(i in r)Object.prototype.hasOwnProperty.call(r,i)&&(t[i]=r[i]);for(u&&u(e);p.length;)p.shift()();return s.push.apply(s,c||[]),n()}function n(){for(var t,e=0;e<s.length;e++){for(var n=s[e],i=!0,l=1;l<n.length;l++){var r=n[l];0!==a[r]&&(i=!1)}i&&(s.splice(e--,1),t=o(o.s=n[0]))}return t}var i={},a={7:0},s=[];function o(e){if(i[e])return i[e].exports;var n=i[e]={i:e,l:!1,exports:{}};return t[e].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.m=t,o.c=i,o.d=function(t,e,n){o.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},o.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var i in t)o.d(n,i,function(e){return t[e]}.bind(null,i));return n},o.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return o.d(e,"a",e),e},o.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},o.p="";var l=window.webpackJsonp=window.webpackJsonp||[],r=l.push.bind(l);l.push=e,l=l.slice();for(var c=0;c<l.length;c++)e(l[c]);var u=r;s.push([41,0]),n()}({10:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){var a,s,o=this.lambda,l=this.escapeExpression;return'<div class="modal-header">\n\t<h4 class="modal-title">'+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_error_title:a,t))+'</h4>\n</div>\n<div class="modal-body">\n\t<div class="container error-container" id="error-message">\n\t\t<h1>'+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_error_header:a,t))+'</h1>\n\t\t<div class="alert alert-danger fade in">\n\t\t\t'+l("function"==typeof(s=null!=(s=e.errorMessage||(null!=t?t.errorMessage:t))?s:e.helperMissing)?s.call(t,{name:"errorMessage",hash:{},data:i}):s)+'\n\t\t</div>\n\t</div>\n</div>\n<div class="modal-footer">\n\t<button type="button" class="btn btn-primary start-over">\n\t\t'+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_retry:a,t))+"\n\t</button>\n</div>\n"},useData:!0})},11:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({1:function(t,e,i,a){var s,o,l=e.helperMissing,r=this.escapeExpression;return'\t\t<div class="selected-plugin '+r("function"==typeof(s=null!=(s=e.installStatus||(null!=t?t.installStatus:t))?s:l)?s.call(t,{name:"installStatus",hash:{},data:a}):s)+'" id="installing-'+r((o=n(7),o&&(o.__esModule?o.default:o)).call(t,null!=t?t.name:t,{name:"id",hash:{},data:a}))+'" data-tooltip="'+r("function"==typeof(s=null!=(s=e.errorMessage||(null!=t?t.errorMessage:t))?s:l)?s.call(t,{name:"errorMessage",hash:{},data:a}):s)+'">'+r("function"==typeof(s=null!=(s=e.title||(null!=t?t.title:t))?s:l)?s.call(t,{name:"title",hash:{},data:a}):s)+"</div>\n"},compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){var a,s=this.lambda,o=this.escapeExpression;return'<div class="modal-header">\n\t<h4 class="modal-title">'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installing_title:a,t))+'</h4>\n</div>\n<div class="modal-body installing-body">\n\t<div class="jumbotron welcome-panel installing-panel">\n\t\t<h1>'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installing_title:a,t))+'</h1>\n\t\t<div class="progress">\n\t\t  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">\n\t\t    <span class="sr-only">'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installing_title:a,t))+'</span>\n\t\t  </div>\n\t\t</div>\n\t</div>\n\n\t<div class="selected-plugin-progress">\n'+(null!=(a=e.each.call(t,null!=t?t.installingPlugins:t,{name:"each",hash:{},fn:this.program(1,i,0),inverse:this.noop,data:i}))?a:"")+'\t</div>\n\n\t<div class="install-console">\n\t  <div class="install-console-scroll">\n\t    <div class="install-text"></div>\n\t  </div>\n\t  <div class="dependency-legend">'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installingConsole_dependencyIndicatorNote:a,t))+"</div>\n\t</div>\n</div>\n"},useData:!0})},16:function(t,e,n){var i=n(3);function a(t){return t&&(t.__esModule?t.default:t)}t.exports=(i.default||i).template({1:function(t,e,i,s,o,l){var r,c,u=this.escapeExpression;return'<h2 id="'+u(a(n(7)).call(t,s&&s.key,{name:"id",hash:{},data:s}))+'" class="expanded">'+u("function"==typeof(c=null!=(c=e.key||s&&s.key)?c:e.helperMissing)?c.call(t,{name:"key",hash:{},data:s}):c)+" "+u(e.pluginCountForCategory.call(t,s&&s.key,{name:"pluginCountForCategory",hash:{},data:s}))+'</h2>\n<div class="plugins-for-category">\n'+(null!=(r=e.each.call(t,t,{name:"each",hash:{},fn:this.program(2,s,0,o,l),inverse:this.noop,data:s}))?r:"")+"</div>\n"},2:function(t,e,i,s,o,l){var r,c,u=this.escapeExpression,d=this.lambda,p=e.helperMissing;return'  <div class="plugin '+u(a(n(7)).call(t,null!=(r=null!=t?t.plugin:t)?r.name:r,{name:"id",hash:{},data:s}))+" "+(null!=(r=e.inSelectedPlugins.call(t,null!=(r=null!=t?t.plugin:t)?r.name:r,{name:"inSelectedPlugins",hash:{},fn:this.program(3,s,0,o,l),inverse:this.noop,data:s}))?r:"")+" "+(null!=(r=e.ifVisibleDependency.call(t,null!=(r=null!=t?t.plugin:t)?r.name:r,{name:"ifVisibleDependency",hash:{},fn:this.program(5,s,0,o,l),inverse:this.noop,data:s}))?r:"")+'" id="row-'+u(d(null!=(r=null!=t?t.plugin:t)?r.name:r,t))+'">\n    <label>\n      <span class="title">\n        <input type="checkbox" id="chk-'+u(d(null!=(r=null!=t?t.plugin:t)?r.name:r,t))+'" name="'+u(d(null!=(r=null!=t?t.plugin:t)?r.name:r,t))+'" value="'+u("function"==typeof(c=null!=(c=e.searchTerm||(null!=t?t.searchTerm:t))?c:p)?c.call(t,{name:"searchTerm",hash:{},data:s}):c)+'" '+(null!=(r=e.inSelectedPlugins.call(t,null!=(r=null!=t?t.plugin:t)?r.name:r,{name:"inSelectedPlugins",hash:{},fn:this.program(7,s,0,o,l),inverse:this.noop,data:s}))?r:"")+"/>\n        "+u(d(null!=(r=null!=t?t.plugin:t)?r.title:r,t))+'\n        <a href="'+u(d(null!=(r=null!=t?t.plugin:t)?r.website:r,t))+'" target="_blank" class="website-link" rel="noopener noreferrer" title="'+u(d(null!=(r=null!=t?t.plugin:t)?r.title:r,t))+" "+u(d(null!=(r=null!=l[2]?l[2].translations:l[2])?r.installWizard_websiteLinkLabel:r,t))+'"></a>\n      </span>\n'+(null!=(r=(e.hasDependencies||t&&t.hasDependencies||p).call(t,null!=(r=null!=t?t.plugin:t)?r.name:r,{name:"hasDependencies",hash:{},fn:this.program(9,s,0,o,l),inverse:this.noop,data:s}))?r:"")+'      <span class="description">\n        '+(null!=(r=d(null!=(r=null!=t?t.plugin:t)?r.excerpt:r,t))?r:"")+"\n      </span>\n"+(null!=(r=(e.hasDependencies||t&&t.hasDependencies||p).call(t,null!=(r=null!=t?t.plugin:t)?r.name:r,{name:"hasDependencies",hash:{},fn:this.program(11,s,0,o,l),inverse:this.noop,data:s}))?r:"")+"    </label>\n  </div>\n"},3:function(t,e,n,i){return"selected"},5:function(t,e,n,i){return"show-dependencies"},7:function(t,e,n,i){return'checked="checked"'},9:function(t,e,n,i,a,s){var o,l=this.lambda,r=this.escapeExpression;return'        <a href="#" class="btn btn-link toggle-dependency-list" type="button" data-plugin-name="'+r(l(null!=(o=null!=s[1]?s[1].plugin:s[1])?o.name:o,t))+'" title="'+r(l(null!=(o=null!=s[1]?s[1].plugin:s[1])?o.title:o,t))+" "+r(l(null!=(o=null!=s[3]?s[3].translations:s[3])?o.installWizard_installIncomplete_dependenciesLabel:o,t))+'">\n          <span class="badge">'+r(e.dependencyCount.call(t,null!=(o=null!=s[1]?s[1].plugin:s[1])?o.name:o,{name:"dependencyCount",hash:{},data:i}))+"</span>\n        </a>\n"},11:function(t,e,n,i,a,s){var o;return'        <div class="dep-list">\n          <h3 class="dep-title">'+this.escapeExpression(this.lambda(null!=(o=null!=s[3]?s[3].translations:s[3])?o.installWizard_installIncomplete_dependenciesLabel:o,t))+"</h3>\n"+(null!=(o=e.eachDependency.call(t,null!=(o=null!=s[1]?s[1].plugin:s[1])?o.name:o,{name:"eachDependency",hash:{},fn:this.program(12,i,0,a,s),inverse:this.noop,data:i}))?o:"")+"        </div>\n"},12:function(t,e,n,i){var a,s=e.helperMissing,o=this.escapeExpression;return'          <a class="dep badge" href="'+o("function"==typeof(a=null!=(a=e.website||(null!=t?t.website:t))?a:s)?a.call(t,{name:"website",hash:{},data:i}):a)+'" rel="noopener noreferrer" target="_blank">\n          '+o("function"==typeof(a=null!=(a=e.title||(null!=t?t.title:t))?a:s)?a.call(t,{name:"title",hash:{},data:i}):a)+"\n          </a>\n"},compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i,a,s){var o;return null!=(o=e.each.call(t,null!=t?t.categorizedPlugins:t,{name:"each",hash:{},fn:this.program(1,i,0,a,s),inverse:this.noop,data:i}))?o:""},useData:!0,useDepths:!0})},18:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){return'<div class="loader"></div>\n'},useData:!0})},19:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){var a,s,o=this.lambda,l=this.escapeExpression,r=e.helperMissing;return'<div class="modal-header">\n\t<h4 class="modal-title">'+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_addFirstUser_title:a,t))+'</h4>\n</div>\n<div class="modal-body">\n\t<div class="jumbotron welcome-panel security-panel">\n\t\t'+(null!=(a="function"==typeof(s=null!=(s=e.message||(null!=t?t.message:t))?s:r)?s.call(t,{name:"message",hash:{},data:i}):s)?a:"")+'\n\n\t\t<iframe src="'+l("function"==typeof(s=null!=(s=e.baseUrl||(null!=t?t.baseUrl:t))?s:r)?s.call(t,{name:"baseUrl",hash:{},data:i}):s)+'/setupWizard/setupWizardConfigureInstance" id="setup-configure-instance"></iframe>\n\t</div>\n</div>\n<div class="modal-footer">\n    <button type="button" class="btn btn-link skip-configure-instance" disabled>\n        '+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_skipConfigureInstance:a,t))+'\n    </button>\n\t<button type="button" class="btn btn-primary save-configure-instance" disabled>\n\t\t'+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_saveConfigureInstance:a,t))+"\n\t</button>\n</div>\n"},useData:!0})},2:function(t,e,n){"use strict";var i=n(0),a=n.n(i),s=n(1),o=n.n(s),l=n(3),r=n.n(l),c={baseUrl:function(){var t=a()("head").attr("data-rooturl");return t||(t=""),t},stringify:function(t){if(!Array.prototype.toJSON)return JSON.stringify(t);var e={a:Array.prototype.toJSON,o:Object.prototype.toJSON,h:Hash.prototype.toJSON,s:String.prototype.toJSON};try{return delete Array.prototype.toJSON,delete Object.prototype.toJSON,delete Hash.prototype.toJSON,delete String.prototype.toJSON,JSON.stringify(t)}finally{e.a&&(Array.prototype.toJSON=e.a),e.o&&(Object.prototype.toJSON=e.o),e.h&&(Hash.prototype.toJSON=e.h),e.s&&(String.prototype.toJSON=e.s)}},goTo:function(t){o.a.getWindow().location.replace(c.baseUrl()+t)},get:function(t,e,n){var i={url:c.baseUrl()+t,type:"GET",cache:!1,dataType:"json",success:e};n instanceof Object&&a.a.extend(i,n),a.a.ajax(i)},post:function(t,e,n,i){var s,l={},r=o.a.getWindow();"crumb"in i?s=i.crumb:"crumb"in r&&(s=r.crumb),s&&(l[s.fieldName]=s.value);var u=e;u instanceof Object&&(s&&((u=a.a.extend({},u))[s.fieldName]=s.value),u=c.stringify(u));var d={url:c.baseUrl()+t,type:"POST",cache:!1,dataType:"json",data:u,contentType:"application/json",success:n,headers:l};i instanceof Object&&a.a.extend(d,i),a.a.ajax(d)},initHandlebars:function(){return r.a},loadTranslations:function(t,e,n){c.get("/i18n/resourceBundle?baseName="+t,(function(t){if("ok"!==t.status)throw n&&n(t.message),"Unable to load localization data: "+t.message;var i=t.data;"undefined"!=typeof Proxy&&(i=new Proxy(i,{get:function(t,e){return e in t?t[e]:e}})),e(i)}))},testConnectivity:function(t,e){!function n(){c.get("/updateCenter/connectionStatus?siteId="+t,(function(t){"ok"!==t.status&&e(!1,!0,t.message);var i=["PRECHECK","CHECKING","UNCHECKED"];i.indexOf(t.data.updatesite)>=0||i.indexOf(t.data.internet)>=0?setTimeout(n,100):"ok"!==t.status||"OK"!==t.data.updatesite||"OK"!==t.data.internet&&"SKIPPED"!==t.data.internet?e(!1,!1):e(!0)}),{error:function(t,n,i){403===t.status?c.goTo("/login"):e.call({isError:!0,errorMessage:i})}})}()},getWindow:function(t){t=a()(t);var e=o.a.getWindow();return a()(top.document).find("iframe").each((function(){var n=this.contentWindow;a()(this).contents().find("form").each((function(){t[0]===this&&(e=n)}))})),e},buildFormPost:function(t){t=a()(t);var e=c.getWindow(t),n=t[0];return e.buildFormTree(n)?t.serialize()+"&"+a.a.param({"core:apply":"",Submit:"Save",json:t.find("input[name=json]").val()}):""},getFormCrumb:function(t){return t=a()(t),c.getWindow(t).crumb},staplerPost:function(t,e,n,i){e=a()(e);var s=c.buildFormPost(e),o=c.getFormCrumb(e);c.post(t,s,n,a.a.extend({processData:!1,contentType:"application/x-www-form-urlencoded",crumb:o},i))}};e.a=c},25:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){var a,s=this.lambda,o=this.escapeExpression;return'<div class="modal-header closeable">\n\t<h4 class="modal-title">'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_welcomePanel_title:a,t))+'</h4>\n</div>\n<div class="modal-body">\n  <i class="water-mark icon-service"></i>\n  <div class="jumbotron welcome-panel">\n\t\t <h1>'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_welcomePanel_banner:a,t))+"</h1>\n\t<p>\n\t\t\t"+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_welcomePanel_message:a,t))+'\n\t\t</p>\n\t\t<p class="button-set">\n\t\t\t<a class="btn btn-primary btn-lg btn-huge install-recommended" href="#" role="button">\n\t\t\t\t<b>'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_welcomePanel_recommendedActionTitle:a,t))+"</b>\n\t\t\t\t<sub>\n\t\t\t\t\t"+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_welcomePanel_recommendedActionDetails:a,t))+'\n\t\t\t\t</sub>\n\t\t\t\t<i class="icon icon-signup"></i>\n\t\t\t</a>\n\n\t\t\t<a class="btn btn-default btn-lg btn-huge install-custom" href="#" role="button">\n\t\t\t\t<b>'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_welcomePanel_customizeActionTitle:a,t))+"</b>\n\t\t\t\t<sub>\n\t\t\t\t\t"+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_welcomePanel_customizeActionDetails:a,t))+'\n\t\t\t\t</sub>\n\t\t\t\t<i class="icon icon-plug"></i>\n\t\t\t</a>\n\t\t</p>\n\t</div>\n\n</div>\n'},useData:!0})},26:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({1:function(t,e,n,i){var a,s=this.lambda,o=this.escapeExpression;return"        <p>"+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_pluginInstallFailure_message:a,t))+'</p>\n        <button type="button" class="btn btn-primary retry-failed-plugins">\n            '+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_retry:a,t))+"\n        </button>\n"},3:function(t,e,i,a){var s,o,l=e.helperMissing,r=this.escapeExpression;return'        <div class="selected-plugin '+r("function"==typeof(s=null!=(s=e.installStatus||(null!=t?t.installStatus:t))?s:l)?s.call(t,{name:"installStatus",hash:{},data:a}):s)+'" data-name="'+r((o=n(7),o&&(o.__esModule?o.default:o)).call(t,null!=t?t.name:t,{name:"id",hash:{},data:a}))+'">'+r("function"==typeof(s=null!=(s=e.title||(null!=t?t.title:t))?s:l)?s.call(t,{name:"title",hash:{},data:a}):s)+"</div>\n"},5:function(t,e,n,i){var a,s=this.lambda,o=this.escapeExpression;return'    <button type="button" class="btn btn-link continue-with-failed-plugins">\n        '+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_continue:a,t))+'\n    </button>\n    <button type="button" class="btn btn-primary retry-failed-plugins">\n        '+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_retry:a,t))+"\n    </button>\n"},7:function(t,e,n,i){var a;return'    <button type="button" class="btn btn-primary continue-with-failed-plugins">\n        '+this.escapeExpression(this.lambda(null!=(a=null!=t?t.translations:t)?a.installWizard_continue:a,t))+"\n    </button>\n"},compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){var a,s=this.lambda,o=this.escapeExpression;return'<div class="modal-header">\n    <h4 class="modal-title">'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_welcomePanel_title:a,t))+'</h4>\n</div>\n<div class="modal-body">\n    <div class="jumbotron welcome-panel success-panel">\n        <h1>'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_pluginInstallFailure_title:a,t))+"</h1>\n\n"+(null!=(a=e.if.call(t,null!=t?t.failedPlugins:t,{name:"if",hash:{},fn:this.program(1,i,0),inverse:this.noop,data:i}))?a:"")+'    </div>\n\n    <div class="selected-plugin-progress success-panel">\n'+(null!=(a=e.each.call(t,null!=t?t.installingPlugins:t,{name:"each",hash:{},fn:this.program(3,i,0),inverse:this.noop,data:i}))?a:"")+'    </div>\n</div>\n<div class="modal-footer">\n'+(null!=(a=e.if.call(t,null!=t?t.failedPlugins:t,{name:"if",hash:{},fn:this.program(5,i,0),inverse:this.program(7,i,0),data:i}))?a:"")+"</div>\n"},useData:!0})},27:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({1:function(t,e,i,a){var s,o=this.escapeExpression;return'    <li><a href="#'+o((s=n(7),s&&(s.__esModule?s.default:s)).call(t,t,{name:"id",hash:{},data:a}))+'" class="select-category">'+o(this.lambda(t,t))+"</a></li>\n"},3:function(t,e,n,i){return this.escapeExpression(this.lambda(t,t))+","},compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,i,a){var s,o=this.lambda,l=this.escapeExpression;return'<div class="modal-header closeable">\n  <h4 class="modal-title">'+l(o(null!=(s=null!=t?t.translations:t)?s.installWizard_installCustom_title:s,t))+'</h4>\n</div>\n<div class="modal-body plugin-selector">\n  <div class="categories col-sm-3">\n  <ul class="nav">\n'+(null!=(s=e.each.call(t,null!=t?t.categories:t,{name:"each",hash:{},fn:this.program(1,a,0),inverse:this.noop,data:a}))?s:"")+'  </ul>\n  </div>\n  <div class="plugins col-sm-9">\n    <div class="plugin-select-controls">\n      <span class="plugin-select-actions">\n        <a href="#" class="plugin-select-all">'+l(o(null!=(s=null!=t?t.translations:t)?s.installWizard_installCustom_selectAll:s,t))+'</a>\n        <a href="#" class="plugin-select-none">'+l(o(null!=(s=null!=t?t.translations:t)?s.installWizard_installCustom_selectNone:s,t))+'</a>\n        <a href="#" class="plugin-select-recommended">'+l(o(null!=(s=null!=t?t.translations:t)?s.installWizard_installCustom_selectRecommended:s,t))+'</a>\n      </span>\n      <span class="plugin-search-controls">\n        <input type="text" name="searchbox" class="form-control" />\n        <a href="#" class="clear-search">&times;</a>\n      </span>\n      <span id="plugin-selected-info" class="plugin-selected-info" data-selected-plugins="'+(null!=(s=e.each.call(t,null!=t?t.selectedPlugins:t,{name:"each",hash:{},fn:this.program(3,a,0),inverse:this.noop,data:a}))?s:"")+'">\n        <a href="#" class="plugin-show-selected">'+l(o(null!=(s=null!=t?t.translations:t)?s.installWizard_installCustom_selected:s,t))+"</a> "+l(e.totalPluginCount.call(t,{name:"totalPluginCount",hash:{},data:a}))+'\n      </span>\n    </div>\n        <div class="plugin-list">\n            <div class="plugin-list-description">'+(null!=(s=o(null!=(s=null!=t?t.translations:t)?s.installWizard_installCustom_pluginListDesc:s,t))?s:"")+"</div>\n"+(null!=(s=this.invokePartial(n(16),t,{name:"pluginSelectList",data:a,indent:"        ",helpers:e,partials:i}))?s:"")+'    </div>\n  </div>\n</div>\n<div class="modal-footer">\n  <button type="button" class="btn btn-link install-home">\n    '+l(o(null!=(s=null!=t?t.translations:t)?s.installWizard_goBack:s,t))+'\n  </button>\n  <button type="button" class="btn btn-primary install-selected">\n    '+l(o(null!=(s=null!=t?t.translations:t)?s.installWizard_goInstall:s,t))+"\n  </button>\n</div>\n"},usePartial:!0,useData:!0})},28:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({1:function(t,e,n,i){var a;return"\t\t<h1>"+this.escapeExpression(this.lambda(null!=(a=null!=t?t.translations:t)?a.installWizard_installComplete_bannerRestart:a,t))+"</h1>\n"},3:function(t,e,n,i){var a;return"\t\t<h1>"+this.escapeExpression(this.lambda(null!=(a=null!=t?t.translations:t)?a.installWizard_installComplete_banner:a,t))+"</h1>\n"},5:function(t,e,n,i){var a;return null!=(a=e.if.call(t,null!=t?t.restartSupported:t,{name:"if",hash:{},fn:this.program(6,i,0),inverse:this.program(8,i,0),data:i}))?a:""},6:function(t,e,n,i){var a,s=this.lambda,o=this.escapeExpression;return"\t\t\t<p>"+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installComplete_installComplete_restartRequiredMessage:a,t))+'</p>\n\t\t\t<button type="button" class="btn btn-primary install-done-restart">\n\t\t\t\t'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installComplete_restartLabel:a,t))+"\n\t\t\t</button>\n"},8:function(t,e,n,i){var a;return"\t\t\t<p>"+this.escapeExpression(this.lambda(null!=(a=null!=t?t.translations:t)?a.installWizard_installComplete_installComplete_restartRequiredNotSupportedMessage:a,t))+"</p>\n"},10:function(t,e,n,i){var a,s=this.lambda,o=this.escapeExpression;return"\t\t<p>"+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installComplete_message:a,t))+'</p>\n\t\t<button type="button" class="btn btn-primary install-done">\n\t\t\t'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installComplete_finishButtonLabel:a,t))+"\n\t\t</button>\n"},compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){var a,s;return'<div class="modal-header">\n\t<h4 class="modal-title">'+this.escapeExpression(this.lambda(null!=(a=null!=t?t.translations:t)?a.installWizard_installComplete_title:a,t))+'</h4>\n</div>\n<div class="modal-body">\n\t<div class="jumbotron welcome-panel success-panel">\n'+(null!=(a=e.if.call(t,null!=t?t.restartRequired:t,{name:"if",hash:{},fn:this.program(1,i,0),inverse:this.program(3,i,0),data:i}))?a:"")+"\t\t\n\t\t"+(null!=(a="function"==typeof(s=null!=(s=e.message||(null!=t?t.message:t))?s:e.helperMissing)?s.call(t,{name:"message",hash:{},data:i}):s)?a:"")+"\n\n"+(null!=(a=e.if.call(t,null!=t?t.restartRequired:t,{name:"if",hash:{},fn:this.program(5,i,0),inverse:this.program(10,i,0),data:i}))?a:"")+"\t</div>\n</div>\n"},useData:!0})},29:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){var a,s,o=this.lambda,l=this.escapeExpression;return'<div class="modal-header">\n    <h4 class="modal-title">'+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_configureProxy_label:a,t))+'</h4>\n</div>\n<div class="modal-body">\n    <div class="jumbotron welcome-panel security-panel">\n        <iframe src="'+l("function"==typeof(s=null!=(s=e.baseUrl||(null!=t?t.baseUrl:t))?s:e.helperMissing)?s.call(t,{name:"baseUrl",hash:{},data:i}):s)+'/setupWizard/proxy-configuration"></iframe>\n    </div>\n</div>\n<div class="modal-footer">\n    <button type="button" class="btn btn-link install-home">\n        '+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_goBack:a,t))+'\n    </button>\n    <button type="button" class="btn btn-primary save-proxy-config" disabled>\n        '+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_configureProxy_save:a,t))+"\n    </button>\n</div>\n"},useData:!0})},30:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){var a,s,o=this.lambda,l=this.escapeExpression;return'<div class="modal-header">\n\t<h4 class="modal-title">'+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_addFirstUser_title:a,t))+'</h4>\n</div>\n<div class="modal-body">\n\t<div class="jumbotron welcome-panel security-panel">\n\t\t<iframe src="'+l("function"==typeof(s=null!=(s=e.baseUrl||(null!=t?t.baseUrl:t))?s:e.helperMissing)?s.call(t,{name:"baseUrl",hash:{},data:i}):s)+'/setupWizard/setupWizardFirstUser" id="setup-first-user"></iframe>\n\t</div>\n</div>\n<div class="modal-footer">\n    <button type="button" class="btn btn-link skip-first-user" disabled>\n        '+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_skipFirstUser:a,t))+'\n    </button>\n\t<button type="button" class="btn btn-primary save-first-user" disabled>\n\t\t'+l(o(null!=(a=null!=t?t.translations:t)?a.installWizard_saveFirstUser:a,t))+"\n\t</button>\n</div>\n"},useData:!0})},31:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){var a,s=this.lambda,o=this.escapeExpression;return'<div class="modal-header">\n    <h4 class="modal-title">'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_offline_title:a,t))+'</h4>\n</div>\n<div class="modal-body">\n    <div class="jumbotron welcome-panel offline">\n        <h1>'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_offline_title:a,t))+"</h1>\n        <p>"+(null!=(a=s(null!=(a=null!=t?t.translations:t)?a.installWizard_offline_message:a,t))?a:"")+'</p>\n        <p>\n            <button type="button" class="btn btn-primary show-proxy-config">'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_configureProxy_label:a,t))+'</button>\n            <button type="button" class="btn btn-primary skip-plugin-installs">'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_skipPluginInstallations:a,t))+"</button>\n        </p>\n    </div>\n</div>\n"},useData:!0})},32:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){return'<div class="plugin-setup-wizard bootstrap-3">\n\t<div class="modal fade in" style="display: block;">\n\t\t<div class="modal-dialog">\n\t\t\t<div class="modal-content"></div>\n\t\t</div>\n\t</div>\n</div>'},useData:!0})},33:function(t,e,n){var i=n(3);t.exports=(i.default||i).template({1:function(t,e,i,a){var s,o,l=e.helperMissing,r=this.escapeExpression;return'\t\t<div class="selected-plugin '+r("function"==typeof(s=null!=(s=e.installStatus||(null!=t?t.installStatus:t))?s:l)?s.call(t,{name:"installStatus",hash:{},data:a}):s)+'" data-name="'+r((o=n(7),o&&(o.__esModule?o.default:o)).call(t,null!=t?t.name:t,{name:"id",hash:{},data:a}))+'">'+r("function"==typeof(s=null!=(s=e.title||(null!=t?t.title:t))?s:l)?s.call(t,{name:"title",hash:{},data:a}):s)+"</div>\n"},compiler:[6,">= 2.0.0-beta.1"],main:function(t,e,n,i){var a,s=this.lambda,o=this.escapeExpression;return'<div class="modal-header">\n\t<h4 class="modal-title">'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installIncomplete_title:a,t))+'</h4>\n</div>\n<div class="modal-body">\n\t<div class="jumbotron welcome-panel success-panel">\n\t\t<h1>'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installIncomplete_banner:a,t))+"</h1>\n\t\t<p>"+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installIncomplete_message:a,t))+'</p>\n\t</div>\n\n\t<div class="selected-plugin-progress success-panel">\n'+(null!=(a=e.each.call(t,null!=t?t.installingPlugins:t,{name:"each",hash:{},fn:this.program(1,i,0),inverse:this.noop,data:i}))?a:"")+'\t</div>\n</div>\n<div class="modal-footer">\n\t<button type="button" class="btn btn-link install-home">\n\t\t'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_goBack:a,t))+'\n\t</button>\n\t<button type="button" class="btn btn-primary resume-installation">\n\t\t'+o(s(null!=(a=null!=t?t.translations:t)?a.installWizard_installIncomplete_resumeInstallationButtonLabel:a,t))+"\n\t</button>\n</div>"},useData:!0})},41:function(t,e,n){n(82),t.exports=n(46)},46:function(t,e,n){var i=n(8),a=n(47);"string"==typeof(a=a.__esModule?a.default:a)&&(a=[[t.i,a,""]]);var s={insert:"head",singleton:!1};i(a,s);t.exports=a.locals||{}},47:function(t,e,n){},5:function(t,e,n){"use strict";var i,a=n(2),s={initialPluginList:function(t){a.a.get("/setupWizard/platformPluginList",(function(e){"ok"===e.status?t.call({isError:!1},e.data):t.call({isError:!0,data:e.data})}),{timeout:o,error:function(e,n,i){t.call({isError:!0,errorMessage:i})}})},init:function(t){s.initialPluginList((function(e){(i={}).names=[],i.recommendedPlugins=[],i.availablePlugins=e;for(var n=0;n<e.length;n++)for(var a=e[n],s=a.plugins,o=0;o<s.length;o++){var l=s[o],r=l.name;if(-1===i.names.indexOf(r))if(i.names.push(r),l.suggested)i.recommendedPlugins.push(r);else if("Languages"===a.category){r==="localization-"+(window.navigator.userLanguage||window.navigator.language).toLocaleLowerCase()&&i.recommendedPlugins.push(r)}}t()}))}},o=1e4;s.plugins=function(){return i.availablePlugins},s.pluginNames=function(){return i.names},s.recommendedPluginNames=function(){return i.recommendedPlugins.slice()},s.installPlugins=function(t,e){a.a.post("/pluginManager/installPlugins",{dynamicLoad:!0,plugins:t},(function(t){"ok"===t.status?e.call({isError:!1},t.data.correlationId):e.call({isError:!0,errorMessage:t.message})}),{timeout:o,error:function(t,n,i){e.call({isError:!0,errorMessage:i})}})},s.installStatus=function(t,e){var n="/updateCenter/installStatus";void 0!==e&&(n+="?correlationId="+e),a.a.get(n,(function(e){"ok"===e.status?t.call({isError:!1},e.data):t.call({isError:!0,errorMessage:e.message})}),{timeout:o,error:function(e,n,i){t.call({isError:!0,errorMessage:i})}})},s.availablePlugins=function(t){a.a.get("/pluginManager/plugins",(function(e){"ok"===e.status?t.call({isError:!1},e.data):t.call({isError:!0,errorMessage:e.message})}),{timeout:o,error:function(e,n,i){t.call({isError:!0,errorMessage:i})}})},s.availablePluginsSearch=function(t,e,n){a.a.get("/pluginManager/pluginsSearch?query="+t+"&limit="+e,(function(t){"ok"===t.status?n.call({isError:!1},t.data):n.call({isError:!0,errorMessage:t.message})}),{timeout:o,error:function(t,e,i){n.call({isError:!0,errorMessage:i})}})},s.incompleteInstallStatus=function(t,e){var n="/updateCenter/incompleteInstallStatus";void 0!==e&&(n+="?correlationId="+e),a.a.get(n,(function(e){"ok"===e.status?t.call({isError:!1},e.data):t.call({isError:!0,errorMessage:e.message})}),{timeout:o,error:function(e,n,i){t.call({isError:!0,errorMessage:i})}})},s.completeInstall=function(t){a.a.post("/setupWizard/completeInstall",{},(function(){t.call({isError:!1})}),{timeout:o,error:function(e,n,i){t.call({isError:!0,message:i})}})},s.getRestartStatus=function(t){a.a.get("/setupWizard/restartStatus",(function(e){t.call({isError:!1},e.data)}),{timeout:o,error:function(e,n,i){t.call({isError:!0,message:i})}})},s.installPluginsDone=function(t){a.a.post("/pluginManager/installPluginsDone",{},(function(){t()}),{timeout:o,error:function(e,n,i){t.call({isError:!0,message:i})}})},s.restartJenkins=function(t){a.a.post("/updateCenter/safeRestart",{},(function(){t.call({isError:!1})}),{timeout:o,error:function(e,n,i){t.call({isError:!0,message:i})}})},e.a=s},7:function(t,e,n){"use strict";function i(t){return(""+t).replace(/\W+/g,"_")}n.r(e),n.d(e,"default",(function(){return i}))},82:function(t,e,n){"use strict";n.r(e);var i=n(0),a=n.n(i),s=n(3),o=n.n(s),l=n(2),r=n(5),c=n(1);var u={saveFirstUser:function(t,e,n){l.a.staplerPost("/setupWizard/createAdminUser",t,(function(t){var n=t.data.crumbRequestField;n&&Object(c.getWindow)().crumb.init(n,t.data.crumb),e(t)}),{error:n})},saveConfigureInstance:function(t,e,n){l.a.staplerPost("/setupWizard/configureInstance",t,(function(t){var n=t.data.crumbRequestField;n&&Object(c.getWindow)().crumb.init(n,t.data.crumb),e(t)}),{error:n})},saveProxy:function(t,e,n){l.a.staplerPost("/pluginManager/proxyConfigure",t,e,{dataType:"html",error:n})}},d=n(7);function p(t){return(p="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function h(t){var e,n=Object(c.getWindow)(),i=n.$,a=n.jQuery;try{var s=t;n.$=t,n.jQuery=t;var o=n.document;
-/*!
+/******/ (function() { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ 9065:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ id; }
+/* harmony export */ });
+function id(str) {
+  return ("" + str).replace(/\W+/g, "_");
+}
+
+/***/ }),
+
+/***/ 7626:
+/***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXTERNAL MODULE: ../../../../.yarn/berry/cache/jquery-npm-3.7.1-eeeac0f21e-10c0.zip/node_modules/jquery/dist/jquery.js
+var jquery = __webpack_require__(3189);
+var jquery_default = /*#__PURE__*/__webpack_require__.n(jquery);
+// EXTERNAL MODULE: ../../../../.yarn/berry/cache/handlebars-npm-4.7.8-25244c2c82-10c0.zip/node_modules/handlebars/runtime.js
+var runtime = __webpack_require__(1362);
+var runtime_default = /*#__PURE__*/__webpack_require__.n(runtime);
+// EXTERNAL MODULE: ../../../../.yarn/berry/cache/window-handle-npm-1.0.1-369b8e9cbe-10c0.zip/node_modules/window-handle/index.js
+var window_handle = __webpack_require__(8600);
+;// CONCATENATED MODULE: ./war/src/main/js/util/jenkins.js
+/**
+ * Jenkins JS Modules common utility functions
+ */
+
+
+
+var debug = false;
+var jenkins = {};
+
+// gets the base Jenkins URL including context path
+jenkins.baseUrl = function () {
+  var u = jquery_default()("head").attr("data-rooturl");
+  if (!u) {
+    u = "";
+  }
+  return u;
+};
+
+/**
+ * redirect
+ */
+jenkins.goTo = function (url) {
+  window_handle.getWindow().location.replace(jenkins.baseUrl() + url);
+};
+
+/**
+ * Jenkins AJAX GET callback.
+ * If last parameter is an object, will be extended to jQuery options (e.g. pass { error: function() ... } to handle errors)
+ */
+jenkins.get = function (url, success, options) {
+  if (debug) {
+    console.log("get: " + url);
+  }
+  var args = {
+    url: jenkins.baseUrl() + url,
+    type: "GET",
+    cache: false,
+    dataType: "json",
+    success: success
+  };
+  if (options instanceof Object) {
+    jquery_default().extend(args, options);
+  }
+  jquery_default().ajax(args);
+};
+
+/**
+ * Jenkins AJAX POST callback, formats data as a JSON object post
+ * If last parameter is an object, will be extended to jQuery options (e.g. pass { error: function() ... } to handle errors)
+ */
+jenkins.post = function (url, data, success, options) {
+  if (debug) {
+    console.log("post: " + url);
+  }
+
+  // handle crumbs
+  var headers = {};
+  var wnd = window_handle.getWindow();
+  var crumb;
+  if ("crumb" in options) {
+    crumb = options.crumb;
+  } else if ("crumb" in wnd) {
+    crumb = wnd.crumb;
+  }
+  if (crumb) {
+    headers[crumb.fieldName] = crumb.value;
+  }
+  var formBody = data;
+  if (formBody instanceof Object) {
+    if (crumb) {
+      formBody = jquery_default().extend({}, formBody);
+      formBody[crumb.fieldName] = crumb.value;
+    }
+    formBody = JSON.stringify(formBody);
+  }
+  var args = {
+    url: jenkins.baseUrl() + url,
+    type: "POST",
+    cache: false,
+    dataType: "json",
+    data: formBody,
+    contentType: "application/json",
+    success: success,
+    headers: headers
+  };
+  if (options instanceof Object) {
+    jquery_default().extend(args, options);
+  }
+  jquery_default().ajax(args);
+};
+
+/**
+ *  handlebars setup, done for backwards compatibility because some plugins depend on it
+ */
+jenkins.initHandlebars = function () {
+  return (runtime_default());
+};
+
+/**
+ * Load translations for the given bundle ID, provide the message object to the handler.
+ * Optional error handler as the last argument.
+ */
+jenkins.loadTranslations = function (bundleName, handler, onError) {
+  jenkins.get("/i18n/resourceBundle?baseName=" + bundleName, function (res) {
+    if (res.status !== "ok") {
+      if (onError) {
+        onError(res.message);
+      }
+      throw "Unable to load localization data: " + res.message;
+    }
+    var translations = res.data;
+    if ("undefined" !== typeof Proxy) {
+      translations = new Proxy(translations, {
+        get: function (target, property) {
+          if (property in target) {
+            return target[property];
+          }
+          if (debug) {
+            console.log('"' + property + '" not found in translation bundle.');
+          }
+          return property;
+        }
+      });
+    }
+    handler(translations);
+  });
+};
+
+/**
+ * Runs a connectivity test, calls handler with a boolean whether there is sufficient connectivity to the internet
+ */
+jenkins.testConnectivity = function (siteId, handler) {
+  // check the connectivity api
+  var testConnectivity = function () {
+    jenkins.get("/updateCenter/connectionStatus?siteId=" + siteId, function (response) {
+      if (response.status !== "ok") {
+        handler(false, true, response.message);
+      }
+
+      // Define statuses, which need additional check iteration via async job on the Jenkins master
+      // Statuses like "OK" or "SKIPPED" are considered as fine.
+      var uncheckedStatuses = ["PRECHECK", "CHECKING", "UNCHECKED"];
+      if (uncheckedStatuses.indexOf(response.data.updatesite) >= 0 || uncheckedStatuses.indexOf(response.data.internet) >= 0) {
+        setTimeout(testConnectivity, 100);
+      } else {
+        // Update site should be always reachable, but we do not require the internet connection
+        // if it's explicitly skipped by the update center
+        if (response.status !== "ok" || response.data.updatesite !== "OK" || response.data.internet !== "OK" && response.data.internet !== "SKIPPED") {
+          // no connectivity, but not fatal
+          handler(false, false);
+        } else {
+          handler(true);
+        }
+      }
+    }, {
+      error: function (xhr, textStatus, errorThrown) {
+        if (xhr.status === 403) {
+          jenkins.goTo("/login");
+        } else {
+          handler.call({
+            isError: true,
+            errorMessage: errorThrown
+          });
+        }
+      }
+    });
+  };
+  testConnectivity();
+};
+
+/**
+ * gets the window containing a form, taking in to account top-level iframes
+ */
+jenkins.getWindow = function ($form) {
+  $form = jquery_default()($form);
+  var wnd = window_handle.getWindow();
+  jquery_default()(top.document).find("iframe").each(function () {
+    var windowFrame = this.contentWindow;
+    var $f = jquery_default()(this).contents().find("form");
+    $f.each(function () {
+      if ($form[0] === this) {
+        wnd = windowFrame;
+      }
+    });
+  });
+  return wnd;
+};
+
+/**
+ * Builds a stapler form post
+ */
+jenkins.buildFormPost = function ($form) {
+  $form = jquery_default()($form);
+  var wnd = jenkins.getWindow($form);
+  var form = $form[0];
+  if (wnd.buildFormTree(form)) {
+    return $form.serialize() + "&" + jquery_default().param({
+      "core:apply": "",
+      Submit: "Save",
+      json: $form.find("input[name=json]").val()
+    });
+  }
+  return "";
+};
+
+/**
+ * Gets the crumb, if crumbs are enabled
+ */
+jenkins.getFormCrumb = function ($form) {
+  $form = jquery_default()($form);
+  var wnd = jenkins.getWindow($form);
+  return wnd.crumb;
+};
+
+/**
+ * Jenkins Stapler JSON POST callback
+ * If last parameter is an object, will be extended to jQuery options (e.g. pass { error: function() ... } to handle errors)
+ */
+jenkins.staplerPost = function (url, $form, success, options) {
+  $form = jquery_default()($form);
+  var postBody = jenkins.buildFormPost($form);
+  var crumb = jenkins.getFormCrumb($form);
+  jenkins.post(url, postBody, success, jquery_default().extend({
+    processData: false,
+    contentType: "application/x-www-form-urlencoded",
+    crumb: crumb
+  }, options));
+};
+/* harmony default export */ var util_jenkins = (jenkins);
+;// CONCATENATED MODULE: ./war/src/main/js/api/pluginManager.js
+/**
+ * Provides a wrapper to interact with the plugin manager & update center
+ */
+
+
+//Get plugin info (plugins + recommended plugin list) from update centers.
+var plugins;
+var pluginManager = {};
+pluginManager.initialPluginList = function (handler) {
+  util_jenkins.get("/setupWizard/platformPluginList", function (response) {
+    if (response.status !== "ok") {
+      handler.call({
+        isError: true,
+        data: response.data
+      });
+      return;
+    }
+    handler.call({
+      isError: false
+    }, response.data);
+  }, {
+    timeout: pluginManagerErrorTimeoutMillis,
+    error: function (xhr, textStatus, errorThrown) {
+      handler.call({
+        isError: true,
+        errorMessage: errorThrown
+      });
+    }
+  });
+};
+
+// Call this to initialize the plugin list
+pluginManager.init = function (handler) {
+  pluginManager.initialPluginList(function (initialPluginCategories) {
+    plugins = {};
+    plugins.names = [];
+    plugins.recommendedPlugins = [];
+    plugins.availablePlugins = initialPluginCategories;
+    for (var i = 0; i < initialPluginCategories.length; i++) {
+      var pluginCategory = initialPluginCategories[i];
+      var categoryPlugins = pluginCategory.plugins;
+      for (var ii = 0; ii < categoryPlugins.length; ii++) {
+        var plugin = categoryPlugins[ii];
+        var pluginName = plugin.name;
+        if (plugins.names.indexOf(pluginName) === -1) {
+          plugins.names.push(pluginName);
+          if (plugin.suggested) {
+            plugins.recommendedPlugins.push(pluginName);
+          } else if (pluginCategory.category === "Languages") {
+            var language = window.navigator.userLanguage || window.navigator.language;
+            var code = language.toLocaleLowerCase();
+            if (pluginName === "localization-" + code) {
+              plugins.recommendedPlugins.push(pluginName);
+            }
+          }
+        }
+      }
+    }
+    handler();
+  });
+};
+
+// default 10 seconds for AJAX responses to return before triggering an error condition
+var pluginManagerErrorTimeoutMillis = 10 * 1000;
+
+/**
+ * Get the curated list of plugins to be offered in the wizard.
+ * @returns The curated list of plugins to be offered in the wizard.
+ */
+pluginManager.plugins = function () {
+  return plugins.availablePlugins;
+};
+
+/**
+ * Get the curated list of plugins to be offered in the wizard by name only.
+ * @returns The curated list of plugins to be offered in the wizard by name only.
+ */
+pluginManager.pluginNames = function () {
+  return plugins.names;
+};
+
+/**
+ * Get the subset of plugins (subset of the plugin list) that are recommended by default.
+ * <p>
+ * The user can easily change this selection.
+ * @returns The subset of plugins (subset of the plugin list) that are recommended by default.
+ */
+pluginManager.recommendedPluginNames = function () {
+  return plugins.recommendedPlugins.slice(); // copy this
+};
+
+/**
+ * Call this function to install plugins, will pass a correlationId to the complete callback which
+ * may be used to restrict further calls getting plugin lists. Note: do not use the correlation id.
+ * If handler is called with this.isError, there will be a corresponding this.errorMessage indicating
+ * the failure reason
+ */
+pluginManager.installPlugins = function (plugins, handler) {
+  util_jenkins.post("/pluginManager/installPlugins", {
+    dynamicLoad: true,
+    plugins: plugins
+  }, function (response) {
+    if (response.status !== "ok") {
+      handler.call({
+        isError: true,
+        errorMessage: response.message
+      });
+      return;
+    }
+    handler.call({
+      isError: false
+    }, response.data.correlationId);
+  }, {
+    timeout: pluginManagerErrorTimeoutMillis,
+    error: function (xhr, textStatus, errorThrown) {
+      handler.call({
+        isError: true,
+        errorMessage: errorThrown
+      });
+    }
+  });
+};
+
+/**
+ * Accepts 1 or 2 arguments, if argument 2 is not provided all installing plugins will be passed
+ * to the handler function. If argument 2 is non-null, it will be treated as a correlationId, which
+ * must be retrieved from a prior installPlugins call.
+ */
+pluginManager.installStatus = function (handler, correlationId) {
+  var url = "/updateCenter/installStatus";
+  if (correlationId !== undefined) {
+    url += "?correlationId=" + correlationId;
+  }
+  util_jenkins.get(url, function (response) {
+    if (response.status !== "ok") {
+      handler.call({
+        isError: true,
+        errorMessage: response.message
+      });
+      return;
+    }
+    handler.call({
+      isError: false
+    }, response.data);
+  }, {
+    timeout: pluginManagerErrorTimeoutMillis,
+    error: function (xhr, textStatus, errorThrown) {
+      handler.call({
+        isError: true,
+        errorMessage: errorThrown
+      });
+    }
+  });
+};
+
+/**
+ * Provides a list of the available plugins, some useful properties is:
+ * [
+ * 	{ name, title, excerpt, dependencies[], ... },
+ *  ...
+ * ]
+ */
+pluginManager.availablePlugins = function (handler) {
+  util_jenkins.get("/pluginManager/plugins", function (response) {
+    if (response.status !== "ok") {
+      handler.call({
+        isError: true,
+        errorMessage: response.message
+      });
+      return;
+    }
+    handler.call({
+      isError: false
+    }, response.data);
+  }, {
+    timeout: pluginManagerErrorTimeoutMillis,
+    error: function (xhr, textStatus, errorThrown) {
+      handler.call({
+        isError: true,
+        errorMessage: errorThrown
+      });
+    }
+  });
+};
+pluginManager.availablePluginsSearch = function (query, limit, handler) {
+  util_jenkins.get("/pluginManager/pluginsSearch?query=" + query + "&limit=" + limit, function (response) {
+    if (response.status !== "ok") {
+      handler.call({
+        isError: true,
+        errorMessage: response.message
+      });
+      return;
+    }
+    handler.call({
+      isError: false
+    }, response.data);
+  }, {
+    timeout: pluginManagerErrorTimeoutMillis,
+    error: function (xhr, textStatus, errorThrown) {
+      handler.call({
+        isError: true,
+        errorMessage: errorThrown
+      });
+    }
+  });
+};
+
+/**
+ * Accepts 1 or 2 arguments, if argument 2 is not provided all installing plugins will be passed
+ * to the handler function. If argument 2 is non-null, it will be treated as a correlationId, which
+ * must be retrieved from a prior installPlugins call.
+ */
+pluginManager.incompleteInstallStatus = function (handler, correlationId) {
+  var url = "/updateCenter/incompleteInstallStatus";
+  if (correlationId !== undefined) {
+    url += "?correlationId=" + correlationId;
+  }
+  util_jenkins.get(url, function (response) {
+    if (response.status !== "ok") {
+      handler.call({
+        isError: true,
+        errorMessage: response.message
+      });
+      return;
+    }
+    handler.call({
+      isError: false
+    }, response.data);
+  }, {
+    timeout: pluginManagerErrorTimeoutMillis,
+    error: function (xhr, textStatus, errorThrown) {
+      handler.call({
+        isError: true,
+        errorMessage: errorThrown
+      });
+    }
+  });
+};
+
+/**
+ * Call this to complete the installation without installing anything
+ */
+pluginManager.completeInstall = function (handler) {
+  util_jenkins.post("/setupWizard/completeInstall", {}, function () {
+    handler.call({
+      isError: false
+    });
+  }, {
+    timeout: pluginManagerErrorTimeoutMillis,
+    error: function (xhr, textStatus, errorThrown) {
+      handler.call({
+        isError: true,
+        message: errorThrown
+      });
+    }
+  });
+};
+
+/**
+ * Indicates there is a restart required to complete plugin installations
+ */
+pluginManager.getRestartStatus = function (handler) {
+  util_jenkins.get("/setupWizard/restartStatus", function (response) {
+    handler.call({
+      isError: false
+    }, response.data);
+  }, {
+    timeout: pluginManagerErrorTimeoutMillis,
+    error: function (xhr, textStatus, errorThrown) {
+      handler.call({
+        isError: true,
+        message: errorThrown
+      });
+    }
+  });
+};
+
+/**
+ * Skip failed plugins, continue
+ */
+pluginManager.installPluginsDone = function (handler) {
+  util_jenkins.post("/pluginManager/installPluginsDone", {}, function () {
+    handler();
+  }, {
+    timeout: pluginManagerErrorTimeoutMillis,
+    error: function (xhr, textStatus, errorThrown) {
+      handler.call({
+        isError: true,
+        message: errorThrown
+      });
+    }
+  });
+};
+
+/**
+ * Restart Jenkins
+ */
+pluginManager.restartJenkins = function (handler) {
+  util_jenkins.post("/updateCenter/safeRestart", {}, function () {
+    handler.call({
+      isError: false
+    });
+  }, {
+    timeout: pluginManagerErrorTimeoutMillis,
+    error: function (xhr, textStatus, errorThrown) {
+      handler.call({
+        isError: true,
+        message: errorThrown
+      });
+    }
+  });
+};
+/* harmony default export */ var api_pluginManager = (pluginManager);
+;// CONCATENATED MODULE: ./war/src/main/js/api/securityConfig.js
+
+
+
+/**
+ * Provides a wrapper to interact with the security configuration
+ */
+
+/*
+ * Calls a stapler post method to save the first user settings
+ */
+function saveFirstUser($form, success, error) {
+  util_jenkins.staplerPost("/setupWizard/createAdminUser", $form, function (response) {
+    var crumbRequestField = response.data.crumbRequestField;
+    if (crumbRequestField) {
+      (0,window_handle.getWindow)().crumb.init(crumbRequestField, response.data.crumb);
+    }
+    success(response);
+  }, {
+    error: error
+  });
+}
+function saveConfigureInstance($form, success, error) {
+  util_jenkins.staplerPost("/setupWizard/configureInstance", $form, function (response) {
+    var crumbRequestField = response.data.crumbRequestField;
+    if (crumbRequestField) {
+      (0,window_handle.getWindow)().crumb.init(crumbRequestField, response.data.crumb);
+    }
+    success(response);
+  }, {
+    error: error
+  });
+}
+
+/**
+ * Calls a stapler post method to save the first user settings
+ */
+function saveProxy($form, success, error) {
+  util_jenkins.staplerPost("/pluginManager/proxyConfigure", $form, success, {
+    dataType: "html",
+    error: error
+  });
+}
+/* harmony default export */ var securityConfig = ({
+  saveFirstUser: saveFirstUser,
+  saveConfigureInstance: saveConfigureInstance,
+  saveProxy: saveProxy
+});
+// EXTERNAL MODULE: ./war/src/main/js/handlebars-helpers/id.js
+var id = __webpack_require__(9065);
+;// CONCATENATED MODULE: ./war/src/main/js/plugin-setup-wizard/bootstrap-detached.js
+
+
+/**
+ * Manual replacement for the bootstrap-detached library. We cannot use that one due to the way JS-imports are set
+ *
+ * Contrary to the bootstrap-detached lib, this one polutes the received jQuery instance
+ */
+function enhanceJQueryWithBootstrap($) {
+  var window = (0,window_handle.getWindow)();
+  var _$ = window.$;
+  var _jQuery = window.jQuery;
+  try {
+    var jQuery = $;
+    window.$ = $;
+    window.jQuery = $;
+    var document = window.document;
+
+    /* ---------------------------------------------------- Bootstrap 3 minified ---------------------------------------------------- */
+    /*!
      * Bootstrap v3.3.5 (http://getbootstrap.com)
      * Copyright 2011-2015 Twitter, Inc.
      * Licensed under the MIT license
-     */if(void 0===s)throw new Error("Bootstrap's JavaScript requires jQuery");return function(t){var e=t.fn.jquery.split(" ")[0].split(".");if(e[0]<2&&e[1]<9||1==e[0]&&9==e[1]&&e[2]<1)throw new Error("Bootstrap's JavaScript requires jQuery version 1.9.1 or higher")}(s),(e=s).fn.emulateTransitionEnd=function(t){var n=!1,i=this;return e(this).one("bsTransitionEnd",(function(){n=!0})),setTimeout((function(){n||e(i).trigger(e.support.transition.end)}),t),this},e((function(){e.support.transition=function(){var t=o.createElement("bootstrap"),e={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd otransitionend",transition:"transitionend"};for(var n in e)if(void 0!==t.style[n])return{end:e[n]};return!1}(),e.support.transition&&(e.event.special.bsTransitionEnd={bindType:e.support.transition.end,delegateType:e.support.transition.end,handle:function(t){return e(t.target).is(this)?t.handleObj.handler.apply(this,arguments):void 0}})})),function(t){var e='[data-dismiss="alert"]',n=function(n){t(n).on("click",e,this.close)};n.VERSION="3.3.5",n.TRANSITION_DURATION=150,n.prototype.close=function(e){function i(){o.detach().trigger("closed.bs.alert").remove()}var a=t(this),s=a.attr("data-target");s||(s=(s=a.attr("href"))&&s.replace(/.*(?=#[^\s]*$)/,""));var o=t(s);e&&e.preventDefault(),o.length||(o=a.closest(".alert")),o.trigger(e=t.Event("close.bs.alert")),e.isDefaultPrevented()||(o.removeClass("in"),t.support.transition&&o.hasClass("fade")?o.one("bsTransitionEnd",i).emulateTransitionEnd(n.TRANSITION_DURATION):i())};var i=t.fn.alert;t.fn.alert=function(e){return this.each((function(){var i=t(this),a=i.data("bs.alert");a||i.data("bs.alert",a=new n(this)),"string"==typeof e&&a[e].call(i)}))},t.fn.alert.Constructor=n,t.fn.alert.noConflict=function(){return t.fn.alert=i,this},t(o).on("click.bs.alert.data-api",e,n.prototype.close)}(s),function(t){function e(e){return this.each((function(){var i=t(this),a=i.data("bs.button"),s="object"==p(e)&&e;a||i.data("bs.button",a=new n(this,s)),"toggle"==e?a.toggle():e&&a.setState(e)}))}var n=function e(n,i){this.$element=t(n),this.options=t.extend({},e.DEFAULTS,i),this.isLoading=!1};n.VERSION="3.3.5",n.DEFAULTS={loadingText:"loading..."},n.prototype.setState=function(e){var n="disabled",i=this.$element,a=i.is("input")?"val":"html",s=i.data();e+="Text",null==s.resetText&&i.data("resetText",i[a]()),setTimeout(t.proxy((function(){i[a](null==s[e]?this.options[e]:s[e]),"loadingText"==e?(this.isLoading=!0,i.addClass(n).attr(n,n)):this.isLoading&&(this.isLoading=!1,i.removeClass(n).removeAttr(n))}),this),0)},n.prototype.toggle=function(){var t=!0,e=this.$element.closest('[data-toggle="buttons"]');if(e.length){var n=this.$element.find("input");"radio"==n.prop("type")?(n.prop("checked")&&(t=!1),e.find(".active").removeClass("active"),this.$element.addClass("active")):"checkbox"==n.prop("type")&&(n.prop("checked")!==this.$element.hasClass("active")&&(t=!1),this.$element.toggleClass("active")),n.prop("checked",this.$element.hasClass("active")),t&&n.trigger("change")}else this.$element.attr("aria-pressed",!this.$element.hasClass("active")),this.$element.toggleClass("active")};var i=t.fn.button;t.fn.button=e,t.fn.button.Constructor=n,t.fn.button.noConflict=function(){return t.fn.button=i,this},t(o).on("click.bs.button.data-api",'[data-toggle^="button"]',(function(n){var i=t(n.target);i.hasClass("btn")||(i=i.closest(".btn")),e.call(i,"toggle"),t(n.target).is('input[type="radio"]')||t(n.target).is('input[type="checkbox"]')||n.preventDefault()})).on("focus.bs.button.data-api blur.bs.button.data-api",'[data-toggle^="button"]',(function(e){t(e.target).closest(".btn").toggleClass("focus",/^focus(in)?$/.test(e.type))}))}(s),function(t){function e(e){return this.each((function(){var n=t(this),a=n.data("bs.carousel"),s=t.extend({},i.DEFAULTS,n.data(),"object"==p(e)&&e),o="string"==typeof e?e:s.slide;a||n.data("bs.carousel",a=new i(this,s)),"number"==typeof e?a.to(e):o?a[o]():s.interval&&a.pause().cycle()}))}var i=function(e,n){this.$element=t(e),this.$indicators=this.$element.find(".carousel-indicators"),this.options=n,this.paused=null,this.sliding=null,this.interval=null,this.$active=null,this.$items=null,this.options.keyboard&&this.$element.on("keydown.bs.carousel",t.proxy(this.keydown,this)),"hover"==this.options.pause&&!("ontouchstart"in o.documentElement)&&this.$element.on("mouseenter.bs.carousel",t.proxy(this.pause,this)).on("mouseleave.bs.carousel",t.proxy(this.cycle,this))};i.VERSION="3.3.5",i.TRANSITION_DURATION=600,i.DEFAULTS={interval:5e3,pause:"hover",wrap:!0,keyboard:!0},i.prototype.keydown=function(t){if(!/input|textarea/i.test(t.target.tagName)){switch(t.which){case 37:this.prev();break;case 39:this.next();break;default:return}t.preventDefault()}},i.prototype.cycle=function(e){return e||(this.paused=!1),this.interval&&clearInterval(this.interval),this.options.interval&&!this.paused&&(this.interval=setInterval(t.proxy(this.next,this),this.options.interval)),this},i.prototype.getItemIndex=function(t){return this.$items=t.parent().children(".item"),this.$items.index(t||this.$active)},i.prototype.getItemForDirection=function(t,e){var n=this.getItemIndex(e);if(("prev"==t&&0===n||"next"==t&&n==this.$items.length-1)&&!this.options.wrap)return e;var i=(n+("prev"==t?-1:1))%this.$items.length;return this.$items.eq(i)},i.prototype.to=function(t){var e=this,n=this.getItemIndex(this.$active=this.$element.find(".item.active"));return t>this.$items.length-1||0>t?void 0:this.sliding?this.$element.one("slid.bs.carousel",(function(){e.to(t)})):n==t?this.pause().cycle():this.slide(t>n?"next":"prev",this.$items.eq(t))},i.prototype.pause=function(e){return e||(this.paused=!0),this.$element.find(".next, .prev").length&&t.support.transition&&(this.$element.trigger(t.support.transition.end),this.cycle(!0)),this.interval=clearInterval(this.interval),this},i.prototype.next=function(){return this.sliding?void 0:this.slide("next")},i.prototype.prev=function(){return this.sliding?void 0:this.slide("prev")},i.prototype.slide=function(e,n){var a=this.$element.find(".item.active"),s=n||this.getItemForDirection(e,a),o=this.interval,l="next"==e?"left":"right",r=this;if(s.hasClass("active"))return this.sliding=!1;var c=s[0],u=t.Event("slide.bs.carousel",{relatedTarget:c,direction:l});if(this.$element.trigger(u),!u.isDefaultPrevented()){if(this.sliding=!0,o&&this.pause(),this.$indicators.length){this.$indicators.find(".active").removeClass("active");var d=t(this.$indicators.children()[this.getItemIndex(s)]);d&&d.addClass("active")}var p=t.Event("slid.bs.carousel",{relatedTarget:c,direction:l});return t.support.transition&&this.$element.hasClass("slide")?(s.addClass(e),s[0].offsetWidth,a.addClass(l),s.addClass(l),a.one("bsTransitionEnd",(function(){s.removeClass([e,l].join(" ")).addClass("active"),a.removeClass(["active",l].join(" ")),r.sliding=!1,setTimeout((function(){r.$element.trigger(p)}),0)})).emulateTransitionEnd(i.TRANSITION_DURATION)):(a.removeClass("active"),s.addClass("active"),this.sliding=!1,this.$element.trigger(p)),o&&this.cycle(),this}};var a=t.fn.carousel;t.fn.carousel=e,t.fn.carousel.Constructor=i,t.fn.carousel.noConflict=function(){return t.fn.carousel=a,this};var s=function(n){var i,a=t(this),s=t(a.attr("data-target")||(i=a.attr("href"))&&i.replace(/.*(?=#[^\s]+$)/,""));if(s.hasClass("carousel")){var o=t.extend({},s.data(),a.data()),l=a.attr("data-slide-to");l&&(o.interval=!1),e.call(s,o),l&&s.data("bs.carousel").to(l),n.preventDefault()}};t(o).on("click.bs.carousel.data-api","[data-slide]",s).on("click.bs.carousel.data-api","[data-slide-to]",s),t(n).on("load",(function(){t('[data-ride="carousel"]').each((function(){var n=t(this);e.call(n,n.data())}))}))}(s),function(t){function e(e){var n,i=e.attr("data-target")||(n=e.attr("href"))&&n.replace(/.*(?=#[^\s]+$)/,"");return t(i)}function n(e){return this.each((function(){var n=t(this),a=n.data("bs.collapse"),s=t.extend({},i.DEFAULTS,n.data(),"object"==p(e)&&e);!a&&s.toggle&&/show|hide/.test(e)&&(s.toggle=!1),a||n.data("bs.collapse",a=new i(this,s)),"string"==typeof e&&a[e]()}))}var i=function e(n,i){this.$element=t(n),this.options=t.extend({},e.DEFAULTS,i),this.$trigger=t('[data-toggle="collapse"][href="#'+n.id+'"],[data-toggle="collapse"][data-target="#'+n.id+'"]'),this.transitioning=null,this.options.parent?this.$parent=this.getParent():this.addAriaAndCollapsedClass(this.$element,this.$trigger),this.options.toggle&&this.toggle()};i.VERSION="3.3.5",i.TRANSITION_DURATION=350,i.DEFAULTS={toggle:!0},i.prototype.dimension=function(){return this.$element.hasClass("width")?"width":"height"},i.prototype.show=function(){if(!this.transitioning&&!this.$element.hasClass("in")){var e,a=this.$parent&&this.$parent.children(".panel").children(".in, .collapsing");if(!(a&&a.length&&(e=a.data("bs.collapse"),e&&e.transitioning))){var s=t.Event("show.bs.collapse");if(this.$element.trigger(s),!s.isDefaultPrevented()){a&&a.length&&(n.call(a,"hide"),e||a.data("bs.collapse",null));var o=this.dimension();this.$element.removeClass("collapse").addClass("collapsing")[o](0).attr("aria-expanded",!0),this.$trigger.removeClass("collapsed").attr("aria-expanded",!0),this.transitioning=1;var l=function(){this.$element.removeClass("collapsing").addClass("collapse in")[o](""),this.transitioning=0,this.$element.trigger("shown.bs.collapse")};if(!t.support.transition)return l.call(this);var r=t.camelCase(["scroll",o].join("-"));this.$element.one("bsTransitionEnd",t.proxy(l,this)).emulateTransitionEnd(i.TRANSITION_DURATION)[o](this.$element[0][r])}}}},i.prototype.hide=function(){if(!this.transitioning&&this.$element.hasClass("in")){var e=t.Event("hide.bs.collapse");if(this.$element.trigger(e),!e.isDefaultPrevented()){var n=this.dimension();this.$element[n](this.$element[n]())[0].offsetHeight,this.$element.addClass("collapsing").removeClass("collapse in").attr("aria-expanded",!1),this.$trigger.addClass("collapsed").attr("aria-expanded",!1),this.transitioning=1;var a=function(){this.transitioning=0,this.$element.removeClass("collapsing").addClass("collapse").trigger("hidden.bs.collapse")};return t.support.transition?void this.$element[n](0).one("bsTransitionEnd",t.proxy(a,this)).emulateTransitionEnd(i.TRANSITION_DURATION):a.call(this)}}},i.prototype.toggle=function(){this[this.$element.hasClass("in")?"hide":"show"]()},i.prototype.getParent=function(){return t(this.options.parent).find('[data-toggle="collapse"][data-parent="'+this.options.parent+'"]').each(t.proxy((function(n,i){var a=t(i);this.addAriaAndCollapsedClass(e(a),a)}),this)).end()},i.prototype.addAriaAndCollapsedClass=function(t,e){var n=t.hasClass("in");t.attr("aria-expanded",n),e.toggleClass("collapsed",!n).attr("aria-expanded",n)};var a=t.fn.collapse;t.fn.collapse=n,t.fn.collapse.Constructor=i,t.fn.collapse.noConflict=function(){return t.fn.collapse=a,this},t(o).on("click.bs.collapse.data-api",'[data-toggle="collapse"]',(function(i){var a=t(this);a.attr("data-target")||i.preventDefault();var s=e(a),o=s.data("bs.collapse")?"toggle":a.data();n.call(s,o)}))}(s),function(t){function e(e){var n=e.attr("data-target");n||(n=(n=e.attr("href"))&&/#[A-Za-z]/.test(n)&&n.replace(/.*(?=#[^\s]*$)/,""));var i=n&&t(n);return i&&i.length?i:e.parent()}function n(n){n&&3===n.which||(t(i).remove(),t(a).each((function(){var i=t(this),a=e(i),s={relatedTarget:this};a.hasClass("open")&&(n&&"click"==n.type&&/input|textarea/i.test(n.target.tagName)&&t.contains(a[0],n.target)||(a.trigger(n=t.Event("hide.bs.dropdown",s)),n.isDefaultPrevented()||(i.attr("aria-expanded","false"),a.removeClass("open").trigger("hidden.bs.dropdown",s))))})))}var i=".dropdown-backdrop",a='[data-toggle="dropdown"]',s=function(e){t(e).on("click.bs.dropdown",this.toggle)};s.VERSION="3.3.5",s.prototype.toggle=function(i){var a=t(this);if(!a.is(".disabled, :disabled")){var s=e(a),l=s.hasClass("open");if(n(),!l){"ontouchstart"in o.documentElement&&!s.closest(".navbar-nav").length&&t(o.createElement("div")).addClass("dropdown-backdrop").insertAfter(t(this)).on("click",n);var r={relatedTarget:this};if(s.trigger(i=t.Event("show.bs.dropdown",r)),i.isDefaultPrevented())return;a.trigger("focus").attr("aria-expanded","true"),s.toggleClass("open").trigger("shown.bs.dropdown",r)}return!1}},s.prototype.keydown=function(n){if(/(38|40|27|32)/.test(n.which)&&!/input|textarea/i.test(n.target.tagName)){var i=t(this);if(n.preventDefault(),n.stopPropagation(),!i.is(".disabled, :disabled")){var s=e(i),o=s.hasClass("open");if(!o&&27!=n.which||o&&27==n.which)return 27==n.which&&s.find(a).trigger("focus"),i.trigger("click");var l=s.find(".dropdown-menu li:not(.disabled):visible a");if(l.length){var r=l.index(n.target);38==n.which&&r>0&&r--,40==n.which&&r<l.length-1&&r++,~r||(r=0),l.eq(r).trigger("focus")}}}};var l=t.fn.dropdown;t.fn.dropdown=function(e){return this.each((function(){var n=t(this),i=n.data("bs.dropdown");i||n.data("bs.dropdown",i=new s(this)),"string"==typeof e&&i[e].call(n)}))},t.fn.dropdown.Constructor=s,t.fn.dropdown.noConflict=function(){return t.fn.dropdown=l,this},t(o).on("click.bs.dropdown.data-api",n).on("click.bs.dropdown.data-api",".dropdown form",(function(t){t.stopPropagation()})).on("click.bs.dropdown.data-api",a,s.prototype.toggle).on("keydown.bs.dropdown.data-api",a,s.prototype.keydown).on("keydown.bs.dropdown.data-api",".dropdown-menu",s.prototype.keydown)}(s),function(t){function e(e,n){return this.each((function(){var a=t(this),s=a.data("bs.modal"),o=t.extend({},i.DEFAULTS,a.data(),"object"==p(e)&&e);s||a.data("bs.modal",s=new i(this,o)),"string"==typeof e?s[e](n):o.show&&s.show(n)}))}var i=function(e,n){this.options=n,this.$body=t(o.body),this.$element=t(e),this.$dialog=this.$element.find(".modal-dialog"),this.$backdrop=null,this.isShown=null,this.originalBodyPad=null,this.scrollbarWidth=0,this.ignoreBackdropClick=!1,this.options.remote&&this.$element.find(".modal-content").load(this.options.remote,t.proxy((function(){this.$element.trigger("loaded.bs.modal")}),this))};i.VERSION="3.3.5",i.TRANSITION_DURATION=300,i.BACKDROP_TRANSITION_DURATION=150,i.DEFAULTS={backdrop:!0,keyboard:!0,show:!0},i.prototype.toggle=function(t){return this.isShown?this.hide():this.show(t)},i.prototype.show=function(e){var n=this,a=t.Event("show.bs.modal",{relatedTarget:e});this.$element.trigger(a),this.isShown||a.isDefaultPrevented()||(this.isShown=!0,this.checkScrollbar(),this.setScrollbar(),this.$body.addClass("modal-open"),this.escape(),this.resize(),this.$element.on("click.dismiss.bs.modal",'[data-dismiss="modal"]',t.proxy(this.hide,this)),this.$dialog.on("mousedown.dismiss.bs.modal",(function(){n.$element.one("mouseup.dismiss.bs.modal",(function(e){t(e.target).is(n.$element)&&(n.ignoreBackdropClick=!0)}))})),this.backdrop((function(){var a=t.support.transition&&n.$element.hasClass("fade");n.$element.parent().length||n.$element.appendTo(n.$body),n.$element.show().scrollTop(0),n.adjustDialog(),a&&n.$element[0].offsetWidth,n.$element.addClass("in"),n.enforceFocus();var s=t.Event("shown.bs.modal",{relatedTarget:e});a?n.$dialog.one("bsTransitionEnd",(function(){n.$element.trigger("focus").trigger(s)})).emulateTransitionEnd(i.TRANSITION_DURATION):n.$element.trigger("focus").trigger(s)})))},i.prototype.hide=function(e){e&&e.preventDefault(),e=t.Event("hide.bs.modal"),this.$element.trigger(e),this.isShown&&!e.isDefaultPrevented()&&(this.isShown=!1,this.escape(),this.resize(),t(o).off("focusin.bs.modal"),this.$element.removeClass("in").off("click.dismiss.bs.modal").off("mouseup.dismiss.bs.modal"),this.$dialog.off("mousedown.dismiss.bs.modal"),t.support.transition&&this.$element.hasClass("fade")?this.$element.one("bsTransitionEnd",t.proxy(this.hideModal,this)).emulateTransitionEnd(i.TRANSITION_DURATION):this.hideModal())},i.prototype.enforceFocus=function(){t(o).off("focusin.bs.modal").on("focusin.bs.modal",t.proxy((function(t){this.$element[0]===t.target||this.$element.has(t.target).length||this.$element.trigger("focus")}),this))},i.prototype.escape=function(){this.isShown&&this.options.keyboard?this.$element.on("keydown.dismiss.bs.modal",t.proxy((function(t){27==t.which&&this.hide()}),this)):this.isShown||this.$element.off("keydown.dismiss.bs.modal")},i.prototype.resize=function(){this.isShown?t(n).on("resize.bs.modal",t.proxy(this.handleUpdate,this)):t(n).off("resize.bs.modal")},i.prototype.hideModal=function(){var t=this;this.$element.hide(),this.backdrop((function(){t.$body.removeClass("modal-open"),t.resetAdjustments(),t.resetScrollbar(),t.$element.trigger("hidden.bs.modal")}))},i.prototype.removeBackdrop=function(){this.$backdrop&&this.$backdrop.remove(),this.$backdrop=null},i.prototype.backdrop=function(e){var n=this,a=this.$element.hasClass("fade")?"fade":"";if(this.isShown&&this.options.backdrop){var s=t.support.transition&&a;if(this.$backdrop=t(o.createElement("div")).addClass("modal-backdrop "+a).appendTo(this.$body),this.$element.on("click.dismiss.bs.modal",t.proxy((function(t){return this.ignoreBackdropClick?void(this.ignoreBackdropClick=!1):void(t.target===t.currentTarget&&("static"==this.options.backdrop?this.$element[0].focus():this.hide()))}),this)),s&&this.$backdrop[0].offsetWidth,this.$backdrop.addClass("in"),!e)return;s?this.$backdrop.one("bsTransitionEnd",e).emulateTransitionEnd(i.BACKDROP_TRANSITION_DURATION):e()}else if(!this.isShown&&this.$backdrop){this.$backdrop.removeClass("in");var l=function(){n.removeBackdrop(),e&&e()};t.support.transition&&this.$element.hasClass("fade")?this.$backdrop.one("bsTransitionEnd",l).emulateTransitionEnd(i.BACKDROP_TRANSITION_DURATION):l()}else e&&e()},i.prototype.handleUpdate=function(){this.adjustDialog()},i.prototype.adjustDialog=function(){var t=this.$element[0].scrollHeight>o.documentElement.clientHeight;this.$element.css({paddingLeft:!this.bodyIsOverflowing&&t?this.scrollbarWidth:"",paddingRight:this.bodyIsOverflowing&&!t?this.scrollbarWidth:""})},i.prototype.resetAdjustments=function(){this.$element.css({paddingLeft:"",paddingRight:""})},i.prototype.checkScrollbar=function(){var t=n.innerWidth;if(!t){var e=o.documentElement.getBoundingClientRect();t=e.right-Math.abs(e.left)}this.bodyIsOverflowing=o.body.clientWidth<t,this.scrollbarWidth=this.measureScrollbar()},i.prototype.setScrollbar=function(){var t=parseInt(this.$body.css("padding-right")||0,10);this.originalBodyPad=o.body.style.paddingRight||"",this.bodyIsOverflowing&&this.$body.css("padding-right",t+this.scrollbarWidth)},i.prototype.resetScrollbar=function(){this.$body.css("padding-right",this.originalBodyPad)},i.prototype.measureScrollbar=function(){var t=o.createElement("div");t.className="modal-scrollbar-measure",this.$body.append(t);var e=t.offsetWidth-t.clientWidth;return this.$body[0].removeChild(t),e};var a=t.fn.modal;t.fn.modal=e,t.fn.modal.Constructor=i,t.fn.modal.noConflict=function(){return t.fn.modal=a,this},t(o).on("click.bs.modal.data-api",'[data-toggle="modal"]',(function(n){var i=t(this),a=i.attr("href"),s=t(i.attr("data-target")||a&&a.replace(/.*(?=#[^\s]+$)/,"")),o=s.data("bs.modal")?"toggle":t.extend({remote:!/#/.test(a)&&a},s.data(),i.data());i.is("a")&&n.preventDefault(),s.one("show.bs.modal",(function(t){t.isDefaultPrevented()||s.one("hidden.bs.modal",(function(){i.is(":visible")&&i.trigger("focus")}))})),e.call(s,o,this)}))}(s),function(t){var e=function(t,e){this.type=null,this.options=null,this.enabled=null,this.timeout=null,this.hoverState=null,this.$element=null,this.inState=null,this.init("tooltip",t,e)};e.VERSION="3.3.5",e.TRANSITION_DURATION=150,e.DEFAULTS={animation:!0,placement:"top",selector:!1,template:'<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',trigger:"hover focus",title:"",delay:0,html:!1,container:!1,viewport:{selector:"body",padding:0}},e.prototype.init=function(e,n,i){if(this.enabled=!0,this.type=e,this.$element=t(n),this.options=this.getOptions(i),this.$viewport=this.options.viewport&&t(t.isFunction(this.options.viewport)?this.options.viewport.call(this,this.$element):this.options.viewport.selector||this.options.viewport),this.inState={click:!1,hover:!1,focus:!1},this.$element[0]instanceof o.constructor&&!this.options.selector)throw new Error("`selector` option must be specified when initializing "+this.type+" on the window.document object!");for(var a=this.options.trigger.split(" "),s=a.length;s--;){var l=a[s];if("click"==l)this.$element.on("click."+this.type,this.options.selector,t.proxy(this.toggle,this));else if("manual"!=l){var r="hover"==l?"mouseenter":"focusin",c="hover"==l?"mouseleave":"focusout";this.$element.on(r+"."+this.type,this.options.selector,t.proxy(this.enter,this)),this.$element.on(c+"."+this.type,this.options.selector,t.proxy(this.leave,this))}}this.options.selector?this._options=t.extend({},this.options,{trigger:"manual",selector:""}):this.fixTitle()},e.prototype.getDefaults=function(){return e.DEFAULTS},e.prototype.getOptions=function(e){return(e=t.extend({},this.getDefaults(),this.$element.data(),e)).delay&&"number"==typeof e.delay&&(e.delay={show:e.delay,hide:e.delay}),e},e.prototype.getDelegateOptions=function(){var e={},n=this.getDefaults();return this._options&&t.each(this._options,(function(t,i){n[t]!=i&&(e[t]=i)})),e},e.prototype.enter=function(e){var n=e instanceof this.constructor?e:t(e.currentTarget).data("bs."+this.type);return n||(n=new this.constructor(e.currentTarget,this.getDelegateOptions()),t(e.currentTarget).data("bs."+this.type,n)),e instanceof t.Event&&(n.inState["focusin"==e.type?"focus":"hover"]=!0),n.tip().hasClass("in")||"in"==n.hoverState?void(n.hoverState="in"):(clearTimeout(n.timeout),n.hoverState="in",n.options.delay&&n.options.delay.show?void(n.timeout=setTimeout((function(){"in"==n.hoverState&&n.show()}),n.options.delay.show)):n.show())},e.prototype.isInStateTrue=function(){for(var t in this.inState)if(this.inState[t])return!0;return!1},e.prototype.leave=function(e){var n=e instanceof this.constructor?e:t(e.currentTarget).data("bs."+this.type);return n||(n=new this.constructor(e.currentTarget,this.getDelegateOptions()),t(e.currentTarget).data("bs."+this.type,n)),e instanceof t.Event&&(n.inState["focusout"==e.type?"focus":"hover"]=!1),n.isInStateTrue()?void 0:(clearTimeout(n.timeout),n.hoverState="out",n.options.delay&&n.options.delay.hide?void(n.timeout=setTimeout((function(){"out"==n.hoverState&&n.hide()}),n.options.delay.hide)):n.hide())},e.prototype.show=function(){var n=t.Event("show.bs."+this.type);if(this.hasContent()&&this.enabled){this.$element.trigger(n);var i=t.contains(this.$element[0].ownerDocument.documentElement,this.$element[0]);if(n.isDefaultPrevented()||!i)return;var a=this,s=this.tip(),o=this.getUID(this.type);this.setContent(),s.attr("id",o),this.$element.attr("aria-describedby",o),this.options.animation&&s.addClass("fade");var l="function"==typeof this.options.placement?this.options.placement.call(this,s[0],this.$element[0]):this.options.placement,r=/\s?auto?\s?/i,c=r.test(l);c&&(l=l.replace(r,"")||"top"),s.detach().css({top:0,left:0,display:"block"}).addClass(l).data("bs."+this.type,this),this.options.container?s.appendTo(this.options.container):s.insertAfter(this.$element),this.$element.trigger("inserted.bs."+this.type);var u=this.getPosition(),d=s[0].offsetWidth,p=s[0].offsetHeight;if(c){var h=l,f=this.getPosition(this.$viewport);l="bottom"==l&&u.bottom+p>f.bottom?"top":"top"==l&&u.top-p<f.top?"bottom":"right"==l&&u.right+d>f.width?"left":"left"==l&&u.left-d<f.left?"right":l,s.removeClass(h).addClass(l)}var g=this.getCalculatedOffset(l,u,d,p);this.applyPlacement(g,l);var m=function(){var t=a.hoverState;a.$element.trigger("shown.bs."+a.type),a.hoverState=null,"out"==t&&a.leave(a)};t.support.transition&&this.$tip.hasClass("fade")?s.one("bsTransitionEnd",m).emulateTransitionEnd(e.TRANSITION_DURATION):m()}},e.prototype.applyPlacement=function(e,n){var i=this.tip(),a=i[0].offsetWidth,s=i[0].offsetHeight,o=parseInt(i.css("margin-top"),10),l=parseInt(i.css("margin-left"),10);isNaN(o)&&(o=0),isNaN(l)&&(l=0),e.top+=o,e.left+=l,t.offset.setOffset(i[0],t.extend({using:function(t){i.css({top:Math.round(t.top),left:Math.round(t.left)})}},e),0),i.addClass("in");var r=i[0].offsetWidth,c=i[0].offsetHeight;"top"==n&&c!=s&&(e.top=e.top+s-c);var u=this.getViewportAdjustedDelta(n,e,r,c);u.left?e.left+=u.left:e.top+=u.top;var d=/top|bottom/.test(n),p=d?2*u.left-a+r:2*u.top-s+c,h=d?"offsetWidth":"offsetHeight";i.offset(e),this.replaceArrow(p,i[0][h],d)},e.prototype.replaceArrow=function(t,e,n){this.arrow().css(n?"left":"top",50*(1-t/e)+"%").css(n?"top":"left","")},e.prototype.setContent=function(){var t=this.tip(),e=this.getTitle();t.find(".tooltip-inner")[this.options.html?"html":"text"](e),t.removeClass("fade in top bottom left right")},e.prototype.hide=function(n){function i(){"in"!=a.hoverState&&s.detach(),a.$element.removeAttr("aria-describedby").trigger("hidden.bs."+a.type),n&&n()}var a=this,s=t(this.$tip),o=t.Event("hide.bs."+this.type);return this.$element.trigger(o),o.isDefaultPrevented()?void 0:(s.removeClass("in"),t.support.transition&&s.hasClass("fade")?s.one("bsTransitionEnd",i).emulateTransitionEnd(e.TRANSITION_DURATION):i(),this.hoverState=null,this)},e.prototype.fixTitle=function(){var t=this.$element;(t.attr("title")||"string"!=typeof t.attr("data-original-title"))&&t.attr("data-original-title",t.attr("title")||"").attr("title","")},e.prototype.hasContent=function(){return this.getTitle()},e.prototype.getPosition=function(e){var i=(e=e||this.$element)[0],a="BODY"==i.tagName,s=i.getBoundingClientRect();null==s.width&&(s=t.extend({},s,{width:s.right-s.left,height:s.bottom-s.top}));var l=a?{top:0,left:0}:e.offset(),r={scroll:a?o.documentElement.scrollTop||o.body.scrollTop:e.scrollTop()},c=a?{width:t(n).width(),height:t(n).height()}:null;return t.extend({},s,r,c,l)},e.prototype.getCalculatedOffset=function(t,e,n,i){return"bottom"==t?{top:e.top+e.height,left:e.left+e.width/2-n/2}:"top"==t?{top:e.top-i,left:e.left+e.width/2-n/2}:"left"==t?{top:e.top+e.height/2-i/2,left:e.left-n}:{top:e.top+e.height/2-i/2,left:e.left+e.width}},e.prototype.getViewportAdjustedDelta=function(t,e,n,i){var a={top:0,left:0};if(!this.$viewport)return a;var s=this.options.viewport&&this.options.viewport.padding||0,o=this.getPosition(this.$viewport);if(/right|left/.test(t)){var l=e.top-s-o.scroll,r=e.top+s-o.scroll+i;l<o.top?a.top=o.top-l:r>o.top+o.height&&(a.top=o.top+o.height-r)}else{var c=e.left-s,u=e.left+s+n;c<o.left?a.left=o.left-c:u>o.right&&(a.left=o.left+o.width-u)}return a},e.prototype.getTitle=function(){var t=this.$element,e=this.options;return t.attr("data-original-title")||("function"==typeof e.title?e.title.call(t[0]):e.title)},e.prototype.getUID=function(t){do{t+=~~(1e6*Math.random())}while(o.getElementById(t));return t},e.prototype.tip=function(){if(!this.$tip&&(this.$tip=t(this.options.template),1!=this.$tip.length))throw new Error(this.type+" `template` option must consist of exactly 1 top-level element!");return this.$tip},e.prototype.arrow=function(){return this.$arrow=this.$arrow||this.tip().find(".tooltip-arrow")},e.prototype.enable=function(){this.enabled=!0},e.prototype.disable=function(){this.enabled=!1},e.prototype.toggleEnabled=function(){this.enabled=!this.enabled},e.prototype.toggle=function(e){var n=this;e&&((n=t(e.currentTarget).data("bs."+this.type))||(n=new this.constructor(e.currentTarget,this.getDelegateOptions()),t(e.currentTarget).data("bs."+this.type,n))),e?(n.inState.click=!n.inState.click,n.isInStateTrue()?n.enter(n):n.leave(n)):n.tip().hasClass("in")?n.leave(n):n.enter(n)},e.prototype.destroy=function(){var t=this;clearTimeout(this.timeout),this.hide((function(){t.$element.off("."+t.type).removeData("bs."+t.type),t.$tip&&t.$tip.detach(),t.$tip=null,t.$arrow=null,t.$viewport=null}))};var i=t.fn.tooltip;t.fn.tooltip=function(n){return this.each((function(){var i=t(this),a=i.data("bs.tooltip"),s="object"==p(n)&&n;(a||!/destroy|hide/.test(n))&&(a||i.data("bs.tooltip",a=new e(this,s)),"string"==typeof n&&a[n]())}))},t.fn.tooltip.Constructor=e,t.fn.tooltip.noConflict=function(){return t.fn.tooltip=i,this}}(s),function(t){var e=function(t,e){this.init("popover",t,e)};if(!t.fn.tooltip)throw new Error("Popover requires tooltip.js");e.VERSION="3.3.5",e.DEFAULTS=t.extend({},t.fn.tooltip.Constructor.DEFAULTS,{placement:"right",trigger:"click",content:"",template:'<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'}),e.prototype=t.extend({},t.fn.tooltip.Constructor.prototype),e.prototype.constructor=e,e.prototype.getDefaults=function(){return e.DEFAULTS},e.prototype.setContent=function(){var t=this.tip(),e=this.getTitle(),n=this.getContent();t.find(".popover-title")[this.options.html?"html":"text"](e),t.find(".popover-content").children().detach().end()[this.options.html?"string"==typeof n?"html":"append":"text"](n),t.removeClass("fade top bottom left right in"),t.find(".popover-title").html()||t.find(".popover-title").hide()},e.prototype.hasContent=function(){return this.getTitle()||this.getContent()},e.prototype.getContent=function(){var t=this.$element,e=this.options;return t.attr("data-content")||("function"==typeof e.content?e.content.call(t[0]):e.content)},e.prototype.arrow=function(){return this.$arrow=this.$arrow||this.tip().find(".arrow")};var n=t.fn.popover;t.fn.popover=function(n){return this.each((function(){var i=t(this),a=i.data("bs.popover"),s="object"==p(n)&&n;(a||!/destroy|hide/.test(n))&&(a||i.data("bs.popover",a=new e(this,s)),"string"==typeof n&&a[n]())}))},t.fn.popover.Constructor=e,t.fn.popover.noConflict=function(){return t.fn.popover=n,this}}(s),function(t){function e(i,a){this.$body=t(o.body),this.$scrollElement=t(t(i).is(o.body)?n:i),this.options=t.extend({},e.DEFAULTS,a),this.selector=(this.options.target||"")+" .nav li > a",this.offsets=[],this.targets=[],this.activeTarget=null,this.scrollHeight=0,this.$scrollElement.on("scroll.bs.scrollspy",t.proxy(this.process,this)),this.refresh(),this.process()}function i(n){return this.each((function(){var i=t(this),a=i.data("bs.scrollspy"),s="object"==p(n)&&n;a||i.data("bs.scrollspy",a=new e(this,s)),"string"==typeof n&&a[n]()}))}e.VERSION="3.3.5",e.DEFAULTS={offset:10},e.prototype.getScrollHeight=function(){return this.$scrollElement[0].scrollHeight||Math.max(this.$body[0].scrollHeight,o.documentElement.scrollHeight)},e.prototype.refresh=function(){var e=this,n="offset",i=0;this.offsets=[],this.targets=[],this.scrollHeight=this.getScrollHeight(),t.isWindow(this.$scrollElement[0])||(n="position",i=this.$scrollElement.scrollTop()),this.$body.find(this.selector).map((function(){var e=t(this),a=e.data("target")||e.attr("href"),s=/^#./.test(a)&&t(a);return s&&s.length&&s.is(":visible")&&[[s[n]().top+i,a]]||null})).sort((function(t,e){return t[0]-e[0]})).each((function(){e.offsets.push(this[0]),e.targets.push(this[1])}))},e.prototype.process=function(){var t,e=this.$scrollElement.scrollTop()+this.options.offset,n=this.getScrollHeight(),i=this.options.offset+n-this.$scrollElement.height(),a=this.offsets,s=this.targets,o=this.activeTarget;if(this.scrollHeight!=n&&this.refresh(),e>=i)return o!=(t=s[s.length-1])&&this.activate(t);if(o&&e<a[0])return this.activeTarget=null,this.clear();for(t=a.length;t--;)o!=s[t]&&e>=a[t]&&(void 0===a[t+1]||e<a[t+1])&&this.activate(s[t])},e.prototype.activate=function(e){this.activeTarget=e,this.clear();var n=this.selector+'[data-target="'+e+'"],'+this.selector+'[href="'+e+'"]',i=t(n).parents("li").addClass("active");i.parent(".dropdown-menu").length&&(i=i.closest("li.dropdown").addClass("active")),i.trigger("activate.bs.scrollspy")},e.prototype.clear=function(){t(this.selector).parentsUntil(this.options.target,".active").removeClass("active")};var a=t.fn.scrollspy;t.fn.scrollspy=i,t.fn.scrollspy.Constructor=e,t.fn.scrollspy.noConflict=function(){return t.fn.scrollspy=a,this},t(n).on("load.bs.scrollspy.data-api",(function(){t('[data-spy="scroll"]').each((function(){var e=t(this);i.call(e,e.data())}))}))}(s),function(t){function e(e){return this.each((function(){var i=t(this),a=i.data("bs.tab");a||i.data("bs.tab",a=new n(this)),"string"==typeof e&&a[e]()}))}var n=function(e){this.element=t(e)};n.VERSION="3.3.5",n.TRANSITION_DURATION=150,n.prototype.show=function(){var e=this.element,n=e.closest("ul:not(.dropdown-menu)"),i=e.data("target");if(i||(i=(i=e.attr("href"))&&i.replace(/.*(?=#[^\s]*$)/,"")),!e.parent("li").hasClass("active")){var a=n.find(".active:last a"),s=t.Event("hide.bs.tab",{relatedTarget:e[0]}),o=t.Event("show.bs.tab",{relatedTarget:a[0]});if(a.trigger(s),e.trigger(o),!o.isDefaultPrevented()&&!s.isDefaultPrevented()){var l=t(i);this.activate(e.closest("li"),n),this.activate(l,l.parent(),(function(){a.trigger({type:"hidden.bs.tab",relatedTarget:e[0]}),e.trigger({type:"shown.bs.tab",relatedTarget:a[0]})}))}}},n.prototype.activate=function(e,i,a){function s(){o.removeClass("active").find("> .dropdown-menu > .active").removeClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded",!1),e.addClass("active").find('[data-toggle="tab"]').attr("aria-expanded",!0),l?(e[0].offsetWidth,e.addClass("in")):e.removeClass("fade"),e.parent(".dropdown-menu").length&&e.closest("li.dropdown").addClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded",!0),a&&a()}var o=i.find("> .active"),l=a&&t.support.transition&&(o.length&&o.hasClass("fade")||!!i.find("> .fade").length);o.length&&l?o.one("bsTransitionEnd",s).emulateTransitionEnd(n.TRANSITION_DURATION):s(),o.removeClass("in")};var i=t.fn.tab;t.fn.tab=e,t.fn.tab.Constructor=n,t.fn.tab.noConflict=function(){return t.fn.tab=i,this};var a=function(n){n.preventDefault(),e.call(t(this),"show")};t(o).on("click.bs.tab.data-api",'[data-toggle="tab"]',a).on("click.bs.tab.data-api",'[data-toggle="pill"]',a)}(s),function(t){function e(e){return this.each((function(){var n=t(this),a=n.data("bs.affix"),s="object"==p(e)&&e;a||n.data("bs.affix",a=new i(this,s)),"string"==typeof e&&a[e]()}))}var i=function e(n,i){this.options=t.extend({},e.DEFAULTS,i),this.$target=t(this.options.target).on("scroll.bs.affix.data-api",t.proxy(this.checkPosition,this)).on("click.bs.affix.data-api",t.proxy(this.checkPositionWithEventLoop,this)),this.$element=t(n),this.affixed=null,this.unpin=null,this.pinnedOffset=null,this.checkPosition()};i.VERSION="3.3.5",i.RESET="affix affix-top affix-bottom",i.DEFAULTS={offset:0,target:n},i.prototype.getState=function(t,e,n,i){var a=this.$target.scrollTop(),s=this.$element.offset(),o=this.$target.height();if(null!=n&&"top"==this.affixed)return n>a&&"top";if("bottom"==this.affixed)return null!=n?!(a+this.unpin<=s.top)&&"bottom":!(t-i>=a+o)&&"bottom";var l=null==this.affixed,r=l?a:s.top;return null!=n&&n>=a?"top":null!=i&&r+(l?o:e)>=t-i&&"bottom"},i.prototype.getPinnedOffset=function(){if(this.pinnedOffset)return this.pinnedOffset;this.$element.removeClass(i.RESET).addClass("affix");var t=this.$target.scrollTop(),e=this.$element.offset();return this.pinnedOffset=e.top-t},i.prototype.checkPositionWithEventLoop=function(){setTimeout(t.proxy(this.checkPosition,this),1)},i.prototype.checkPosition=function(){if(this.$element.is(":visible")){var e=this.$element.height(),n=this.options.offset,a=n.top,s=n.bottom,l=Math.max(t(o).height(),t(o.body).height());"object"!=p(n)&&(s=a=n),"function"==typeof a&&(a=n.top(this.$element)),"function"==typeof s&&(s=n.bottom(this.$element));var r=this.getState(l,e,a,s);if(this.affixed!=r){null!=this.unpin&&this.$element.css("top","");var c="affix"+(r?"-"+r:""),u=t.Event(c+".bs.affix");if(this.$element.trigger(u),u.isDefaultPrevented())return;this.affixed=r,this.unpin="bottom"==r?this.getPinnedOffset():null,this.$element.removeClass(i.RESET).addClass(c).trigger(c.replace("affix","affixed")+".bs.affix")}"bottom"==r&&this.$element.offset({top:l-e-s})}};var a=t.fn.affix;t.fn.affix=e,t.fn.affix.Constructor=i,t.fn.affix.noConflict=function(){return t.fn.affix=a,this},t(n).on("load",(function(){t('[data-spy="affix"]').each((function(){var n=t(this),i=n.data();i.offset=i.offset||{},null!=i.offsetBottom&&(i.offset.bottom=i.offsetBottom),null!=i.offsetTop&&(i.offset.top=i.offsetTop),e.call(n,i)}))}))}(s),t}finally{n.$=i,n.jQuery=a}}var f=n(10),g=n.n(f),m=n(18),v=n.n(m),b=n(25),y=n.n(b),w=n(11),T=n.n(w),x=n(26),C=n.n(x),S=n(27),$=n.n(S),E=n(28),_=n.n(E),k=n(29),I=n.n(k),D=n(30),P=n.n(D),O=n(19),N=n.n(O),W=n(31),z=n.n(W),A=n(32),U=n.n(A),R=n(33),j=n.n(R),M=n(16),L=n.n(M);o.a.registerPartial("pluginSelectList",L.a),window.zq=a.a;var F={init:function(t){var e=h(a.a);o.a.registerHelper("pluginCountForCategory",(function(t){for(var e=b[t],n=0,i=0,a=0;a<e.length;a++){var o=e[a];o.category===t&&(n++,s.indexOf(o.plugin.name)>=0&&i++)}return"("+i+"/"+n+")"})),o.a.registerHelper("totalPluginCount",(function(){for(var t=0,e=0,i=0;i<n.length;i++)for(var a=n[i],o=0;o<a.plugins.length;o++){var l=a.plugins[o];t++,s.indexOf(l.name)>=0&&e++}return"("+e+"/"+t+")"})),o.a.registerHelper("inSelectedPlugins",(function(t,e){if(s.indexOf(t)>=0)return e.fn()})),o.a.registerHelper("hasDependencies",(function(t,e){var n=m[t];if(n&&n.allDependencies&&n.allDependencies.length>1)return e.fn()})),o.a.registerHelper("dependencyCount",(function(t){var e=m[t];if(e&&e.allDependencies&&e.allDependencies.length>1)return e.allDependencies.length-1})),o.a.registerHelper("eachDependency",(function(t,e){var n=m[t];if(!n)return"";for(var i=a.a.grep(n.allDependencies,(function(e){return e!==t})),s="",o=0;o<i.length;o++){var l=i[o],r=m[l];r&&(s+=e.fn(r))}return s})),o.a.registerHelper("ifVisibleDependency",(function(t,e){if(p[t])return e.fn()}));var n,i,s,c=function(t){return function(){var e=this||window;if(e.isError){var n=e.errorMessage;return n=n&&"timeout"!==e.errorMessage?k.installWizard_error_message+" "+n:k.installWizard_error_connection,void W(g.a,{errorMessage:n})}t.apply(e,arguments)}},p={},f=[],m={},b={},w=a()(U()());w.appendTo(t);var x,S=w.find(".modal-content"),E=this;a()(document).on("mouseenter","*[data-tooltip]",(function(){var t=e(this),n=t.attr("data-tooltip");n&&(this.hide=void 0,t.tooltip({html:!0,title:n}).tooltip("show"))})),w.on("click",".nav>li>a",(function(){var t=a()(this).parent(),e=function(){t.is(".active")||(t.parent().find(">li").removeClass("active"),t.addClass("active"))};setTimeout(e,150),setTimeout(e,250)}));var k={},D=[function(){}],O=function(){var t=a()("body").attr("data-version");return t||""},W=function(t,e,n){var i=function(t){for(var e=0;e<D.length;e++)D[e](t)},s=function(){var t=a()("*[data-load-content]");t.length>0?t.each((function(){var t=a()(this);l.a.get(t.attr("data-load-content"),(function(e){t.html(e),n&&n()}),{dataType:"html"})})):n&&n()},o=t(a.a.extend({translations:k,baseUrl:l.a.baseUrl,jenkinsVersion:O().replace(/(\d[.][\d.]+).*/,"$1")},e));if(t===x){for(var r=a()(document.activeElement),c=[];r&&r.length>0&&(c.push(r.index()),!(r=r.parent()).is("body")););a()(o).find("*[id]").each((function(){var t=a()(this),e=a()("#"+t.attr("id"));e.length>0&&t[0].outerHTML!==e[0].outerHTML&&(e.replaceWith(t),i(t))})),s();try{for(var u=a()("body")[0],d=c.length-1;d>=0;d--)u=u.children[c[d]];document.activeElement!==u&&u.focus()}catch(t){}}else{var p=function(){x=t,S.append(o),i(S);var e=S.find(".modal-header");if(e.length>0&&e.is(".closeable")&&e.prepend('<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>'),k.installWizard_jenkinsVersionTitle){var n=S.find(".modal-footer");0===n.length&&(n=a()('<div class="modal-footer"></div>').appendTo(S)),n.prepend('<div class="jenkins-version">'+k.installWizard_jenkinsVersionTitle+" "+O()+"</div>")}s()},h=S.find(".modal-body");h.length>0?h.stop(!0).fadeOut(250,(function(){S.children().remove(),p()})):(S.children().remove(),p())}},A=[],R=[],M=function(t){for(var e=0;e<A.length;e++){var n=A[e];if(n.name===t)return n}return null},L=function(t){var e=R.indexOf(t.name);/.*Fail.*/.test(t.installStatus)?e<0&&R.push(t.name):e>0&&(R=R.slice(e,1))},F=function t(e,n){if(!n)return t(e,n=[]),n;if(!(n.indexOf(e)>=0)){n.push(e);var i=m[e];if(i){if(i.dependencies)for(var a in i.dependencies)t(a,n);if(i.neededDependencies)for(var s=0;s<i.neededDependencies.length;s++)t(i.neededDependencies[s].name,n)}}},H=function(){A=[];for(var t=0;t<s.length;t++){var e=s[t],n=m[e];if(n){var i=a.a.extend({installStatus:"pending"},n);A.push(i)}}},B=function(t){s=t,W((function(){return T()(arguments)}),{installingPlugins:[]}),r.a.installPlugins(t,c((function(){G()})))},J=function(){a()("iframe[src]").on("load",(function(){a()("button").prop({disabled:!1})}))},V=function(t){W(N.a,t,J)},q=function(t){r.a.getRestartStatus((function(e){W(_.a,a.a.extend(e,t))}))},K={DEFAULT:function(){W(y.a),a()(".install-recommended").focus()},CREATE_ADMIN_USER:function(){W(P.a,{},J)},CONFIGURE_INSTANCE:function(){V()},RUNNING:function(){q()},INITIAL_SETUP_COMPLETED:function(){q()},INITIAL_PLUGINS_INSTALLING:function(){Q()}},G=function t(e){e?e in K?K[e]():K.DEFAULT():r.a.installStatus(c((function(e){t(e.state)})))},Q=function(){if(R.length>0)W(C.a,{installingPlugins:A,failedPlugins:!0});else{H(),W(T.a,{installingPlugins:A},(function t(){var e=a()(".install-console-scroll");if(e.length){var n=a.a._data(e[0],"events");n&&n.scroll||e.on("scroll",(function(){if(e.data("wasAutoScrolled"))e.data("wasAutoScrolled",!1);else{var t=e[0].scrollHeight-e.height();e.scrollTop()===t?e.data("userScrolled",!1):e.data("userScrolled",!0)}}))}else setTimeout(t,50)}));setTimeout((function t(){r.a.installStatus(c((function(e){var n,i,o=e.jobs,l=0,r=0;for(n=0;n<o.length;n++)i=o[n],r++,(/.*Success.*/.test(i.installStatus)||/.*Fail.*/.test(i.installStatus))&&l++;0===r&&(r=A.length),a()(".progress-bar").css({width:100*l/r+"%"});var c=a()(".install-text");for(c.children().remove(),n=0;n<o.length;n++){var u=!1,p=!1;if("true"===(i=o[n]).requiresRestart&&!0,/.*Success.*/.test(i.installStatus)?(u=i.title,p="success"):/.*Install.*/.test(i.installStatus)?(u=i.title,p="installing"):/.*Fail.*/.test(i.installStatus)&&(u=i.title,p="fail"),L(i),u&&p){for(var h=0;h<A.length;h++){var f=A[h];f.name===i.name?f.installStatus=p:"pending"===f.installStatus&&f.allDependencies.indexOf(i.name)>=0&&("installing"===p||"success"===p)&&(f.installStatus="installing")}var g=!(s.indexOf(i.name)<0),m=a()("<div>"+u+"</div>");g?m.addClass("selected"):m.addClass("dependent"),c.append(m);var v=a()('.selected-plugin[id="installing-'+Object(d.default)(i.name)+'"]');v.length>0&&!v.is("."+p)&&v.addClass(p)}}var b=a()(".install-console-scroll");b&&b.is(":visible")&&!b.data("userScrolled")&&(b.data("wasAutoScrolled",!0),b.scrollTop(b[0].scrollHeight)),l<r&&"INITIAL_PLUGINS_INSTALLING"===e.state?(W(T.a,{installingPlugins:A}),setTimeout(t,250)):(a()(".progress-bar").css({width:"100%"}),G(e.state))})))}),250)}},Y=function(t){r.a.availablePlugins(c((function(e){var n,i;for(n=0;n<e.length;n++)i=e[n],m[i.name]=i;for(n=0;n<e.length;n++)(i=e[n]).allDependencies=F(i.name);t()})))},Z=function(t){Y((function(){f=[];for(var e=0;e<n.length;e++){var i=n[e];f.push(i.category);for(var s=b[i.category]=[],o=0;o<i.plugins.length;o++){var l=i.plugins[o],r=m[l.name];r||(r={name:l.name,title:l.name}),s.push({category:i.category,plugin:a.a.extend({},r,{usage:l.usage,title:l.title?l.title:r.title,excerpt:l.excerpt?l.excerpt:r.excerpt,updated:new Date(r.buildDate)})})}}t()}))},X=function(){return{categories:f,categorizedPlugins:b,selectedPlugins:s}},tt=function(){W(x,X()),""!==nt&&it(nt,!1)};w.on("change",".plugin-list input[type=checkbox]",(function(){var t,e,n=a()(this);n.is(":checked")?(t=s,e=n.attr("name"),t.push(e)):function(t,e){for(var n=t.length;n--;)t[n]===e&&t.splice(n,1)}(s,n.attr("name")),tt()}));var et=0,nt="",it=function(t,e){var n=a()(".plugin-list"),i=n.find(".plugin");if(i.removeClass("match"),n.find("h2").removeClass("match"),t.length>1){if("show:selected"===t)a()(".plugin-list .selected").addClass("match");else{var s=[];i.find(".title,.description").each((function(){var e=function(t,e,n){var i=[];return function t(e,n,i,a){var s,o,l=n.childNodes.length;for(s=0;s<l;s++)if(3===(o=n.childNodes[s]).nodeType&&-1!==a(o.data).indexOf(i)){e.push(n);break}for(s=0;s<l;s++)1===(o=n.childNodes[s]).nodeType&&t(e,o,i,a)}(i,t,e,n||function(t){return t}),i}(this,t.toLowerCase(),(function(t){return t.toLowerCase()}));e.length>0&&(s=s.concat(e))})),a()(s).parents(".plugin").addClass("match"),nt!==t&&e&&function(t,e,n){if(e.length>0){et=nt!==n?0:(et+1)%e.length;var i=a()(e[et]);if((i=i.parents(".plugin:first"))&&i.length>0){var s=t.scrollTop()+i.position().top;t.stop(!0).animate({scrollTop:s},100),setTimeout((function(){var e=t.scrollTop()+i.position().top;t.stop(!0).animate({scrollTop:e},50)}),50)}}}(n,s,t)}a()(".match").parent().prev("h2").addClass("match"),n.addClass("searching")}else et=0,n.removeClass("searching");nt=t};w.on("keyup change",".plugin-select-controls input[name=searchbox]",(function(){var t=a()(this).val();it(t,!0)})),w.on("keydown",".plugin-list",(function(t){var e=!1;switch(t.which){case 38:e=!0;break;case 40:break;default:return}var n=a()(t.target).closest(".plugin");if(n&&n.length>0){var i=a()(".plugin-list .plugin:visible"),s=i.index(n)+(e?-1:1);if(s>=0&&s<i.length){var o=a()(i[s]);if(o&&o.length>0){var l=o.find(":checkbox:first");if(l&&l.length>0)return t.preventDefault(),void l.focus()}}}})),w.on("click",".clear-search",(function(){a()("input[name=searchbox]").val(""),it("",!1)}));var at=function(t){"ok"===t.status?G():W(g.a,{errorMessage:"Error trying to create first user: "+t.statusText})},st=function(t){var e=t.responseText,n=a()(e).find("#main-panel").detach();n.length>0&&(e=e.replace(/body([^>]*)[>](.|[\r\n])+[<][/]body/,"body$1>"+n.html()+"</body"));var i=a()("iframe#setup-first-user").contents()[0];i.open(),i.write(e),i.close(),a()("button").prop({disabled:!1})},ot=!1,lt=function(t){if("ok"===t.status)if(ot){var e=k.installWizard_firstUserSkippedMessage;q({message:e})}else G();else{var n=t.data;W(N.a,{},(function(){a()("button").prop({disabled:!1}),function(t,e){if(e){var n=Object.keys(e);if(n.length)for(var i=a()(t).contents(),s=0;s<n.length;s++){var o=n[s],l=e[o],r=i.find('[name="'+o+'"]').parentsUntil("tr").parent(),c=r.find(".error-panel");r.addClass("has-error"),c.text(l)}}}(a()("iframe#setup-configure-instance"),n)}))}},rt=function(t){var e=t.responseText,n=a()(e).find("#main-panel").detach();n.length>0&&(e=e.replace(/body([^>]*)[>](.|[\r\n])+[<][/]body/,"body$1>"+n.html()+"</body"));var i=a()("iframe#setup-configure-instance").contents()[0];i.open(),i.write(e),i.close(),a()("button").prop({disabled:!1})},ct=function(){a()("button").prop({disabled:!0});var t="";ot&&(t+=k.installWizard_firstUserSkippedMessage),t+=k.installWizard_configureInstanceSkippedMessage,q({message:t})},ut=function(){r.a.completeInstall(c((function(){l.a.goTo("/")})))},dt=function(t,e){w.on("click",t,(function(t){e.apply(this,arguments),t.preventDefault()}))},pt={".toggle-dependency-list":function(){var t=a()(this),e=t.parents(".plugin:first"),n=t.attr("data-plugin-name");p[n]?p[n]=!1:p[n]=!0,p[n]?e.addClass("show-dependencies"):e.removeClass("show-dependencies")},".install-recommended":function(){Y((function(){B(r.a.recommendedPluginNames())}))},".install-custom":function(){Z((function(){W($.a,X(),(function(){e(".plugin-selector .plugin-list").scrollspy({target:".plugin-selector .categories"})}))}))},".install-home":function(){G()},".install-selected":function(){B(s)},".toggle-install-details":function(){var t=a()(".install-console");t.is(":visible")?t.slideUp():t.slideDown()},".install-done":function(){ut()},".plugin-select-all":function(){s=i,tt()},".plugin-select-none":function(){s=[],tt()},".plugin-select-recommended":function(){s=r.a.recommendedPluginNames(),tt()},".plugin-show-selected":function(){var t=a()("input[name=searchbox]"),e="show:selected";t.val()===e&&(e=""),t.val(e),it(e,!1)},".select-category":function(){a()("input[name=searchbox]").val(""),it("",!1);var t=a()(a()(this).attr("href")),e=a()(".plugin-list"),n=e.scrollTop()+t.position().top;e.stop(!0).animate({scrollTop:n},250,(function(){var n=e.scrollTop()+t.position().top;e.stop(!0).scrollTop(n)}))},".close":function(){ot=!0,ct()},".resume-installation":function(){H=function(){},s=[];for(var t=0;t<A.length;t++){var e=A[t];"pending"===e.installStatus&&s.push(e.name)}B(s)},".install-done-restart":function(){r.a.restartJenkins((function(){W(v.a),console.log("-------------------"),console.log("Waiting for Jenkins to come back online..."),console.log("-------------------");!function t(){r.a.getRestartStatus((function(e){if(this.isError||e.restartRequired){if(this.isError||e.restartSupported)console.log("Waiting..."),setTimeout(t,1e3);else if(!e.restartSupported)throw new Error(k.installWizard_error_restartNotSupported)}else l.a.goTo("/")}))}()}))},".save-first-user:not([disabled])":function(){a()("button").prop({disabled:!0});var t=a()("iframe#setup-first-user").contents().find("form:not(.no-json)");u.saveFirstUser(t,at,st)},".skip-first-user":function(){a()("button").prop({disabled:!0}),ot=!0,l.a.get("/api/json?tree=url",(function(t){t.url?q({message:k.installWizard_firstUserSkippedMessage}):V()}),{error:function(){V()}})},".save-configure-instance:not([disabled])":function(){a()("button").prop({disabled:!0});var t=a()("iframe#setup-configure-instance").contents().find("form:not(.no-json)");u.saveConfigureInstance(t,lt,rt)},".skip-configure-instance":ct,".show-proxy-config":function(){W(I.a,{},J)},".save-proxy-config":function(){u.saveProxy(a()("iframe[src]").contents().find("form:not(.no-json)"),(function(){l.a.goTo("/")}))},".skip-plugin-installs":function(){B([])},".retry-failed-plugins":function(){var t=R;R=[],B(t)},".continue-with-failed-plugins":function(){r.a.installPluginsDone((function(){r.a.installStatus(c((function(t){R=[],G(t.state)})))}))},".start-over":function(){l.a.goTo("/")}};W(v.a);var ht=[];for(var ft in"undefined"!=typeof setupWizardExtensions&&a.a.each(setupWizardExtensions,(function(){this.call(E,{$:a.a,$wizard:w,jenkins:l.a,pluginManager:r.a,setPanel:W,addActions:function(t){a.a.extend(pt,t)},addStateHandlers:function(t){a.a.extend(K,t)},translationOverride:function(t){ht.push(t)},setSelectedPluginNames:function(t){s=t.slice(0)},showStatePanel:G,installPlugins:B,pluginSelectionPanelData:X,loadPluginCategories:Z})})),pt)dt(ft,pt[ft]);l.a.loadTranslations("jenkins.install.pluginSetupWizard",c((function(t){k=t,a.a.each(ht,(function(){this(k)})),l.a.testConnectivity(defaultUpdateSiteId,c((function(t,e,a){t?r.a.init(c((function(){n=r.a.plugins(),i=r.a.pluginNames(),s=r.a.recommendedPluginNames(),r.a.installStatus(c((function(t){var e=t.jobs;e.length>0?0===A.length?(s=[],Y(c((function(){for(var n=0;n<e.length;n++){var i=e[n];i.correlationId&&s.push(i.name),L(i)}G(t.state)})))):G(t.state):r.a.incompleteInstallStatus(c((function(t){var e=[];for(var n in t)e.push(n);if(e.length>0)return s=e,void Y(c((function(){for(var e in H(),t){var n=M(e);if(n){var i=!1,a=t[e];/.*Success.*/.test(a)?(n.title,i="success"):/.*Install.*/.test(a)?(n.title,i="pending"):/.*Fail.*/.test(a)&&(n.title,i="fail"),i&&(n.installStatus=i)}else console.warn('Plugin "'+e+'" not found in the list of installing plugins.')}W(j.a,{installingPlugins:A})})));G()})))})))}))):e?W(g.a,{errorMessage:"Default update site connectivity check failed with fatal error: "+a+". If you see this issue for the custom Jenkins WAR bundle, consider setting the correct value of the hudson.model.UpdateCenter.defaultUpdateSiteId system property (requires Jenkins restart). Otherwise please create a bug in Jenkins JIRA."}):W(z.a)})))})))}};a()((function(){a()(".plugin-setup-wizard-container").each((function(){var t=a()(this);0===t.children().length&&F.init(t)}))}))}});
+     */
+    if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requires jQuery");
+    +function (a) {
+      "use strict";
+
+      var b = a.fn.jquery.split(" ")[0].split(".");
+      if (b[0] < 2 && b[1] < 9 || 1 == b[0] && 9 == b[1] && b[2] < 1) throw new Error("Bootstrap's JavaScript requires jQuery version 1.9.1 or higher");
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b() {
+        var a = document.createElement("bootstrap"),
+          b = {
+            WebkitTransition: "webkitTransitionEnd",
+            MozTransition: "transitionend",
+            OTransition: "oTransitionEnd otransitionend",
+            transition: "transitionend"
+          };
+        for (var c in b) if (void 0 !== a.style[c]) return {
+          end: b[c]
+        };
+        return !1;
+      }
+      a.fn.emulateTransitionEnd = function (b) {
+        var c = !1,
+          d = this;
+        a(this).one("bsTransitionEnd", function () {
+          c = !0;
+        });
+        var e = function () {
+          c || a(d).trigger(a.support.transition.end);
+        };
+        return setTimeout(e, b), this;
+      }, a(function () {
+        a.support.transition = b(), a.support.transition && (a.event.special.bsTransitionEnd = {
+          bindType: a.support.transition.end,
+          delegateType: a.support.transition.end,
+          handle: function (b) {
+            return a(b.target).is(this) ? b.handleObj.handler.apply(this, arguments) : void 0;
+          }
+        });
+      });
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(b) {
+        return this.each(function () {
+          var c = a(this),
+            e = c.data("bs.alert");
+          e || c.data("bs.alert", e = new d(this)), "string" == typeof b && e[b].call(c);
+        });
+      }
+      var c = '[data-dismiss="alert"]',
+        d = function (b) {
+          a(b).on("click", c, this.close);
+        };
+      d.VERSION = "3.3.5", d.TRANSITION_DURATION = 150, d.prototype.close = function (b) {
+        function c() {
+          g.detach().trigger("closed.bs.alert").remove();
+        }
+        var e = a(this),
+          f = e.attr("data-target");
+        f || (f = e.attr("href"), f = f && f.replace(/.*(?=#[^\s]*$)/, ""));
+        var g = a(f);
+        b && b.preventDefault(), g.length || (g = e.closest(".alert")), g.trigger(b = a.Event("close.bs.alert")), b.isDefaultPrevented() || (g.removeClass("in"), a.support.transition && g.hasClass("fade") ? g.one("bsTransitionEnd", c).emulateTransitionEnd(d.TRANSITION_DURATION) : c());
+      };
+      var e = a.fn.alert;
+      a.fn.alert = b, a.fn.alert.Constructor = d, a.fn.alert.noConflict = function () {
+        return a.fn.alert = e, this;
+      }, a(document).on("click.bs.alert.data-api", c, d.prototype.close);
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(b) {
+        return this.each(function () {
+          var d = a(this),
+            e = d.data("bs.button"),
+            f = "object" == typeof b && b;
+          e || d.data("bs.button", e = new c(this, f)), "toggle" == b ? e.toggle() : b && e.setState(b);
+        });
+      }
+      var c = function (b, d) {
+        this.$element = a(b), this.options = a.extend({}, c.DEFAULTS, d), this.isLoading = !1;
+      };
+      c.VERSION = "3.3.5", c.DEFAULTS = {
+        loadingText: "loading..."
+      }, c.prototype.setState = function (b) {
+        var c = "disabled",
+          d = this.$element,
+          e = d.is("input") ? "val" : "html",
+          f = d.data();
+        b += "Text", null == f.resetText && d.data("resetText", d[e]()), setTimeout(a.proxy(function () {
+          d[e](null == f[b] ? this.options[b] : f[b]), "loadingText" == b ? (this.isLoading = !0, d.addClass(c).attr(c, c)) : this.isLoading && (this.isLoading = !1, d.removeClass(c).removeAttr(c));
+        }, this), 0);
+      }, c.prototype.toggle = function () {
+        var a = !0,
+          b = this.$element.closest('[data-toggle="buttons"]');
+        if (b.length) {
+          var c = this.$element.find("input");
+          "radio" == c.prop("type") ? (c.prop("checked") && (a = !1), b.find(".active").removeClass("active"), this.$element.addClass("active")) : "checkbox" == c.prop("type") && (c.prop("checked") !== this.$element.hasClass("active") && (a = !1), this.$element.toggleClass("active")), c.prop("checked", this.$element.hasClass("active")), a && c.trigger("change");
+        } else this.$element.attr("aria-pressed", !this.$element.hasClass("active")), this.$element.toggleClass("active");
+      };
+      var d = a.fn.button;
+      a.fn.button = b, a.fn.button.Constructor = c, a.fn.button.noConflict = function () {
+        return a.fn.button = d, this;
+      }, a(document).on("click.bs.button.data-api", '[data-toggle^="button"]', function (c) {
+        var d = a(c.target);
+        d.hasClass("btn") || (d = d.closest(".btn")), b.call(d, "toggle"), a(c.target).is('input[type="radio"]') || a(c.target).is('input[type="checkbox"]') || c.preventDefault();
+      }).on("focus.bs.button.data-api blur.bs.button.data-api", '[data-toggle^="button"]', function (b) {
+        a(b.target).closest(".btn").toggleClass("focus", /^focus(in)?$/.test(b.type));
+      });
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(b) {
+        return this.each(function () {
+          var d = a(this),
+            e = d.data("bs.carousel"),
+            f = a.extend({}, c.DEFAULTS, d.data(), "object" == typeof b && b),
+            g = "string" == typeof b ? b : f.slide;
+          e || d.data("bs.carousel", e = new c(this, f)), "number" == typeof b ? e.to(b) : g ? e[g]() : f.interval && e.pause().cycle();
+        });
+      }
+      var c = function (b, c) {
+        this.$element = a(b), this.$indicators = this.$element.find(".carousel-indicators"), this.options = c, this.paused = null, this.sliding = null, this.interval = null, this.$active = null, this.$items = null, this.options.keyboard && this.$element.on("keydown.bs.carousel", a.proxy(this.keydown, this)), "hover" == this.options.pause && !("ontouchstart" in document.documentElement) && this.$element.on("mouseenter.bs.carousel", a.proxy(this.pause, this)).on("mouseleave.bs.carousel", a.proxy(this.cycle, this));
+      };
+      c.VERSION = "3.3.5", c.TRANSITION_DURATION = 600, c.DEFAULTS = {
+        interval: 5e3,
+        pause: "hover",
+        wrap: !0,
+        keyboard: !0
+      }, c.prototype.keydown = function (a) {
+        if (!/input|textarea/i.test(a.target.tagName)) {
+          switch (a.which) {
+            case 37:
+              this.prev();
+              break;
+            case 39:
+              this.next();
+              break;
+            default:
+              return;
+          }
+          a.preventDefault();
+        }
+      }, c.prototype.cycle = function (b) {
+        return b || (this.paused = !1), this.interval && clearInterval(this.interval), this.options.interval && !this.paused && (this.interval = setInterval(a.proxy(this.next, this), this.options.interval)), this;
+      }, c.prototype.getItemIndex = function (a) {
+        return this.$items = a.parent().children(".item"), this.$items.index(a || this.$active);
+      }, c.prototype.getItemForDirection = function (a, b) {
+        var c = this.getItemIndex(b),
+          d = "prev" == a && 0 === c || "next" == a && c == this.$items.length - 1;
+        if (d && !this.options.wrap) return b;
+        var e = "prev" == a ? -1 : 1,
+          f = (c + e) % this.$items.length;
+        return this.$items.eq(f);
+      }, c.prototype.to = function (a) {
+        var b = this,
+          c = this.getItemIndex(this.$active = this.$element.find(".item.active"));
+        return a > this.$items.length - 1 || 0 > a ? void 0 : this.sliding ? this.$element.one("slid.bs.carousel", function () {
+          b.to(a);
+        }) : c == a ? this.pause().cycle() : this.slide(a > c ? "next" : "prev", this.$items.eq(a));
+      }, c.prototype.pause = function (b) {
+        return b || (this.paused = !0), this.$element.find(".next, .prev").length && a.support.transition && (this.$element.trigger(a.support.transition.end), this.cycle(!0)), this.interval = clearInterval(this.interval), this;
+      }, c.prototype.next = function () {
+        return this.sliding ? void 0 : this.slide("next");
+      }, c.prototype.prev = function () {
+        return this.sliding ? void 0 : this.slide("prev");
+      }, c.prototype.slide = function (b, d) {
+        var e = this.$element.find(".item.active"),
+          f = d || this.getItemForDirection(b, e),
+          g = this.interval,
+          h = "next" == b ? "left" : "right",
+          i = this;
+        if (f.hasClass("active")) return this.sliding = !1;
+        var j = f[0],
+          k = a.Event("slide.bs.carousel", {
+            relatedTarget: j,
+            direction: h
+          });
+        if (this.$element.trigger(k), !k.isDefaultPrevented()) {
+          if (this.sliding = !0, g && this.pause(), this.$indicators.length) {
+            this.$indicators.find(".active").removeClass("active");
+            var l = a(this.$indicators.children()[this.getItemIndex(f)]);
+            l && l.addClass("active");
+          }
+          var m = a.Event("slid.bs.carousel", {
+            relatedTarget: j,
+            direction: h
+          });
+          return a.support.transition && this.$element.hasClass("slide") ? (f.addClass(b), f[0].offsetWidth, e.addClass(h), f.addClass(h), e.one("bsTransitionEnd", function () {
+            f.removeClass([b, h].join(" ")).addClass("active"), e.removeClass(["active", h].join(" ")), i.sliding = !1, setTimeout(function () {
+              i.$element.trigger(m);
+            }, 0);
+          }).emulateTransitionEnd(c.TRANSITION_DURATION)) : (e.removeClass("active"), f.addClass("active"), this.sliding = !1, this.$element.trigger(m)), g && this.cycle(), this;
+        }
+      };
+      var d = a.fn.carousel;
+      a.fn.carousel = b, a.fn.carousel.Constructor = c, a.fn.carousel.noConflict = function () {
+        return a.fn.carousel = d, this;
+      };
+      var e = function (c) {
+        var d,
+          e = a(this),
+          f = a(e.attr("data-target") || (d = e.attr("href")) && d.replace(/.*(?=#[^\s]+$)/, ""));
+        if (f.hasClass("carousel")) {
+          var g = a.extend({}, f.data(), e.data()),
+            h = e.attr("data-slide-to");
+          h && (g.interval = !1), b.call(f, g), h && f.data("bs.carousel").to(h), c.preventDefault();
+        }
+      };
+      a(document).on("click.bs.carousel.data-api", "[data-slide]", e).on("click.bs.carousel.data-api", "[data-slide-to]", e), a(window).on("load", function () {
+        a('[data-ride="carousel"]').each(function () {
+          var c = a(this);
+          b.call(c, c.data());
+        });
+      });
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(b) {
+        var c,
+          d = b.attr("data-target") || (c = b.attr("href")) && c.replace(/.*(?=#[^\s]+$)/, "");
+        return a(d);
+      }
+      function c(b) {
+        return this.each(function () {
+          var c = a(this),
+            e = c.data("bs.collapse"),
+            f = a.extend({}, d.DEFAULTS, c.data(), "object" == typeof b && b);
+          !e && f.toggle && /show|hide/.test(b) && (f.toggle = !1), e || c.data("bs.collapse", e = new d(this, f)), "string" == typeof b && e[b]();
+        });
+      }
+      var d = function (b, c) {
+        this.$element = a(b), this.options = a.extend({}, d.DEFAULTS, c), this.$trigger = a('[data-toggle="collapse"][href="#' + b.id + '"],[data-toggle="collapse"][data-target="#' + b.id + '"]'), this.transitioning = null, this.options.parent ? this.$parent = this.getParent() : this.addAriaAndCollapsedClass(this.$element, this.$trigger), this.options.toggle && this.toggle();
+      };
+      d.VERSION = "3.3.5", d.TRANSITION_DURATION = 350, d.DEFAULTS = {
+        toggle: !0
+      }, d.prototype.dimension = function () {
+        var a = this.$element.hasClass("width");
+        return a ? "width" : "height";
+      }, d.prototype.show = function () {
+        if (!this.transitioning && !this.$element.hasClass("in")) {
+          var b,
+            e = this.$parent && this.$parent.children(".panel").children(".in, .collapsing");
+          if (!(e && e.length && (b = e.data("bs.collapse"), b && b.transitioning))) {
+            var f = a.Event("show.bs.collapse");
+            if (this.$element.trigger(f), !f.isDefaultPrevented()) {
+              e && e.length && (c.call(e, "hide"), b || e.data("bs.collapse", null));
+              var g = this.dimension();
+              this.$element.removeClass("collapse").addClass("collapsing")[g](0).attr("aria-expanded", !0), this.$trigger.removeClass("collapsed").attr("aria-expanded", !0), this.transitioning = 1;
+              var h = function () {
+                this.$element.removeClass("collapsing").addClass("collapse in")[g](""), this.transitioning = 0, this.$element.trigger("shown.bs.collapse");
+              };
+              if (!a.support.transition) return h.call(this);
+              var i = a.camelCase(["scroll", g].join("-"));
+              this.$element.one("bsTransitionEnd", a.proxy(h, this)).emulateTransitionEnd(d.TRANSITION_DURATION)[g](this.$element[0][i]);
+            }
+          }
+        }
+      }, d.prototype.hide = function () {
+        if (!this.transitioning && this.$element.hasClass("in")) {
+          var b = a.Event("hide.bs.collapse");
+          if (this.$element.trigger(b), !b.isDefaultPrevented()) {
+            var c = this.dimension();
+            this.$element[c](this.$element[c]())[0].offsetHeight, this.$element.addClass("collapsing").removeClass("collapse in").attr("aria-expanded", !1), this.$trigger.addClass("collapsed").attr("aria-expanded", !1), this.transitioning = 1;
+            var e = function () {
+              this.transitioning = 0, this.$element.removeClass("collapsing").addClass("collapse").trigger("hidden.bs.collapse");
+            };
+            return a.support.transition ? void this.$element[c](0).one("bsTransitionEnd", a.proxy(e, this)).emulateTransitionEnd(d.TRANSITION_DURATION) : e.call(this);
+          }
+        }
+      }, d.prototype.toggle = function () {
+        this[this.$element.hasClass("in") ? "hide" : "show"]();
+      }, d.prototype.getParent = function () {
+        return a(this.options.parent).find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]').each(a.proxy(function (c, d) {
+          var e = a(d);
+          this.addAriaAndCollapsedClass(b(e), e);
+        }, this)).end();
+      }, d.prototype.addAriaAndCollapsedClass = function (a, b) {
+        var c = a.hasClass("in");
+        a.attr("aria-expanded", c), b.toggleClass("collapsed", !c).attr("aria-expanded", c);
+      };
+      var e = a.fn.collapse;
+      a.fn.collapse = c, a.fn.collapse.Constructor = d, a.fn.collapse.noConflict = function () {
+        return a.fn.collapse = e, this;
+      }, a(document).on("click.bs.collapse.data-api", '[data-toggle="collapse"]', function (d) {
+        var e = a(this);
+        e.attr("data-target") || d.preventDefault();
+        var f = b(e),
+          g = f.data("bs.collapse"),
+          h = g ? "toggle" : e.data();
+        c.call(f, h);
+      });
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(b) {
+        var c = b.attr("data-target");
+        c || (c = b.attr("href"), c = c && /#[A-Za-z]/.test(c) && c.replace(/.*(?=#[^\s]*$)/, ""));
+        var d = c && a(c);
+        return d && d.length ? d : b.parent();
+      }
+      function c(c) {
+        c && 3 === c.which || (a(e).remove(), a(f).each(function () {
+          var d = a(this),
+            e = b(d),
+            f = {
+              relatedTarget: this
+            };
+          e.hasClass("open") && (c && "click" == c.type && /input|textarea/i.test(c.target.tagName) && a.contains(e[0], c.target) || (e.trigger(c = a.Event("hide.bs.dropdown", f)), c.isDefaultPrevented() || (d.attr("aria-expanded", "false"), e.removeClass("open").trigger("hidden.bs.dropdown", f))));
+        }));
+      }
+      function d(b) {
+        return this.each(function () {
+          var c = a(this),
+            d = c.data("bs.dropdown");
+          d || c.data("bs.dropdown", d = new g(this)), "string" == typeof b && d[b].call(c);
+        });
+      }
+      var e = ".dropdown-backdrop",
+        f = '[data-toggle="dropdown"]',
+        g = function (b) {
+          a(b).on("click.bs.dropdown", this.toggle);
+        };
+      g.VERSION = "3.3.5", g.prototype.toggle = function (d) {
+        var e = a(this);
+        if (!e.is(".disabled, :disabled")) {
+          var f = b(e),
+            g = f.hasClass("open");
+          if (c(), !g) {
+            "ontouchstart" in document.documentElement && !f.closest(".navbar-nav").length && a(document.createElement("div")).addClass("dropdown-backdrop").insertAfter(a(this)).on("click", c);
+            var h = {
+              relatedTarget: this
+            };
+            if (f.trigger(d = a.Event("show.bs.dropdown", h)), d.isDefaultPrevented()) return;
+            e.trigger("focus").attr("aria-expanded", "true"), f.toggleClass("open").trigger("shown.bs.dropdown", h);
+          }
+          return !1;
+        }
+      }, g.prototype.keydown = function (c) {
+        if (/(38|40|27|32)/.test(c.which) && !/input|textarea/i.test(c.target.tagName)) {
+          var d = a(this);
+          if (c.preventDefault(), c.stopPropagation(), !d.is(".disabled, :disabled")) {
+            var e = b(d),
+              g = e.hasClass("open");
+            if (!g && 27 != c.which || g && 27 == c.which) return 27 == c.which && e.find(f).trigger("focus"), d.trigger("click");
+            var h = " li:not(.disabled):visible a",
+              i = e.find(".dropdown-menu" + h);
+            if (i.length) {
+              var j = i.index(c.target);
+              38 == c.which && j > 0 && j--, 40 == c.which && j < i.length - 1 && j++, ~j || (j = 0), i.eq(j).trigger("focus");
+            }
+          }
+        }
+      };
+      var h = a.fn.dropdown;
+      a.fn.dropdown = d, a.fn.dropdown.Constructor = g, a.fn.dropdown.noConflict = function () {
+        return a.fn.dropdown = h, this;
+      }, a(document).on("click.bs.dropdown.data-api", c).on("click.bs.dropdown.data-api", ".dropdown form", function (a) {
+        a.stopPropagation();
+      }).on("click.bs.dropdown.data-api", f, g.prototype.toggle).on("keydown.bs.dropdown.data-api", f, g.prototype.keydown).on("keydown.bs.dropdown.data-api", ".dropdown-menu", g.prototype.keydown);
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(b, d) {
+        return this.each(function () {
+          var e = a(this),
+            f = e.data("bs.modal"),
+            g = a.extend({}, c.DEFAULTS, e.data(), "object" == typeof b && b);
+          f || e.data("bs.modal", f = new c(this, g)), "string" == typeof b ? f[b](d) : g.show && f.show(d);
+        });
+      }
+      var c = function (b, c) {
+        this.options = c, this.$body = a(document.body), this.$element = a(b), this.$dialog = this.$element.find(".modal-dialog"), this.$backdrop = null, this.isShown = null, this.originalBodyPad = null, this.scrollbarWidth = 0, this.ignoreBackdropClick = !1, this.options.remote && this.$element.find(".modal-content").load(this.options.remote, a.proxy(function () {
+          this.$element.trigger("loaded.bs.modal");
+        }, this));
+      };
+      c.VERSION = "3.3.5", c.TRANSITION_DURATION = 300, c.BACKDROP_TRANSITION_DURATION = 150, c.DEFAULTS = {
+        backdrop: !0,
+        keyboard: !0,
+        show: !0
+      }, c.prototype.toggle = function (a) {
+        return this.isShown ? this.hide() : this.show(a);
+      }, c.prototype.show = function (b) {
+        var d = this,
+          e = a.Event("show.bs.modal", {
+            relatedTarget: b
+          });
+        this.$element.trigger(e), this.isShown || e.isDefaultPrevented() || (this.isShown = !0, this.checkScrollbar(), this.setScrollbar(), this.$body.addClass("modal-open"), this.escape(), this.resize(), this.$element.on("click.dismiss.bs.modal", '[data-dismiss="modal"]', a.proxy(this.hide, this)), this.$dialog.on("mousedown.dismiss.bs.modal", function () {
+          d.$element.one("mouseup.dismiss.bs.modal", function (b) {
+            a(b.target).is(d.$element) && (d.ignoreBackdropClick = !0);
+          });
+        }), this.backdrop(function () {
+          var e = a.support.transition && d.$element.hasClass("fade");
+          d.$element.parent().length || d.$element.appendTo(d.$body), d.$element.show().scrollTop(0), d.adjustDialog(), e && d.$element[0].offsetWidth, d.$element.addClass("in"), d.enforceFocus();
+          var f = a.Event("shown.bs.modal", {
+            relatedTarget: b
+          });
+          e ? d.$dialog.one("bsTransitionEnd", function () {
+            d.$element.trigger("focus").trigger(f);
+          }).emulateTransitionEnd(c.TRANSITION_DURATION) : d.$element.trigger("focus").trigger(f);
+        }));
+      }, c.prototype.hide = function (b) {
+        b && b.preventDefault(), b = a.Event("hide.bs.modal"), this.$element.trigger(b), this.isShown && !b.isDefaultPrevented() && (this.isShown = !1, this.escape(), this.resize(), a(document).off("focusin.bs.modal"), this.$element.removeClass("in").off("click.dismiss.bs.modal").off("mouseup.dismiss.bs.modal"), this.$dialog.off("mousedown.dismiss.bs.modal"), a.support.transition && this.$element.hasClass("fade") ? this.$element.one("bsTransitionEnd", a.proxy(this.hideModal, this)).emulateTransitionEnd(c.TRANSITION_DURATION) : this.hideModal());
+      }, c.prototype.enforceFocus = function () {
+        a(document).off("focusin.bs.modal").on("focusin.bs.modal", a.proxy(function (a) {
+          this.$element[0] === a.target || this.$element.has(a.target).length || this.$element.trigger("focus");
+        }, this));
+      }, c.prototype.escape = function () {
+        this.isShown && this.options.keyboard ? this.$element.on("keydown.dismiss.bs.modal", a.proxy(function (a) {
+          27 == a.which && this.hide();
+        }, this)) : this.isShown || this.$element.off("keydown.dismiss.bs.modal");
+      }, c.prototype.resize = function () {
+        this.isShown ? a(window).on("resize.bs.modal", a.proxy(this.handleUpdate, this)) : a(window).off("resize.bs.modal");
+      }, c.prototype.hideModal = function () {
+        var a = this;
+        this.$element.hide(), this.backdrop(function () {
+          a.$body.removeClass("modal-open"), a.resetAdjustments(), a.resetScrollbar(), a.$element.trigger("hidden.bs.modal");
+        });
+      }, c.prototype.removeBackdrop = function () {
+        this.$backdrop && this.$backdrop.remove(), this.$backdrop = null;
+      }, c.prototype.backdrop = function (b) {
+        var d = this,
+          e = this.$element.hasClass("fade") ? "fade" : "";
+        if (this.isShown && this.options.backdrop) {
+          var f = a.support.transition && e;
+          if (this.$backdrop = a(document.createElement("div")).addClass("modal-backdrop " + e).appendTo(this.$body), this.$element.on("click.dismiss.bs.modal", a.proxy(function (a) {
+            return this.ignoreBackdropClick ? void (this.ignoreBackdropClick = !1) : void (a.target === a.currentTarget && ("static" == this.options.backdrop ? this.$element[0].focus() : this.hide()));
+          }, this)), f && this.$backdrop[0].offsetWidth, this.$backdrop.addClass("in"), !b) return;
+          f ? this.$backdrop.one("bsTransitionEnd", b).emulateTransitionEnd(c.BACKDROP_TRANSITION_DURATION) : b();
+        } else if (!this.isShown && this.$backdrop) {
+          this.$backdrop.removeClass("in");
+          var g = function () {
+            d.removeBackdrop(), b && b();
+          };
+          a.support.transition && this.$element.hasClass("fade") ? this.$backdrop.one("bsTransitionEnd", g).emulateTransitionEnd(c.BACKDROP_TRANSITION_DURATION) : g();
+        } else b && b();
+      }, c.prototype.handleUpdate = function () {
+        this.adjustDialog();
+      }, c.prototype.adjustDialog = function () {
+        var a = this.$element[0].scrollHeight > document.documentElement.clientHeight;
+        this.$element.css({
+          paddingLeft: !this.bodyIsOverflowing && a ? this.scrollbarWidth : "",
+          paddingRight: this.bodyIsOverflowing && !a ? this.scrollbarWidth : ""
+        });
+      }, c.prototype.resetAdjustments = function () {
+        this.$element.css({
+          paddingLeft: "",
+          paddingRight: ""
+        });
+      }, c.prototype.checkScrollbar = function () {
+        var a = window.innerWidth;
+        if (!a) {
+          var b = document.documentElement.getBoundingClientRect();
+          a = b.right - Math.abs(b.left);
+        }
+        this.bodyIsOverflowing = document.body.clientWidth < a, this.scrollbarWidth = this.measureScrollbar();
+      }, c.prototype.setScrollbar = function () {
+        var a = parseInt(this.$body.css("padding-right") || 0, 10);
+        this.originalBodyPad = document.body.style.paddingRight || "", this.bodyIsOverflowing && this.$body.css("padding-right", a + this.scrollbarWidth);
+      }, c.prototype.resetScrollbar = function () {
+        this.$body.css("padding-right", this.originalBodyPad);
+      }, c.prototype.measureScrollbar = function () {
+        var a = document.createElement("div");
+        a.className = "modal-scrollbar-measure", this.$body.append(a);
+        var b = a.offsetWidth - a.clientWidth;
+        return this.$body[0].removeChild(a), b;
+      };
+      var d = a.fn.modal;
+      a.fn.modal = b, a.fn.modal.Constructor = c, a.fn.modal.noConflict = function () {
+        return a.fn.modal = d, this;
+      }, a(document).on("click.bs.modal.data-api", '[data-toggle="modal"]', function (c) {
+        var d = a(this),
+          e = d.attr("href"),
+          f = a(d.attr("data-target") || e && e.replace(/.*(?=#[^\s]+$)/, "")),
+          g = f.data("bs.modal") ? "toggle" : a.extend({
+            remote: !/#/.test(e) && e
+          }, f.data(), d.data());
+        d.is("a") && c.preventDefault(), f.one("show.bs.modal", function (a) {
+          a.isDefaultPrevented() || f.one("hidden.bs.modal", function () {
+            d.is(":visible") && d.trigger("focus");
+          });
+        }), b.call(f, g, this);
+      });
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(b) {
+        return this.each(function () {
+          var d = a(this),
+            e = d.data("bs.tooltip"),
+            f = "object" == typeof b && b;
+          (e || !/destroy|hide/.test(b)) && (e || d.data("bs.tooltip", e = new c(this, f)), "string" == typeof b && e[b]());
+        });
+      }
+      var c = function (a, b) {
+        this.type = null, this.options = null, this.enabled = null, this.timeout = null, this.hoverState = null, this.$element = null, this.inState = null, this.init("tooltip", a, b);
+      };
+      c.VERSION = "3.3.5", c.TRANSITION_DURATION = 150, c.DEFAULTS = {
+        animation: !0,
+        placement: "top",
+        selector: !1,
+        template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+        trigger: "hover focus",
+        title: "",
+        delay: 0,
+        html: !1,
+        container: !1,
+        viewport: {
+          selector: "body",
+          padding: 0
+        }
+      }, c.prototype.init = function (b, c, d) {
+        if (this.enabled = !0, this.type = b, this.$element = a(c), this.options = this.getOptions(d), this.$viewport = this.options.viewport && a(a.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : this.options.viewport.selector || this.options.viewport), this.inState = {
+          click: !1,
+          hover: !1,
+          focus: !1
+        }, this.$element[0] instanceof document.constructor && !this.options.selector) throw new Error("`selector` option must be specified when initializing " + this.type + " on the window.document object!");
+        for (var e = this.options.trigger.split(" "), f = e.length; f--;) {
+          var g = e[f];
+          if ("click" == g) this.$element.on("click." + this.type, this.options.selector, a.proxy(this.toggle, this));else if ("manual" != g) {
+            var h = "hover" == g ? "mouseenter" : "focusin",
+              i = "hover" == g ? "mouseleave" : "focusout";
+            this.$element.on(h + "." + this.type, this.options.selector, a.proxy(this.enter, this)), this.$element.on(i + "." + this.type, this.options.selector, a.proxy(this.leave, this));
+          }
+        }
+        this.options.selector ? this._options = a.extend({}, this.options, {
+          trigger: "manual",
+          selector: ""
+        }) : this.fixTitle();
+      }, c.prototype.getDefaults = function () {
+        return c.DEFAULTS;
+      }, c.prototype.getOptions = function (b) {
+        return b = a.extend({}, this.getDefaults(), this.$element.data(), b), b.delay && "number" == typeof b.delay && (b.delay = {
+          show: b.delay,
+          hide: b.delay
+        }), b;
+      }, c.prototype.getDelegateOptions = function () {
+        var b = {},
+          c = this.getDefaults();
+        return this._options && a.each(this._options, function (a, d) {
+          c[a] != d && (b[a] = d);
+        }), b;
+      }, c.prototype.enter = function (b) {
+        var c = b instanceof this.constructor ? b : a(b.currentTarget).data("bs." + this.type);
+        return c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), a(b.currentTarget).data("bs." + this.type, c)), b instanceof a.Event && (c.inState["focusin" == b.type ? "focus" : "hover"] = !0), c.tip().hasClass("in") || "in" == c.hoverState ? void (c.hoverState = "in") : (clearTimeout(c.timeout), c.hoverState = "in", c.options.delay && c.options.delay.show ? void (c.timeout = setTimeout(function () {
+          "in" == c.hoverState && c.show();
+        }, c.options.delay.show)) : c.show());
+      }, c.prototype.isInStateTrue = function () {
+        for (var a in this.inState) if (this.inState[a]) return !0;
+        return !1;
+      }, c.prototype.leave = function (b) {
+        var c = b instanceof this.constructor ? b : a(b.currentTarget).data("bs." + this.type);
+        return c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), a(b.currentTarget).data("bs." + this.type, c)), b instanceof a.Event && (c.inState["focusout" == b.type ? "focus" : "hover"] = !1), c.isInStateTrue() ? void 0 : (clearTimeout(c.timeout), c.hoverState = "out", c.options.delay && c.options.delay.hide ? void (c.timeout = setTimeout(function () {
+          "out" == c.hoverState && c.hide();
+        }, c.options.delay.hide)) : c.hide());
+      }, c.prototype.show = function () {
+        var b = a.Event("show.bs." + this.type);
+        if (this.hasContent() && this.enabled) {
+          this.$element.trigger(b);
+          var d = a.contains(this.$element[0].ownerDocument.documentElement, this.$element[0]);
+          if (b.isDefaultPrevented() || !d) return;
+          var e = this,
+            f = this.tip(),
+            g = this.getUID(this.type);
+          this.setContent(), f.attr("id", g), this.$element.attr("aria-describedby", g), this.options.animation && f.addClass("fade");
+          var h = "function" == typeof this.options.placement ? this.options.placement.call(this, f[0], this.$element[0]) : this.options.placement,
+            i = /\s?auto?\s?/i,
+            j = i.test(h);
+          j && (h = h.replace(i, "") || "top"), f.detach().css({
+            top: 0,
+            left: 0,
+            display: "block"
+          }).addClass(h).data("bs." + this.type, this), this.options.container ? f.appendTo(this.options.container) : f.insertAfter(this.$element), this.$element.trigger("inserted.bs." + this.type);
+          var k = this.getPosition(),
+            l = f[0].offsetWidth,
+            m = f[0].offsetHeight;
+          if (j) {
+            var n = h,
+              o = this.getPosition(this.$viewport);
+            h = "bottom" == h && k.bottom + m > o.bottom ? "top" : "top" == h && k.top - m < o.top ? "bottom" : "right" == h && k.right + l > o.width ? "left" : "left" == h && k.left - l < o.left ? "right" : h, f.removeClass(n).addClass(h);
+          }
+          var p = this.getCalculatedOffset(h, k, l, m);
+          this.applyPlacement(p, h);
+          var q = function () {
+            var a = e.hoverState;
+            e.$element.trigger("shown.bs." + e.type), e.hoverState = null, "out" == a && e.leave(e);
+          };
+          a.support.transition && this.$tip.hasClass("fade") ? f.one("bsTransitionEnd", q).emulateTransitionEnd(c.TRANSITION_DURATION) : q();
+        }
+      }, c.prototype.applyPlacement = function (b, c) {
+        var d = this.tip(),
+          e = d[0].offsetWidth,
+          f = d[0].offsetHeight,
+          g = parseInt(d.css("margin-top"), 10),
+          h = parseInt(d.css("margin-left"), 10);
+        isNaN(g) && (g = 0), isNaN(h) && (h = 0), b.top += g, b.left += h, a.offset.setOffset(d[0], a.extend({
+          using: function (a) {
+            d.css({
+              top: Math.round(a.top),
+              left: Math.round(a.left)
+            });
+          }
+        }, b), 0), d.addClass("in");
+        var i = d[0].offsetWidth,
+          j = d[0].offsetHeight;
+        "top" == c && j != f && (b.top = b.top + f - j);
+        var k = this.getViewportAdjustedDelta(c, b, i, j);
+        k.left ? b.left += k.left : b.top += k.top;
+        var l = /top|bottom/.test(c),
+          m = l ? 2 * k.left - e + i : 2 * k.top - f + j,
+          n = l ? "offsetWidth" : "offsetHeight";
+        d.offset(b), this.replaceArrow(m, d[0][n], l);
+      }, c.prototype.replaceArrow = function (a, b, c) {
+        this.arrow().css(c ? "left" : "top", 50 * (1 - a / b) + "%").css(c ? "top" : "left", "");
+      }, c.prototype.setContent = function () {
+        var a = this.tip(),
+          b = this.getTitle();
+        a.find(".tooltip-inner")[this.options.html ? "html" : "text"](b), a.removeClass("fade in top bottom left right");
+      }, c.prototype.hide = function (b) {
+        function d() {
+          "in" != e.hoverState && f.detach(), e.$element.removeAttr("aria-describedby").trigger("hidden.bs." + e.type), b && b();
+        }
+        var e = this,
+          f = a(this.$tip),
+          g = a.Event("hide.bs." + this.type);
+        return this.$element.trigger(g), g.isDefaultPrevented() ? void 0 : (f.removeClass("in"), a.support.transition && f.hasClass("fade") ? f.one("bsTransitionEnd", d).emulateTransitionEnd(c.TRANSITION_DURATION) : d(), this.hoverState = null, this);
+      }, c.prototype.fixTitle = function () {
+        var a = this.$element;
+        (a.attr("title") || "string" != typeof a.attr("data-original-title")) && a.attr("data-original-title", a.attr("title") || "").attr("title", "");
+      }, c.prototype.hasContent = function () {
+        return this.getTitle();
+      }, c.prototype.getPosition = function (b) {
+        b = b || this.$element;
+        var c = b[0],
+          d = "BODY" == c.tagName,
+          e = c.getBoundingClientRect();
+        null == e.width && (e = a.extend({}, e, {
+          width: e.right - e.left,
+          height: e.bottom - e.top
+        }));
+        var f = d ? {
+            top: 0,
+            left: 0
+          } : b.offset(),
+          g = {
+            scroll: d ? document.documentElement.scrollTop || document.body.scrollTop : b.scrollTop()
+          },
+          h = d ? {
+            width: a(window).width(),
+            height: a(window).height()
+          } : null;
+        return a.extend({}, e, g, h, f);
+      }, c.prototype.getCalculatedOffset = function (a, b, c, d) {
+        return "bottom" == a ? {
+          top: b.top + b.height,
+          left: b.left + b.width / 2 - c / 2
+        } : "top" == a ? {
+          top: b.top - d,
+          left: b.left + b.width / 2 - c / 2
+        } : "left" == a ? {
+          top: b.top + b.height / 2 - d / 2,
+          left: b.left - c
+        } : {
+          top: b.top + b.height / 2 - d / 2,
+          left: b.left + b.width
+        };
+      }, c.prototype.getViewportAdjustedDelta = function (a, b, c, d) {
+        var e = {
+          top: 0,
+          left: 0
+        };
+        if (!this.$viewport) return e;
+        var f = this.options.viewport && this.options.viewport.padding || 0,
+          g = this.getPosition(this.$viewport);
+        if (/right|left/.test(a)) {
+          var h = b.top - f - g.scroll,
+            i = b.top + f - g.scroll + d;
+          h < g.top ? e.top = g.top - h : i > g.top + g.height && (e.top = g.top + g.height - i);
+        } else {
+          var j = b.left - f,
+            k = b.left + f + c;
+          j < g.left ? e.left = g.left - j : k > g.right && (e.left = g.left + g.width - k);
+        }
+        return e;
+      }, c.prototype.getTitle = function () {
+        var a,
+          b = this.$element,
+          c = this.options;
+        return a = b.attr("data-original-title") || ("function" == typeof c.title ? c.title.call(b[0]) : c.title);
+      }, c.prototype.getUID = function (a) {
+        do a += ~~(1e6 * Math.random()); while (document.getElementById(a));
+        return a;
+      }, c.prototype.tip = function () {
+        if (!this.$tip && (this.$tip = a(this.options.template), 1 != this.$tip.length)) throw new Error(this.type + " `template` option must consist of exactly 1 top-level element!");
+        return this.$tip;
+      }, c.prototype.arrow = function () {
+        return this.$arrow = this.$arrow || this.tip().find(".tooltip-arrow");
+      }, c.prototype.enable = function () {
+        this.enabled = !0;
+      }, c.prototype.disable = function () {
+        this.enabled = !1;
+      }, c.prototype.toggleEnabled = function () {
+        this.enabled = !this.enabled;
+      }, c.prototype.toggle = function (b) {
+        var c = this;
+        b && (c = a(b.currentTarget).data("bs." + this.type), c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), a(b.currentTarget).data("bs." + this.type, c))), b ? (c.inState.click = !c.inState.click, c.isInStateTrue() ? c.enter(c) : c.leave(c)) : c.tip().hasClass("in") ? c.leave(c) : c.enter(c);
+      }, c.prototype.destroy = function () {
+        var a = this;
+        clearTimeout(this.timeout), this.hide(function () {
+          a.$element.off("." + a.type).removeData("bs." + a.type), a.$tip && a.$tip.detach(), a.$tip = null, a.$arrow = null, a.$viewport = null;
+        });
+      };
+      var d = a.fn.tooltip;
+      a.fn.tooltip = b, a.fn.tooltip.Constructor = c, a.fn.tooltip.noConflict = function () {
+        return a.fn.tooltip = d, this;
+      };
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(b) {
+        return this.each(function () {
+          var d = a(this),
+            e = d.data("bs.popover"),
+            f = "object" == typeof b && b;
+          (e || !/destroy|hide/.test(b)) && (e || d.data("bs.popover", e = new c(this, f)), "string" == typeof b && e[b]());
+        });
+      }
+      var c = function (a, b) {
+        this.init("popover", a, b);
+      };
+      if (!a.fn.tooltip) throw new Error("Popover requires tooltip.js");
+      c.VERSION = "3.3.5", c.DEFAULTS = a.extend({}, a.fn.tooltip.Constructor.DEFAULTS, {
+        placement: "right",
+        trigger: "click",
+        content: "",
+        template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+      }), c.prototype = a.extend({}, a.fn.tooltip.Constructor.prototype), c.prototype.constructor = c, c.prototype.getDefaults = function () {
+        return c.DEFAULTS;
+      }, c.prototype.setContent = function () {
+        var a = this.tip(),
+          b = this.getTitle(),
+          c = this.getContent();
+        a.find(".popover-title")[this.options.html ? "html" : "text"](b), a.find(".popover-content").children().detach().end()[this.options.html ? "string" == typeof c ? "html" : "append" : "text"](c), a.removeClass("fade top bottom left right in"), a.find(".popover-title").html() || a.find(".popover-title").hide();
+      }, c.prototype.hasContent = function () {
+        return this.getTitle() || this.getContent();
+      }, c.prototype.getContent = function () {
+        var a = this.$element,
+          b = this.options;
+        return a.attr("data-content") || ("function" == typeof b.content ? b.content.call(a[0]) : b.content);
+      }, c.prototype.arrow = function () {
+        return this.$arrow = this.$arrow || this.tip().find(".arrow");
+      };
+      var d = a.fn.popover;
+      a.fn.popover = b, a.fn.popover.Constructor = c, a.fn.popover.noConflict = function () {
+        return a.fn.popover = d, this;
+      };
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(c, d) {
+        this.$body = a(document.body), this.$scrollElement = a(a(c).is(document.body) ? window : c), this.options = a.extend({}, b.DEFAULTS, d), this.selector = (this.options.target || "") + " .nav li > a", this.offsets = [], this.targets = [], this.activeTarget = null, this.scrollHeight = 0, this.$scrollElement.on("scroll.bs.scrollspy", a.proxy(this.process, this)), this.refresh(), this.process();
+      }
+      function c(c) {
+        return this.each(function () {
+          var d = a(this),
+            e = d.data("bs.scrollspy"),
+            f = "object" == typeof c && c;
+          e || d.data("bs.scrollspy", e = new b(this, f)), "string" == typeof c && e[c]();
+        });
+      }
+      b.VERSION = "3.3.5", b.DEFAULTS = {
+        offset: 10
+      }, b.prototype.getScrollHeight = function () {
+        return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight);
+      }, b.prototype.refresh = function () {
+        var b = this,
+          c = "offset",
+          d = 0;
+        this.offsets = [], this.targets = [], this.scrollHeight = this.getScrollHeight(), a.isWindow(this.$scrollElement[0]) || (c = "position", d = this.$scrollElement.scrollTop()), this.$body.find(this.selector).map(function () {
+          var b = a(this),
+            e = b.data("target") || b.attr("href"),
+            f = /^#./.test(e) && a(e);
+          return f && f.length && f.is(":visible") && [[f[c]().top + d, e]] || null;
+        }).sort(function (a, b) {
+          return a[0] - b[0];
+        }).each(function () {
+          b.offsets.push(this[0]), b.targets.push(this[1]);
+        });
+      }, b.prototype.process = function () {
+        var a,
+          b = this.$scrollElement.scrollTop() + this.options.offset,
+          c = this.getScrollHeight(),
+          d = this.options.offset + c - this.$scrollElement.height(),
+          e = this.offsets,
+          f = this.targets,
+          g = this.activeTarget;
+        if (this.scrollHeight != c && this.refresh(), b >= d) return g != (a = f[f.length - 1]) && this.activate(a);
+        if (g && b < e[0]) return this.activeTarget = null, this.clear();
+        for (a = e.length; a--;) g != f[a] && b >= e[a] && (void 0 === e[a + 1] || b < e[a + 1]) && this.activate(f[a]);
+      }, b.prototype.activate = function (b) {
+        this.activeTarget = b, this.clear();
+        var c = this.selector + '[data-target="' + b + '"],' + this.selector + '[href="' + b + '"]',
+          d = a(c).parents("li").addClass("active");
+        d.parent(".dropdown-menu").length && (d = d.closest("li.dropdown").addClass("active")), d.trigger("activate.bs.scrollspy");
+      }, b.prototype.clear = function () {
+        a(this.selector).parentsUntil(this.options.target, ".active").removeClass("active");
+      };
+      var d = a.fn.scrollspy;
+      a.fn.scrollspy = c, a.fn.scrollspy.Constructor = b, a.fn.scrollspy.noConflict = function () {
+        return a.fn.scrollspy = d, this;
+      }, a(window).on("load.bs.scrollspy.data-api", function () {
+        a('[data-spy="scroll"]').each(function () {
+          var b = a(this);
+          c.call(b, b.data());
+        });
+      });
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(b) {
+        return this.each(function () {
+          var d = a(this),
+            e = d.data("bs.tab");
+          e || d.data("bs.tab", e = new c(this)), "string" == typeof b && e[b]();
+        });
+      }
+      var c = function (b) {
+        this.element = a(b);
+      };
+      c.VERSION = "3.3.5", c.TRANSITION_DURATION = 150, c.prototype.show = function () {
+        var b = this.element,
+          c = b.closest("ul:not(.dropdown-menu)"),
+          d = b.data("target");
+        if (d || (d = b.attr("href"), d = d && d.replace(/.*(?=#[^\s]*$)/, "")), !b.parent("li").hasClass("active")) {
+          var e = c.find(".active:last a"),
+            f = a.Event("hide.bs.tab", {
+              relatedTarget: b[0]
+            }),
+            g = a.Event("show.bs.tab", {
+              relatedTarget: e[0]
+            });
+          if (e.trigger(f), b.trigger(g), !g.isDefaultPrevented() && !f.isDefaultPrevented()) {
+            var h = a(d);
+            this.activate(b.closest("li"), c), this.activate(h, h.parent(), function () {
+              e.trigger({
+                type: "hidden.bs.tab",
+                relatedTarget: b[0]
+              }), b.trigger({
+                type: "shown.bs.tab",
+                relatedTarget: e[0]
+              });
+            });
+          }
+        }
+      }, c.prototype.activate = function (b, d, e) {
+        function f() {
+          g.removeClass("active").find("> .dropdown-menu > .active").removeClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded", !1), b.addClass("active").find('[data-toggle="tab"]').attr("aria-expanded", !0), h ? (b[0].offsetWidth, b.addClass("in")) : b.removeClass("fade"), b.parent(".dropdown-menu").length && b.closest("li.dropdown").addClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded", !0), e && e();
+        }
+        var g = d.find("> .active"),
+          h = e && a.support.transition && (g.length && g.hasClass("fade") || !!d.find("> .fade").length);
+        g.length && h ? g.one("bsTransitionEnd", f).emulateTransitionEnd(c.TRANSITION_DURATION) : f(), g.removeClass("in");
+      };
+      var d = a.fn.tab;
+      a.fn.tab = b, a.fn.tab.Constructor = c, a.fn.tab.noConflict = function () {
+        return a.fn.tab = d, this;
+      };
+      var e = function (c) {
+        c.preventDefault(), b.call(a(this), "show");
+      };
+      a(document).on("click.bs.tab.data-api", '[data-toggle="tab"]', e).on("click.bs.tab.data-api", '[data-toggle="pill"]', e);
+    }(jQuery), +function (a) {
+      "use strict";
+
+      function b(b) {
+        return this.each(function () {
+          var d = a(this),
+            e = d.data("bs.affix"),
+            f = "object" == typeof b && b;
+          e || d.data("bs.affix", e = new c(this, f)), "string" == typeof b && e[b]();
+        });
+      }
+      var c = function (b, d) {
+        this.options = a.extend({}, c.DEFAULTS, d), this.$target = a(this.options.target).on("scroll.bs.affix.data-api", a.proxy(this.checkPosition, this)).on("click.bs.affix.data-api", a.proxy(this.checkPositionWithEventLoop, this)), this.$element = a(b), this.affixed = null, this.unpin = null, this.pinnedOffset = null, this.checkPosition();
+      };
+      c.VERSION = "3.3.5", c.RESET = "affix affix-top affix-bottom", c.DEFAULTS = {
+        offset: 0,
+        target: window
+      }, c.prototype.getState = function (a, b, c, d) {
+        var e = this.$target.scrollTop(),
+          f = this.$element.offset(),
+          g = this.$target.height();
+        if (null != c && "top" == this.affixed) return c > e ? "top" : !1;
+        if ("bottom" == this.affixed) return null != c ? e + this.unpin <= f.top ? !1 : "bottom" : a - d >= e + g ? !1 : "bottom";
+        var h = null == this.affixed,
+          i = h ? e : f.top,
+          j = h ? g : b;
+        return null != c && c >= e ? "top" : null != d && i + j >= a - d ? "bottom" : !1;
+      }, c.prototype.getPinnedOffset = function () {
+        if (this.pinnedOffset) return this.pinnedOffset;
+        this.$element.removeClass(c.RESET).addClass("affix");
+        var a = this.$target.scrollTop(),
+          b = this.$element.offset();
+        return this.pinnedOffset = b.top - a;
+      }, c.prototype.checkPositionWithEventLoop = function () {
+        setTimeout(a.proxy(this.checkPosition, this), 1);
+      }, c.prototype.checkPosition = function () {
+        if (this.$element.is(":visible")) {
+          var b = this.$element.height(),
+            d = this.options.offset,
+            e = d.top,
+            f = d.bottom,
+            g = Math.max(a(document).height(), a(document.body).height());
+          "object" != typeof d && (f = e = d), "function" == typeof e && (e = d.top(this.$element)), "function" == typeof f && (f = d.bottom(this.$element));
+          var h = this.getState(g, b, e, f);
+          if (this.affixed != h) {
+            null != this.unpin && this.$element.css("top", "");
+            var i = "affix" + (h ? "-" + h : ""),
+              j = a.Event(i + ".bs.affix");
+            if (this.$element.trigger(j), j.isDefaultPrevented()) return;
+            this.affixed = h, this.unpin = "bottom" == h ? this.getPinnedOffset() : null, this.$element.removeClass(c.RESET).addClass(i).trigger(i.replace("affix", "affixed") + ".bs.affix");
+          }
+          "bottom" == h && this.$element.offset({
+            top: g - b - f
+          });
+        }
+      };
+      var d = a.fn.affix;
+      a.fn.affix = b, a.fn.affix.Constructor = c, a.fn.affix.noConflict = function () {
+        return a.fn.affix = d, this;
+      }, a(window).on("load", function () {
+        a('[data-spy="affix"]').each(function () {
+          var c = a(this),
+            d = c.data();
+          d.offset = d.offset || {}, null != d.offsetBottom && (d.offset.bottom = d.offsetBottom), null != d.offsetTop && (d.offset.top = d.offsetTop), b.call(c, d);
+        });
+      });
+    }(jQuery);
+    /* ------------------------------------------------------------------------------------------------------------------------------ */
+
+    return $;
+  } finally {
+    window.$ = _$;
+    window.jQuery = _jQuery;
+  }
+}
+// EXTERNAL MODULE: ./war/src/main/js/templates/errorPanel.hbs
+var errorPanel = __webpack_require__(7478);
+var errorPanel_default = /*#__PURE__*/__webpack_require__.n(errorPanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/loadingPanel.hbs
+var loadingPanel = __webpack_require__(1232);
+var loadingPanel_default = /*#__PURE__*/__webpack_require__.n(loadingPanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/welcomePanel.hbs
+var welcomePanel = __webpack_require__(1436);
+var welcomePanel_default = /*#__PURE__*/__webpack_require__.n(welcomePanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/progressPanel.hbs
+var progressPanel = __webpack_require__(3753);
+var progressPanel_default = /*#__PURE__*/__webpack_require__.n(progressPanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/successPanel.hbs
+var successPanel = __webpack_require__(3867);
+var successPanel_default = /*#__PURE__*/__webpack_require__.n(successPanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/pluginSelectionPanel.hbs
+var pluginSelectionPanel = __webpack_require__(4611);
+var pluginSelectionPanel_default = /*#__PURE__*/__webpack_require__.n(pluginSelectionPanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/setupCompletePanel.hbs
+var setupCompletePanel = __webpack_require__(5558);
+var setupCompletePanel_default = /*#__PURE__*/__webpack_require__.n(setupCompletePanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/proxyConfigPanel.hbs
+var proxyConfigPanel = __webpack_require__(7210);
+var proxyConfigPanel_default = /*#__PURE__*/__webpack_require__.n(proxyConfigPanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/firstUserPanel.hbs
+var firstUserPanel = __webpack_require__(5633);
+var firstUserPanel_default = /*#__PURE__*/__webpack_require__.n(firstUserPanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/configureInstance.hbs
+var configureInstance = __webpack_require__(1145);
+var configureInstance_default = /*#__PURE__*/__webpack_require__.n(configureInstance);
+// EXTERNAL MODULE: ./war/src/main/js/templates/offlinePanel.hbs
+var offlinePanel = __webpack_require__(3207);
+var offlinePanel_default = /*#__PURE__*/__webpack_require__.n(offlinePanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/pluginSetupWizard.hbs
+var pluginSetupWizard = __webpack_require__(8697);
+var pluginSetupWizard_default = /*#__PURE__*/__webpack_require__.n(pluginSetupWizard);
+// EXTERNAL MODULE: ./war/src/main/js/templates/incompleteInstallationPanel.hbs
+var incompleteInstallationPanel = __webpack_require__(6186);
+var incompleteInstallationPanel_default = /*#__PURE__*/__webpack_require__.n(incompleteInstallationPanel);
+// EXTERNAL MODULE: ./war/src/main/js/templates/pluginSelectList.hbs
+var pluginSelectList = __webpack_require__(6583);
+var pluginSelectList_default = /*#__PURE__*/__webpack_require__.n(pluginSelectList);
+;// CONCATENATED MODULE: ./war/src/main/js/pluginSetupWizardGui.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Jenkins first-run install wizard
+ */
+
+runtime_default().registerPartial("pluginSelectList", (pluginSelectList_default()));
+
+// TODO: see whether this is actually being used or if it can be removed
+window.zq = (jquery_default());
+
+// Setup the dialog, exported
+var createPluginSetupWizard = function (appendTarget) {
+  var $bs = enhanceJQueryWithBootstrap((jquery_default()));
+
+  // Necessary handlebars helpers:
+  // returns the plugin count string per category selected vs. available e.g. (5/44)
+  runtime_default().registerHelper("pluginCountForCategory", function (cat) {
+    var plugs = categorizedPlugins[cat];
+    var tot = 0;
+    var cnt = 0;
+    for (var i = 0; i < plugs.length; i++) {
+      var plug = plugs[i];
+      if (plug.category === cat) {
+        tot++;
+        if (selectedPluginNames.indexOf(plug.plugin.name) >= 0) {
+          cnt++;
+        }
+      }
+    }
+    return "(" + cnt + "/" + tot + ")";
+  });
+
+  // returns the total plugin count string selected vs. total e.g. (5/44)
+  runtime_default().registerHelper("totalPluginCount", function () {
+    var tot = 0;
+    var cnt = 0;
+    for (var i = 0; i < pluginList.length; i++) {
+      var a = pluginList[i];
+      for (var c = 0; c < a.plugins.length; c++) {
+        var plug = a.plugins[c];
+        tot++;
+        if (selectedPluginNames.indexOf(plug.name) >= 0) {
+          cnt++;
+        }
+      }
+    }
+    return "(" + cnt + "/" + tot + ")";
+  });
+
+  // determines if the provided plugin is in the list currently selected
+  runtime_default().registerHelper("inSelectedPlugins", function (val, options) {
+    if (selectedPluginNames.indexOf(val) >= 0) {
+      return options.fn();
+    }
+  });
+
+  // executes a block if there are dependencies
+  runtime_default().registerHelper("hasDependencies", function (plugName, options) {
+    var plug = availablePlugins[plugName];
+    if (plug && plug.allDependencies && plug.allDependencies.length > 1) {
+      // includes self
+      return options.fn();
+    }
+  });
+
+  // get total number of dependencies
+  runtime_default().registerHelper("dependencyCount", function (plugName) {
+    var plug = availablePlugins[plugName];
+    if (plug && plug.allDependencies && plug.allDependencies.length > 1) {
+      // includes self
+      return plug.allDependencies.length - 1;
+    }
+  });
+
+  // gets user friendly dependency text
+  runtime_default().registerHelper("eachDependency", function (plugName, options) {
+    var plug = availablePlugins[plugName];
+    if (!plug) {
+      return "";
+    }
+    var deps = jquery_default().grep(plug.allDependencies, function (value) {
+      // remove self
+      return value !== plugName;
+    });
+    var out = "";
+    for (var i = 0; i < deps.length; i++) {
+      var depName = deps[i];
+      var dep = availablePlugins[depName];
+      if (dep) {
+        out += options.fn(dep);
+      }
+    }
+    return out;
+  });
+
+  // executes a block if there are dependencies
+  runtime_default().registerHelper("ifVisibleDependency", function (plugName, options) {
+    if (visibleDependencies[plugName]) {
+      return options.fn();
+    }
+  });
+
+  // wrap calls with this method to handle generic errors returned by the plugin manager
+  var handleGenericError = function (success) {
+    return function () {
+      // Workaround for webpack passing null context to anonymous functions
+      var self = this || window;
+      if (self.isError) {
+        var errorMessage = self.errorMessage;
+        if (!errorMessage || self.errorMessage === "timeout") {
+          errorMessage = translations.installWizard_error_connection;
+        } else {
+          errorMessage = translations.installWizard_error_message + " " + errorMessage;
+        }
+        setPanel((errorPanel_default()), {
+          errorMessage: errorMessage
+        });
+        return;
+      }
+      success.apply(self, arguments);
+    };
+  };
+  var pluginList;
+  var allPluginNames;
+  var selectedPluginNames;
+
+  // state variables for plugin data, selected plugins, etc.:
+  var visibleDependencies = {};
+  var categories = [];
+  var availablePlugins = {};
+  var categorizedPlugins = {};
+
+  // Instantiate the wizard panel
+  var $wizard = jquery_default()(pluginSetupWizard_default()());
+  $wizard.appendTo(appendTarget);
+  var $container = $wizard.find(".modal-content");
+  var currentPanel;
+  var self = this;
+
+  // show tooltips; this is done here to work around a bootstrap/prototype incompatibility
+  jquery_default()(document).on("mouseenter", "*[data-tooltip]", function () {
+    var $tip = $bs(this);
+    var text = $tip.attr("data-tooltip");
+    if (!text) {
+      return;
+    }
+    // prototype/bootstrap tooltip incompatibility - triggering main element to be hidden
+    this.hide = undefined;
+    $tip.tooltip({
+      html: true,
+      title: text
+    }).tooltip("show");
+  });
+
+  // handle clicking links that might not get highlighted due to position on the page
+  $wizard.on("click", ".nav>li>a", function () {
+    var $li = jquery_default()(this).parent();
+    var activateClicked = function () {
+      if (!$li.is(".active")) {
+        $li.parent().find(">li").removeClass("active");
+        $li.addClass("active");
+      }
+    };
+    setTimeout(activateClicked, 150); // this is the scroll time
+    setTimeout(activateClicked, 250); // this should combat timing issues
+  });
+
+  // localized messages
+  var translations = {};
+  var decorations = [function () {
+    // any decorations after DOM replacement go here
+  }];
+  var getJenkinsVersionFull = function () {
+    var version = jquery_default()("body").attr("data-version");
+    if (!version) {
+      return "";
+    }
+    return version;
+  };
+  var getJenkinsVersion = function () {
+    return getJenkinsVersionFull().replace(/(\d[.][\d.]+).*/, "$1");
+  };
+
+  // call this to set the panel in the app, this performs some additional things & adds common transitions
+  var setPanel = function (panel, data, onComplete) {
+    var decorate = function ($base) {
+      for (var i = 0; i < decorations.length; i++) {
+        decorations[i]($base);
+      }
+    };
+    var oncomplete = function () {
+      var $content = jquery_default()("*[data-load-content]");
+      if ($content.length > 0) {
+        $content.each(function () {
+          var $el = jquery_default()(this);
+          util_jenkins.get($el.attr("data-load-content"), function (data) {
+            $el.html(data);
+            if (onComplete) {
+              onComplete();
+            }
+          }, {
+            dataType: "html"
+          });
+        });
+      } else {
+        if (onComplete) {
+          onComplete();
+        }
+      }
+    };
+    var html = panel(jquery_default().extend({
+      translations: translations,
+      baseUrl: util_jenkins.baseUrl,
+      jenkinsVersion: getJenkinsVersion()
+    }, data));
+    if (panel === currentPanel) {
+      // just replace id-marked elements
+      var $focusedItem = jquery_default()(document.activeElement);
+      var focusPath = [];
+      while ($focusedItem && $focusedItem.length > 0) {
+        focusPath.push($focusedItem.index());
+        $focusedItem = $focusedItem.parent();
+        if ($focusedItem.is("body")) {
+          break;
+        }
+      }
+      var $upd = jquery_default()(html);
+      $upd.find("*[id]").each(function () {
+        var $el = jquery_default()(this);
+        var $existing = jquery_default()("#" + $el.attr("id"));
+        if ($existing.length > 0) {
+          if ($el[0].outerHTML !== $existing[0].outerHTML) {
+            $existing.replaceWith($el);
+            decorate($el);
+          }
+        }
+      });
+      oncomplete();
+
+      // try to refocus on the element that had focus
+      try {
+        var e = jquery_default()("body")[0];
+        for (var i = focusPath.length - 1; i >= 0; i--) {
+          e = e.children[focusPath[i]];
+        }
+        if (document.activeElement !== e) {
+          e.focus();
+        }
+        // eslint-disable-next-line no-unused-vars
+      } catch (ex) {
+        // ignored, unable to restore focus
+      }
+    } else {
+      var append = function () {
+        currentPanel = panel;
+        $container.append(html);
+        decorate($container);
+        var $modalHeader = $container.find(".modal-header");
+        if ($modalHeader.length > 0 && $modalHeader.is(".closeable")) {
+          $modalHeader.prepend('<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+        }
+
+        // add Jenkins version
+        if (translations.installWizard_jenkinsVersionTitle) {
+          // wait until translations available
+          var $modalFooter = $container.find(".modal-footer");
+          if ($modalFooter.length === 0) {
+            $modalFooter = jquery_default()('<div class="modal-footer"></div>').appendTo($container);
+          }
+          $modalFooter.prepend('<div class="jenkins-version">' + translations.installWizard_jenkinsVersionTitle + " " + getJenkinsVersionFull() + "</div>");
+        }
+        oncomplete();
+      };
+      var $modalBody = $container.find(".modal-body");
+      if ($modalBody.length > 0) {
+        $modalBody.stop(true).fadeOut(250, function () {
+          $container.children().remove();
+          append();
+        });
+      } else {
+        $container.children().remove();
+        append();
+      }
+    }
+  };
+
+  // plugin data for the progress panel
+  var installingPlugins = [];
+  var failedPluginNames = [];
+  var getInstallingPlugin = function (plugName) {
+    for (var i = 0; i < installingPlugins.length; i++) {
+      var p = installingPlugins[i];
+      if (p.name === plugName) {
+        return p;
+      }
+    }
+    return null;
+  };
+  var setFailureStatus = function (plugData) {
+    var plugFailIdx = failedPluginNames.indexOf(plugData.name);
+    if (/.*Fail.*/.test(plugData.installStatus)) {
+      if (plugFailIdx < 0) {
+        failedPluginNames.push(plugData.name);
+      }
+    } else if (plugFailIdx > 0) {
+      failedPluginNames = failedPluginNames.slice(plugFailIdx, 1);
+    }
+  };
+
+  // recursively get all the dependencies for a particular plugin, this is used to show 'installing' status
+  // when only dependencies are being installed
+  var getAllDependencies = function (pluginName, deps) {
+    if (!deps) {
+      // don't get stuck
+      deps = [];
+      getAllDependencies(pluginName, deps);
+      return deps;
+    }
+    if (deps.indexOf(pluginName) >= 0) {
+      return;
+    }
+    deps.push(pluginName);
+    var plug = availablePlugins[pluginName];
+    if (plug) {
+      if (plug.dependencies) {
+        // plug.dependencies is  { "some-plug": "1.2.99", ... }
+        for (var k in plug.dependencies) {
+          getAllDependencies(k, deps);
+        }
+      }
+      if (plug.neededDependencies) {
+        // plug.neededDependencies is [ { name: "some-plug", ... }, ... ]
+        for (var i = 0; i < plug.neededDependencies.length; i++) {
+          getAllDependencies(plug.neededDependencies[i].name, deps);
+        }
+      }
+    }
+  };
+
+  // Initializes the set of installing plugins with pending statuses
+  var initInstallingPluginList = function () {
+    installingPlugins = [];
+    for (var i = 0; i < selectedPluginNames.length; i++) {
+      var pluginName = selectedPluginNames[i];
+      var p = availablePlugins[pluginName];
+      if (p) {
+        var plug = jquery_default().extend({
+          installStatus: "pending"
+        }, p);
+        installingPlugins.push(plug);
+      }
+    }
+  };
+
+  // call this to go install the selected set of plugins
+  var installPlugins = function (pluginNames) {
+    // make sure to have the correct list of selected plugins
+    selectedPluginNames = pluginNames;
+    // Switch to the right view but function() to force update when progressPanel re-rendered
+    setPanel(function () {
+      return progressPanel_default()(arguments);
+    }, {
+      installingPlugins: []
+    });
+    api_pluginManager.installPlugins(pluginNames, handleGenericError(function () {
+      showStatePanel();
+    }));
+  };
+
+  // toggles visibility of dependency listing for a plugin
+  var toggleDependencyList = function () {
+    var $btn = jquery_default()(this);
+    var $toggle = $btn.parents(".plugin:first");
+    var plugName = $btn.attr("data-plugin-name");
+    if (!visibleDependencies[plugName]) {
+      visibleDependencies[plugName] = true;
+    } else {
+      visibleDependencies[plugName] = false;
+    }
+    if (!visibleDependencies[plugName]) {
+      $toggle.removeClass("show-dependencies");
+    } else {
+      $toggle.addClass("show-dependencies");
+    }
+  };
+
+  // install the default plugins
+  var installDefaultPlugins = function () {
+    loadPluginData(function () {
+      installPlugins(api_pluginManager.recommendedPluginNames());
+    });
+  };
+  var enableButtonsAfterFrameLoad = function () {
+    jquery_default()("iframe[src]").on("load", function () {
+      jquery_default()("button").prop({
+        disabled: false
+      });
+    });
+  };
+  var enableButtonsImmediately = function () {
+    jquery_default()("button").prop({
+      disabled: false
+    });
+  };
+
+  // errors: Map of nameOfField to errorMessage
+  var displayErrors = function (iframe, errors) {
+    if (!errors) {
+      return;
+    }
+    var errorKeys = Object.keys(errors);
+    if (!errorKeys.length) {
+      return;
+    }
+    var $iframeDoc = jquery_default()(iframe).contents();
+    for (var i = 0; i < errorKeys.length; i++) {
+      var name = errorKeys[i];
+      var message = errors[name];
+      var $inputField = $iframeDoc.find('[name="' + name + '"]');
+      var $tr = $inputField.parentsUntil("tr").parent();
+      var $errorPanel = $tr.find(".error-panel");
+      $tr.addClass("has-error");
+      $errorPanel.text(message);
+    }
+  };
+  var setupFirstUser = function () {
+    setPanel((firstUserPanel_default()), {}, enableButtonsAfterFrameLoad);
+  };
+  var showConfigureInstance = function (messages) {
+    setPanel((configureInstance_default()), messages, enableButtonsAfterFrameLoad);
+  };
+  var showSetupCompletePanel = function (messages) {
+    api_pluginManager.getRestartStatus(function (restartStatus) {
+      setPanel((setupCompletePanel_default()), jquery_default().extend(restartStatus, messages));
+    });
+  };
+
+  // used to handle displays based on current Jenkins install state
+  var stateHandlers = {
+    DEFAULT: function () {
+      setPanel((welcomePanel_default()));
+      // focus on default
+      jquery_default()(".install-recommended").focus();
+    },
+    CREATE_ADMIN_USER: function () {
+      setupFirstUser();
+    },
+    CONFIGURE_INSTANCE: function () {
+      showConfigureInstance();
+    },
+    RUNNING: function () {
+      showSetupCompletePanel();
+    },
+    INITIAL_SETUP_COMPLETED: function () {
+      showSetupCompletePanel();
+    },
+    INITIAL_PLUGINS_INSTALLING: function () {
+      showInstallProgress();
+    }
+  };
+  var showStatePanel = function (state) {
+    if (!state) {
+      api_pluginManager.installStatus(handleGenericError(function (data) {
+        showStatePanel(data.state);
+      }));
+      return;
+    }
+    if (state in stateHandlers) {
+      stateHandlers[state]();
+    } else {
+      stateHandlers.DEFAULT();
+    }
+  };
+
+  // Define actions
+  var showInstallProgress = function () {
+    // check for installing plugins that failed
+    if (failedPluginNames.length > 0) {
+      setPanel((successPanel_default()), {
+        installingPlugins: installingPlugins,
+        failedPlugins: true
+      });
+      return;
+    }
+    var attachScrollEvent = function () {
+      var $c = jquery_default()(".install-console-scroll");
+      if (!$c.length) {
+        setTimeout(attachScrollEvent, 50);
+        return;
+      }
+      var events = jquery_default()._data($c[0], "events");
+      if (!events || !events.scroll) {
+        $c.on("scroll", function () {
+          if (!$c.data("wasAutoScrolled")) {
+            var top = $c[0].scrollHeight - $c.height();
+            if ($c.scrollTop() === top) {
+              // resume auto-scroll
+              $c.data("userScrolled", false);
+            } else {
+              // user scrolled up
+              $c.data("userScrolled", true);
+            }
+          } else {
+            $c.data("wasAutoScrolled", false);
+          }
+        });
+      }
+    };
+    initInstallingPluginList();
+    setPanel((progressPanel_default()), {
+      installingPlugins: installingPlugins
+    }, attachScrollEvent);
+
+    // call to the installStatus, update progress bar & plugin details; transition on complete
+    var updateStatus = function () {
+      api_pluginManager.installStatus(handleGenericError(function (data) {
+        var jobs = data.jobs;
+        var i, j;
+        var complete = 0;
+        var total = 0;
+        // eslint-disable-next-line no-unused-vars
+        var restartRequired = false;
+        for (i = 0; i < jobs.length; i++) {
+          j = jobs[i];
+          total++;
+          if (/.*Success.*/.test(j.installStatus) || /.*Fail.*/.test(j.installStatus)) {
+            complete++;
+          }
+        }
+        if (total === 0) {
+          // don't end while there are actual pending plugins
+          total = installingPlugins.length;
+        }
+
+        // update progress bar
+        jquery_default()(".progress-bar").css({
+          width: 100.0 * complete / total + "%"
+        });
+
+        // update details
+        var $txt = jquery_default()(".install-text");
+        $txt.children().remove();
+        for (i = 0; i < jobs.length; i++) {
+          j = jobs[i];
+          var txt = false;
+          var state = false;
+          if (/.*Success.*/.test(j.installStatus)) {
+            txt = j.title;
+            state = "success";
+          } else if (/.*Install.*/.test(j.installStatus)) {
+            txt = j.title;
+            state = "installing";
+          } else if (/.*Fail.*/.test(j.installStatus)) {
+            txt = j.title;
+            state = "fail";
+          }
+          setFailureStatus(j);
+          if (txt && state) {
+            for (var installingIdx = 0; installingIdx < installingPlugins.length; installingIdx++) {
+              var installing = installingPlugins[installingIdx];
+              if (installing.name === j.name) {
+                installing.installStatus = state;
+              } else if (installing.installStatus === "pending" &&
+              // if no progress
+              installing.allDependencies.indexOf(j.name) >= 0 && (
+              // and we have a dependency
+              "installing" === state || "success" === state)) {
+                // installing or successful
+                installing.installStatus = "installing"; // show this is installing
+              }
+            }
+            var isSelected = selectedPluginNames.indexOf(j.name) < 0 ? false : true;
+            var $div = jquery_default()("<div>" + txt + "</div>");
+            if (isSelected) {
+              $div.addClass("selected");
+            } else {
+              $div.addClass("dependent");
+            }
+            $txt.append($div);
+            var $itemProgress = jquery_default()('.selected-plugin[id="installing-' + (0,id["default"])(j.name) + '"]');
+            if ($itemProgress.length > 0 && !$itemProgress.is("." + state)) {
+              $itemProgress.addClass(state);
+            }
+          }
+        }
+        var $c = jquery_default()(".install-console-scroll");
+        if ($c && $c.is(":visible") && !$c.data("userScrolled")) {
+          $c.data("wasAutoScrolled", true);
+          $c.scrollTop($c[0].scrollHeight);
+        }
+
+        // keep polling while install is running
+        if (complete < total && data.state === "INITIAL_PLUGINS_INSTALLING") {
+          setPanel((progressPanel_default()), {
+            installingPlugins: installingPlugins
+          });
+          // wait a sec
+          setTimeout(updateStatus, 250);
+        } else {
+          // mark complete
+          jquery_default()(".progress-bar").css({
+            width: "100%"
+          });
+          showStatePanel(data.state);
+        }
+      }));
+    };
+
+    // kick it off
+    setTimeout(updateStatus, 250);
+  };
+
+  // Called to complete the installation
+  var finishInstallation = function () {
+    closeInstaller();
+  };
+
+  // load the plugin data, callback
+  var loadPluginData = function (oncomplete) {
+    api_pluginManager.availablePlugins(handleGenericError(function (availables) {
+      var i, plug;
+      for (i = 0; i < availables.length; i++) {
+        plug = availables[i];
+        availablePlugins[plug.name] = plug;
+      }
+      for (i = 0; i < availables.length; i++) {
+        plug = availables[i];
+        plug.allDependencies = getAllDependencies(plug.name);
+      }
+      oncomplete();
+    }));
+  };
+  var loadPluginCategories = function (oncomplete) {
+    loadPluginData(function () {
+      categories = [];
+      for (var i = 0; i < pluginList.length; i++) {
+        var a = pluginList[i];
+        categories.push(a.category);
+        var plugs = categorizedPlugins[a.category] = [];
+        for (var c = 0; c < a.plugins.length; c++) {
+          var plugInfo = a.plugins[c];
+          var plug = availablePlugins[plugInfo.name];
+          if (!plug) {
+            plug = {
+              name: plugInfo.name,
+              title: plugInfo.name
+            };
+          }
+          plugs.push({
+            category: a.category,
+            plugin: jquery_default().extend({}, plug, {
+              usage: plugInfo.usage,
+              title: plugInfo.title ? plugInfo.title : plug.title,
+              excerpt: plugInfo.excerpt ? plugInfo.excerpt : plug.excerpt,
+              updated: new Date(plug.buildDate)
+            })
+          });
+        }
+      }
+      oncomplete();
+    });
+  };
+
+  // load the custom plugin panel, will result in an AJAX call to get the plugin data
+  var loadCustomPluginPanel = function () {
+    loadPluginCategories(function () {
+      setPanel((pluginSelectionPanel_default()), pluginSelectionPanelData(), function () {
+        $bs(".plugin-selector .plugin-list").scrollspy({
+          target: ".plugin-selector .categories"
+        });
+      });
+    });
+  };
+
+  // get plugin selection panel data object
+  var pluginSelectionPanelData = function () {
+    return {
+      categories: categories,
+      categorizedPlugins: categorizedPlugins,
+      selectedPlugins: selectedPluginNames
+    };
+  };
+
+  // remove a plugin from the selected list
+  var removePlugin = function (arr, item) {
+    for (var i = arr.length; i--;) {
+      if (arr[i] === item) {
+        arr.splice(i, 1);
+      }
+    }
+  };
+
+  // add a plugin to the selected list
+  var addPlugin = function (arr, item) {
+    arr.push(item);
+  };
+
+  // refreshes the plugin selection panel; call this if anything changes to ensure everything is kept in sync
+  var refreshPluginSelectionPanel = function () {
+    setPanel(currentPanel, pluginSelectionPanelData());
+    if (lastSearch !== "") {
+      searchForPlugins(lastSearch, false);
+    }
+  };
+
+  // handle clicking an item in the plugin list
+  $wizard.on("change", ".plugin-list input[type=checkbox]", function () {
+    var $input = jquery_default()(this);
+    if ($input.is(":checked")) {
+      addPlugin(selectedPluginNames, $input.attr("name"));
+    } else {
+      removePlugin(selectedPluginNames, $input.attr("name"));
+    }
+    refreshPluginSelectionPanel();
+  });
+
+  // walk the elements and search for the text
+  var walk = function (elements, element, text, xform) {
+    var i,
+      child,
+      n = element.childNodes.length;
+    for (i = 0; i < n; i++) {
+      child = element.childNodes[i];
+      if (child.nodeType === 3 && xform(child.data).indexOf(text) !== -1) {
+        elements.push(element);
+        break;
+      }
+    }
+    for (i = 0; i < n; i++) {
+      child = element.childNodes[i];
+      if (child.nodeType === 1) {
+        walk(elements, child, text, xform);
+      }
+    }
+  };
+
+  // find elements matching the given text, optionally transforming the text before match (e.g. you can .toLowerCase() it)
+  var findElementsWithText = function (ancestor, text, xform) {
+    var elements = [];
+    walk(elements, ancestor, text, xform ? xform : function (d) {
+      return d;
+    });
+    return elements;
+  };
+
+  // search UI vars
+  var findIndex = 0;
+  var lastSearch = "";
+
+  // scroll to the next match
+  var scrollPlugin = function ($pl, matches, term) {
+    if (matches.length > 0) {
+      if (lastSearch !== term) {
+        findIndex = 0;
+      } else {
+        findIndex = (findIndex + 1) % matches.length;
+      }
+      var $el = jquery_default()(matches[findIndex]);
+      $el = $el.parents(".plugin:first"); // scroll to the block
+      if ($el && $el.length > 0) {
+        var pos = $pl.scrollTop() + $el.position().top;
+        $pl.stop(true).animate({
+          scrollTop: pos
+        }, 100);
+        setTimeout(function () {
+          // wait for css transitions to finish
+          var pos = $pl.scrollTop() + $el.position().top;
+          $pl.stop(true).animate({
+            scrollTop: pos
+          }, 50);
+        }, 50);
+      }
+    }
+  };
+
+  // search for given text, optionally scroll to the next match, set classes on appropriate elements from the search match
+  var searchForPlugins = function (text, scroll) {
+    var $pl = jquery_default()(".plugin-list");
+    var $containers = $pl.find(".plugin");
+
+    // must always do this, as it's called after refreshing the panel (e.g. check/uncheck plugs)
+    $containers.removeClass("match");
+    $pl.find("h2").removeClass("match");
+    if (text.length > 1) {
+      if (text === "show:selected") {
+        jquery_default()(".plugin-list .selected").addClass("match");
+      } else {
+        var matches = [];
+        $containers.find(".title,.description").each(function () {
+          var localMatches = findElementsWithText(this, text.toLowerCase(), function (d) {
+            return d.toLowerCase();
+          });
+          if (localMatches.length > 0) {
+            matches = matches.concat(localMatches);
+          }
+        });
+        jquery_default()(matches).parents(".plugin").addClass("match");
+        if (lastSearch !== text && scroll) {
+          scrollPlugin($pl, matches, text);
+        }
+      }
+      jquery_default()(".match").parent().prev("h2").addClass("match");
+      $pl.addClass("searching");
+    } else {
+      findIndex = 0;
+      $pl.removeClass("searching");
+    }
+    lastSearch = text;
+  };
+
+  // handle input for the search here
+  $wizard.on("keyup change", ".plugin-select-controls input[name=searchbox]", function () {
+    var val = jquery_default()(this).val();
+    searchForPlugins(val, true);
+  });
+
+  // handle keyboard up/down navigation between items in
+  // in the list, if we're focused somewhere inside
+  $wizard.on("keydown", ".plugin-list", function (e) {
+    var up = false;
+    switch (e.which) {
+      case 38:
+        // up
+        up = true;
+        break;
+      case 40:
+        // down
+        break;
+      default:
+        return;
+      // ignore
+    }
+    var $plugin = jquery_default()(e.target).closest(".plugin");
+    if ($plugin && $plugin.length > 0) {
+      var $allPlugins = jquery_default()(".plugin-list .plugin:visible");
+      var idx = $allPlugins.index($plugin);
+      var next = idx + (up ? -1 : 1);
+      if (next >= 0 && next < $allPlugins.length) {
+        var $next = jquery_default()($allPlugins[next]);
+        if ($next && $next.length > 0) {
+          var $chk = $next.find(":checkbox:first");
+          if ($chk && $chk.length > 0) {
+            e.preventDefault();
+            $chk.focus();
+            return;
+          }
+        }
+      }
+    }
+  });
+
+  // handle clearing the search
+  $wizard.on("click", ".clear-search", function () {
+    jquery_default()("input[name=searchbox]").val("");
+    searchForPlugins("", false);
+  });
+
+  // toggles showing the selected items as a simple search
+  var toggleSelectedSearch = function () {
+    var $srch = jquery_default()("input[name=searchbox]");
+    var val = "show:selected";
+    if ($srch.val() === val) {
+      val = "";
+    }
+    $srch.val(val);
+    searchForPlugins(val, false);
+  };
+
+  // handle clicking on the category
+  var selectCategory = function () {
+    jquery_default()("input[name=searchbox]").val("");
+    searchForPlugins("", false);
+    var $el = jquery_default()(jquery_default()(this).attr("href"));
+    var $pl = jquery_default()(".plugin-list");
+    var top = $pl.scrollTop() + $el.position().top;
+    $pl.stop(true).animate({
+      scrollTop: top
+    }, 250, function () {
+      var top = $pl.scrollTop() + $el.position().top;
+      $pl.stop(true).scrollTop(top);
+    });
+  };
+
+  // handle show/hide details during the installation progress panel
+  var toggleInstallDetails = function () {
+    var $c = jquery_default()(".install-console");
+    if ($c.is(":visible")) {
+      $c.slideUp();
+    } else {
+      $c.slideDown();
+    }
+  };
+  var handleFirstUserResponseSuccess = function (data) {
+    if (data.status === "ok") {
+      showStatePanel();
+    } else {
+      setPanel((errorPanel_default()), {
+        errorMessage: "Error trying to create first user: " + data.statusText
+      });
+    }
+  };
+  var handleFirstUserResponseError = function (res) {
+    // We're expecting a full HTML page to replace the form
+    // We can only replace the _whole_ iframe due to XSS rules
+    // https://stackoverflow.com/a/22913801/1117552
+    var responseText = res.responseText;
+    var $page = jquery_default()(responseText);
+    var $main = $page.find("#main-panel").detach();
+    if ($main.length > 0) {
+      responseText = responseText.replace(/body([^>]*)[>](.|[\r\n])+[<][/]body/, "body$1>" + $main.html() + "</body");
+    }
+    var doc = jquery_default()("iframe#setup-first-user").contents()[0];
+    doc.open();
+    doc.write(responseText);
+    doc.close();
+    jquery_default()("button").prop({
+      disabled: false
+    });
+  };
+
+  // call to submit the first user
+  var saveFirstUser = function () {
+    jquery_default()("button").prop({
+      disabled: true
+    });
+    var $form = jquery_default()("iframe#setup-first-user").contents().find("form:not(.no-json)");
+    securityConfig.saveFirstUser($form, handleFirstUserResponseSuccess, handleFirstUserResponseError);
+  };
+  var firstUserSkipped = false;
+  var skipFirstUser = function () {
+    jquery_default()("button").prop({
+      disabled: true
+    });
+    firstUserSkipped = true;
+    util_jenkins.get("/api/json?tree=url", function (data) {
+      if (data.url) {
+        // as in InstallState.ConfigureInstance.initializeState
+        showSetupCompletePanel({
+          message: translations.installWizard_firstUserSkippedMessage
+        });
+      } else {
+        showConfigureInstance();
+      }
+    }, {
+      error: function () {
+        // give up
+        showConfigureInstance();
+      }
+    });
+  };
+  var handleConfigureInstanceResponseSuccess = function (data) {
+    if (data.status === "ok") {
+      if (firstUserSkipped) {
+        var message = translations.installWizard_firstUserSkippedMessage;
+        showSetupCompletePanel({
+          message: message
+        });
+      } else {
+        showStatePanel();
+      }
+    } else {
+      var errors = data.data;
+      setPanel((configureInstance_default()), {}, function () {
+        enableButtonsImmediately();
+        displayErrors(jquery_default()("iframe#setup-configure-instance"), errors);
+      });
+    }
+  };
+  var handleConfigureInstanceResponseError = function (res) {
+    // We're expecting a full HTML page to replace the form
+    // We can only replace the _whole_ iframe due to XSS rules
+    // https://stackoverflow.com/a/22913801/1117552
+    var responseText = res.responseText;
+    var $page = jquery_default()(responseText);
+    var $main = $page.find("#main-panel").detach();
+    if ($main.length > 0) {
+      responseText = responseText.replace(/body([^>]*)[>](.|[\r\n])+[<][/]body/, "body$1>" + $main.html() + "</body");
+    }
+    var doc = jquery_default()("iframe#setup-configure-instance").contents()[0];
+    doc.open();
+    doc.write(responseText);
+    doc.close();
+    jquery_default()("button").prop({
+      disabled: false
+    });
+  };
+  var saveConfigureInstance = function () {
+    jquery_default()("button").prop({
+      disabled: true
+    });
+    var $form = jquery_default()("iframe#setup-configure-instance").contents().find("form:not(.no-json)");
+    securityConfig.saveConfigureInstance($form, handleConfigureInstanceResponseSuccess, handleConfigureInstanceResponseError);
+  };
+  var skipFirstUserAndConfigureInstance = function () {
+    firstUserSkipped = true;
+    skipConfigureInstance();
+  };
+  var skipConfigureInstance = function () {
+    jquery_default()("button").prop({
+      disabled: true
+    });
+    var message = "";
+    if (firstUserSkipped) {
+      message += translations.installWizard_firstUserSkippedMessage;
+    }
+    message += translations.installWizard_configureInstanceSkippedMessage;
+    showSetupCompletePanel({
+      message: message
+    });
+  };
+
+  // call to setup the proxy
+  var setupProxy = function () {
+    setPanel((proxyConfigPanel_default()), {}, enableButtonsAfterFrameLoad);
+  };
+
+  // Save the proxy config
+  var saveProxyConfig = function () {
+    securityConfig.saveProxy(jquery_default()("iframe[src]").contents().find("form:not(.no-json)"), function () {
+      util_jenkins.goTo("/"); // this will re-run connectivity test
+    });
+  };
+
+  // push failed plugins to retry
+  var retryFailedPlugins = function () {
+    var failedPlugins = failedPluginNames;
+    failedPluginNames = [];
+    installPlugins(failedPlugins);
+  };
+
+  // continue with failed plugins
+  var continueWithFailedPlugins = function () {
+    api_pluginManager.installPluginsDone(function () {
+      api_pluginManager.installStatus(handleGenericError(function (data) {
+        failedPluginNames = [];
+        showStatePanel(data.state);
+      }));
+    });
+  };
+
+  // Call this to resume an installation after restart
+  var resumeInstallation = function () {
+    // don't re-initialize installing plugins
+    initInstallingPluginList = function () {};
+    selectedPluginNames = [];
+    for (var i = 0; i < installingPlugins.length; i++) {
+      var plug = installingPlugins[i];
+      if (plug.installStatus === "pending") {
+        selectedPluginNames.push(plug.name);
+      }
+    }
+    installPlugins(selectedPluginNames);
+  };
+
+  // restart jenkins
+  var restartJenkins = function () {
+    api_pluginManager.restartJenkins(function () {
+      setPanel((loadingPanel_default()));
+      console.log("-------------------");
+      console.log("Waiting for Jenkins to come back online...");
+      console.log("-------------------");
+      var pingUntilRestarted = function () {
+        api_pluginManager.getRestartStatus(function (restartStatus) {
+          if (this.isError || restartStatus.restartRequired) {
+            if (this.isError || restartStatus.restartSupported) {
+              console.log("Waiting...");
+              setTimeout(pingUntilRestarted, 1000);
+            } else if (!restartStatus.restartSupported) {
+              throw new Error(translations.installWizard_error_restartNotSupported);
+            }
+          } else {
+            util_jenkins.goTo("/");
+          }
+        });
+      };
+      pingUntilRestarted();
+    });
+  };
+
+  // close the installer, mark not to show again
+  var closeInstaller = function () {
+    api_pluginManager.completeInstall(handleGenericError(function () {
+      util_jenkins.goTo("/");
+    }));
+  };
+  var startOver = function () {
+    util_jenkins.goTo("/");
+  };
+
+  // scoped click handler, prevents default actions automatically
+  var bindClickHandler = function (cls, action) {
+    $wizard.on("click", cls, function (e) {
+      action.apply(this, arguments);
+      e.preventDefault();
+    });
+  };
+
+  // click action mappings
+  var actions = {
+    ".toggle-dependency-list": toggleDependencyList,
+    ".install-recommended": installDefaultPlugins,
+    ".install-custom": loadCustomPluginPanel,
+    ".install-home": function () {
+      showStatePanel();
+    },
+    ".install-selected": function () {
+      installPlugins(selectedPluginNames);
+    },
+    ".toggle-install-details": toggleInstallDetails,
+    ".install-done": finishInstallation,
+    ".plugin-select-all": function () {
+      selectedPluginNames = allPluginNames;
+      refreshPluginSelectionPanel();
+    },
+    ".plugin-select-none": function () {
+      selectedPluginNames = [];
+      refreshPluginSelectionPanel();
+    },
+    ".plugin-select-recommended": function () {
+      selectedPluginNames = api_pluginManager.recommendedPluginNames();
+      refreshPluginSelectionPanel();
+    },
+    ".plugin-show-selected": toggleSelectedSearch,
+    ".select-category": selectCategory,
+    ".close": skipFirstUserAndConfigureInstance,
+    ".resume-installation": resumeInstallation,
+    ".install-done-restart": restartJenkins,
+    ".save-first-user:not([disabled])": saveFirstUser,
+    ".skip-first-user": skipFirstUser,
+    ".save-configure-instance:not([disabled])": saveConfigureInstance,
+    ".skip-configure-instance": skipConfigureInstance,
+    ".show-proxy-config": setupProxy,
+    ".save-proxy-config": saveProxyConfig,
+    ".skip-plugin-installs": function () {
+      installPlugins([]);
+    },
+    ".retry-failed-plugins": retryFailedPlugins,
+    ".continue-with-failed-plugins": continueWithFailedPlugins,
+    ".start-over": startOver
+  };
+
+  // do this so the page isn't blank while doing connectivity checks and other downloads
+  setPanel((loadingPanel_default()));
+
+  // Process extensions
+  var extensionTranslationOverrides = [];
+  if ("undefined" !== typeof setupWizardExtensions) {
+    jquery_default().each(setupWizardExtensions, function () {
+      this.call(self, {
+        $: (jquery_default()),
+        $wizard: $wizard,
+        jenkins: util_jenkins,
+        pluginManager: api_pluginManager,
+        setPanel: setPanel,
+        addActions: function (pluginActions) {
+          jquery_default().extend(actions, pluginActions);
+        },
+        addStateHandlers: function (pluginStateHandlers) {
+          jquery_default().extend(stateHandlers, pluginStateHandlers);
+        },
+        translationOverride: function (it) {
+          extensionTranslationOverrides.push(it);
+        },
+        setSelectedPluginNames: function (pluginNames) {
+          selectedPluginNames = pluginNames.slice(0);
+        },
+        showStatePanel: showStatePanel,
+        installPlugins: installPlugins,
+        pluginSelectionPanelData: pluginSelectionPanelData,
+        loadPluginCategories: loadPluginCategories
+      });
+    });
+  }
+  for (var cls in actions) {
+    bindClickHandler(cls, actions[cls]);
+  }
+  var showInitialSetupWizard = function () {
+    // check for connectivity to the configured default update site
+    /* globals defaultUpdateSiteId: true */
+    util_jenkins.testConnectivity(defaultUpdateSiteId, handleGenericError(function (isConnected, isFatal, errorMessage) {
+      if (!isConnected) {
+        if (isFatal) {
+          console.log("Default update site connectivity check failed with fatal error: " + errorMessage);
+        }
+        setPanel((offlinePanel_default()));
+        return;
+      }
+
+      // Initialize the plugin manager after connectivity checks
+      api_pluginManager.init(handleGenericError(function () {
+        pluginList = api_pluginManager.plugins();
+        allPluginNames = api_pluginManager.pluginNames();
+        selectedPluginNames = api_pluginManager.recommendedPluginNames();
+
+        // check for updates when first loaded...
+        api_pluginManager.installStatus(handleGenericError(function (data) {
+          var jobs = data.jobs;
+          if (jobs.length > 0) {
+            if (installingPlugins.length === 0) {
+              // This can happen on a page reload if we are in the middle of
+              // an install. So, lets get a list of plugins being installed at the
+              // moment and use that as the "selectedPlugins" list.
+              selectedPluginNames = [];
+              loadPluginData(handleGenericError(function () {
+                for (var i = 0; i < jobs.length; i++) {
+                  var j = jobs[i];
+                  // If the job does not have a 'correlationId', then it was not selected
+                  // by the user for install i.e. it's probably a dependency plugin.
+                  if (j.correlationId) {
+                    selectedPluginNames.push(j.name);
+                  }
+                  setFailureStatus(j);
+                }
+                showStatePanel(data.state);
+              }));
+            } else {
+              showStatePanel(data.state);
+            }
+            return;
+          }
+
+          // check for crash/restart with uninstalled initial plugins
+          api_pluginManager.incompleteInstallStatus(handleGenericError(function (incompleteStatus) {
+            var incompletePluginNames = [];
+            for (var plugName in incompleteStatus) {
+              incompletePluginNames.push(plugName);
+            }
+            if (incompletePluginNames.length > 0) {
+              selectedPluginNames = incompletePluginNames;
+              loadPluginData(handleGenericError(function () {
+                initInstallingPluginList();
+                for (var plugName in incompleteStatus) {
+                  var j = getInstallingPlugin(plugName);
+                  if (!j) {
+                    console.warn('Plugin "' + plugName + '" not found in the list of installing plugins.');
+                    continue;
+                  }
+                  var state = false;
+                  var status = incompleteStatus[plugName];
+                  if (/.*Success.*/.test(status)) {
+                    state = "success";
+                  } else if (/.*Install.*/.test(status)) {
+                    state = "pending";
+                  } else if (/.*Fail.*/.test(status)) {
+                    state = "fail";
+                  }
+                  if (state) {
+                    j.installStatus = state;
+                  }
+                }
+                setPanel((incompleteInstallationPanel_default()), {
+                  installingPlugins: installingPlugins
+                });
+              }));
+              return;
+            }
+
+            // finally,  show the installer
+            // If no active install, by default, we'll show the welcome screen
+            showStatePanel();
+          }));
+        }));
+      }));
+    }));
+  };
+
+  // kick off to get resource bundle
+  util_jenkins.loadTranslations("jenkins.install.pluginSetupWizard", handleGenericError(function (localizations) {
+    translations = localizations;
+
+    // process any translation overrides
+    jquery_default().each(extensionTranslationOverrides, function () {
+      this(translations);
+    });
+    showInitialSetupWizard();
+  }));
+};
+
+// export wizard creation method
+/* harmony default export */ var pluginSetupWizardGui = ({
+  init: createPluginSetupWizard
+});
+;// CONCATENATED MODULE: ./war/src/main/js/pluginSetupWizard.js
+
+// This is the main module
+
+
+// This entry point for the bundle only bootstraps the main module in a browser
+jquery_default()(function () {
+  jquery_default()(".plugin-setup-wizard-container").each(function () {
+    var $container = jquery_default()(this);
+    if ($container.children().length === 0) {
+      // this may get double-initialized
+      pluginSetupWizardGui.init($container);
+    }
+  });
+});
+
+/***/ }),
+
+/***/ 1145:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {}), alias4=container.hooks.helperMissing, alias5="function", lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header\">\n	<h4 class=\"modal-title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_addFirstUser_title") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body\">\n	<div class=\"jumbotron welcome-panel security-panel\">\n		"
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"message") || (depth0 != null ? lookupProperty(depth0,"message") : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"message","hash":{},"data":data,"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":15}}}) : helper))) != null ? stack1 : "")
+    + "\n\n		<iframe src=\""
+    + alias2(((helper = (helper = lookupProperty(helpers,"baseUrl") || (depth0 != null ? lookupProperty(depth0,"baseUrl") : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"baseUrl","hash":{},"data":data,"loc":{"start":{"line":8,"column":15},"end":{"line":8,"column":26}}}) : helper)))
+    + "/setupWizard/setupWizardConfigureInstance\" id=\"setup-configure-instance\"></iframe>\n	</div>\n</div>\n<div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-link skip-configure-instance\" disabled>\n        "
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_skipConfigureInstance") : stack1), depth0))
+    + "\n    </button>\n	<button type=\"button\" class=\"btn btn-primary save-configure-instance\" disabled>\n		"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_saveConfigureInstance") : stack1), depth0))
+    + "\n	</button>\n</div>\n";
+},"useData":true});
+
+/***/ }),
+
+/***/ 7478:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header\">\n	<h4 class=\"modal-title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_error_title") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body\">\n	<div class=\"container error-container\" id=\"error-message\">\n		<h1>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_error_header") : stack1), depth0))
+    + "</h1>\n		<div class=\"alert alert-danger fade in\">\n			"
+    + alias2(((helper = (helper = lookupProperty(helpers,"errorMessage") || (depth0 != null ? lookupProperty(depth0,"errorMessage") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"errorMessage","hash":{},"data":data,"loc":{"start":{"line":8,"column":3},"end":{"line":8,"column":19}}}) : helper)))
+    + "\n		</div>\n	</div>\n</div>\n<div class=\"modal-footer\">\n	<button type=\"button\" class=\"btn btn-primary start-over\">\n		"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_retry") : stack1), depth0))
+    + "\n	</button>\n</div>\n";
+},"useData":true});
+
+/***/ }),
+
+/***/ 5633:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header\">\n	<h4 class=\"modal-title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_addFirstUser_title") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body setup-wizard-heading\">\n	<div class=\"jumbotron welcome-panel security-panel\">\n		<iframe src=\""
+    + alias2(((helper = (helper = lookupProperty(helpers,"baseUrl") || (depth0 != null ? lookupProperty(depth0,"baseUrl") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"baseUrl","hash":{},"data":data,"loc":{"start":{"line":6,"column":15},"end":{"line":6,"column":26}}}) : helper)))
+    + "/setupWizard/setupWizardFirstUser\" id=\"setup-first-user\"></iframe>\n	</div>\n</div>\n<div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-link skip-first-user\" disabled>\n        "
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_skipFirstUser") : stack1), depth0))
+    + "\n    </button>\n	<button type=\"button\" class=\"btn btn-primary save-first-user\" disabled>\n		"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_saveFirstUser") : stack1), depth0))
+    + "\n	</button>\n</div>\n";
+},"useData":true});
+
+/***/ }),
+
+/***/ 6186:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "		<div class=\"selected-plugin "
+    + alias4(((helper = (helper = lookupProperty(helpers,"installStatus") || (depth0 != null ? lookupProperty(depth0,"installStatus") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"installStatus","hash":{},"data":data,"loc":{"start":{"line":12,"column":30},"end":{"line":12,"column":47}}}) : helper)))
+    + "\" data-name=\""
+    + alias4(__default(__webpack_require__(9065)).call(alias1,(depth0 != null ? lookupProperty(depth0,"name") : depth0),{"name":"id","hash":{},"data":data,"loc":{"start":{"line":12,"column":60},"end":{"line":12,"column":71}}}))
+    + "\">"
+    + alias4(((helper = (helper = lookupProperty(helpers,"title") || (depth0 != null ? lookupProperty(depth0,"title") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data,"loc":{"start":{"line":12,"column":73},"end":{"line":12,"column":82}}}) : helper)))
+    + "</div>\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header\">\n	<h4 class=\"modal-title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installIncomplete_title") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body\">\n	<div class=\"jumbotron welcome-panel success-panel\">\n		<h1>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installIncomplete_banner") : stack1), depth0))
+    + "</h1>\n		<p>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installIncomplete_message") : stack1), depth0))
+    + "</p>\n	</div>\n\n	<div class=\"selected-plugin-progress success-panel\">\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"installingPlugins") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":11,"column":2},"end":{"line":13,"column":11}}})) != null ? stack1 : "")
+    + "	</div>\n</div>\n<div class=\"modal-footer\">\n	<button type=\"button\" class=\"btn btn-link install-home\">\n		"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_goBack") : stack1), depth0))
+    + "\n	</button>\n	<button type=\"button\" class=\"btn btn-primary resume-installation\">\n		"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installIncomplete_resumeInstallationButtonLabel") : stack1), depth0))
+    + "\n	</button>\n</div>";
+},"useData":true});
+
+/***/ }),
+
+/***/ 1232:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<div class=\"loader\"></div>\n";
+},"useData":true});
+
+/***/ }),
+
+/***/ 3207:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header\">\n    <h4 class=\"modal-title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_offline_title") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body\">\n    <div class=\"jumbotron welcome-panel offline\">\n        <h1>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_offline_title") : stack1), depth0))
+    + "</h1>\n        <p>"
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_offline_message") : stack1), depth0)) != null ? stack1 : "")
+    + "</p>\n        <p>\n            <button type=\"button\" class=\"btn btn-primary show-proxy-config\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_configureProxy_label") : stack1), depth0))
+    + "</button>\n            <button type=\"button\" class=\"btn btn-primary skip-plugin-installs\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_skipPluginInstallations") : stack1), depth0))
+    + "</button>\n        </p>\n    </div>\n</div>\n";
+},"useData":true});
+
+/***/ }),
+
+/***/ 6583:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<h2 id=\""
+    + alias2(__default(__webpack_require__(9065)).call(alias1,(data && lookupProperty(data,"key")),{"name":"id","hash":{},"data":data,"loc":{"start":{"line":2,"column":8},"end":{"line":2,"column":19}}}))
+    + "\" class=\"expanded\">"
+    + alias2(((helper = (helper = lookupProperty(helpers,"key") || (data && lookupProperty(data,"key"))) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data,"loc":{"start":{"line":2,"column":38},"end":{"line":2,"column":46}}}) : helper)))
+    + " "
+    + alias2(lookupProperty(helpers,"pluginCountForCategory").call(alias1,(data && lookupProperty(data,"key")),{"name":"pluginCountForCategory","hash":{},"data":data,"loc":{"start":{"line":2,"column":47},"end":{"line":2,"column":78}}}))
+    + "</h2>\n<div class=\"plugins-for-category\">\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":4,"column":2},"end":{"line":32,"column":11}}})) != null ? stack1 : "")
+    + "</div>\n";
+},"2":function(container,depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.escapeExpression, alias3=container.lambda, alias4=container.hooks.helperMissing, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "  <div class=\"plugin "
+    + alias2(__default(__webpack_require__(9065)).call(alias1,((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"name") : stack1),{"name":"id","hash":{},"data":data,"loc":{"start":{"line":5,"column":21},"end":{"line":5,"column":39}}}))
+    + " "
+    + ((stack1 = lookupProperty(helpers,"inSelectedPlugins").call(alias1,((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"name") : stack1),{"name":"inSelectedPlugins","hash":{},"fn":container.program(3, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":5,"column":40},"end":{"line":5,"column":104}}})) != null ? stack1 : "")
+    + " "
+    + ((stack1 = lookupProperty(helpers,"ifVisibleDependency").call(alias1,((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"name") : stack1),{"name":"ifVisibleDependency","hash":{},"fn":container.program(5, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":5,"column":105},"end":{"line":5,"column":182}}})) != null ? stack1 : "")
+    + "\" id=\"row-"
+    + alias2(alias3(((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"name") : stack1), depth0))
+    + "\">\n    <label>\n      <span class=\"title\">\n        <input type=\"checkbox\" id=\"chk-"
+    + alias2(alias3(((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"name") : stack1), depth0))
+    + "\" name=\""
+    + alias2(alias3(((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"name") : stack1), depth0))
+    + "\" value=\""
+    + alias2(((helper = (helper = lookupProperty(helpers,"searchTerm") || (depth0 != null ? lookupProperty(depth0,"searchTerm") : depth0)) != null ? helper : alias4),(typeof helper === "function" ? helper.call(alias1,{"name":"searchTerm","hash":{},"data":data,"loc":{"start":{"line":8,"column":86},"end":{"line":8,"column":100}}}) : helper)))
+    + "\" "
+    + ((stack1 = lookupProperty(helpers,"inSelectedPlugins").call(alias1,((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"name") : stack1),{"name":"inSelectedPlugins","hash":{},"fn":container.program(7, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":8,"column":102},"end":{"line":8,"column":175}}})) != null ? stack1 : "")
+    + "/>\n        "
+    + alias2(alias3(((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"title") : stack1), depth0))
+    + "\n        <a href=\""
+    + alias2(alias3(((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"website") : stack1), depth0))
+    + "\" target=\"_blank\" class=\"website-link\" rel=\"noopener noreferrer\" title=\""
+    + alias2(alias3(((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"title") : stack1), depth0))
+    + " "
+    + alias2(alias3(((stack1 = (depths[2] != null ? lookupProperty(depths[2],"translations") : depths[2])) != null ? lookupProperty(stack1,"installWizard_websiteLinkLabel") : stack1), depth0))
+    + "\"></a>\n      </span>\n"
+    + ((stack1 = (lookupProperty(helpers,"hasDependencies")||(depth0 && lookupProperty(depth0,"hasDependencies"))||alias4).call(alias1,((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"name") : stack1),{"name":"hasDependencies","hash":{},"fn":container.program(9, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":12,"column":6},"end":{"line":16,"column":26}}})) != null ? stack1 : "")
+    + "      <span class=\"description\">\n        "
+    + ((stack1 = alias3(((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"excerpt") : stack1), depth0)) != null ? stack1 : "")
+    + "\n      </span>\n"
+    + ((stack1 = (lookupProperty(helpers,"hasDependencies")||(depth0 && lookupProperty(depth0,"hasDependencies"))||alias4).call(alias1,((stack1 = (depth0 != null ? lookupProperty(depth0,"plugin") : depth0)) != null ? lookupProperty(stack1,"name") : stack1),{"name":"hasDependencies","hash":{},"fn":container.program(11, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":20,"column":6},"end":{"line":29,"column":26}}})) != null ? stack1 : "")
+    + "    </label>\n  </div>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "selected";
+},"5":function(container,depth0,helpers,partials,data) {
+    return "show-dependencies";
+},"7":function(container,depth0,helpers,partials,data) {
+    return "checked=\"checked\"";
+},"9":function(container,depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "        <a href=\"#\" class=\"btn btn-link toggle-dependency-list\" type=\"button\" data-plugin-name=\""
+    + alias2(alias1(((stack1 = (depths[1] != null ? lookupProperty(depths[1],"plugin") : depths[1])) != null ? lookupProperty(stack1,"name") : stack1), depth0))
+    + "\" title=\""
+    + alias2(alias1(((stack1 = (depths[1] != null ? lookupProperty(depths[1],"plugin") : depths[1])) != null ? lookupProperty(stack1,"title") : stack1), depth0))
+    + " "
+    + alias2(alias1(((stack1 = (depths[3] != null ? lookupProperty(depths[3],"translations") : depths[3])) != null ? lookupProperty(stack1,"installWizard_installIncomplete_dependenciesLabel") : stack1), depth0))
+    + "\">\n          <span class=\"badge\">"
+    + alias2(lookupProperty(helpers,"dependencyCount").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depths[1] != null ? lookupProperty(depths[1],"plugin") : depths[1])) != null ? lookupProperty(stack1,"name") : stack1),{"name":"dependencyCount","hash":{},"data":data,"loc":{"start":{"line":14,"column":30},"end":{"line":14,"column":64}}}))
+    + "</span>\n        </a>\n";
+},"11":function(container,depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "        <div class=\"dep-list\">\n          <h3 class=\"dep-title\">"
+    + container.escapeExpression(container.lambda(((stack1 = (depths[3] != null ? lookupProperty(depths[3],"translations") : depths[3])) != null ? lookupProperty(stack1,"installWizard_installIncomplete_dependenciesLabel") : stack1), depth0))
+    + "</h3>\n"
+    + ((stack1 = lookupProperty(helpers,"eachDependency").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depths[1] != null ? lookupProperty(depths[1],"plugin") : depths[1])) != null ? lookupProperty(stack1,"name") : stack1),{"name":"eachDependency","hash":{},"fn":container.program(12, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":23,"column":10},"end":{"line":27,"column":29}}})) != null ? stack1 : "")
+    + "        </div>\n";
+},"12":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "          <a class=\"dep badge\" href=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"website") || (depth0 != null ? lookupProperty(depth0,"website") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"website","hash":{},"data":data,"loc":{"start":{"line":24,"column":37},"end":{"line":24,"column":48}}}) : helper)))
+    + "\" rel=\"noopener noreferrer\" target=\"_blank\">\n          "
+    + alias4(((helper = (helper = lookupProperty(helpers,"title") || (depth0 != null ? lookupProperty(depth0,"title") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data,"loc":{"start":{"line":25,"column":10},"end":{"line":25,"column":19}}}) : helper)))
+    + "\n          </a>\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"categorizedPlugins") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":34,"column":9}}})) != null ? stack1 : "");
+},"useData":true,"useDepths":true});
+
+/***/ }),
+
+/***/ 4611:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
+    var alias1=container.escapeExpression;
+
+  return "    <li><a href=\"#"
+    + alias1(__default(__webpack_require__(9065)).call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":8,"column":18},"end":{"line":8,"column":29}}}))
+    + "\" class=\"select-category\">"
+    + alias1(container.lambda(depth0, depth0))
+    + "</a></li>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return container.escapeExpression(container.lambda(depth0, depth0))
+    + ",";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header closeable\">\n  <h4 class=\"modal-title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installCustom_title") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body plugin-selector\">\n  <div class=\"categories col-sm-3\">\n  <ul class=\"nav\">\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(alias3,(depth0 != null ? lookupProperty(depth0,"categories") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":7,"column":4},"end":{"line":9,"column":13}}})) != null ? stack1 : "")
+    + "  </ul>\n  </div>\n  <div class=\"plugins col-sm-9\">\n    <div class=\"plugin-select-controls\">\n      <span class=\"plugin-select-actions\">\n        <a href=\"#\" class=\"plugin-select-all\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installCustom_selectAll") : stack1), depth0))
+    + "</a>\n        <a href=\"#\" class=\"plugin-select-none\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installCustom_selectNone") : stack1), depth0))
+    + "</a>\n        <a href=\"#\" class=\"plugin-select-recommended\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installCustom_selectRecommended") : stack1), depth0))
+    + "</a>\n      </span>\n      <span class=\"plugin-search-controls\">\n        <input type=\"text\" name=\"searchbox\" class=\"form-control\" />\n        <a href=\"#\" class=\"clear-search\">&times;</a>\n      </span>\n      <span id=\"plugin-selected-info\" class=\"plugin-selected-info\" data-selected-plugins=\""
+    + ((stack1 = lookupProperty(helpers,"each").call(alias3,(depth0 != null ? lookupProperty(depth0,"selectedPlugins") : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":23,"column":90},"end":{"line":23,"column":133}}})) != null ? stack1 : "")
+    + "\">\n        <a href=\"#\" class=\"plugin-show-selected\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installCustom_selected") : stack1), depth0))
+    + "</a> "
+    + alias2(lookupProperty(helpers,"totalPluginCount").call(alias3,{"name":"totalPluginCount","hash":{},"data":data,"loc":{"start":{"line":24,"column":107},"end":{"line":24,"column":127}}}))
+    + "\n      </span>\n    </div>\n        <div class=\"plugin-list\">\n            <div class=\"plugin-list-description\">"
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installCustom_pluginListDesc") : stack1), depth0)) != null ? stack1 : "")
+    + "</div>\n"
+    + ((stack1 = container.invokePartial(__webpack_require__(6583),depth0,{"name":"pluginSelectList","data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + "    </div>\n  </div>\n</div>\n<div class=\"modal-footer\">\n  <button type=\"button\" class=\"btn btn-link install-home\">\n    "
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_goBack") : stack1), depth0))
+    + "\n  </button>\n  <button type=\"button\" class=\"btn btn-primary install-selected\">\n    "
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_goInstall") : stack1), depth0))
+    + "\n  </button>\n</div>\n";
+},"usePartial":true,"useData":true});
+
+/***/ }),
+
+/***/ 8697:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<div class=\"plugin-setup-wizard bootstrap-3\">\n	<div class=\"modal fade in\" style=\"display: block;\">\n		<div class=\"modal-dialog\">\n			<div class=\"modal-content\"></div>\n		</div>\n	</div>\n</div>";
+},"useData":true});
+
+/***/ }),
+
+/***/ 3753:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "		<div class=\"selected-plugin "
+    + alias4(((helper = (helper = lookupProperty(helpers,"installStatus") || (depth0 != null ? lookupProperty(depth0,"installStatus") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"installStatus","hash":{},"data":data,"loc":{"start":{"line":16,"column":30},"end":{"line":16,"column":47}}}) : helper)))
+    + "\" id=\"installing-"
+    + alias4(__default(__webpack_require__(9065)).call(alias1,(depth0 != null ? lookupProperty(depth0,"name") : depth0),{"name":"id","hash":{},"data":data,"loc":{"start":{"line":16,"column":64},"end":{"line":16,"column":75}}}))
+    + "\" data-tooltip=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"errorMessage") || (depth0 != null ? lookupProperty(depth0,"errorMessage") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"errorMessage","hash":{},"data":data,"loc":{"start":{"line":16,"column":91},"end":{"line":16,"column":107}}}) : helper)))
+    + "\">"
+    + alias4(((helper = (helper = lookupProperty(helpers,"title") || (depth0 != null ? lookupProperty(depth0,"title") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data,"loc":{"start":{"line":16,"column":109},"end":{"line":16,"column":118}}}) : helper)))
+    + "</div>\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header\">\n	<h4 class=\"modal-title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installing_title") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body installing-body\">\n	<div class=\"jumbotron welcome-panel installing-panel\">\n		<h1>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installing_title") : stack1), depth0))
+    + "</h1>\n		<div class=\"progress\">\n		  <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 0%;\">\n		    <span class=\"sr-only\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installing_title") : stack1), depth0))
+    + "</span>\n		  </div>\n		</div>\n	</div>\n\n	<div class=\"selected-plugin-progress\">\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"installingPlugins") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":15,"column":2},"end":{"line":17,"column":11}}})) != null ? stack1 : "")
+    + "	</div>\n\n	<div class=\"install-console\">\n	  <div class=\"install-console-scroll\">\n	    <div class=\"install-text\"></div>\n	  </div>\n	  <div class=\"dependency-legend\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installingConsole_dependencyIndicatorNote") : stack1), depth0))
+    + "</div>\n	</div>\n</div>\n";
+},"useData":true});
+
+/***/ }),
+
+/***/ 7210:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header\">\n    <h4 class=\"modal-title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_configureProxy_label") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body\">\n    <div class=\"jumbotron welcome-panel security-panel\">\n        <iframe src=\""
+    + alias2(((helper = (helper = lookupProperty(helpers,"baseUrl") || (depth0 != null ? lookupProperty(depth0,"baseUrl") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"baseUrl","hash":{},"data":data,"loc":{"start":{"line":6,"column":21},"end":{"line":6,"column":32}}}) : helper)))
+    + "/setupWizard/proxy-configuration\"></iframe>\n    </div>\n</div>\n<div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-link install-home\">\n        "
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_goBack") : stack1), depth0))
+    + "\n    </button>\n    <button type=\"button\" class=\"btn btn-primary save-proxy-config\" disabled>\n        "
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_configureProxy_save") : stack1), depth0))
+    + "\n    </button>\n</div>\n";
+},"useData":true});
+
+/***/ }),
+
+/***/ 5558:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "		<h1>"
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installComplete_bannerRestart") : stack1), depth0))
+    + "</h1>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "		<h1>"
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installComplete_banner") : stack1), depth0))
+    + "</h1>\n";
+},"5":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"restartSupported") : depth0),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.program(8, data, 0),"data":data,"loc":{"start":{"line":15,"column":3},"end":{"line":22,"column":10}}})) != null ? stack1 : "");
+},"6":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "			<p>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installComplete_installComplete_restartRequiredMessage") : stack1), depth0))
+    + "</p>\n			<button type=\"button\" class=\"btn btn-primary install-done-restart\">\n				"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installComplete_restartLabel") : stack1), depth0))
+    + "\n			</button>\n";
+},"8":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "			<p>"
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installComplete_installComplete_restartRequiredNotSupportedMessage") : stack1), depth0))
+    + "</p>\n";
+},"10":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "		<p>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installComplete_message") : stack1), depth0))
+    + "</p>\n		<button type=\"button\" class=\"btn btn-primary install-done\">\n			"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installComplete_finishButtonLabel") : stack1), depth0))
+    + "\n		</button>\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header\">\n	<h4 class=\"modal-title\">"
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_installComplete_title") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body\">\n	<div class=\"jumbotron welcome-panel success-panel\">\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"restartRequired") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":6,"column":2},"end":{"line":10,"column":9}}})) != null ? stack1 : "")
+    + "		\n		"
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"message") || (depth0 != null ? lookupProperty(depth0,"message") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"message","hash":{},"data":data,"loc":{"start":{"line":12,"column":2},"end":{"line":12,"column":15}}}) : helper))) != null ? stack1 : "")
+    + "\n\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"restartRequired") : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(10, data, 0),"data":data,"loc":{"start":{"line":14,"column":2},"end":{"line":28,"column":9}}})) != null ? stack1 : "")
+    + "	</div>\n</div>\n";
+},"useData":true});
+
+/***/ }),
+
+/***/ 3867:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "        <p>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_pluginInstallFailure_message") : stack1), depth0))
+    + "</p>\n        <button type=\"button\" class=\"btn btn-primary retry-failed-plugins\">\n            "
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_retry") : stack1), depth0))
+    + "\n        </button>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "        <div class=\"selected-plugin "
+    + alias4(((helper = (helper = lookupProperty(helpers,"installStatus") || (depth0 != null ? lookupProperty(depth0,"installStatus") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"installStatus","hash":{},"data":data,"loc":{"start":{"line":18,"column":36},"end":{"line":18,"column":53}}}) : helper)))
+    + "\" data-name=\""
+    + alias4(__default(__webpack_require__(9065)).call(alias1,(depth0 != null ? lookupProperty(depth0,"name") : depth0),{"name":"id","hash":{},"data":data,"loc":{"start":{"line":18,"column":66},"end":{"line":18,"column":77}}}))
+    + "\">"
+    + alias4(((helper = (helper = lookupProperty(helpers,"title") || (depth0 != null ? lookupProperty(depth0,"title") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data,"loc":{"start":{"line":18,"column":79},"end":{"line":18,"column":88}}}) : helper)))
+    + "</div>\n";
+},"5":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "    <button type=\"button\" class=\"btn btn-link continue-with-failed-plugins\">\n        "
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_continue") : stack1), depth0))
+    + "\n    </button>\n    <button type=\"button\" class=\"btn btn-primary retry-failed-plugins\">\n        "
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_retry") : stack1), depth0))
+    + "\n    </button>\n";
+},"7":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "    <button type=\"button\" class=\"btn btn-primary continue-with-failed-plugins\">\n        "
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_continue") : stack1), depth0))
+    + "\n    </button>\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header\">\n    <h4 class=\"modal-title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_welcomePanel_title") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body\">\n    <div class=\"jumbotron welcome-panel success-panel\">\n        <h1>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_pluginInstallFailure_title") : stack1), depth0))
+    + "</h1>\n\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(alias3,(depth0 != null ? lookupProperty(depth0,"failedPlugins") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":8,"column":8},"end":{"line":13,"column":15}}})) != null ? stack1 : "")
+    + "    </div>\n\n    <div class=\"selected-plugin-progress success-panel\">\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(alias3,(depth0 != null ? lookupProperty(depth0,"installingPlugins") : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":17,"column":8},"end":{"line":19,"column":17}}})) != null ? stack1 : "")
+    + "    </div>\n</div>\n<div class=\"modal-footer\">\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(alias3,(depth0 != null ? lookupProperty(depth0,"failedPlugins") : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(7, data, 0),"data":data,"loc":{"start":{"line":23,"column":4},"end":{"line":34,"column":11}}})) != null ? stack1 : "")
+    + "</div>\n";
+},"useData":true});
+
+/***/ }),
+
+/***/ 1436:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var Handlebars = __webpack_require__(1362);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"modal-header closeable\">\n	<h4 class=\"modal-title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_welcomePanel_title") : stack1), depth0))
+    + "</h4>\n</div>\n<div class=\"modal-body setup-wizard-heading\">\n  <div class=\"jumbotron welcome-panel\">\n		 <h1>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_welcomePanel_banner") : stack1), depth0))
+    + "</h1>\n	<p>\n			"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_welcomePanel_message") : stack1), depth0))
+    + "\n		</p>\n		<p class=\"button-set\">\n			<a class=\"btn btn-primary btn-lg btn-huge install-recommended\" href=\"#\" role=\"button\">\n				<b>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_welcomePanel_recommendedActionTitle") : stack1), depth0))
+    + "</b>\n				<sub>\n					"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_welcomePanel_recommendedActionDetails") : stack1), depth0))
+    + "\n				</sub>\n			</a>\n\n			<a class=\"btn btn-default btn-lg btn-huge install-custom\" href=\"#\" role=\"button\">\n				<b>"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_welcomePanel_customizeActionTitle") : stack1), depth0))
+    + "</b>\n				<sub>\n					"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"translations") : depth0)) != null ? lookupProperty(stack1,"installWizard_welcomePanel_customizeActionDetails") : stack1), depth0))
+    + "\n				</sub>\n			</a>\n		</p>\n	</div>\n\n</div>\n";
+},"useData":true});
+
+/***/ }),
+
+/***/ 1830:
+/***/ (function() {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ 3770:
+/***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1573);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1106);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3426);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7965);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8201);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5894);
+/* harmony import */ var _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _yarn_virtual_mini_css_extract_plugin_virtual_0c5d12253e_5_yarn_berry_cache_mini_css_extract_plugin_npm_2_9_1_1db25d3bb9_10c0_zip_node_modules_mini_css_extract_plugin_dist_loader_js_ruleSet_1_rules_0_use_1_yarn_virtual_css_loader_virtual_f6295351d5_5_yarn_berry_cache_css_loader_npm_7_1_2_7540f12884_10c0_zip_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_0_use_2_yarn_virtual_postcss_loader_virtual_6183964b6b_5_yarn_berry_cache_postcss_loader_npm_8_1_1_20cf547c92_10c0_zip_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_0_use_3_yarn_virtual_sass_loader_virtual_3e251aa3ad_5_yarn_berry_cache_sass_loader_npm_16_0_2_eafa07389f_10c0_zip_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_0_use_4_pluginSetupWizard_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1830);
+/* harmony import */ var _yarn_virtual_mini_css_extract_plugin_virtual_0c5d12253e_5_yarn_berry_cache_mini_css_extract_plugin_npm_2_9_1_1db25d3bb9_10c0_zip_node_modules_mini_css_extract_plugin_dist_loader_js_ruleSet_1_rules_0_use_1_yarn_virtual_css_loader_virtual_f6295351d5_5_yarn_berry_cache_css_loader_npm_7_1_2_7540f12884_10c0_zip_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_0_use_2_yarn_virtual_postcss_loader_virtual_6183964b6b_5_yarn_berry_cache_postcss_loader_npm_8_1_1_20cf547c92_10c0_zip_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_0_use_3_yarn_virtual_sass_loader_virtual_3e251aa3ad_5_yarn_berry_cache_sass_loader_npm_16_0_2_eafa07389f_10c0_zip_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_0_use_4_pluginSetupWizard_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_yarn_virtual_mini_css_extract_plugin_virtual_0c5d12253e_5_yarn_berry_cache_mini_css_extract_plugin_npm_2_9_1_1db25d3bb9_10c0_zip_node_modules_mini_css_extract_plugin_dist_loader_js_ruleSet_1_rules_0_use_1_yarn_virtual_css_loader_virtual_f6295351d5_5_yarn_berry_cache_css_loader_npm_7_1_2_7540f12884_10c0_zip_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_0_use_2_yarn_virtual_postcss_loader_virtual_6183964b6b_5_yarn_berry_cache_postcss_loader_npm_8_1_1_20cf547c92_10c0_zip_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_0_use_3_yarn_virtual_sass_loader_virtual_3e251aa3ad_5_yarn_berry_cache_sass_loader_npm_16_0_2_eafa07389f_10c0_zip_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_0_use_4_pluginSetupWizard_scss__WEBPACK_IMPORTED_MODULE_6__);
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _yarn_virtual_style_loader_virtual_25a2082580_5_yarn_berry_cache_style_loader_npm_4_0_0_e0f957f3d6_10c0_zip_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()((_yarn_virtual_mini_css_extract_plugin_virtual_0c5d12253e_5_yarn_berry_cache_mini_css_extract_plugin_npm_2_9_1_1db25d3bb9_10c0_zip_node_modules_mini_css_extract_plugin_dist_loader_js_ruleSet_1_rules_0_use_1_yarn_virtual_css_loader_virtual_f6295351d5_5_yarn_berry_cache_css_loader_npm_7_1_2_7540f12884_10c0_zip_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_0_use_2_yarn_virtual_postcss_loader_virtual_6183964b6b_5_yarn_berry_cache_postcss_loader_npm_8_1_1_20cf547c92_10c0_zip_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_0_use_3_yarn_virtual_sass_loader_virtual_3e251aa3ad_5_yarn_berry_cache_sass_loader_npm_16_0_2_eafa07389f_10c0_zip_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_0_use_4_pluginSetupWizard_scss__WEBPACK_IMPORTED_MODULE_6___default()), options);
+
+
+
+
+       /* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((_yarn_virtual_mini_css_extract_plugin_virtual_0c5d12253e_5_yarn_berry_cache_mini_css_extract_plugin_npm_2_9_1_1db25d3bb9_10c0_zip_node_modules_mini_css_extract_plugin_dist_loader_js_ruleSet_1_rules_0_use_1_yarn_virtual_css_loader_virtual_f6295351d5_5_yarn_berry_cache_css_loader_npm_7_1_2_7540f12884_10c0_zip_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_0_use_2_yarn_virtual_postcss_loader_virtual_6183964b6b_5_yarn_berry_cache_postcss_loader_npm_8_1_1_20cf547c92_10c0_zip_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_0_use_3_yarn_virtual_sass_loader_virtual_3e251aa3ad_5_yarn_berry_cache_sass_loader_npm_16_0_2_eafa07389f_10c0_zip_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_0_use_4_pluginSetupWizard_scss__WEBPACK_IMPORTED_MODULE_6___default()) && (_yarn_virtual_mini_css_extract_plugin_virtual_0c5d12253e_5_yarn_berry_cache_mini_css_extract_plugin_npm_2_9_1_1db25d3bb9_10c0_zip_node_modules_mini_css_extract_plugin_dist_loader_js_ruleSet_1_rules_0_use_1_yarn_virtual_css_loader_virtual_f6295351d5_5_yarn_berry_cache_css_loader_npm_7_1_2_7540f12884_10c0_zip_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_0_use_2_yarn_virtual_postcss_loader_virtual_6183964b6b_5_yarn_berry_cache_postcss_loader_npm_8_1_1_20cf547c92_10c0_zip_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_0_use_3_yarn_virtual_sass_loader_virtual_3e251aa3ad_5_yarn_berry_cache_sass_loader_npm_16_0_2_eafa07389f_10c0_zip_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_0_use_4_pluginSetupWizard_scss__WEBPACK_IMPORTED_MODULE_6___default().locals) ? (_yarn_virtual_mini_css_extract_plugin_virtual_0c5d12253e_5_yarn_berry_cache_mini_css_extract_plugin_npm_2_9_1_1db25d3bb9_10c0_zip_node_modules_mini_css_extract_plugin_dist_loader_js_ruleSet_1_rules_0_use_1_yarn_virtual_css_loader_virtual_f6295351d5_5_yarn_berry_cache_css_loader_npm_7_1_2_7540f12884_10c0_zip_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_0_use_2_yarn_virtual_postcss_loader_virtual_6183964b6b_5_yarn_berry_cache_postcss_loader_npm_8_1_1_20cf547c92_10c0_zip_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_0_use_3_yarn_virtual_sass_loader_virtual_3e251aa3ad_5_yarn_berry_cache_sass_loader_npm_16_0_2_eafa07389f_10c0_zip_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_0_use_4_pluginSetupWizard_scss__WEBPACK_IMPORTED_MODULE_6___default().locals) : undefined);
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	!function() {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = function(result, chunkIds, fn, priority) {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var chunkIds = deferred[i][0];
+/******/ 				var fn = deferred[i][1];
+/******/ 				var priority = deferred[i][2];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every(function(key) { return __webpack_require__.O[key](chunkIds[j]); })) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	!function() {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/runtimeId */
+/******/ 	!function() {
+/******/ 		__webpack_require__.j = 872;
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	!function() {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			872: 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = function(chunkId) { return installedChunks[chunkId] === 0; };
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = function(parentChunkLoadingFunction, data) {
+/******/ 			var chunkIds = data[0];
+/******/ 			var moreModules = data[1];
+/******/ 			var runtime = data[2];
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some(function(id) { return installedChunks[id] !== 0; })) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunkjenkins_ui"] = self["webpackChunkjenkins_ui"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/nonce */
+/******/ 	!function() {
+/******/ 		__webpack_require__.nc = undefined;
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	__webpack_require__.O(undefined, [96], function() { return __webpack_require__(7626); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [96], function() { return __webpack_require__(3770); })
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;
 //# sourceMappingURL=pluginSetupWizard.js.map

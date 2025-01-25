@@ -1,24 +1,27 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: ikedam
-Build-Jdk: 1.8.0_181
-Extension-Name: build-timeout
-Specification-Title: Aborts a build if it's taking too long
-Implementation-Title: build-timeout
-Implementation-Version: 1.20
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 21
+Specification-Title: Build Timeout
+Specification-Version: 1.33
+Implementation-Title: Build Timeout
+Implementation-Version: 1.33
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: build-timeout
 Short-Name: build-timeout
 Long-Name: Build Timeout
 Url: https://github.com/jenkinsci/build-timeout-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.20
-Hudson-Version: 2.222.1
-Jenkins-Version: 2.222.1
-Plugin-Dependencies: naginator:1.16;resolution:=optional,token-macro:1
- .5.1
+Plugin-Version: 1.33
+Hudson-Version: 2.440.3
+Jenkins-Version: 2.440.3
+Plugin-Dependencies: json-path-api:2.8.0-5.v07cb_a_1ca_738c,naginator:1.
+ 18.2;resolution:=optional,token-macro:400.v35420b_922dcb_
 Plugin-Developers: 
 Plugin-License-Name: The MIT License (MIT)
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/build-timeout
+ -plugin.git
+Plugin-ScmTag: build-timeout-1.33
 Plugin-ScmUrl: https://github.com/jenkinsci/build-timeout-plugin
+Plugin-GitHash: f3633d8e1bb778d9ae247e280bb2a138c8d6bbac
+Implementation-Build: f3633d8e1bb778d9ae247e280bb2a138c8d6bbac
 

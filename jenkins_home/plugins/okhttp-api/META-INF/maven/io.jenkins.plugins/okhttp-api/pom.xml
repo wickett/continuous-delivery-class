@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+<!-- do_not_remove: published-with-gradle-metadata -->
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.jenkins.plugins</groupId>
   <artifactId>okhttp-api</artifactId>
-  <version>3.14.9</version>
+  <version>4.11.0-181.v1de5b_83857df</version>
   <packaging>hpi</packaging>
   <name>OkHttp Plugin</name>
   <description>The Jenkins Plugins Parent POM Project</description>
@@ -13,14 +14,14 @@
   <licenses>
     <license>
       <name>The MIT License (MIT)</name>
-      <url>http://opensource.org/licenses/MIT</url>
+      <url>https://opensource.org/licenses/MIT</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/okhttp-api-plugin.git</connection>
+    <connection>scm:git:https://github.com/jenkinsci/okhttp-api-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/okhttp-api-plugin.git</developerConnection>
-    <tag>okhttp-api-3.14.9</tag>
+    <tag>1de5b83857df69bfd113a7303be1fbc098f7d6cb</tag>
     <url>https://github.com/jenkinsci/okhttp-api-plugin</url>
   </scm>
   <distributionManagement>
@@ -37,91 +38,58 @@
     <dependency>
       <groupId>com.squareup.okio</groupId>
       <artifactId>okio</artifactId>
-      <version>1.17.5</version>
+      <version>3.5.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>okhttp</artifactId>
-      <version>3.14.9</version>
+      <version>4.11.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>logging-interceptor</artifactId>
-      <version>3.14.9</version>
+      <version>4.11.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <version>2.164.3</version>
-      <scope>provided</scope>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-common</artifactId>
+      <version>1.9.22</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk8</artifactId>
+      <version>1.9.22</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>3.1.11</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <version>1.18</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <version>1.14</version>
-      <scope>provided</scope>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>1.9.22</version>
+      <scope>compile</scope>
       <exclusions>
         <exclusion>
-          <artifactId>annotation-indexer</artifactId>
-          <groupId>org.jenkins-ci</groupId>
+          <groupId>org.jetbrains</groupId>
+          <artifactId>annotations</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk7</artifactId>
+      <version>1.9.22</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.14</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke.stapler</groupId>
-        <artifactId>maven-stapler-plugin</artifactId>
-        <version>1.17</version>
+        <version>3.57</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

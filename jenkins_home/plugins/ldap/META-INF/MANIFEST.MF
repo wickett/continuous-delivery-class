@@ -1,24 +1,26 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: rsandell
-Build-Jdk: 1.8.0_211
-Extension-Name: ldap
-Specification-Title: The Jenkins Plugins Parent POM Project
-Implementation-Title: ldap
-Implementation-Version: 2.7
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: LDAP Plugin
+Specification-Version: 0.0
+Implementation-Title: LDAP Plugin
+Implementation-Version: 770.vb_455e934581a_
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: ldap
 Short-Name: ldap
 Long-Name: LDAP Plugin
 Url: https://github.com/jenkinsci/ldap-plugin
 Compatible-Since-Version: 1.16
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.7
-Hudson-Version: 2.277.1
-Jenkins-Version: 2.277.1
-Plugin-Dependencies: mailer:1.34
+Plugin-Version: 770.vb_455e934581a_
+Hudson-Version: 2.479.1
+Jenkins-Version: 2.479.1
+Plugin-Dependencies: mailer:488.v0c9639c1a_eb_3
 Plugin-Developers: 
 Plugin-License-Name: The MIT license
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/ldap-plugin.g
+ it
+Plugin-ScmTag: b455e934581aefc48184918fe1a1c0d5e331d3a9
 Plugin-ScmUrl: https://github.com/jenkinsci/ldap-plugin
+Implementation-Build: b455e934581aefc48184918fe1a1c0d5e331d3a9
 

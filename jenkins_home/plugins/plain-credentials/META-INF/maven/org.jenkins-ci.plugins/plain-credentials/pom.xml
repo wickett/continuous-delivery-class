@@ -22,88 +22,54 @@
  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  ~ THE SOFTWARE.
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-
-  <parent>
-    <groupId>org.jenkins-ci.plugins</groupId>
-    <artifactId>plugin</artifactId>
-    <version>3.56</version>
-    <relativePath />
-  </parent>
-
+  <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plain-credentials</artifactId>
-  <version>1.7</version>
+  <version>183.va_de8f1dd5a_2b_</version>
   <packaging>hpi</packaging>
-
   <name>Plain Credentials Plugin</name>
   <description>Allows use of plain strings and files as credentials.</description>
   <url>https://github.com/jenkinsci/plain-credentials-plugin</url>
+  <inceptionYear>2016</inceptionYear>
   <licenses>
     <license>
       <name>MIT</name>
       <url>https://opensource.org/licenses/MIT</url>
     </license>
   </licenses>
-
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-    <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    <tag>plain-credentials-1.7</tag>
+    <connection>scm:git:https://github.com/jenkinsci/plain-credentials-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/plain-credentials-plugin.git</developerConnection>
+    <tag>ade8f1dd5a2bc69357995fd50baac56d73f80813</tag>
+    <url>https://github.com/jenkinsci/plain-credentials-plugin</url>
   </scm>
-
-  <properties>
-    <jenkins.version>2.138.4</jenkins.version>
-    <java.level>8</java.level>
-    <configuration-as-code-plugin.version>1.35</configuration-as-code-plugin.version>
-  </properties>
-
-  <repositories>
+  <distributionManagement>
     <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/releases/</url>
     </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
   <dependencies>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>credentials</artifactId>
-      <version>2.2.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.jenkins</groupId>
-      <artifactId>configuration-as-code</artifactId>
-      <version>${configuration-as-code-plugin.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.jenkins.configuration-as-code</groupId>
-      <artifactId>test-harness</artifactId>
-      <version>${configuration-as-code-plugin.version}</version>
-      <scope>test</scope>
+      <version>1344.v5a_3f65a_1e173</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <configuration>
-          <loggers>
-            <org.jenkinsci.plugins.plaincredentials>FINE</org.jenkinsci.plugins.plaincredentials>
-          </loggers>
-          <minimumJavaVersion>1.8</minimumJavaVersion>
-        </configuration>
+        <version>3.53</version>
+        <extensions>true</extensions>
       </plugin>
     </plugins>
   </build>

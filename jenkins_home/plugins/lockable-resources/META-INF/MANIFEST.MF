@@ -1,33 +1,33 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: basil
-Build-Jdk: 1.8.0_292
-Extension-Name: lockable-resources
-Specification-Title: This plugin allows to define lockable resources (
- such as printers, phones,
-     computers) that can be used by builds. If a build requires an ext
- ernal
-     resource which is already locked, it will wait for the resource t
- o be free.
-Implementation-Title: lockable-resources
-Implementation-Version: 2.11
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Lockable Resources plugin
+Specification-Version: 0.0
+Implementation-Title: Lockable Resources plugin
+Implementation-Version: 1327.ved786b_a_197e0
 Plugin-Class: org.jenkins.plugins.lockableresources.LockableResources
 Group-Id: org.6wind.jenkins
+Artifact-Id: lockable-resources
 Short-Name: lockable-resources
 Long-Name: Lockable Resources plugin
 Url: https://github.com/jenkinsci/lockable-resources-plugin
 Compatible-Since-Version: 2.0
-Minimum-Java-Version: 1.8
-Plugin-Version: 2.11
-Hudson-Version: 2.222.4
-Jenkins-Version: 2.222.4
-Plugin-Dependencies: caffeine-api:2.9.1-23.v51c4e2c879c8,workflow-supp
- ort:3.8,mailer:1.32.1,matrix-project:1.18,script-security:1.77,struct
- s:1.23
-Plugin-Developers: Basil Crow:basil:me@basilcrow.com,Tobias Gruetzmach
- er:TobiX:tobias-git@23.gs,Antonio Muñiz:amuniz:amuniz@cloudbees.com
+Plugin-Version: 1327.ved786b_a_197e0
+Hudson-Version: 2.440.3
+Jenkins-Version: 2.440.3
+Plugin-Dependencies: caffeine-api:3.1.8-133.v17b_1ff2e0599,data-tables-a
+ pi:2.1.6-1,workflow-support:926.v9f4f9b_b_98c19,mailer:488.v0c9639c1a_e
+ b_3,matrix-project:838.v4d7b_7b_f9b_d4b_,script-security:1362.v67dc1f0e
+ 1b_b_3,structs:338.v848422169819
+Plugin-Developers: Tobias Gruetzmacher:TobiX:tobias-git@23.gs,Antonio Mu
+ ñiz:amuniz:amuniz@cloudbees.com,Martin Pokorny:mPokornyETM:martin.poko
+ rny@etm.at
 Plugin-License-Name: MIT
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/lockable-reso
+ urces-plugin.git
+Plugin-ScmTag: ed786ba197e0a5b484d989a907acfee3dc135851
 Plugin-ScmUrl: https://github.com/jenkinsci/lockable-resources-plugin
+Plugin-GitHash: ed786ba197e0a5b484d989a907acfee3dc135851
+Implementation-Build: ed786ba197e0a5b484d989a907acfee3dc135851
 

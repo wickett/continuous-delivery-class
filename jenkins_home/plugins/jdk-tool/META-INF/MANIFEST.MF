@@ -1,23 +1,27 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: rleon
-Build-Jdk: 1.8.0_242
-Extension-Name: jdk-tool
-Specification-Title: Allows the Oracle Java SE Development Kit (JDK) t
- o be installed via download from Oracle's website.
-Implementation-Title: jdk-tool
-Implementation-Version: 1.5
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Oracle Java SE Development Kit Installer Plugin
+Specification-Version: 0.0
+Implementation-Title: Oracle Java SE Development Kit Installer Plugin
+Implementation-Version: 80.v8a_dee33ed6f0
 Group-Id: org.jenkins-ci.plugins
+Artifact-Id: jdk-tool
 Short-Name: jdk-tool
 Long-Name: Oracle Java SE Development Kit Installer Plugin
 Url: https://github.com/jenkinsci/jdk-tool-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.5
-Hudson-Version: 2.176.1
-Jenkins-Version: 2.176.1
+Plugin-Version: 80.v8a_dee33ed6f0
+Hudson-Version: 2.440.3
+Jenkins-Version: 2.440.3
+Plugin-Dependencies: apache-httpcomponents-client-4-api:4.5.14-208.v4383
+ 51942757
 Plugin-Developers: 
 Plugin-License-Name: MIT License
 Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/jdk-tool-plug
+ in.git
+Plugin-ScmTag: 8adee33ed6f0b6c77e6759f16d9828b02c17d33b
 Plugin-ScmUrl: https://github.com/jenkinsci/jdk-tool-plugin
+Plugin-GitHash: 8adee33ed6f0b6c77e6759f16d9828b02c17d33b
+Implementation-Build: 8adee33ed6f0b6c77e6759f16d9828b02c17d33b
 

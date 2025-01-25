@@ -1,31 +1,38 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: bitwiseman
-Build-Jdk: 1.8.0_292
-Extension-Name: pipeline-model-definition
-Specification-Title: An opinionated, declarative Pipeline
-Implementation-Title: pipeline-model-definition
-Implementation-Version: 1.8.5
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Pipeline: Declarative
+Specification-Version: 0.0
+Implementation-Title: Pipeline: Declarative
+Implementation-Version: 2.2218.v56d0cda_37c72
 Group-Id: org.jenkinsci.plugins
+Artifact-Id: pipeline-model-definition
 Short-Name: pipeline-model-definition
 Long-Name: Pipeline: Declarative
 Url: https://github.com/jenkinsci/pipeline-model-definition-plugin
 Compatible-Since-Version: 1.6.0
-Minimum-Java-Version: 1.8
-Plugin-Version: 1.8.5
-Hudson-Version: 2.190.3
-Jenkins-Version: 2.190.3
-Plugin-Dependencies: workflow-api:2.40,workflow-basic-steps:2.20,workf
- low-cps-global-lib:2.17,workflow-cps:2.83,workflow-durable-task-step:
- 2.35,workflow-multibranch:2.16,workflow-scm-step:2.11,workflow-suppor
- t:3.5,credentials-binding:1.24,credentials:2.3.11,git-client:3.2.1,ma
- iler:1.32.1,pipeline-input-step:2.12,pipeline-stage-step:2.3,scm-api:
- 2.6.4,structs:1.20,pipeline-model-api:1.8.5,pipeline-model-extensions
- :1.8.5,pipeline-stage-tags-metadata:1.8.5
+Plugin-Version: 2.2218.v56d0cda_37c72
+Hudson-Version: 2.426.3
+Jenkins-Version: 2.426.3
+Plugin-Dependencies: ionicons-api:73.vb_f522f227457,pipeline-groovy-lib:
+ 704.vc58b_8890a_384,workflow-api:1291.v51fd2a_625da_7,workflow-basic-st
+ eps:1058.vcb_fc1e3a_21a_9,workflow-cps:3961.ve48ee2c44a_b_3,workflow-du
+ rable-task-step:1331.vc8c2fed35334,workflow-multibranch:773.vc4fe1378f1
+ d5,workflow-scm-step:427.v4ca_6512e7df1,workflow-support:907.v6713a_ed8
+ a_573,credentials-binding:677.vdc9d38cb_254d,credentials:1337.v60b_d7b_
+ c7b_c9f,mailer:470.vc91f60c5d8e2,pipeline-input-step:477.v339683a_8d55e
+ ,pipeline-stage-step:312.v8cd10304c27a_,scm-api:690.vfc8b_54395023,stru
+ cts:337.v1b_04ea_4df7c8,pipeline-model-api:2.2218.v56d0cda_37c72,pipeli
+ ne-model-extensions:2.2218.v56d0cda_37c72,pipeline-stage-tags-metadata:
+ 2.2218.v56d0cda_37c72
 Plugin-Developers: Andrew Bayer:abayer:
 Plugin-License-Name: MIT
-Plugin-License-Url: http://opensource.org/licenses/MIT
-Plugin-ScmUrl: https://github.com/jenkinsci/pipeline-model-definition-
- plugin
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/pipeline-mode
+ l-definition-plugin.git
+Plugin-ScmTag: 56d0cda37c726c9405c7f24f0fece00672439068
+Plugin-ScmUrl: https://github.com/jenkinsci/pipeline-model-definition-pl
+ ugin
+Plugin-GitHash: 56d0cda37c726c9405c7f24f0fece00672439068
+Implementation-Build: 56d0cda37c726c9405c7f24f0fece00672439068
 

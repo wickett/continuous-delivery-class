@@ -1,23 +1,26 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: bitwiseman
-Build-Jdk: 11.0.5
-Extension-Name: okhttp-api
-Specification-Title: The Jenkins Plugins Parent POM Project
-Implementation-Title: okhttp-api
-Implementation-Version: 3.14.9
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: OkHttp Plugin
+Specification-Version: 4.11
+Implementation-Title: OkHttp Plugin
+Implementation-Version: 4.11.0-181.v1de5b_83857df
 Group-Id: io.jenkins.plugins
+Artifact-Id: okhttp-api
 Short-Name: okhttp-api
 Long-Name: OkHttp Plugin
 Url: https://github.com/jenkinsci/okhttp-api-plugin
-Minimum-Java-Version: 1.8
-Plugin-Version: 3.14.9
-Hudson-Version: 2.164.3
-Jenkins-Version: 2.164.3
+Plugin-Version: 4.11.0-181.v1de5b_83857df
+Hudson-Version: 2.475
+Jenkins-Version: 2.475
 Plugin-Developers: 
 Support-Dynamic-Loading: true
 Plugin-License-Name: The MIT License (MIT)
-Plugin-License-Url: http://opensource.org/licenses/MIT
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/okhttp-api-pl
+ ugin.git
+Plugin-ScmTag: 1de5b83857df69bfd113a7303be1fbc098f7d6cb
 Plugin-ScmUrl: https://github.com/jenkinsci/okhttp-api-plugin
+Plugin-GitHash: 1de5b83857df69bfd113a7303be1fbc098f7d6cb
+Implementation-Build: 1de5b83857df69bfd113a7303be1fbc098f7d6cb
 
