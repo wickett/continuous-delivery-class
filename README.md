@@ -84,7 +84,7 @@ Warning, doing the docker system prune will get rid of all stopped containers, u
 * Install go via `brew install git`
 * Set $GOPATH `export GOPATH="${HOME}/go"` in `~/.bash_profile`
 * Set $PATH `export PATH=$PATH:$(go env GOPATH)/bin` in `~/.bash_profile`
-* Install goconvey: `go get github.com/smartystreets/goconvey`
+* Install goconvey: `go install github.com/smartystreets/goconvey@latest`
 * Optional, if you are interested in using vim like I do in the video, check out https://github.com/wickett/wickett-vim
 
 ## Deployment in Action
